@@ -1,4 +1,4 @@
-# Impact of vaccination on the association of COVID-19 with arterial and venous thrombotic diseases: an OpenSAFELY cohort study using linked electronic health records
+# (CLONE!) Impact of vaccination on the association of COVID-19 with arterial and venous thrombotic diseases: an OpenSAFELY cohort study using linked electronic health records
 
 Abstract: The incidence of cardiovascular diseases increases after COVID-19 diagnosis. How COVID-19 vaccination and different SARS-CoV-2 variants impact on this increase is unclear. The objective was to quantify associations between COVID-19 diagnosis and cardiovascular diseases in different vaccination and variant eras in England.
 
