@@ -429,3 +429,11 @@ pulmonary_fibrosis_snomed = codelist_from_csv(
     "codelists/bristol-ild-snomed.csv",
     column="code"
 )
+
+
+## Cardiovascular outcomes
+cardiovascular_secondary_care = codelist_from_csv(
+    "codelists/opensafely-cardiovascular-secondary-care.csv",
+    column="code"
+)
+
