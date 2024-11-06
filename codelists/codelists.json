@@ -1,3 +1,10 @@
 {
-  "files": {}
+  "files": {
+    "opensafely-cardiovascular-secondary-care.csv": {
+      "id": "opensafely/cardiovascular-secondary-care/20b63bd4",
+      "url": "https://www.opencodelists.org/codelist/opensafely/cardiovascular-secondary-care/20b63bd4/",
+      "downloaded_at": "2024-11-06 10:44:47.471777Z",
+      "sha": "7c956ed25484f8c03dae29823031c27f2802914a"
+    }
+  }
 }
