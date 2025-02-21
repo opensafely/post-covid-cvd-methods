@@ -13,7 +13,7 @@ defaults_list <- list(
   version = "3.0",
   expectations= list(population_size=1000L)
 )
-cohorts <- c("prevax","vax","unvax")
+cohorts <- c("prevax")
 
 # Create generic action function ----
 

@@ -41,25 +41,3 @@ actions:
       highly_sensitive:
         cohort: output/dataset_definition/input_prevax.csv.gz
 
-  ## Generate cohort - vax 
-
-  generate_cohort_vax:
-    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_vax.py
-      --output output/dataset_definition/input_vax.csv.gz
-    needs:
-    - generate_dates
-    outputs:
-      highly_sensitive:
-        cohort: output/dataset_definition/input_vax.csv.gz
-
-  ## Generate cohort - unvax 
-
-  generate_cohort_unvax:
-    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_unvax.py
-      --output output/dataset_definition/input_unvax.csv.gz
-    needs:
-    - generate_dates
-    outputs:
-      highly_sensitive:
-        cohort: output/dataset_definition/input_unvax.csv.gz
-

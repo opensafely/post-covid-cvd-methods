@@ -95,7 +95,7 @@ all_covars <- paste0(c(core_covars, project_covars), collapse = ";")
 
 # Specify cohorts ----
 
-cohorts <- c("vax","unvax","prevax")
+cohorts <- c("prevax")
 
 # Specify outcomes ----
 
