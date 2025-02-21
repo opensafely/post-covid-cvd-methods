@@ -1,8 +1,65 @@
-version: '4.0'
+version: '3.0'
+
+expectations:
+
+  population_size: 1000
 
 actions:
-  generate_dataset:
-    run: ehrql:v1 generate-dataset analysis/dataset_definition.py --output output/dataset.csv.gz
+
+  ## # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  ## DO NOT EDIT project.yaml DIRECTLY 
+  ## This file is created by create_project_actions.R 
+  ## Edit and run create_project_actions.R to update the project.yaml 
+  ## # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  ## Define study date 
+
+  study_dates:
+    run: r:latest analysis/study_dates.R
     outputs:
       highly_sensitive:
-        dataset: output/dataset.csv.gz
+        study_dates_json: output/study_dates.json
+
+  ## Generate dates for all cohorts 
+
+  generate_dates:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_dates.py
+      --output output/dataset_definition/index_dates.csv.gz
+    needs:
+    - study_dates
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/index_dates.csv.gz
+
+  ## Generate cohort - prevax 
+
+  generate_cohort_prevax:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_prevax.py
+      --output output/dataset_definition/input_prevax.csv.gz
+    needs:
+    - generate_dates
+    outputs:
+      highly_sensitive:
+        cohort: output/dataset_definition/input_prevax.csv.gz
+
+  ## Generate cohort - vax 
+
+  generate_cohort_vax:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_vax.py
+      --output output/dataset_definition/input_vax.csv.gz
+    needs:
+    - generate_dates
+    outputs:
+      highly_sensitive:
+        cohort: output/dataset_definition/input_vax.csv.gz
+
+  ## Generate cohort - unvax 
+
+  generate_cohort_unvax:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_unvax.py
+      --output output/dataset_definition/input_unvax.csv.gz
+    needs:
+    - generate_dates
+    outputs:
+      highly_sensitive:
+        cohort: output/dataset_definition/input_unvax.csv.gz
+
