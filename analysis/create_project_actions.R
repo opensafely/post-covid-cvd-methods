@@ -14,7 +14,7 @@ defaults_list <- list(
   expectations = list(population_size = 5000L)
 )
 
-cohorts <- c("prevax", "vax", "unvax")
+cohorts <- c("prevax")
 describe <- TRUE # This prints descriptive files for each dataset in the p
 
 # Create generic action function -----------------------------------------------
