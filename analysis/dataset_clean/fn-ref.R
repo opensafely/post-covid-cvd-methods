@@ -1,13 +1,62 @@
 # Function to set reference levels for factors
 ref <- function(input) {
-  # Handle missing values --------------------------------------------------------
-  print('Handle missing values')
+  
+  # Handle missing values in cov_cat_sex ---------------------------------------
+  print('Handle missing values in cov_cat_sex')
+  
+  if ("cov_cat_sex" %in% names(input)) {
+    input$cov_cat_sex <- ifelse(
+      input$cov_cat_sex %in% c("male","female"),
+      input$cov_cat_sex,
+      "missing"
+    )
+    if ("missing" %in% unique(input$cov_cat_sex)) {
+      stop("cov_cat_sex contains missing values.")
+    }
+  }
+  
+  # Handle missing values in cov_cat_imd -------------------------------
+  print('Handle missing values in cov_cat_imd')
+  
+  if ("cov_cat_imd" %in% names(input)) {
+    input$cov_cat_imd <- ifelse(
+      input$cov_cat_imd %in% c("1 (most deprived)","2","3","4","5 (least deprived)"),
+      input$cov_cat_imd,
+      "missing"
+    )
+    if ("missing" %in% unique(input$cov_cat_imd)) {
+      stop("cov_cat_imd contains missing values.")
+    }
+  }
+  
+  # Handle missing values in cov_cat_ethnicity ---------------------------------
+  print('Handle missing values in cov_cat_ethnicity')
+  
+  if ("cov_cat_ethnicity" %in% names(input)) {
+    input$cov_cat_ethnicity <- ifelse(
+      input$cov_cat_ethnicity %in% c("1", "2", "3", "4", "5"),
+      input$cov_cat_ethnicity,
+      "0"
+    )
+  }
 
-  input$cov_cat_smoking <- ifelse(
-    input$cov_cat_smoking %in% c("E", "N", "S"),
-    input$cov_cat_smoking,
-    "M"
-  )
+  # Handle missing values in cov_cat_smoking -----------------------------------
+  print('Handle missing values in cov_cat_smoking')
+
+  if ("cov_cat_smoking" %in% names(input)) {
+    input$cov_cat_smoking <- ifelse(
+      input$cov_cat_smoking %in% c("E", "N", "S"),
+      input$cov_cat_smoking,
+      "M"
+    )
+  }
+  
+  # Recode missing values in binary variables as FALSE -------------------------
+  print(' Recode missing values in binary variables as FALSE')
+  
+  input <- input %>%
+    mutate(across(contains("_bin_"), ~ ifelse(. == TRUE, TRUE, FALSE))) %>%
+    mutate(across(contains("_bin_"), ~ replace_na(., FALSE)))
 
   # Set reference levels for factors ---------------------------------------------
   print('Set reference levels for factors')
@@ -117,5 +166,5 @@ ref <- function(input) {
     function(x) factor(x, levels = c("FALSE", "TRUE"))
   )
 
-  return(list(input = input))
+  return(input)
 }
