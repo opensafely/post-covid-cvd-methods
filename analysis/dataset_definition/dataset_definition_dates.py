@@ -19,7 +19,7 @@ dataset.define_population(
     patients.date_of_birth.is_not_null()
 )
 
-dataset.configure_dummy_data(population_size=1000)
+dataset.configure_dummy_data(population_size=5000)
 
 # Import study_dates dictionary
 
