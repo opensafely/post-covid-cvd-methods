@@ -14,7 +14,7 @@ from ehrql.tables.tpp import (
     occupation_on_covid_vaccine_record,
     sgss_covid_all_tests,
     apcs, 
-    clinical_events,
+    clinical_events, 
     ons_deaths,
 )
 
@@ -24,6 +24,7 @@ from codelists import *
 # Call functions from variable_helper_functions
 from variable_helper_functions import (
     ever_matching_event_clinical_ctv3_before,
+    first_matching_event_clinical_ctv3_between,
     first_matching_event_clinical_snomed_between,
     first_matching_event_apc_between,
     matching_death_between,
@@ -38,18 +39,18 @@ from variable_helper_functions import (
 # Define generate variables function
 def generate_variables(index_date, end_date_exp, end_date_out):  
 
-    ## Inclusion/exclusion criteria
+    ## Inclusion/exclusion criteria------------------------------------------------------------------------
 
     ### Registered for a minimum of 6 months prior to index date
     inex_bin_6m_reg = (practice_registrations.spanning(
         index_date - days(180), index_date
-    )).exists_for_patient()
+        )).exists_for_patient()
 
-    ### Alive on index date
+    ### Alive on the index date
     inex_bin_alive = (((patients.date_of_death.is_null()) | (patients.date_of_death.is_after(index_date))) & 
     ((ons_deaths.date.is_null()) | (ons_deaths.date.is_after(index_date))))
 
-    ## Censoring criteria
+    ## Censoring criteria----------------------------------------------------------------------------------
 
     ### Deregistered
     cens_date_dereg = (
@@ -60,7 +61,7 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         .end_date
     )
 
-    ## Exposures
+    ## Exposures-------------------------------------------------------------------------------------------
 
     ### COVID-19
     tmp_exp_date_covid_sgss = (
@@ -87,7 +88,7 @@ def generate_variables(index_date, end_date_exp, end_date_out):
     tmp_exp_date_covid_apc = (
         apcs.where(
             ((apcs.primary_diagnosis.is_in(covid_codes)) | 
-            (apcs.secondary_diagnosis.is_in(covid_codes))) & 
+             (apcs.secondary_diagnosis.is_in(covid_codes))) & 
             (apcs.admission_date.is_on_or_between(index_date, end_date_exp))
         )
         .sort_by(apcs.admission_date)
@@ -97,8 +98,9 @@ def generate_variables(index_date, end_date_exp, end_date_out):
     tmp_exp_covid_death = matching_death_between(covid_codes, index_date, end_date_exp)
     tmp_exp_date_death = ons_deaths.date
     tmp_exp_date_covid_death = case(
-            when(tmp_exp_covid_death).then(tmp_exp_date_death)
+        when(tmp_exp_covid_death).then(tmp_exp_date_death)
     )
+    
     exp_date_covid = minimum_of(
         tmp_exp_date_covid_sgss, 
         tmp_exp_date_covid_gp,
@@ -106,7 +108,7 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         tmp_exp_date_covid_death
     )
 
-    ## Quality assurance
+    ## Quality assurance-----------------------------------------------------------------------------------
 
     ### Prostate cancer
     qa_bin_prostate_cancer = (
@@ -116,8 +118,8 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         (last_matching_event_apc_before(
             prostate_cancer_icd10, index_date
         ).exists_for_patient())
-    )    
-    
+    )
+
     ### Pregnancy
     qa_bin_pregnancy = last_matching_event_clinical_snomed_before(
         pregnancy_snomed, index_date
@@ -126,14 +128,14 @@ def generate_variables(index_date, end_date_exp, end_date_out):
     ### Year of birth
     qa_num_birth_year = patients.date_of_birth.year
 
-    ### COCP or HRT medication
+    ## COCP or heart medication
     qa_bin_hrtcocp = last_matching_med_dmd_before(
         cocp_dmd + hrt_dmd, index_date
     ).exists_for_patient()
 
-    ## Outcomes
+    ## Outcomes--------------------------------------------------------------------------------------------
 
-    ### Acute myocardial infarction
+     ### Acute myocardial infarction (AMI)
     tmp_out_date_ami_gp = (
         first_matching_event_clinical_snomed_between(
             ami_snomed, index_date, end_date_out
@@ -177,12 +179,12 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         tmp_out_date_stroke_sahhs_death
     )
 
-    ## Strata
+    ## Strata----------------------------------------------------------------------------------------------
 
     ### Region
     strat_cat_region = practice_registrations.for_patient_on(index_date).practice_nuts1_region_name
 
-    ## Core covariates
+    ## Core covariates-------------------------------------------------------------------------------------
 
     ### Age
     cov_num_age = patients.age_on(index_date)
@@ -191,13 +193,16 @@ def generate_variables(index_date, end_date_exp, end_date_out):
     cov_cat_sex = patients.sex
 
     ### Ethnicity
-    cov_cat_ethnicity = (
-        clinical_events.where(
-            clinical_events.ctv3_code.is_in(opensafely_ethnicity_codes_6)
-        )
+    tmp_cov_cat_ethnicity = (
+        clinical_events.where(clinical_events.snomedct_code.is_in(ethnicity_snomed))
+        .where(clinical_events.date.is_on_or_before(index_date))
         .sort_by(clinical_events.date)
         .last_for_patient()
-        .ctv3_code.to_category(opensafely_ethnicity_codes_6)
+        .snomedct_code
+    )
+
+    cov_cat_ethnicity = tmp_cov_cat_ethnicity.to_category(
+        ethnicity_snomed
     )
 
     ### Deprivation
@@ -217,8 +222,10 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         .ctv3_code.to_category(smoking_clear)
     )
     tmp_ever_smoked = ever_matching_event_clinical_ctv3_before(
-        (filter_codes_by_category(smoking_clear, include=["S", "E"])), index_date)
-    cov_cat_smoking= case(
+        (filter_codes_by_category(smoking_clear, include=["S", "E"])), index_date
+        ).exists_for_patient()
+
+    cov_cat_smoking = case(
         when(tmp_most_recent_smoking_cat == "S").then("S"),
         when((tmp_most_recent_smoking_cat == "E") | ((tmp_most_recent_smoking_cat == "N") & (tmp_ever_smoked == True))).then("E"),
         when((tmp_most_recent_smoking_cat == "N") & (tmp_ever_smoked == False)).then("N"),
@@ -231,7 +238,7 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         addresses.for_patient_on(index_date).care_home_requires_nursing |
         addresses.for_patient_on(index_date).care_home_does_not_require_nursing
     )
-    
+
     ### Consultation rate in 2019
     tmp_cov_num_consrate2019 = appointments.where(
         appointments.status.is_in([
@@ -242,10 +249,11 @@ def generate_variables(index_date, end_date_exp, end_date_out):
             "Waiting",
             "Patient Walked Out",
             ]) & appointments.start_date.is_on_or_between("2019-01-01", "2019-12-31")
-            ).count_for_patient()
+            ).count_for_patient()    
+
     cov_num_consrate2019 = case(
-            when(tmp_cov_num_consrate2019 <= 365).then(tmp_cov_num_consrate2019),
-            otherwise = 365,
+        when(tmp_cov_num_consrate2019 <= 365).then(tmp_cov_num_consrate2019),
+        otherwise=365,
     )
 
     ### Healthcare worker
@@ -256,10 +264,10 @@ def generate_variables(index_date, end_date_exp, end_date_out):
     ### Dementia
     cov_bin_dementia = (
         (last_matching_event_clinical_snomed_before(
-            dementia_snomed, index_date
+            dementia_snomed + dementia_vascular_snomed, index_date
         ).exists_for_patient()) |
         (last_matching_event_apc_before(
-            dementia_icd10, index_date
+            dementia_icd10 + dementia_vascular_icd10, index_date
         ).exists_for_patient())
     )
 
@@ -322,10 +330,10 @@ def generate_variables(index_date, end_date_exp, end_date_out):
     ### Obesity 
     cov_bin_obesity = (
         (last_matching_event_clinical_snomed_before(
-            obesity_snomed, index_date
+            bmi_obesity_snomed, index_date
         ).exists_for_patient()) |
         (last_matching_event_apc_before(
-            obesity_icd10, index_date
+            bmi_obesity_icd10, index_date
         ).exists_for_patient())
     )
 
@@ -339,7 +347,7 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         ).exists_for_patient())
     )
 
-    ### Acute myocardial infarction
+    ### Acute myocardial infarction (AMI)
     cov_bin_ami = (
         (last_matching_event_clinical_snomed_before(
             ami_snomed, index_date
@@ -348,16 +356,6 @@ def generate_variables(index_date, end_date_exp, end_date_out):
             ami_icd10 + ami_prior_icd10, index_date
         ).exists_for_patient())
     )
-
-    ### Ischaemic stroke ('all stroke' will replace the core covariate 'ischaemic stroke' for this project)
-    # cov_bin_stroke_isch = (
-    #     (last_matching_event_clinical_snomed_before(
-    #         stroke_isch_snomed, index_date
-    #     ).exists_for_patient()) |
-    #     (last_matching_event_apc_before(
-    #         stroke_isch_icd10, index_date
-    #     ).exists_for_patient())
-    # )
 
     ### Depression
     cov_bin_depression = (
@@ -369,7 +367,17 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         ).exists_for_patient())
     )
 
-    ## Project specific covariates
+    # ### Ischaemic stroke
+    # cov_bin_stroke_isch = (
+    #     (last_matching_event_clinical_snomed_before(
+    #         stroke_isch_snomed, index_date
+    #     ).exists_for_patient()) |
+    #     (last_matching_event_apc_before(
+    #         stroke_isch_icd10, index_date
+    #     ).exists_for_patient())
+    # )
+
+    ## Project specific covariates-------------------------------------------------------------------------
 
     ### All stroke ('all stroke' will replace the core covariate 'ischaemic stroke' for this project)
     cov_bin_stroke_all = (
