@@ -33,7 +33,7 @@ primis-covid19-vacc-uptake/cld/v1
 primis-covid19-vacc-uptake/immdx_cov/v1
 primis-covid19-vacc-uptake/immrx/v1
 primis-covid19-vacc-uptake/hhld_imdef/v1
-opensafely/ethnicity/2020-04-27
+opensafely/ethnicity-snomed-0removed/22911876
 opensafely/smoking-clear/2020-04-29
 user/elsie_horne/dementia_snomed/7bd3364c
 user/elsie_horne/dementia_vascular_snomed/0eb67607
