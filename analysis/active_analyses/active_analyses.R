@@ -11,17 +11,18 @@ lapply(
 )
 
 # Define cohorts ----
+# Options are: "vax", "unvax", "prevax"
 cohorts <- c("prevax")
-
-# Define outcomes ----
-outcomes_preex <- c()
-outcomes_all <- c("out_date_ami", "out_date_stroke_sahhs")
 
 # Define subgroups ----
 subgroups <- c()
 
-# Define covariates ----
-core_covars <- c(
+# Define preex groups ----
+# Options are: "" (which means none), "_preex_TRUE", "_preex_FALSE"
+preex_groups <- c("")
+
+# Define general covariates ----
+core_covariates <- c(
   "cov_cat_ethnicity",
   "cov_cat_imd",
   "cov_num_consrate2019",
@@ -37,11 +38,11 @@ core_covars <- c(
   "cov_bin_hypertension",
   "cov_bin_diabetes",
   "cov_bin_depression",
-  "cov_bin_copd"
-  #"cov_bin_stroke_isch"
+  "cov_bin_copd",
+  "cov_bin_stroke_isch"
 )
 
-project_covars <- c(
+project_covariates <- c(
   "cov_bin_stroke_all",
   "cov_bin_other_ae",
   "cov_bin_vte",
@@ -54,82 +55,102 @@ project_covars <- c(
   "cov_bin_hrt"
 )
 
-all_covars <- c(core_covars, project_covars)
+# Define covariate and outcome combos ----
 
-# Switch for preex ----
-preex <-
-  # Create empty data frame ----
-  df <- data.frame(
-    cohort = character(),
-    exposure = character(),
-    outcome = character(),
-    ipw = logical(),
-    strata = character(),
-    covariate_sex = character(),
-    covariate_age = character(),
-    covariate_other = character(),
-    cox_start = character(),
-    cox_stop = character(),
-    study_start = character(),
-    study_stop = character(),
-    cut_points = character(),
-    controls_per_case = numeric(),
-    total_event_threshold = numeric(),
-    episode_event_threshold = numeric(),
-    covariate_threshold = numeric(),
-    age_spline = logical(),
-    analysis = character(),
-    stringsAsFactors = FALSE
-  )
+# For 'all' analyses
+outcomes <- c("out_date_ami", "out_date_stroke_sahhs")
+covariates <- setdiff(
+  c(core_covariates, project_covariates),
+  "cov_bin_stroke_isch"
+)
+
+# For preex=TRUE analyses
+outcomes_preex_TRUE <- ""
+covariates_preex_TRUE <- ""
+
+# For preex=FALSE analyses
+outcomes_preex_FALSE <- ""
+covariates_preex_FALSE <- ""
+
+# Create empty data frame ----
+df <- data.frame(
+  cohort = character(),
+  exposure = character(),
+  outcome = character(),
+  ipw = logical(),
+  strata = character(),
+  covariate_sex = character(),
+  covariate_age = character(),
+  covariate_other = character(),
+  cox_start = character(),
+  cox_stop = character(),
+  study_start = character(),
+  study_stop = character(),
+  cut_points = character(),
+  controls_per_case = numeric(),
+  total_event_threshold = numeric(),
+  episode_event_threshold = numeric(),
+  covariate_threshold = numeric(),
+  age_spline = logical(),
+  analysis = character(),
+  stringsAsFactors = FALSE
+)
 
 # Generate analyses ----
-for (c in cohorts) {
-  for (i in outcomes_all) {
-    p = ""
+for (p in preex_groups) {
+  for (c in cohorts) {
+    # Retrieve outcomes and covariates for preex group ----
+    out <- get(paste0("outcomes", p))
+    covars <- get(paste0("covariates", p))
 
-    # Add main analysis ----
-    df[nrow(df) + 1, ] <- add_analysis(
-      cohort = c,
-      outcome = i,
-      preex = p,
-      analysis_name = "main",
-      covariate_other = covariate_other,
-      age_spline = TRUE
-    )
+    for (i in out) {
+      # Collapse covariates ----
 
-    # Add subgroup analyses ----
-    for (sub in subgroups) {
-      # Skip sub_covidhistory if cohort is "prevax"
-      if (sub == "sub_covidhistory" && c == "prevax") {
-        next
-      }
+      covariate_other <- paste0(covars, collapse = ";")
 
-      # Adjust covariate_other for ethnicity and smoking subgroups
-      adjusted_covariate_other <- covariate_other
-      if (grepl("sub_ethnicity", sub)) {
-        adjusted_covariate_other <- paste0(
-          setdiff(strsplit(covariate_other, ";")[[1]], "cov_cat_ethnicity"),
-          collapse = ";"
-        )
-      } else if (grepl("sub_smoking", sub)) {
-        adjusted_covariate_other <- paste0(
-          setdiff(strsplit(covariate_other, ";")[[1]], "cov_cat_smoking"),
-          collapse = ";"
-        )
-      }
-
-      # Add analysis for the subgroup
+      # Add main analysis ----
       df[nrow(df) + 1, ] <- add_analysis(
         cohort = c,
         outcome = i,
-        preex = p,
-        analysis_name = sub,
-        covariate_other = adjusted_covariate_other,
-        age_spline = ifelse(grepl("sub_age", sub), FALSE, TRUE)
+        analysis_name = paste0("main", p),
+        covariate_other = covariate_other,
+        age_spline = TRUE
       )
+
+      # Add subgroup analyses ----
+      for (sub in subgroups) {
+        # Skip sub_covidhistory if cohort is "prevax"
+        if (sub == "sub_covidhistory" && c == "prevax") {
+          next
+        }
+
+        # Adjust covariate_other for ethnicity and smoking subgroups
+        adjusted_covariate_other <- covariate_other
+        if (grepl("sub_ethnicity", sub)) {
+          adjusted_covariate_other <- paste0(
+            setdiff(strsplit(covariate_other, ";")[[1]], "cov_cat_ethnicity"),
+            collapse = ";"
+          )
+        } else if (grepl("sub_smoking", sub)) {
+          adjusted_covariate_other <- paste0(
+            setdiff(strsplit(covariate_other, ";")[[1]], "cov_cat_smoking"),
+            collapse = ";"
+          )
+        }
+
+        # Add analysis for the subgroup
+        df[nrow(df) + 1, ] <- add_analysis(
+          cohort = c,
+          outcome = i,
+          analysis_name = paste0(sub, p),
+          covariate_other = adjusted_covariate_other,
+          age_spline = ifelse(grepl("sub_age", sub), FALSE, TRUE)
+        )
+      }
     }
   }
 }
+
 
 # Add name for each analysis ----
 df$name <- paste0(

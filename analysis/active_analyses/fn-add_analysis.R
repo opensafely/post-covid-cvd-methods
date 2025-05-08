@@ -2,7 +2,6 @@
 add_analysis <- function(
   cohort,
   outcome,
-  preex,
   analysis_name,
   covariate_other,
   age_spline
@@ -55,10 +54,7 @@ add_analysis <- function(
     episode_event_threshold = 5L,
     covariate_threshold = 5L,
     age_spline = age_spline,
-    analysis = paste0(
-      analysis_name,
-      ifelse(preex != "", paste0("_", preex), "")
-    )
+    analysis = analysis_name
   )
 
   return(new_analysis)
