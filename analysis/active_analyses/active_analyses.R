@@ -97,22 +97,22 @@ df <- data.frame(
 )
 
 # Generate analyses ----
-for (p in preex_groups) {
-  for (c in cohorts) {
+for (i in preex_groups) {
+  for (j in cohorts) {
     # Retrieve outcomes and covariates for preex group ----
-    out <- get(paste0("outcomes", p))
-    covars <- get(paste0("covariates", p))
+    out <- get(paste0("outcomes", i))
+    covars <- get(paste0("covariates", i))
 
-    for (i in out) {
+    for (k in out) {
       # Collapse covariates ----
 
       covariate_other <- paste0(covars, collapse = ";")
 
       # Add main analysis ----
       df[nrow(df) + 1, ] <- add_analysis(
-        cohort = c,
-        outcome = i,
-        analysis_name = paste0("main", p),
+        cohort = j,
+        outcome = k,
+        analysis_name = paste0("main", i),
         covariate_other = covariate_other,
         age_spline = TRUE
       )
@@ -120,7 +120,7 @@ for (p in preex_groups) {
       # Add subgroup analyses ----
       for (sub in subgroups) {
         # Skip sub_covidhistory if cohort is "prevax"
-        if (sub == "sub_covidhistory" && c == "prevax") {
+        if (sub == "sub_covidhistory" && j == "prevax") {
           next
         }
 
@@ -140,9 +140,9 @@ for (p in preex_groups) {
 
         # Add analysis for the subgroup
         df[nrow(df) + 1, ] <- add_analysis(
-          cohort = c,
-          outcome = i,
-          analysis_name = paste0(sub, p),
+          cohort = j,
+          outcome = k,
+          analysis_name = paste0(sub, i),
           covariate_other = adjusted_covariate_other,
           age_spline = ifelse(grepl("sub_age", sub), FALSE, TRUE)
         )
@@ -150,7 +150,6 @@ for (p in preex_groups) {
     }
   }
 }
-
 
 # Add name for each analysis ----
 df$name <- paste0(
