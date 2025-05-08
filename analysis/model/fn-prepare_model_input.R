@@ -25,7 +25,7 @@ prepare_model_input <- function(name) {
   # Restrict to required variables for dataset preparation ---------------------
   print("Restrict to required variables for dataset preparation")
 
-  input <- input[, unique(c(
+  reqvars <- unique(c(
     "patient_id",
     "index_date",
     "end_date_exposure",
@@ -40,7 +40,17 @@ prepare_model_input <- function(name) {
     unlist(strsplit(active_analyses$covariate_other, split = ";")),
     c(grep("sub_", colnames(input), value = TRUE)), #sub_cat_covidhospital, sub_cat_covidhistory, and other subgroups
     "sup_bin_preex"
-  ))]
+  ))
+
+  input <- input[, intersect(reqvars, colnames(input))]
+
+  if (length(setdiff(colnames(input), colnames(input))) > 0) {
+    message(
+      "Variables (",
+      setdiff(reqvars, colnames(input)),
+      ") not present in dataset"
+    )
+  }
 
   # Identify final list of variables to keep -----------------------------------
   print("Identify final list of variables to keep")
