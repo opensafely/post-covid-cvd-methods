@@ -44,7 +44,7 @@ prepare_model_input <- function(name) {
 
   input <- input[, intersect(reqvars, colnames(input))]
 
-  if (length(setdiff(colnames(input), colnames(input))) > 0) {
+  if (length(setdiff(reqvars, colnames(input))) > 0) {
     message(
       "Variables (",
       setdiff(reqvars, colnames(input)),
