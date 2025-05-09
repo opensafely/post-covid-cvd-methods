@@ -167,21 +167,7 @@ if (grepl("sub_ethnicity_", analysis) == TRUE) {
   df <- df[df$cov_cat_ethnicity == ethnicity, ]
 }
 
-# Make model input: sub_smoking_* ------------------------------------------
-if (grepl("sub_smoking_", analysis)) {
-  check_for_subgroup <- TRUE
-  smoking <- paste(
-    str_to_title(gsub(
-      ".*sub_smoking_",
-      "",
-      analysis
-    )),
-    "smoker"
-  )
-  df <- df[df$cov_cat_smoking == smoking, ]
-}
-
-# Stop code if no subgroup/main analysis was correctly selected
+# Stop code if no subgroup/main analysis was correctly selected ------------
 if (isFALSE(check_for_subgroup)) {
   stop(paste0("Input: ", name, " did not undergo any subgroup filtering!"))
 }
