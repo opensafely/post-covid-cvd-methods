@@ -454,7 +454,65 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         hrt_dmd, index_date
     ).exists_for_patient()
 
-    ## Define dictionary of variables to be written into dataset
+    ## Subgroups-------------------------------------------------------------------------------------------
+
+    ### History of COVID-19
+    tmp_sub_bin_covidhistory_sgss = (
+        sgss_covid_all_tests.where(
+            sgss_covid_all_tests.specimen_taken_date.is_before(index_date)
+        )
+        .where(sgss_covid_all_tests.is_positive)
+        .exists_for_patient()
+    )
+    tmp_sub_bin_covidhistory_gp = (
+        clinical_events.where(
+            (clinical_events.ctv3_code.is_in(
+                covid_primary_care_code + 
+                covid_primary_care_positive_test + 
+                covid_primary_care_sequalae)) &
+            clinical_events.date.is_before(index_date)
+        )
+        .exists_for_patient()
+    )
+    tmp_sub_bin_covidhistory_apc = (
+        apcs.where(
+            ((apcs.primary_diagnosis.is_in(covid_codes)) | (apcs.secondary_diagnosis.is_in(covid_codes))) & 
+            (apcs.admission_date.is_before(index_date))
+        )
+        .exists_for_patient()
+    )
+
+    sub_bin_covidhistory = (
+        tmp_sub_bin_covidhistory_sgss |
+        tmp_sub_bin_covidhistory_gp |
+        tmp_sub_bin_covidhistory_apc
+    )
+
+    ### COVID-19 severity
+    tmp_sub_date_covidhospital = (
+        apcs.where(
+            (apcs.primary_diagnosis.is_in(covid_codes)) & 
+            (apcs.admission_date.is_on_or_after(exp_date_covid))
+        )
+        .sort_by(apcs.admission_date)
+        .first_for_patient()
+        .admission_date
+    )
+
+    sub_cat_covidhospital = case(
+        when(
+            (exp_date_covid.is_not_null()) &
+            (tmp_sub_date_covidhospital.is_not_null()) &
+            ((tmp_sub_date_covidhospital - exp_date_covid).days >= 0) &
+            ((tmp_sub_date_covidhospital - exp_date_covid).days < 29)
+            ).then("hospitalised"),
+        when(exp_date_covid.is_not_null()).then("non_hospitalised"),
+        when(exp_date_covid.is_null()).then("no_infection")
+    )
+
+
+    ## Define dictionary of variables to be written into dataset-------------------------------------------
+
     dynamic_variables = dict(
         ### Inclusion/exclusion criteria
         inex_bin_6m_reg = inex_bin_6m_reg,
@@ -510,6 +568,9 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         cov_bin_anticoagulant = cov_bin_anticoagulant,
         cov_bin_cocp = cov_bin_cocp,
         cov_bin_hrt = cov_bin_hrt,
+        ### Subgroups
+        sub_bin_covidhistory = sub_bin_covidhistory,
+        sub_cat_covidhospital = sub_cat_covidhospital
     )
 
     return dynamic_variables

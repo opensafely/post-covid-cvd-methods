@@ -94,6 +94,11 @@ prepare_model_input <- function(name) {
         exp_date,
         which(exp_date > end_date_exposure | exp_date < index_date),
         NA
+      ),
+      sub_cat_covidhospital = replace(
+        sub_cat_covidhospital,
+        which(is.na(exp_date)),
+        "no_infection"
       )
     )
 
