@@ -59,6 +59,27 @@ actions:
         venn: output/dataset_clean/venn-cohort_prevax.rds
         cohort_clean: output/dataset_clean/input_prevax_clean.rds
 
+  ## Generate table1_cohort_prevax 
+
+  table1-cohort_prevax:
+    run: 'r:v2 analysis/table1/table1.R prevax ;-Inf '
+    needs:
+    - generate_input_prevax_clean
+    outputs:
+      moderately_sensitive:
+        table1: output/table1/table1-cohort_prevax.csv
+        table1_midpoint6: output/table1/table1-cohort_prevax-midpoint6.csv
+
+  ## Generate make-table1-output 
+
+  make-table1-output:
+    run: r:v2 analysis/make_output/make_other_output.R table1 prevax
+    needs:
+    - table1-cohort_prevax
+    outputs:
+      moderately_sensitive:
+        table1_output_midpoint6: output/make_output/table1_output_midpoint6.csv
+
   ## Run models 
 
   make_model_input-cohort_prevax-main-ami:

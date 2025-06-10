@@ -114,6 +114,7 @@ generate_cohort <- function(cohort) {
   )
 }
 
+
 # Create function to clean data -------------------------------------------------
 
 clean_data <- function(cohort, describe = describe) {
@@ -170,6 +171,36 @@ clean_data <- function(cohort, describe = describe) {
   )
 }
 
+
+# Create function for table1 --------------------------------------------
+  ## NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
+
+table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
+  if (preex == "All" | preex == "") {
+    preex_str <- ""
+  } else {
+    preex_str <- paste0("-preex_", preex)
+  }
+  splice(
+    comment(glue("Generate table1_cohort_{cohort}{preex_str}")),
+    action(
+      name = glue("table1-cohort_{cohort}{preex_str}"),
+      run = "r:v2 analysis/table1/table1.R",
+      arguments = c(c(cohort), c(ages), c(preex)),
+      needs = list(glue("generate_input_{cohort}_clean")),
+      moderately_sensitive = list(
+        table1 = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}.csv"
+        ),
+        table1_midpoint6 = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}-midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
+
 # Create function to make model input and run a model --------------------------
 
 apply_model_function <- function(
@@ -213,6 +244,102 @@ apply_model_function <- function(
     )
   )
 }
+
+
+# Create function to make Venn data --------------------------------------------
+# NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
+
+venn <- function(cohort, analyses = "") {
+  if (analyses == "") {
+    analyses_str <- ""
+    analyses <- "main"
+    analyses_input <- ""
+  } else {
+    analyses_str <- paste0("-", analyses)
+    analyses_input <- analyses
+  }
+
+  venn_outcomes <- gsub(
+    "cohort_",
+    "",
+    unique(
+      active_analyses[
+        active_analyses$cohort == cohort &
+          grepl(analyses, active_analyses$analysis),
+      ]$name
+    )
+  )
+
+  splice(
+    comment(glue("Generate venn-cohort_{cohort}{analyses_str}")),
+    action(
+      name = glue("venn-cohort_{cohort}{analyses_str}"),
+      run = "r:v2 analysis/venn/venn.R",
+      arguments = lapply(list(c(cohort, analyses_input)), function(x) {
+        x[x != ""]
+      }),
+      needs = c(
+        as.list(glue("generate_input_{cohort}_clean")),
+        as.list(paste0(
+          glue("make_model_input-cohort_"),
+          venn_outcomes
+        ))
+      ),
+      moderately_sensitive = list(
+        venn = glue("output/venn/venn-cohort_{cohort}{analyses_str}.csv"),
+        venn_midpoint6 = glue(
+          "output/venn/venn-cohort_{cohort}{analyses_str}-midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
+
+# Create funtion for making combined table/venn outputs ------------------------
+# NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
+
+make_other_output <- function(action_name, cohort, subgroup = "") {
+  cohort_names <- stringr::str_split(as.vector(cohort), ";")[[1]]
+  if (subgroup == "All" | subgroup == "") {
+    sub_str <- ""
+  } else {
+    if (grepl("preex", subgroup)) {
+      sub_str <- paste0("-", subgroup)
+    } else {
+      sub_str <- paste0("-sub_", subgroup)
+    }
+  }
+
+  splice(
+    comment(glue("Generate make-{action_name}{sub_str}-output")),
+    action(
+      name = glue("make-{action_name}{sub_str}-output"),
+      run = "r:v2 analysis/make_output/make_other_output.R",
+      arguments = unlist(lapply(
+        list(
+          c(action_name, cohort, subgroup)
+        ),
+        function(x) {
+          x[x != ""]
+        }
+      )),
+      needs = c(as.list(paste0(
+        action_name,
+        "-cohort_",
+        cohort_names,
+        sub_str
+      ))),
+      moderately_sensitive = list(
+        table1_output_midpoint6 = glue(
+          "output/make_output/{action_name}{sub_str}_output_midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
+
 
 # Define and combine all actions into a list of actions ------------------------
 
@@ -265,6 +392,27 @@ actions_list <- splice(
     unlist(
       lapply(cohorts, function(x) clean_data(cohort = x, describe = describe)),
       recursive = FALSE
+    )
+  ),
+
+  ## Table 1 -------------------------------------------------------------------
+  ## NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
+
+  splice(
+    unlist(
+      lapply(
+        unique(active_analyses$cohort),
+        function(x) table1(cohort = x, ages = age_str, preex = "")
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  splice(
+    make_other_output(
+      action_name = "table1",
+      cohort = paste0(cohorts, collapse = ";"),
+      subgroup = ""
     )
   ),
 
