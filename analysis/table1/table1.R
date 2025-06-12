@@ -1,5 +1,5 @@
 # table1.R - generates recreated patient characteristics table
-# Copied tastefully from post-covid-neurodegenerative, credit ehrQL team
+# Adapted tastefully from post-covid-neurodegenerative, additional edits by me, credit ehrQL team
 
 
 # Load libraries ---------------------------------------------------------------
@@ -42,6 +42,7 @@ if (length(args) == 0) {
 }
 
 
+age_str <- "18;30;40;50;50;70;80;90"
 age_bounds <- as.numeric(stringr::str_split(as.vector(age_str), ";")[[1]])
 
 # Load data --------------------------------------------------------------------
@@ -77,10 +78,6 @@ if (preex != "All") {
 
 # Define age groups ------------------------------------------------------------
 print("Define age groups")
-
-print(df$cov_num_age)
-print(age_bounds)
-stop("TESTING: AGE GROUPS")
 
 df$cov_cat_age_group <- numerical_to_categorical(df$cov_num_age, age_bounds) # See utility.R
 
