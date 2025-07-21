@@ -6,9 +6,8 @@ __pycache__
 /output/*
 metadata/*
 venv/
-.vscode/settings.json
 .DS_Store
-.Rproj.user
-.Rproj.user*
 .Rhistory
+.Rproj.user/
+.devcontainer/ehrql-main/
 */post-covid-events-summary-report.html
