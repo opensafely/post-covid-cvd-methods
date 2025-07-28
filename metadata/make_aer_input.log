@@ -1,0 +1,38 @@
+2025-07-28T13:39:22.418998571Z [1] "Load libraries"
+2025-07-28T13:39:22.621741584Z 
+2025-07-28T13:39:22.621761767Z Attaching package: ‘dplyr’
+2025-07-28T13:39:22.621763387Z 
+2025-07-28T13:39:22.622185655Z The following objects are masked from ‘package:stats’:
+2025-07-28T13:39:22.622193866Z 
+2025-07-28T13:39:22.622194917Z     filter, lag
+2025-07-28T13:39:22.622195870Z 
+2025-07-28T13:39:22.622323804Z The following objects are masked from ‘package:base’:
+2025-07-28T13:39:22.622329460Z 
+2025-07-28T13:39:22.622330525Z     intersect, setdiff, setequal, union
+2025-07-28T13:39:22.622331399Z 
+2025-07-28T13:39:22.624311110Z [1] "Creating output/make_output folder"
+2025-07-28T13:39:22.649320966Z [1] "Source common functions"
+2025-07-28T13:39:22.650017451Z [1] "Specify arguments"
+2025-07-28T13:39:22.650022763Z [1] "Load active analyses"
+2025-07-28T13:39:22.650023803Z [1] "Extracting age boundaries"
+2025-07-28T13:39:22.650225750Z [1] "Format active analyses"
+2025-07-28T13:39:22.650233830Z [1] "Make empty AER input"
+2025-07-28T13:39:22.650721528Z [1] "Record number of events and person days for each active analysis"
+2025-07-28T13:39:22.716111064Z [1] "Load data for cohort_prevax-main-ami"
+2025-07-28T13:39:22.718525229Z [1] "Load data for cohort_prevax-main-stroke_sahhs"
+2025-07-28T13:39:22.720722078Z [1] "Save AER input"
+2025-07-28T13:39:22.721249939Z [1] "Perform redaction"
+2025-07-28T13:39:22.723392514Z [1] "Save rounded AER input"
+
+
+job_definition_id: mju2i67mbpqjfiqn
+job_definition_request_id: 4204ecd689
+docker_image_id: sha256:13f6c027b613bda2d60fbc6dbcd8f7263e1224f1e45a4797375e438f28fd0e5d
+exit_code: 0
+created_at: 1753709846
+completed_at: 1753709963
+status_message: Completed successfully
+
+outputs:
+  output/make_output/aer_input-main-midpoint6.csv  - moderately_sensitive
+  output/make_output/aer_input-main.csv            - moderately_sensitive
