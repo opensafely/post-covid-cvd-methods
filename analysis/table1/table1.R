@@ -1,5 +1,29 @@
-# table1.R - generates recreated patient characteristics table
-# Adapted tastefully from post-covid-neurodegenerative, additional edits by me, credit ehrQL team
+# ------------------------------------------------------------------------------
+#
+# table1.R
+#
+# This file generates the "patient characteristics" table
+# for the replicated Covid-19 x Cardiovascular paper
+# Original text: https://doi.org/10.1038/s41467-024-46497-0
+#
+# Arguments:
+#  - cohort - string, defines which of three opensafely cohorts to describe
+#             (prevax, vax, unvax)
+#  - age_str - vector of form "XX;XX;XX;XX;XX"
+#              defines the age ranges over which the ... is stratified
+#  - preex - boolean/string, defines preexisting conditions
+#            for the replication preex = FALSE always
+#            ("All", TRUE, or FALSE)
+#
+# Returns:
+#  - The patient characteristics data table, rounded
+#    (output/table1/table1-cohort_prevax-midpoint6.csv)
+#  - The patient characteristics data table
+#    (output/table1/table1-cohort_prevax.csv)
+#
+# Authors: Emma Tarmey, Venexia Walker, UoB ehrQL Team
+#
+# ------------------------------------------------------------------------------
 
 
 # Load libraries ---------------------------------------------------------------
@@ -28,12 +52,16 @@ args <- commandArgs(trailingOnly = TRUE)
 print(length(args))
 
 if (length(args) == 0) {
-  cohort <- "vax"
-  age_str <- "18;40;65;85;111"
-  preex <- FALSE # "All", TRUE, or FALSE
+  # default argument values
+  cohort  <- "prevax"
+  age_str <- "18;30;40;50;50;70;80;90"
+  preex   <- FALSE
 } else {
-  cohort <- args[[1]]
+  # YAML arguments
+  cohort  <- args[[1]]
   age_str <- args[[2]]
+
+  # optional argument
   if (length(args) < 3) {
     preex <- "All"
   } else {
@@ -41,8 +69,6 @@ if (length(args) == 0) {
   } # allow an empty input for the preex variable
 }
 
-
-age_str <- "18;30;40;50;50;70;80;90"
 age_bounds <- as.numeric(stringr::str_split(as.vector(age_str), ";")[[1]])
 
 # Load data --------------------------------------------------------------------

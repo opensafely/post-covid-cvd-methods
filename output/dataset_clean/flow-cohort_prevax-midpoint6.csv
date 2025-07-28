@@ -1,0 +1,16 @@
+"Description","N_midpoint6","removed_derived"
+"Input",5001,0
+"Inclusion criteria: Alive at index",4947,54
+"Inclusion criteria: Known age 18 or over at index",4845,102
+"Inclusion criteria: Known age 110 or under at index",4749,96
+"Inclusion criteria: Known sex, recorded as male or female, at index",4659,90
+"Inclusion criteria: Known IMD at index",4539,120
+"Inclusion criteria: Known region at index",4485,54
+"Inclusion criteria: Continuous registration with the same practice for at least six months up to and including the index date",4437,48
+"Inclusion criteria: Index date is before cohort end date",4437,0
+"Quality assurance: Year of birth is before year of death (if year of death is available)",4425,12
+"Quality assurance: Year of birth is before today (implemented using last data collection date)",4419,6
+"Quality assurance: Date of death is before today (if year of death is available and implemented using last data collection date)",4299,120
+"Quality assurance: Men do not have records that contain pregnancy and/or birth codes",4293,6
+"Quality assurance: Men do not have records that contain HRT or COCP medication codes",4287,6
+"Quality assurance: Women do not have records that contain prostate cancer codes",4275,12

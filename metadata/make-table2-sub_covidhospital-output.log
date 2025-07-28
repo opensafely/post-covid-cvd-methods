@@ -1,0 +1,35 @@
+2025-07-02T13:29:46.435399716Z [1] "Load packages"
+2025-07-02T13:29:46.902751962Z 
+2025-07-02T13:29:46.902802999Z Attaching package: ‘tidyr’
+2025-07-02T13:29:46.902811642Z 
+2025-07-02T13:29:46.903995018Z The following object is masked from ‘package:magrittr’:
+2025-07-02T13:29:46.904044111Z 
+2025-07-02T13:29:46.904041137Z [1] "Creating output/make_output output folder"
+2025-07-02T13:29:46.904054208Z     extract
+2025-07-02T13:29:46.904080039Z 
+2025-07-02T13:29:47.037389153Z [1] "Specify arguments"
+2025-07-02T13:29:47.037427012Z [1] "Separate cohorts"
+2025-07-02T13:29:47.060566533Z [1] "Generate strings"
+2025-07-02T13:29:47.060640172Z [1] "Create blank table"
+2025-07-02T13:29:47.060648067Z [1] "Add output from each cohort"
+2025-07-02T13:29:47.402772585Z Rows: 2 Columns: 14
+2025-07-02T13:29:47.410340834Z ── Column specification ────────────────────────────────────────────────────────
+2025-07-02T13:29:47.410388827Z Delimiter: ","
+2025-07-02T13:29:47.410394595Z chr (5): name, cohort, exposure, outcome, analysis
+2025-07-02T13:29:47.410398788Z dbl (9): unexposed_person_days, unexposed_events_midpoint6, exposed_person_d...
+2025-07-02T13:29:47.420903916Z 
+2025-07-02T13:29:47.420957748Z ℹ Use `spec()` to retrieve the full column specification for this data.
+2025-07-02T13:29:47.420964374Z ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+2025-07-02T13:29:47.426395980Z [1] "Save output"
+
+
+job_definition_id: itcgv4dlzm2mpngm
+job_definition_request_id: 75a39f59df
+docker_image_id: sha256:13f6c027b613bda2d60fbc6dbcd8f7263e1224f1e45a4797375e438f28fd0e5d
+exit_code: 0
+created_at: 1751462778
+completed_at: 1751462991
+status_message: Completed successfully
+
+outputs:
+  output/make_output/table2-sub_covidhospital_output_midpoint6.csv  - moderately_sensitive

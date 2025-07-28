@@ -1,0 +1,53 @@
+2025-07-28T13:39:12.631337311Z [1] "Load libraries"
+2025-07-28T13:39:12.976903406Z 
+2025-07-28T13:39:12.976939647Z Attaching package: ‘dplyr’
+2025-07-28T13:39:12.976943010Z 
+2025-07-28T13:39:12.977543784Z The following objects are masked from ‘package:data.table’:
+2025-07-28T13:39:12.977575115Z 
+2025-07-28T13:39:12.977577435Z     between, first, last
+2025-07-28T13:39:12.977579046Z 
+2025-07-28T13:39:12.977580728Z The following objects are masked from ‘package:stats’:
+2025-07-28T13:39:12.977582295Z 
+2025-07-28T13:39:12.977583652Z     filter, lag
+2025-07-28T13:39:12.977585130Z 
+2025-07-28T13:39:12.977607642Z The following objects are masked from ‘package:base’:
+2025-07-28T13:39:12.977614319Z 
+2025-07-28T13:39:12.977616432Z     intersect, setdiff, setequal, union
+2025-07-28T13:39:12.977618097Z 
+2025-07-28T13:39:12.977764956Z [1] "Creating output/venn output folder"
+2025-07-28T13:39:13.040648740Z [1] "Source common functions"
+2025-07-28T13:39:13.041421940Z [1] "Specify arguments"
+2025-07-28T13:39:13.041445811Z [1] "Identify outcomes"
+2025-07-28T13:39:13.041704850Z [1] "Load Venn data"
+2025-07-28T13:39:13.043606163Z [1] "Create empty output table"
+2025-07-28T13:39:13.044162422Z [1] "Populate Venn table for each outcome"
+2025-07-28T13:39:13.086795907Z [1] "Name: cohort_prevax-main-ami"
+2025-07-28T13:39:13.086839732Z [1] "Load model input data"
+2025-07-28T13:39:13.090117070Z [1] "Filter Venn data based on model input"
+2025-07-28T13:39:13.093070375Z [1] "Identify and add missing columns"
+2025-07-28T13:39:13.093625469Z [1] "Calculate the number contributing to each source combination"
+2025-07-28T13:39:13.094324324Z [1] "Record the number contributing to each source combination"
+2025-07-28T13:39:13.101631562Z [1] "Replace source combinations with NA if not in study definition"
+2025-07-28T13:39:13.101658446Z [1] "Name: cohort_prevax-main-stroke_sahhs"
+2025-07-28T13:39:13.101661731Z [1] "Load model input data"
+2025-07-28T13:39:13.104997812Z [1] "Filter Venn data based on model input"
+2025-07-28T13:39:13.105552080Z [1] "Identify and add missing columns"
+2025-07-28T13:39:13.105743084Z [1] "Calculate the number contributing to each source combination"
+2025-07-28T13:39:13.106309058Z [1] "Record the number contributing to each source combination"
+2025-07-28T13:39:13.110491968Z [1] "Replace source combinations with NA if not in study definition"
+2025-07-28T13:39:13.110521815Z [1] "Save Venn data"
+2025-07-28T13:39:13.111152456Z [1] "Perform redaction"
+2025-07-28T13:39:13.113739738Z [1] "Save rounded Venn data"
+
+
+job_definition_id: 3mrcml45wb7lvm2u
+job_definition_request_id: 4204ecd689
+docker_image_id: sha256:13f6c027b613bda2d60fbc6dbcd8f7263e1224f1e45a4797375e438f28fd0e5d
+exit_code: 0
+created_at: 1753709846
+completed_at: 1753709954
+status_message: Completed successfully
+
+outputs:
+  output/venn/venn-cohort_prevax-midpoint6.csv  - moderately_sensitive
+  output/venn/venn-cohort_prevax.csv            - moderately_sensitive

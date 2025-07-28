@@ -1,0 +1,60 @@
+Characteristic,Subcharacteristic,N [midpoint6_derived]_prevax,(%) [midpoint6_derived]_prevax,COVID-19 diagnoses [midpoint6]_prevax
+All,All,4053,-,2001
+cov_bin_ami,TRUE,1107,27.3%,543
+cov_bin_angina,TRUE,333,8.2%,165
+cov_bin_anticoagulant,TRUE,201,5%,105
+cov_bin_antiplatelet,TRUE,309,7.6%,141
+cov_bin_cancer,TRUE,3075,75.9%,1509
+cov_bin_carehome,TRUE,639,15.8%,327
+cov_bin_ckd,TRUE,1023,25.2%,513
+cov_bin_cocp,TRUE,129,3.2%,69
+cov_bin_copd,TRUE,2313,57.1%,1143
+cov_bin_dementia,TRUE,489,12.1%,255
+cov_bin_depression,TRUE,933,23%,459
+cov_bin_diabetes,TRUE,2247,55.4%,1119
+cov_bin_hcworker,TRUE,2139,52.8%,1047
+cov_bin_hf,TRUE,453,11.2%,225
+cov_bin_hrt,TRUE,255,6.3%,135
+cov_bin_hypertension,TRUE,2961,73.1%,1461
+cov_bin_lipidmed,TRUE,771,19%,363
+cov_bin_liver_disease,TRUE,849,20.9%,429
+cov_bin_obesity,TRUE,87,2.1%,45
+cov_bin_other_ae,TRUE,387,9.5%,183
+cov_bin_stroke_all,TRUE,1455,35.9%,699
+cov_bin_vte,TRUE,1299,32.1%,645
+cov_cat_age_group,18-29,507,12.5%,255
+cov_cat_age_group,30-39,447,11%,237
+cov_cat_age_group,40-49,459,11.3%,231
+cov_cat_age_group,50-69,915,22.6%,435
+cov_cat_age_group,70-79,399,9.8%,201
+cov_cat_age_group,80-89,447,11%,213
+cov_cat_age_group,90+,879,21.7%,411
+cov_cat_consrate2019,0,3903,96.3%,1917
+cov_cat_consrate2019,1-5,147,3.6%,81
+cov_cat_ethnicity,Asian,231,5.7%,129
+cov_cat_ethnicity,Black,231,5.7%,117
+cov_cat_ethnicity,Missing,2793,68.9%,1347
+cov_cat_ethnicity,Mixed,117,2.9%,63
+cov_cat_ethnicity,Other,345,8.5%,183
+cov_cat_ethnicity,White,333,8.2%,165
+cov_cat_imd,1 (most deprived),807,19.9%,393
+cov_cat_imd,2,831,20.5%,399
+cov_cat_imd,3,753,18.6%,381
+cov_cat_imd,4,813,20.1%,405
+cov_cat_imd,5 (least deprived),843,20.8%,417
+cov_cat_sex,Female,2055,50.7%,1023
+cov_cat_sex,Male,2001,49.4%,975
+cov_cat_smoking,Current smoker,1311,32.3%,639
+cov_cat_smoking,Ever smoker,909,22.4%,453
+cov_cat_smoking,Missing,1767,43.6%,873
+cov_cat_smoking,Never smoker,63,1.6%,33
+strat_cat_region,East,441,10.9%,219
+strat_cat_region,East Midlands,453,11.2%,213
+strat_cat_region,London,441,10.9%,213
+strat_cat_region,North East,459,11.3%,225
+strat_cat_region,North West,441,10.9%,219
+strat_cat_region,South East,441,10.9%,219
+strat_cat_region,South West,441,10.9%,207
+strat_cat_region,West Midlands,459,11.3%,237
+strat_cat_region,Yorkshire and The Humber,477,11.8%,243
+"Age, years",Median (IQR),62 (41-86),-,0

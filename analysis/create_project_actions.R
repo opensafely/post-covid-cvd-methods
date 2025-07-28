@@ -1,3 +1,22 @@
+# ------------------------------------------------------------------------------
+#
+# create_project_actions.R
+#
+# This file generates the OpenSAFELY project's "action list",
+# which defines individual code blocks to be run on the opensafely backend
+# and specifies the inputs, outputs and dependencies
+#
+# Arguments:
+#  - none
+#
+# Returns:
+#  - project.yaml
+#
+# Authors: Emma Tarmey, Venexia Walker, UoB ehrQL Team
+#
+# ------------------------------------------------------------------------------
+
+
 # Load libraries ---------------------------------------------------------------
 
 library(tidyverse)
@@ -23,19 +42,11 @@ active_analyses <- active_analyses[
   ),
 ]
 cohorts <- unique(active_analyses$cohort)
+subgroups <- unique(str_extract(active_analyses$analysis, "^main|sub_[^_]+"))
 
 active_age <- active_analyses[grepl("_age_", active_analyses$name), ]$name
-age_str <- paste0(
-  paste0(
-    unique(sub(".*_age_([0-9]+)_([0-9]+)_.*", "\\1", active_age)),
-    collapse = ";"
-  ),
-  ";",
-  max(
-    as.numeric(unique(sub(".*_age_([0-9]+)_([0-9]+)_.*", "\\2", active_age))) +
-      1
-  )
-) #create age vector in form "X;XX;XX;XX;XXX"
+
+age_str <- "18;30;40;50;50;70;80;90"
 
 describe <- TRUE # This prints descriptive files for each dataset in the pipeline
 
@@ -173,7 +184,7 @@ clean_data <- function(cohort, describe = describe) {
 
 
 # Create function for table1 --------------------------------------------
-  ## NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
+## NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
 
 table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
   if (preex == "All" | preex == "") {
@@ -247,7 +258,6 @@ apply_model_function <- function(
 
 
 # Create function to make Venn data --------------------------------------------
-# NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
 
 venn <- function(cohort, analyses = "") {
   if (analyses == "") {
@@ -296,8 +306,38 @@ venn <- function(cohort, analyses = "") {
 }
 
 
+# Create funtion for making model outputs --------------------------------------
+
+make_model_output <- function(subgroup) {
+  splice(
+    comment(glue("Generate model_output-{subgroup}")),
+    action(
+      name = glue(
+        "make_model_output-{subgroup}"
+      ),
+      run = "r:v2 analysis/make_output/make_model_output.R",
+      arguments = c(subgroup),
+      needs = as.list(c(
+        paste0(
+          "cox_ipw-",
+          active_analyses$name[
+            !(active_analyses$name %in% excluded_models) &
+              str_detect(active_analyses$analysis, subgroup)
+          ]
+        )
+      )),
+      moderately_sensitive = list(
+        model_output = glue("output/make_output/model_output-{subgroup}.csv"),
+        model_output_midpoint6 = glue(
+          "output/make_output/model_output-{subgroup}-midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
+
 # Create funtion for making combined table/venn outputs ------------------------
-# NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
 
 make_other_output <- function(action_name, cohort, subgroup = "") {
   cohort_names <- stringr::str_split(as.vector(cohort), ";")[[1]]
@@ -386,7 +426,7 @@ actions_list <- splice(
     )
   ),
 
-  ## Clean data -----------------------------------------------------------
+  ## Clean data ---------------------------------------------------------------
 
   splice(
     unlist(
@@ -396,7 +436,6 @@ actions_list <- splice(
   ),
 
   ## Table 1 -------------------------------------------------------------------
-  ## NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
 
   splice(
     unlist(
@@ -449,8 +488,57 @@ actions_list <- splice(
       ),
       recursive = FALSE
     )
+  ),
+
+  ## Venn data -----------------------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        unique(active_analyses$cohort),
+        function(x) venn(cohort = x)
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  splice(
+    make_other_output(
+      action_name = "venn",
+      cohort = paste0(cohorts, collapse = ";"),
+      subgroup = ""
+    )
+  ),
+
+  ## Model output --------------------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(subgroups, function(x) make_model_output(subgroup = x)),
+      recursive = FALSE
+    )
+  ),
+
+  ## Make absolute excess risk (AER) input -------------------------------------
+
+  comment("Make absolute excess risk (AER) input"),
+
+  action(
+    name = "make_aer_input",
+    run = "r:v2 analysis/make_output/make_aer_input.R main",
+    needs = as.list(paste0(
+      "make_model_input-",
+      active_analyses[grepl("-main", active_analyses$name), ]$name
+    )),
+    moderately_sensitive = list(
+      aer_input = glue("output/make_output/aer_input-main.csv"),
+      aer_input_midpoint6 = glue(
+        "output/make_output/aer_input-main-midpoint6.csv"
+      )
+    )
   )
 )
+
 
 # Combine actions into project list --------------------------------------------
 

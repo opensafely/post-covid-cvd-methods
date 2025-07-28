@@ -1,0 +1,36 @@
+2025-07-28T13:39:02.417754916Z [1] "Load packages"
+2025-07-28T13:39:02.797439667Z 
+2025-07-28T13:39:02.797467992Z Attaching package: ‘tidyr’
+2025-07-28T13:39:02.797473250Z 
+2025-07-28T13:39:02.798534613Z The following object is masked from ‘package:magrittr’:
+2025-07-28T13:39:02.798546122Z 
+2025-07-28T13:39:02.798549308Z     extract
+2025-07-28T13:39:02.798551943Z 
+2025-07-28T13:39:02.798619369Z [1] "Creating output/make_output output folder"
+2025-07-28T13:39:02.915711500Z [1] "Specify arguments"
+2025-07-28T13:39:02.915769432Z [1] "Separate cohorts"
+2025-07-28T13:39:02.949058269Z [1] "Generate strings"
+2025-07-28T13:39:02.949125383Z [1] "Create blank table"
+2025-07-28T13:39:02.949158577Z [1] "Add output from each cohort"
+2025-07-28T13:39:03.147534023Z Rows: 59 Columns: 5
+2025-07-28T13:39:03.153604883Z ── Column specification ────────────────────────────────────────────────────────
+2025-07-28T13:39:03.153627051Z Delimiter: ","
+2025-07-28T13:39:03.153629330Z chr (4): Characteristic, Subcharacteristic, N [midpoint6_derived], (%) [midp...
+2025-07-28T13:39:03.153630962Z dbl (1): COVID-19 diagnoses [midpoint6]
+2025-07-28T13:39:03.159389941Z 
+2025-07-28T13:39:03.159425479Z ℹ Use `spec()` to retrieve the full column specification for this data.
+2025-07-28T13:39:03.159430899Z ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+2025-07-28T13:39:03.162727653Z [1] "table1 processing"
+2025-07-28T13:39:03.178551831Z [1] "Save output"
+
+
+job_definition_id: ls3ilnynvbocm7kh
+job_definition_request_id: 4204ecd689
+docker_image_id: sha256:13f6c027b613bda2d60fbc6dbcd8f7263e1224f1e45a4797375e438f28fd0e5d
+exit_code: 0
+created_at: 1753709846
+completed_at: 1753709944
+status_message: Completed successfully
+
+outputs:
+  output/make_output/table1_output_midpoint6.csv  - moderately_sensitive
