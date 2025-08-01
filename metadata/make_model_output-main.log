@@ -1,0 +1,42 @@
+2025-08-01T14:16:48.722638908Z [1] "Load packages"
+2025-08-01T14:16:48.741267323Z [1] "Source common functions"
+2025-08-01T14:16:48.746097683Z [1] "Specify arguments"
+2025-08-01T14:16:48.746157224Z [1] "Creating output/model output folder"
+2025-08-01T14:16:48.818967027Z [1] "Load active analyses"
+2025-08-01T14:16:49.028806225Z [1] "List available model outputs"
+2025-08-01T14:16:49.028825072Z [1] "Combine R model output"
+2025-08-01T14:16:49.213942837Z Rows: 55 Columns: 20
+2025-08-01T14:16:49.227791872Z ── Column specification ────────────────────────────────────────────────────────
+2025-08-01T14:16:49.227823252Z Delimiter: ","
+2025-08-01T14:16:49.227826564Z chr  (7): model, exposure, outcome, term, surv_formula, input, cox_ipw
+2025-08-01T14:16:49.227829038Z dbl (10): lnhr, se_lnhr, hr, conf_low, conf_high, N_total, N_exposed, N_even...
+2025-08-01T14:16:49.227831244Z lgl  (3): covariate_collapsed, strata_warning, obs_warning
+2025-08-01T14:16:49.242500804Z 
+2025-08-01T14:16:49.242537213Z ℹ Use `spec()` to retrieve the full column specification for this data.
+2025-08-01T14:16:49.242541707Z ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+2025-08-01T14:16:49.364601273Z Rows: 56 Columns: 20
+2025-08-01T14:16:49.402708090Z ── Column specification ────────────────────────────────────────────────────────
+2025-08-01T14:16:49.402764821Z Delimiter: ","
+2025-08-01T14:16:49.402769702Z chr  (7): model, exposure, outcome, term, surv_formula, input, cox_ipw
+2025-08-01T14:16:49.402773280Z dbl (10): lnhr, se_lnhr, hr, conf_low, conf_high, N_total, N_exposed, N_even...
+2025-08-01T14:16:49.402776659Z lgl  (3): covariate_collapsed, strata_warning, obs_warning
+2025-08-01T14:16:49.416679651Z 
+2025-08-01T14:16:49.416720017Z ℹ Use `spec()` to retrieve the full column specification for this data.
+2025-08-01T14:16:49.416725139Z ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+2025-08-01T14:16:49.421258030Z [1] "Add details from active analyses"
+2025-08-01T14:16:49.424762542Z [1] "Save model output"
+2025-08-01T14:16:49.446800687Z [1] "Perform redaction"
+2025-08-01T14:16:49.458149698Z [1] "Save model output"
+
+
+job_definition_id: woj454pbyrm5a3iy
+job_definition_request_id: b224088a6e
+docker_image_id: sha256:13f6c027b613bda2d60fbc6dbcd8f7263e1224f1e45a4797375e438f28fd0e5d
+exit_code: 0
+created_at: 1754057622
+completed_at: 1754057810
+status_message: Completed successfully
+
+outputs:
+  output/make_output/model_output-main-midpoint6.csv  - moderately_sensitive
+  output/make_output/model_output-main.csv            - moderately_sensitive

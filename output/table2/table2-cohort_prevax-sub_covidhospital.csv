@@ -1,0 +1,3 @@
+"name","cohort","exposure","outcome","analysis","unexposed_person_days","unexposed_events","exposed_person_days","exposed_events","total_person_days","total_events","day0_events","total_exposed","sample_size"
+"cohort_prevax-main-ami","prevax","exp_date_covid","out_date_ami","main","4225351","1755","470993","187","4696344","1942","0","447","4053"
+"cohort_prevax-main-stroke_sahhs","prevax","exp_date_covid","out_date_stroke_sahhs","main","4214100","1769","432751","199","4646851","1968","0","432","4053"

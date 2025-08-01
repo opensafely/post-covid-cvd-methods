@@ -1,0 +1,42 @@
+2025-08-01T14:16:28.979451398Z [1] "Load libraries"
+2025-08-01T14:16:29.257451291Z 
+2025-08-01T14:16:29.257480202Z Attaching package: ‘dplyr’
+2025-08-01T14:16:29.257482269Z 
+2025-08-01T14:16:29.257983131Z The following objects are masked from ‘package:stats’:
+2025-08-01T14:16:29.257985750Z 
+2025-08-01T14:16:29.257986686Z     filter, lag
+2025-08-01T14:16:29.257987840Z 
+2025-08-01T14:16:29.257988716Z The following objects are masked from ‘package:base’:
+2025-08-01T14:16:29.257989706Z 
+2025-08-01T14:16:29.257990578Z     intersect, setdiff, setequal, union
+2025-08-01T14:16:29.257991506Z 
+2025-08-01T14:16:29.260202169Z [1] "Creating output/table2 output folder"
+2025-08-01T14:16:29.289481728Z [1] "Source common functions"
+2025-08-01T14:16:29.290230538Z [1] "Specify arguments"
+2025-08-01T14:16:29.290234783Z [1] "Load active analyses"
+2025-08-01T14:16:29.290685358Z [1] "Make empty table 2"
+2025-08-01T14:16:29.291417755Z [1] "Record number of events and person days for each active analysis"
+2025-08-01T14:16:29.363570555Z [1] "Load data for cohort_prevax-main-ami"
+2025-08-01T14:16:29.366223129Z [1] "Make exposed subset"
+2025-08-01T14:16:29.371068655Z [1] "Make unexposed subset"
+2025-08-01T14:16:29.373865165Z [1] "Append to table 2"
+2025-08-01T14:16:29.374782390Z [1] "Load data for cohort_prevax-main-stroke_sahhs"
+2025-08-01T14:16:29.377044586Z [1] "Make exposed subset"
+2025-08-01T14:16:29.378013786Z [1] "Make unexposed subset"
+2025-08-01T14:16:29.379999215Z [1] "Append to table 2"
+2025-08-01T14:16:29.380715131Z [1] "Save Table 2"
+2025-08-01T14:16:29.381522081Z [1] "Perform redaction"
+2025-08-01T14:16:29.385048601Z [1] "Save rounded Table 2"
+
+
+job_definition_id: rfygcctciicw637f
+job_definition_request_id: b224088a6e
+docker_image_id: sha256:13f6c027b613bda2d60fbc6dbcd8f7263e1224f1e45a4797375e438f28fd0e5d
+exit_code: 0
+created_at: 1754057622
+completed_at: 1754057791
+status_message: Completed successfully
+
+outputs:
+  output/table2/table2-cohort_prevax-sub_covidhospital-midpoint6.csv  - moderately_sensitive
+  output/table2/table2-cohort_prevax-sub_covidhospital.csv            - moderately_sensitive

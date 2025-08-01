@@ -1,0 +1,43 @@
+2025-08-01T14:16:03.671602197Z [1] "Load libraries"
+2025-08-01T14:16:03.707237863Z here() starts at /workspace
+2025-08-01T14:16:04.198920794Z 
+2025-08-01T14:16:04.198960399Z Attaching package: ‘dplyr’
+2025-08-01T14:16:04.198964441Z 
+2025-08-01T14:16:04.200263529Z The following objects are masked from ‘package:stats’:
+2025-08-01T14:16:04.200292712Z 
+2025-08-01T14:16:04.200296412Z     filter, lag
+2025-08-01T14:16:04.200299244Z 
+2025-08-01T14:16:04.200460917Z The following objects are masked from ‘package:base’:
+2025-08-01T14:16:04.200478775Z 
+2025-08-01T14:16:04.200481912Z     intersect, setdiff, setequal, union
+2025-08-01T14:16:04.200485388Z 
+2025-08-01T14:16:04.202441372Z Loading required package: Matrix
+2025-08-01T14:16:05.186718488Z Loaded glmnet 4.1-8
+2025-08-01T14:16:05.191309521Z [1] "Creating output/lasso_union_var_selection output folder"
+2025-08-01T14:16:05.294329105Z [1] "Source common functions"
+2025-08-01T14:16:05.298740301Z [1] "Specify arguments"
+2025-08-01T14:16:05.299523121Z [1] 2
+2025-08-01T14:16:05.345721733Z [1] "Load data"
+2025-08-01T14:16:05.347302752Z [1] "Select for pre-existing conditions"
+2025-08-01T14:16:05.347346538Z [1] "Take union of LASSO and LASSO_X covariate sets"
+2025-08-01T14:16:05.347356303Z  [1] "cov_cat_sex"           "cov_cat_imd"           "cov_cat_smoking"      
+2025-08-01T14:16:05.347363603Z  [4] "cov_cat_age_group"     "cov_cat_consrate2019"  "strat_cat_region"     
+2025-08-01T14:16:05.347369786Z  [7] "cov_bin_carehome"      "cov_bin_hcworker"      "cov_bin_dementia"     
+2025-08-01T14:16:05.347375678Z [10] "cov_bin_liver_disease" "cov_bin_ckd"           "cov_bin_cancer"       
+2025-08-01T14:16:05.347381609Z [13] "cov_bin_hypertension"  "cov_bin_diabetes"      "cov_bin_obesity"      
+2025-08-01T14:16:05.347387661Z [16] "cov_bin_depression"    "cov_bin_stroke_all"    "cov_bin_other_ae"     
+2025-08-01T14:16:05.347393488Z [19] "cov_bin_vte"           "cov_bin_hf"            "cov_bin_angina"       
+2025-08-01T14:16:05.347399267Z [22] "cov_bin_lipidmed"      "cov_bin_antiplatelet"  "cov_bin_hrt"          
+2025-08-01T14:16:05.347408315Z [1] "Save Covariate Selection"
+
+
+job_definition_id: feqeg2oiigcvqahm
+job_definition_request_id: b224088a6e
+docker_image_id: sha256:13f6c027b613bda2d60fbc6dbcd8f7263e1224f1e45a4797375e438f28fd0e5d
+exit_code: 0
+created_at: 1754057622
+completed_at: 1754057768
+status_message: Completed successfully
+
+outputs:
+  output/lasso_union_var_selection/lasso_union_var_selection-cohort_prevax.csv  - moderately_sensitive

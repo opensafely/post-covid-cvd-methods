@@ -1,0 +1,45 @@
+2025-08-01T14:25:45.586730202Z [1] "Load libraries"
+2025-08-01T14:25:45.619135494Z here() starts at /workspace
+2025-08-01T14:25:46.040610139Z 
+2025-08-01T14:25:46.040657646Z Attaching package: ‘dplyr’
+2025-08-01T14:25:46.040662228Z 
+2025-08-01T14:25:46.042491466Z The following objects are masked from ‘package:stats’:
+2025-08-01T14:25:46.042513203Z 
+2025-08-01T14:25:46.042516659Z     filter, lag
+2025-08-01T14:25:46.042519230Z 
+2025-08-01T14:25:46.042745054Z The following objects are masked from ‘package:base’:
+2025-08-01T14:25:46.042759077Z 
+2025-08-01T14:25:46.042762869Z     intersect, setdiff, setequal, union
+2025-08-01T14:25:46.042765732Z 
+2025-08-01T14:25:46.042786444Z [1] "Creating output/table1 output folder"
+2025-08-01T14:25:46.100799464Z [1] "Source common functions"
+2025-08-01T14:25:46.102359363Z [1] "Specify arguments"
+2025-08-01T14:25:46.102376725Z [1] 2
+2025-08-01T14:25:46.154457219Z [1] "Load data"
+2025-08-01T14:25:46.361147065Z [1] "Table 1 processing"
+2025-08-01T14:25:46.361185561Z [1] "Remove people with history of COVID-19"
+2025-08-01T14:25:46.364567503Z [1] "Create exposure indicator"
+2025-08-01T14:25:46.366154086Z [1] "Select for pre-existing conditions"
+2025-08-01T14:25:46.366177814Z [1] "Define age groups"
+2025-08-01T14:25:46.405963195Z [1] "Filter data"
+2025-08-01T14:25:46.767226765Z [1] "Convert to characteristics and subcharacteristics"
+2025-08-01T14:25:46.794581960Z [1] "Tidy missing data labels"
+2025-08-01T14:25:46.807902972Z [1] "Aggregate data"
+2025-08-01T14:25:46.874824585Z [1] "Sort characteristics"
+2025-08-01T14:25:46.874858077Z [1] "Add median (IQR) age"
+2025-08-01T14:25:46.875326020Z [1] "Save Table 1"
+2025-08-01T14:25:46.876332549Z [1] "Perform redaction"
+2025-08-01T14:25:46.883021089Z [1] "Save rounded Table 1"
+
+
+job_definition_id: rlek74ux5gbihyeb
+job_definition_request_id: 305d19a51c
+docker_image_id: sha256:13f6c027b613bda2d60fbc6dbcd8f7263e1224f1e45a4797375e438f28fd0e5d
+exit_code: 0
+created_at: 1754058235
+completed_at: 1754058347
+status_message: Completed successfully
+
+outputs:
+  output/table1/table1-cohort_prevax-midpoint6.csv  - moderately_sensitive
+  output/table1/table1-cohort_prevax.csv            - moderately_sensitive

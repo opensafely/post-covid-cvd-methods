@@ -1,0 +1,910 @@
+2025-08-01T14:16:14.181550357Z [1] "Load libraries"
+2025-08-01T14:16:14.205338826Z here() starts at /workspace
+2025-08-01T14:16:14.741530591Z 
+2025-08-01T14:16:14.741550598Z Attaching package: ‘dplyr’
+2025-08-01T14:16:14.741553895Z 
+2025-08-01T14:16:14.743201476Z The following objects are masked from ‘package:stats’:
+2025-08-01T14:16:14.743227445Z 
+2025-08-01T14:16:14.743233036Z     filter, lag
+2025-08-01T14:16:14.743237086Z 
+2025-08-01T14:16:14.743634247Z The following objects are masked from ‘package:base’:
+2025-08-01T14:16:14.743654023Z 
+2025-08-01T14:16:14.743659894Z     intersect, setdiff, setequal, union
+2025-08-01T14:16:14.743664130Z 
+2025-08-01T14:16:14.746818575Z Loading required package: Matrix
+2025-08-01T14:16:15.772674344Z Loaded glmnet 4.1-8
+2025-08-01T14:16:15.774015750Z [1] "Creating output/unconfoundedness_test output folder"
+2025-08-01T14:16:15.800124076Z [1] "Source common functions"
+2025-08-01T14:16:15.801125096Z [1] "Specify arguments"
+2025-08-01T14:16:15.801391763Z [1] 2
+2025-08-01T14:16:15.820969388Z [1] "Load data"
+2025-08-01T14:16:15.866133217Z [1] "Processing Start"
+2025-08-01T14:16:15.866171141Z [1] "Remove people with history of COVID-19"
+2025-08-01T14:16:15.867691355Z [1] "Create exposure indicator"
+2025-08-01T14:16:15.868484901Z [1] "Select for pre-existing conditions"
+2025-08-01T14:16:15.868489206Z [1] "Define age groups"
+2025-08-01T14:16:15.888482684Z [1] "Filter data"
+2025-08-01T14:16:15.888773728Z [1] "Filter binary data"
+2025-08-01T14:16:16.239845341Z [1] "Check exposure and outcome (acute MI)"
+2025-08-01T14:16:16.239863183Z [1] "Exposure"
+2025-08-01T14:16:16.240152221Z [1] FALSE FALSE  TRUE FALSE FALSE  TRUE
+2025-08-01T14:16:16.240161653Z [1] "Outcome"
+2025-08-01T14:16:16.240325111Z [1] "FALSE" "FALSE" "TRUE"  "FALSE" "TRUE"  "FALSE"
+2025-08-01T14:16:16.240334265Z [1] "Convert explicit data type to binary where applicable"
+2025-08-01T14:16:16.278725232Z [1] "***** LASSO *****"
+2025-08-01T14:16:16.278764698Z [1] "Variables selected:"
+2025-08-01T14:16:16.278767942Z  [1] "cov_cat_sex"           "cov_cat_imd"           "cov_cat_smoking"      
+2025-08-01T14:16:16.278770681Z  [4] "cov_cat_age_group"     "cov_cat_consrate2019"  "strat_cat_region"     
+2025-08-01T14:16:16.278773186Z  [7] "cov_bin_carehome"      "cov_bin_hcworker"      "cov_bin_dementia"     
+2025-08-01T14:16:16.278775601Z [10] "cov_bin_liver_disease" "cov_bin_ckd"           "cov_bin_cancer"       
+2025-08-01T14:16:16.278778033Z [13] "cov_bin_hypertension"  "cov_bin_diabetes"      "cov_bin_obesity"      
+2025-08-01T14:16:16.278792687Z [16] "cov_bin_depression"    "cov_bin_stroke_all"    "cov_bin_other_ae"     
+2025-08-01T14:16:16.278795188Z [19] "cov_bin_vte"           "cov_bin_hf"            "cov_bin_angina"       
+2025-08-01T14:16:16.278797097Z [22] "cov_bin_lipidmed"      "cov_bin_antiplatelet"  "cov_bin_hrt"          
+2025-08-01T14:16:16.278798910Z [1] "Exposure regression:"
+2025-08-01T14:16:16.278800653Z [1] "exposed ~ cov_cat_sex + cov_cat_imd + cov_cat_smoking + cov_cat_age_group + cov_cat_consrate2019 + strat_cat_region + cov_bin_carehome + cov_bin_hcworker + cov_bin_dementia + cov_bin_liver_disease + cov_bin_ckd + cov_bin_cancer + cov_bin_hypertension + cov_bin_diabetes + cov_bin_obesity + cov_bin_depression + cov_bin_stroke_all + cov_bin_other_ae + cov_bin_vte + cov_bin_hf + cov_bin_angina + cov_bin_lipidmed + cov_bin_antiplatelet + cov_bin_hrt"
+2025-08-01T14:16:16.280364732Z 
+2025-08-01T14:16:16.280390162Z Call:
+2025-08-01T14:16:16.280392550Z lm(formula = exposure_regression_formula, data = df)
+2025-08-01T14:16:16.280394301Z 
+2025-08-01T14:16:16.280395962Z Residuals:
+2025-08-01T14:16:16.280403753Z     Min      1Q  Median      3Q     Max 
+2025-08-01T14:16:16.280405665Z -0.6482 -0.4886 -0.3994  0.5036  0.6409 
+2025-08-01T14:16:16.280407233Z 
+2025-08-01T14:16:16.280408857Z Coefficients:
+2025-08-01T14:16:16.282442884Z                                           Estimate Std. Error t value Pr(>|t|)
+2025-08-01T14:16:16.282465584Z (Intercept)                               0.493177   0.045221  10.906   <2e-16
+2025-08-01T14:16:16.282468163Z cov_cat_sexMale                          -0.011322   0.015819  -0.716   0.4742
+2025-08-01T14:16:16.282469932Z cov_cat_imd2                              0.002578   0.024864   0.104   0.9174
+2025-08-01T14:16:16.282471542Z cov_cat_imd3                              0.013865   0.025479   0.544   0.5863
+2025-08-01T14:16:16.282473033Z cov_cat_imd4                              0.009608   0.024971   0.385   0.7004
+2025-08-01T14:16:16.282474512Z cov_cat_imd5 (least deprived)             0.006993   0.024686   0.283   0.7770
+2025-08-01T14:16:16.282475987Z cov_cat_smokingEver smoker               -0.005896   0.022412  -0.263   0.7925
+2025-08-01T14:16:16.282477441Z cov_cat_smokingMissing                    0.006309   0.019885   0.317   0.7510
+2025-08-01T14:16:16.282479196Z cov_cat_smokingNever smoker              -0.058639   0.061639  -0.951   0.3415
+2025-08-01T14:16:16.282480762Z cov_cat_age_group30-39                    0.022698   0.032613   0.696   0.4865
+2025-08-01T14:16:16.282482363Z cov_cat_age_group40-49                    0.002986   0.032415   0.092   0.9266
+2025-08-01T14:16:16.282483946Z cov_cat_age_group50-69                   -0.030077   0.027764  -1.083   0.2787
+2025-08-01T14:16:16.282485504Z cov_cat_age_group70-79                    0.006659   0.033646   0.198   0.8431
+2025-08-01T14:16:16.282487120Z cov_cat_age_group80-89                   -0.025713   0.032559  -0.790   0.4297
+2025-08-01T14:16:16.282496982Z cov_cat_age_group90+                     -0.037996   0.027996  -1.357   0.1748
+2025-08-01T14:16:16.282499036Z cov_cat_consrate20191-5                   0.009405   0.040135   0.234   0.8147
+2025-08-01T14:16:16.282500729Z strat_cat_regionEast Midlands            -0.030541   0.033599  -0.909   0.3634
+2025-08-01T14:16:16.282502378Z strat_cat_regionLondon                   -0.024521   0.033885  -0.724   0.4693
+2025-08-01T14:16:16.282503950Z strat_cat_regionNorth East               -0.010868   0.033560  -0.324   0.7461
+2025-08-01T14:16:16.282505499Z strat_cat_regionNorth West               -0.005793   0.033857  -0.171   0.8642
+2025-08-01T14:16:16.282507074Z strat_cat_regionSouth East                0.006700   0.033982   0.197   0.8437
+2025-08-01T14:16:16.282508603Z strat_cat_regionSouth West               -0.024952   0.033898  -0.736   0.4617
+2025-08-01T14:16:16.282510115Z strat_cat_regionWest Midlands             0.016096   0.033516   0.480   0.6311
+2025-08-01T14:16:16.282511638Z strat_cat_regionYorkshire and The Humber  0.009928   0.033242   0.299   0.7652
+2025-08-01T14:16:16.282514007Z cov_bin_carehomeTRUE                     -0.004167   0.021582  -0.193   0.8469
+2025-08-01T14:16:16.282515698Z cov_bin_hcworkerTRUE                      0.006893   0.015888   0.434   0.6644
+2025-08-01T14:16:16.282517261Z cov_bin_dementiaTRUE                      0.028791   0.024682   1.166   0.2435
+2025-08-01T14:16:16.282518809Z cov_bin_liver_diseaseTRUE                 0.016229   0.020570   0.789   0.4302
+2025-08-01T14:16:16.282520323Z cov_bin_ckdTRUE                           0.019446   0.018692   1.040   0.2982
+2025-08-01T14:16:16.282521861Z cov_bin_cancerTRUE                        0.039960   0.021295   1.877   0.0607
+2025-08-01T14:16:16.282523401Z cov_bin_hypertensionTRUE                 -0.021366   0.018972  -1.126   0.2602
+2025-08-01T14:16:16.282525388Z cov_bin_diabetesTRUE                     -0.014263   0.017150  -0.832   0.4057
+2025-08-01T14:16:16.282526991Z cov_bin_obesityTRUE                      -0.065580   0.065509  -1.001   0.3168
+2025-08-01T14:16:16.282528547Z cov_bin_depressionTRUE                   -0.002970   0.018834  -0.158   0.8747
+2025-08-01T14:16:16.282530107Z cov_bin_stroke_allTRUE                   -0.001376   0.017524  -0.078   0.9374
+2025-08-01T14:16:16.282531656Z cov_bin_other_aeTRUE                      0.023826   0.026219   0.909   0.3636
+2025-08-01T14:16:16.282533192Z cov_bin_vteTRUE                          -0.021404   0.017617  -1.215   0.2245
+2025-08-01T14:16:16.282534723Z cov_bin_hfTRUE                           -0.035356   0.026024  -1.359   0.1743
+2025-08-01T14:16:16.282536235Z cov_bin_anginaTRUE                       -0.013631   0.027216  -0.501   0.6165
+2025-08-01T14:16:16.282537802Z cov_bin_lipidmedTRUE                      0.032923   0.021047   1.564   0.1178
+2025-08-01T14:16:16.282539394Z cov_bin_antiplateletTRUE                 -0.002762   0.030150  -0.092   0.9270
+2025-08-01T14:16:16.282543078Z cov_bin_hrtTRUE                           0.048910   0.032337   1.512   0.1305
+2025-08-01T14:16:16.282544954Z                                             
+2025-08-01T14:16:16.282546521Z (Intercept)                              ***
+2025-08-01T14:16:16.282548092Z cov_cat_sexMale                             
+2025-08-01T14:16:16.282549628Z cov_cat_imd2                                
+2025-08-01T14:16:16.282551176Z cov_cat_imd3                                
+2025-08-01T14:16:16.282552734Z cov_cat_imd4                                
+2025-08-01T14:16:16.282554276Z cov_cat_imd5 (least deprived)               
+2025-08-01T14:16:16.282555821Z cov_cat_smokingEver smoker                  
+2025-08-01T14:16:16.282557337Z cov_cat_smokingMissing                      
+2025-08-01T14:16:16.282558864Z cov_cat_smokingNever smoker                 
+2025-08-01T14:16:16.282560400Z cov_cat_age_group30-39                      
+2025-08-01T14:16:16.282561926Z cov_cat_age_group40-49                      
+2025-08-01T14:16:16.282563416Z cov_cat_age_group50-69                      
+2025-08-01T14:16:16.282564948Z cov_cat_age_group70-79                      
+2025-08-01T14:16:16.282566486Z cov_cat_age_group80-89                      
+2025-08-01T14:16:16.282568309Z cov_cat_age_group90+                        
+2025-08-01T14:16:16.282569844Z cov_cat_consrate20191-5                     
+2025-08-01T14:16:16.282571370Z strat_cat_regionEast Midlands               
+2025-08-01T14:16:16.282572905Z strat_cat_regionLondon                      
+2025-08-01T14:16:16.282574376Z strat_cat_regionNorth East                  
+2025-08-01T14:16:16.282575878Z strat_cat_regionNorth West                  
+2025-08-01T14:16:16.282581078Z strat_cat_regionSouth East                  
+2025-08-01T14:16:16.282582918Z strat_cat_regionSouth West                  
+2025-08-01T14:16:16.282584476Z strat_cat_regionWest Midlands               
+2025-08-01T14:16:16.282585982Z strat_cat_regionYorkshire and The Humber    
+2025-08-01T14:16:16.282587519Z cov_bin_carehomeTRUE                        
+2025-08-01T14:16:16.282589017Z cov_bin_hcworkerTRUE                        
+2025-08-01T14:16:16.282590495Z cov_bin_dementiaTRUE                        
+2025-08-01T14:16:16.282591951Z cov_bin_liver_diseaseTRUE                   
+2025-08-01T14:16:16.282593440Z cov_bin_ckdTRUE                             
+2025-08-01T14:16:16.282594977Z cov_bin_cancerTRUE                       .  
+2025-08-01T14:16:16.282596494Z cov_bin_hypertensionTRUE                    
+2025-08-01T14:16:16.282597992Z cov_bin_diabetesTRUE                        
+2025-08-01T14:16:16.282607441Z cov_bin_obesityTRUE                         
+2025-08-01T14:16:16.282611797Z cov_bin_depressionTRUE                      
+2025-08-01T14:16:16.282613606Z cov_bin_stroke_allTRUE                      
+2025-08-01T14:16:16.282615171Z cov_bin_other_aeTRUE                        
+2025-08-01T14:16:16.282616778Z cov_bin_vteTRUE                             
+2025-08-01T14:16:16.282618372Z cov_bin_hfTRUE                              
+2025-08-01T14:16:16.282619878Z cov_bin_anginaTRUE                          
+2025-08-01T14:16:16.282621384Z cov_bin_lipidmedTRUE                        
+2025-08-01T14:16:16.282622895Z cov_bin_antiplateletTRUE                    
+2025-08-01T14:16:16.282624394Z cov_bin_hrtTRUE                             
+2025-08-01T14:16:16.282625897Z ---
+2025-08-01T14:16:16.282627352Z Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+2025-08-01T14:16:16.282629571Z 
+2025-08-01T14:16:16.282631023Z Residual standard error: 0.5006 on 4011 degrees of freedom
+2025-08-01T14:16:16.282632573Z Multiple R-squared:  0.007608,	Adjusted R-squared:  -0.002537 
+2025-08-01T14:16:16.282634335Z F-statistic:  0.75 on 41 and 4011 DF,  p-value: 0.8777
+2025-08-01T14:16:16.282635878Z 
+2025-08-01T14:16:16.282637285Z                          cov_cat_sexMale 
+2025-08-01T14:16:16.282638750Z                                    FALSE 
+2025-08-01T14:16:16.282640192Z                             cov_cat_imd2 
+2025-08-01T14:16:16.282641607Z                                    FALSE 
+2025-08-01T14:16:16.282643051Z                             cov_cat_imd3 
+2025-08-01T14:16:16.282644510Z                                    FALSE 
+2025-08-01T14:16:16.282646001Z                             cov_cat_imd4 
+2025-08-01T14:16:16.282647478Z                                    FALSE 
+2025-08-01T14:16:16.282648947Z            cov_cat_imd5 (least deprived) 
+2025-08-01T14:16:16.282650414Z                                    FALSE 
+2025-08-01T14:16:16.282651883Z               cov_cat_smokingEver smoker 
+2025-08-01T14:16:16.282653370Z                                    FALSE 
+2025-08-01T14:16:16.282654948Z                   cov_cat_smokingMissing 
+2025-08-01T14:16:16.282656910Z                                    FALSE 
+2025-08-01T14:16:16.282658470Z              cov_cat_smokingNever smoker 
+2025-08-01T14:16:16.282659971Z                                    FALSE 
+2025-08-01T14:16:16.282661458Z                   cov_cat_age_group30-39 
+2025-08-01T14:16:16.282662951Z                                    FALSE 
+2025-08-01T14:16:16.282664433Z                   cov_cat_age_group40-49 
+2025-08-01T14:16:16.282665922Z                                    FALSE 
+2025-08-01T14:16:16.282667378Z                   cov_cat_age_group50-69 
+2025-08-01T14:16:16.282670746Z                                    FALSE 
+2025-08-01T14:16:16.282672376Z                   cov_cat_age_group70-79 
+2025-08-01T14:16:16.282673789Z                                    FALSE 
+2025-08-01T14:16:16.282675193Z                   cov_cat_age_group80-89 
+2025-08-01T14:16:16.282676595Z                                    FALSE 
+2025-08-01T14:16:16.282681169Z                     cov_cat_age_group90+ 
+2025-08-01T14:16:16.282682736Z                                    FALSE 
+2025-08-01T14:16:16.282684195Z                  cov_cat_consrate20191-5 
+2025-08-01T14:16:16.282685599Z                                    FALSE 
+2025-08-01T14:16:16.282687024Z            strat_cat_regionEast Midlands 
+2025-08-01T14:16:16.282688429Z                                    FALSE 
+2025-08-01T14:16:16.282689829Z                   strat_cat_regionLondon 
+2025-08-01T14:16:16.282691225Z                                    FALSE 
+2025-08-01T14:16:16.282692638Z               strat_cat_regionNorth East 
+2025-08-01T14:16:16.282694038Z                                    FALSE 
+2025-08-01T14:16:16.282695452Z               strat_cat_regionNorth West 
+2025-08-01T14:16:16.282696835Z                                    FALSE 
+2025-08-01T14:16:16.282698235Z               strat_cat_regionSouth East 
+2025-08-01T14:16:16.282699600Z                                    FALSE 
+2025-08-01T14:16:16.282700973Z               strat_cat_regionSouth West 
+2025-08-01T14:16:16.282702345Z                                    FALSE 
+2025-08-01T14:16:16.282703733Z            strat_cat_regionWest Midlands 
+2025-08-01T14:16:16.282705115Z                                    FALSE 
+2025-08-01T14:16:16.282706506Z strat_cat_regionYorkshire and The Humber 
+2025-08-01T14:16:16.282707891Z                                    FALSE 
+2025-08-01T14:16:16.282709246Z                     cov_bin_carehomeTRUE 
+2025-08-01T14:16:16.282710624Z                                    FALSE 
+2025-08-01T14:16:16.282712059Z                     cov_bin_hcworkerTRUE 
+2025-08-01T14:16:16.282713452Z                                    FALSE 
+2025-08-01T14:16:16.282714834Z                     cov_bin_dementiaTRUE 
+2025-08-01T14:16:16.282716193Z                                    FALSE 
+2025-08-01T14:16:16.282717611Z                cov_bin_liver_diseaseTRUE 
+2025-08-01T14:16:16.282719011Z                                    FALSE 
+2025-08-01T14:16:16.282720374Z                          cov_bin_ckdTRUE 
+2025-08-01T14:16:16.282721740Z                                    FALSE 
+2025-08-01T14:16:16.282723143Z                       cov_bin_cancerTRUE 
+2025-08-01T14:16:16.282724559Z                                    FALSE 
+2025-08-01T14:16:16.282727532Z                 cov_bin_hypertensionTRUE 
+2025-08-01T14:16:16.282729122Z                                    FALSE 
+2025-08-01T14:16:16.282730614Z                     cov_bin_diabetesTRUE 
+2025-08-01T14:16:16.282734366Z                                    FALSE 
+2025-08-01T14:16:16.282735930Z                      cov_bin_obesityTRUE 
+2025-08-01T14:16:16.282737379Z                                    FALSE 
+2025-08-01T14:16:16.282738799Z                   cov_bin_depressionTRUE 
+2025-08-01T14:16:16.282740218Z                                    FALSE 
+2025-08-01T14:16:16.282741579Z                   cov_bin_stroke_allTRUE 
+2025-08-01T14:16:16.282742934Z                                    FALSE 
+2025-08-01T14:16:16.282744315Z                     cov_bin_other_aeTRUE 
+2025-08-01T14:16:16.282745684Z                                    FALSE 
+2025-08-01T14:16:16.282747031Z                          cov_bin_vteTRUE 
+2025-08-01T14:16:16.282748366Z                                    FALSE 
+2025-08-01T14:16:16.282749704Z                           cov_bin_hfTRUE 
+2025-08-01T14:16:16.282751027Z                                    FALSE 
+2025-08-01T14:16:16.282752349Z                       cov_bin_anginaTRUE 
+2025-08-01T14:16:16.282753703Z                                    FALSE 
+2025-08-01T14:16:16.282755043Z                     cov_bin_lipidmedTRUE 
+2025-08-01T14:16:16.282756376Z                                    FALSE 
+2025-08-01T14:16:16.282757710Z                 cov_bin_antiplateletTRUE 
+2025-08-01T14:16:16.282759064Z                                    FALSE 
+2025-08-01T14:16:16.282760480Z                          cov_bin_hrtTRUE 
+2025-08-01T14:16:16.282761974Z                                    FALSE 
+2025-08-01T14:16:16.282763335Z character(0)
+2025-08-01T14:16:16.282764728Z [1] "Outcome regression:"
+2025-08-01T14:16:16.282766767Z [1] "cov_bin_ami ~ exposed + cov_cat_sex + cov_cat_imd + cov_cat_smoking + cov_cat_age_group + cov_cat_consrate2019 + strat_cat_region + cov_bin_carehome + cov_bin_hcworker + cov_bin_dementia + cov_bin_liver_disease + cov_bin_ckd + cov_bin_cancer + cov_bin_hypertension + cov_bin_diabetes + cov_bin_obesity + cov_bin_depression + cov_bin_stroke_all + cov_bin_other_ae + cov_bin_vte + cov_bin_hf + cov_bin_angina + cov_bin_lipidmed + cov_bin_antiplatelet + cov_bin_hrt"
+2025-08-01T14:16:16.283233810Z 
+2025-08-01T14:16:16.283256356Z Call:
+2025-08-01T14:16:16.283258741Z lm(formula = outcome_regression_formula, data = df)
+2025-08-01T14:16:16.283260471Z 
+2025-08-01T14:16:16.283261894Z Residuals:
+2025-08-01T14:16:16.283425921Z     Min      1Q  Median      3Q     Max 
+2025-08-01T14:16:16.283432075Z -0.8560 -0.2882 -0.1562  0.3996  1.0418 
+2025-08-01T14:16:16.283442837Z 
+2025-08-01T14:16:16.283444757Z Coefficients:
+2025-08-01T14:16:16.284097928Z                                            Estimate Std. Error t value Pr(>|t|)
+2025-08-01T14:16:16.284114316Z (Intercept)                               0.0405809  0.0382867   1.060  0.28924
+2025-08-01T14:16:16.284116704Z exposedTRUE                               0.0005560  0.0131746   0.042  0.96634
+2025-08-01T14:16:16.284118519Z cov_cat_sexMale                           0.0150418  0.0132000   1.140  0.25455
+2025-08-01T14:16:16.284120190Z cov_cat_imd2                              0.0293153  0.0207463   1.413  0.15772
+2025-08-01T14:16:16.284121817Z cov_cat_imd3                             -0.0305982  0.0212597  -1.439  0.15016
+2025-08-01T14:16:16.284123447Z cov_cat_imd4                             -0.0322229  0.0208358  -1.547  0.12206
+2025-08-01T14:16:16.284125051Z cov_cat_imd5 (least deprived)             0.0152884  0.0205978   0.742  0.45799
+2025-08-01T14:16:16.284126615Z cov_cat_smokingEver smoker                0.0005850  0.0187002   0.031  0.97504
+2025-08-01T14:16:16.284128192Z cov_cat_smokingMissing                    0.0394294  0.0165919   2.376  0.01753
+2025-08-01T14:16:16.284129832Z cov_cat_smokingNever smoker               0.0375650  0.0514366   0.730  0.46524
+2025-08-01T14:16:16.284131491Z cov_cat_age_group30-39                    0.0050994  0.0272137   0.187  0.85137
+2025-08-01T14:16:16.284133037Z cov_cat_age_group40-49                   -0.0403735  0.0270462  -1.493  0.13558
+2025-08-01T14:16:16.284134570Z cov_cat_age_group50-69                   -0.0207183  0.0231691  -0.894  0.37126
+2025-08-01T14:16:16.284136139Z cov_cat_age_group70-79                   -0.0378914  0.0280742  -1.350  0.17719
+2025-08-01T14:16:16.284137694Z cov_cat_age_group80-89                   -0.0073349  0.0271689  -0.270  0.78720
+2025-08-01T14:16:16.284139241Z cov_cat_age_group90+                     -0.0495776  0.0233644  -2.122  0.03390
+2025-08-01T14:16:16.284140763Z cov_cat_consrate20191-5                  -0.0299083  0.0334886  -0.893  0.37186
+2025-08-01T14:16:16.284142291Z strat_cat_regionEast Midlands            -0.0240341  0.0280374  -0.857  0.39138
+2025-08-01T14:16:16.284143831Z strat_cat_regionLondon                   -0.0181702  0.0282751  -0.643  0.52050
+2025-08-01T14:16:16.284145394Z strat_cat_regionNorth East               -0.0216214  0.0280021  -0.772  0.44008
+2025-08-01T14:16:16.284146908Z strat_cat_regionNorth West               -0.0004385  0.0282495  -0.016  0.98761
+2025-08-01T14:16:16.284148454Z strat_cat_regionSouth East               -0.0279054  0.0283537  -0.984  0.32508
+2025-08-01T14:16:16.284150112Z strat_cat_regionSouth West               -0.0698675  0.0282862  -2.470  0.01355
+2025-08-01T14:16:16.284151653Z strat_cat_regionWest Midlands            -0.0147481  0.0279661  -0.527  0.59798
+2025-08-01T14:16:16.284154055Z strat_cat_regionYorkshire and The Humber -0.0487122  0.0277366  -1.756  0.07912
+2025-08-01T14:16:16.284164954Z cov_bin_carehomeTRUE                     -0.0340042  0.0180081  -1.888  0.05906
+2025-08-01T14:16:16.284167294Z cov_bin_hcworkerTRUE                      0.0150324  0.0132566   1.134  0.25688
+2025-08-01T14:16:16.284168935Z cov_bin_dementiaTRUE                      0.0120859  0.0205979   0.587  0.55740
+2025-08-01T14:16:16.284170478Z cov_bin_liver_diseaseTRUE                 0.0561758  0.0171645   3.273  0.00107
+2025-08-01T14:16:16.284172015Z cov_bin_ckdTRUE                           0.0913885  0.0155986   5.859 5.04e-09
+2025-08-01T14:16:16.284193227Z cov_bin_cancerTRUE                        0.1172743  0.0177758   6.597 4.73e-11
+2025-08-01T14:16:16.284195362Z cov_bin_hypertensionTRUE                  0.0125159  0.0158325   0.791  0.42927
+2025-08-01T14:16:16.284197005Z cov_bin_diabetesTRUE                      0.0194266  0.0143110   1.357  0.17471
+2025-08-01T14:16:16.284198532Z cov_bin_obesityTRUE                       0.1526752  0.0546662   2.793  0.00525
+2025-08-01T14:16:16.284200189Z cov_bin_depressionTRUE                    0.0831109  0.0157145   5.289 1.30e-07
+2025-08-01T14:16:16.284201740Z cov_bin_stroke_allTRUE                    0.0889522  0.0146218   6.084 1.29e-09
+2025-08-01T14:16:16.284203349Z cov_bin_other_aeTRUE                      0.0219467  0.0218792   1.003  0.31588
+2025-08-01T14:16:16.284204882Z cov_bin_vteTRUE                           0.0681753  0.0147023   4.637 3.65e-06
+2025-08-01T14:16:16.284206423Z cov_bin_hfTRUE                            0.1142274  0.0217186   5.259 1.52e-07
+2025-08-01T14:16:16.284207979Z cov_bin_anginaTRUE                        0.0680031  0.0227091   2.995  0.00277
+2025-08-01T14:16:16.284209496Z cov_bin_lipidmedTRUE                      0.0166681  0.0175667   0.949  0.34276
+2025-08-01T14:16:16.284211031Z cov_bin_antiplateletTRUE                 -0.0325214  0.0251567  -1.293  0.19617
+2025-08-01T14:16:16.284212607Z cov_bin_hrtTRUE                           0.0280736  0.0269893   1.040  0.29832
+2025-08-01T14:16:16.284214194Z                                             
+2025-08-01T14:16:16.284215707Z (Intercept)                                 
+2025-08-01T14:16:16.284217160Z exposedTRUE                                 
+2025-08-01T14:16:16.284218644Z cov_cat_sexMale                             
+2025-08-01T14:16:16.284220111Z cov_cat_imd2                                
+2025-08-01T14:16:16.284221623Z cov_cat_imd3                                
+2025-08-01T14:16:16.284223085Z cov_cat_imd4                                
+2025-08-01T14:16:16.284224624Z cov_cat_imd5 (least deprived)               
+2025-08-01T14:16:16.284226106Z cov_cat_smokingEver smoker                  
+2025-08-01T14:16:16.284227583Z cov_cat_smokingMissing                   *  
+2025-08-01T14:16:16.284229047Z cov_cat_smokingNever smoker                 
+2025-08-01T14:16:16.284230478Z cov_cat_age_group30-39                      
+2025-08-01T14:16:16.284232351Z cov_cat_age_group40-49                      
+2025-08-01T14:16:16.284237135Z cov_cat_age_group50-69                      
+2025-08-01T14:16:16.284238918Z cov_cat_age_group70-79                      
+2025-08-01T14:16:16.284240499Z cov_cat_age_group80-89                      
+2025-08-01T14:16:16.284241929Z cov_cat_age_group90+                     *  
+2025-08-01T14:16:16.284243438Z cov_cat_consrate20191-5                     
+2025-08-01T14:16:16.284247890Z strat_cat_regionEast Midlands               
+2025-08-01T14:16:16.284249578Z strat_cat_regionLondon                      
+2025-08-01T14:16:16.284251179Z strat_cat_regionNorth East                  
+2025-08-01T14:16:16.284252664Z strat_cat_regionNorth West                  
+2025-08-01T14:16:16.284254097Z strat_cat_regionSouth East                  
+2025-08-01T14:16:16.284255601Z strat_cat_regionSouth West               *  
+2025-08-01T14:16:16.284257055Z strat_cat_regionWest Midlands               
+2025-08-01T14:16:16.284258535Z strat_cat_regionYorkshire and The Humber .  
+2025-08-01T14:16:16.284259991Z cov_bin_carehomeTRUE                     .  
+2025-08-01T14:16:16.284261468Z cov_bin_hcworkerTRUE                        
+2025-08-01T14:16:16.284262962Z cov_bin_dementiaTRUE                        
+2025-08-01T14:16:16.284264452Z cov_bin_liver_diseaseTRUE                ** 
+2025-08-01T14:16:16.284265864Z cov_bin_ckdTRUE                          ***
+2025-08-01T14:16:16.284267317Z cov_bin_cancerTRUE                       ***
+2025-08-01T14:16:16.284268706Z cov_bin_hypertensionTRUE                    
+2025-08-01T14:16:16.284270108Z cov_bin_diabetesTRUE                        
+2025-08-01T14:16:16.284271478Z cov_bin_obesityTRUE                      ** 
+2025-08-01T14:16:16.284272849Z cov_bin_depressionTRUE                   ***
+2025-08-01T14:16:16.284274243Z cov_bin_stroke_allTRUE                   ***
+2025-08-01T14:16:16.284275628Z cov_bin_other_aeTRUE                        
+2025-08-01T14:16:16.284277000Z cov_bin_vteTRUE                          ***
+2025-08-01T14:16:16.284278449Z cov_bin_hfTRUE                           ***
+2025-08-01T14:16:16.284279841Z cov_bin_anginaTRUE                       ** 
+2025-08-01T14:16:16.284281195Z cov_bin_lipidmedTRUE                        
+2025-08-01T14:16:16.284282607Z cov_bin_antiplateletTRUE                    
+2025-08-01T14:16:16.284283994Z cov_bin_hrtTRUE                             
+2025-08-01T14:16:16.284285449Z ---
+2025-08-01T14:16:16.284286908Z Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+2025-08-01T14:16:16.284289232Z 
+2025-08-01T14:16:16.284290696Z Residual standard error: 0.4177 on 4010 degrees of freedom
+2025-08-01T14:16:16.284335323Z Multiple R-squared:  0.1162,	Adjusted R-squared:  0.107 
+2025-08-01T14:16:16.284341870Z F-statistic: 12.56 on 42 and 4010 DF,  p-value: < 2.2e-16
+2025-08-01T14:16:16.284344385Z 
+2025-08-01T14:16:16.284346161Z                              exposedTRUE 
+2025-08-01T14:16:16.284347774Z                                    FALSE 
+2025-08-01T14:16:16.284349273Z                          cov_cat_sexMale 
+2025-08-01T14:16:16.284350914Z                                    FALSE 
+2025-08-01T14:16:16.284352410Z                             cov_cat_imd2 
+2025-08-01T14:16:16.284353926Z                                    FALSE 
+2025-08-01T14:16:16.284355353Z                             cov_cat_imd3 
+2025-08-01T14:16:16.284356790Z                                    FALSE 
+2025-08-01T14:16:16.284358297Z                             cov_cat_imd4 
+2025-08-01T14:16:16.284359753Z                                    FALSE 
+2025-08-01T14:16:16.284361205Z            cov_cat_imd5 (least deprived) 
+2025-08-01T14:16:16.284362724Z                                    FALSE 
+2025-08-01T14:16:16.284364172Z               cov_cat_smokingEver smoker 
+2025-08-01T14:16:16.284365526Z                                    FALSE 
+2025-08-01T14:16:16.284366888Z                   cov_cat_smokingMissing 
+2025-08-01T14:16:16.284368232Z                                     TRUE 
+2025-08-01T14:16:16.284369560Z              cov_cat_smokingNever smoker 
+2025-08-01T14:16:16.284370958Z                                    FALSE 
+2025-08-01T14:16:16.284372335Z                   cov_cat_age_group30-39 
+2025-08-01T14:16:16.284373738Z                                    FALSE 
+2025-08-01T14:16:16.284375149Z                   cov_cat_age_group40-49 
+2025-08-01T14:16:16.284376515Z                                    FALSE 
+2025-08-01T14:16:16.284377875Z                   cov_cat_age_group50-69 
+2025-08-01T14:16:16.284379253Z                                    FALSE 
+2025-08-01T14:16:16.284380577Z                   cov_cat_age_group70-79 
+2025-08-01T14:16:16.284381926Z                                    FALSE 
+2025-08-01T14:16:16.284383422Z                   cov_cat_age_group80-89 
+2025-08-01T14:16:16.284384825Z                                    FALSE 
+2025-08-01T14:16:16.284386200Z                     cov_cat_age_group90+ 
+2025-08-01T14:16:16.284387610Z                                     TRUE 
+2025-08-01T14:16:16.284389016Z                  cov_cat_consrate20191-5 
+2025-08-01T14:16:16.284390462Z                                    FALSE 
+2025-08-01T14:16:16.284391888Z            strat_cat_regionEast Midlands 
+2025-08-01T14:16:16.284393372Z                                    FALSE 
+2025-08-01T14:16:16.284399680Z                   strat_cat_regionLondon 
+2025-08-01T14:16:16.284401679Z                                    FALSE 
+2025-08-01T14:16:16.284403238Z               strat_cat_regionNorth East 
+2025-08-01T14:16:16.284404742Z                                    FALSE 
+2025-08-01T14:16:16.284406215Z               strat_cat_regionNorth West 
+2025-08-01T14:16:16.284407763Z                                    FALSE 
+2025-08-01T14:16:16.284409272Z               strat_cat_regionSouth East 
+2025-08-01T14:16:16.284410773Z                                    FALSE 
+2025-08-01T14:16:16.284412245Z               strat_cat_regionSouth West 
+2025-08-01T14:16:16.284413730Z                                     TRUE 
+2025-08-01T14:16:16.284415249Z            strat_cat_regionWest Midlands 
+2025-08-01T14:16:16.284416761Z                                    FALSE 
+2025-08-01T14:16:16.284418729Z strat_cat_regionYorkshire and The Humber 
+2025-08-01T14:16:16.284420285Z                                    FALSE 
+2025-08-01T14:16:16.284421788Z                     cov_bin_carehomeTRUE 
+2025-08-01T14:16:16.284423307Z                                    FALSE 
+2025-08-01T14:16:16.284424780Z                     cov_bin_hcworkerTRUE 
+2025-08-01T14:16:16.284426281Z                                    FALSE 
+2025-08-01T14:16:16.284427746Z                     cov_bin_dementiaTRUE 
+2025-08-01T14:16:16.284429204Z                                    FALSE 
+2025-08-01T14:16:16.284430671Z                cov_bin_liver_diseaseTRUE 
+2025-08-01T14:16:16.284432133Z                                     TRUE 
+2025-08-01T14:16:16.284433604Z                          cov_bin_ckdTRUE 
+2025-08-01T14:16:16.284435088Z                                     TRUE 
+2025-08-01T14:16:16.284436590Z                       cov_bin_cancerTRUE 
+2025-08-01T14:16:16.284438087Z                                     TRUE 
+2025-08-01T14:16:16.284439599Z                 cov_bin_hypertensionTRUE 
+2025-08-01T14:16:16.284441067Z                                    FALSE 
+2025-08-01T14:16:16.284442567Z                     cov_bin_diabetesTRUE 
+2025-08-01T14:16:16.284444038Z                                    FALSE 
+2025-08-01T14:16:16.284445514Z                      cov_bin_obesityTRUE 
+2025-08-01T14:16:16.284446990Z                                     TRUE 
+2025-08-01T14:16:16.284448470Z                   cov_bin_depressionTRUE 
+2025-08-01T14:16:16.284449988Z                                     TRUE 
+2025-08-01T14:16:16.284451478Z                   cov_bin_stroke_allTRUE 
+2025-08-01T14:16:16.284452964Z                                     TRUE 
+2025-08-01T14:16:16.284454425Z                     cov_bin_other_aeTRUE 
+2025-08-01T14:16:16.284457966Z                                    FALSE 
+2025-08-01T14:16:16.284459735Z                          cov_bin_vteTRUE 
+2025-08-01T14:16:16.284461380Z                                     TRUE 
+2025-08-01T14:16:16.284463958Z                           cov_bin_hfTRUE 
+2025-08-01T14:16:16.284465695Z                                     TRUE 
+2025-08-01T14:16:16.284467304Z                       cov_bin_anginaTRUE 
+2025-08-01T14:16:16.284468861Z                                     TRUE 
+2025-08-01T14:16:16.284470404Z                     cov_bin_lipidmedTRUE 
+2025-08-01T14:16:16.284471922Z                                    FALSE 
+2025-08-01T14:16:16.284473416Z                 cov_bin_antiplateletTRUE 
+2025-08-01T14:16:16.284474920Z                                    FALSE 
+2025-08-01T14:16:16.284476463Z                          cov_bin_hrtTRUE 
+2025-08-01T14:16:16.284478023Z                                    FALSE 
+2025-08-01T14:16:16.284479548Z  [1] "cov_cat_smokingMissing"     "cov_cat_age_group90+"      
+2025-08-01T14:16:16.284481343Z  [3] "strat_cat_regionSouth West" "cov_bin_liver_diseaseTRUE" 
+2025-08-01T14:16:16.284483044Z  [5] "cov_bin_ckdTRUE"            "cov_bin_cancerTRUE"        
+2025-08-01T14:16:16.284484874Z  [7] "cov_bin_obesityTRUE"        "cov_bin_depressionTRUE"    
+2025-08-01T14:16:16.284486620Z  [9] "cov_bin_stroke_allTRUE"     "cov_bin_vteTRUE"           
+2025-08-01T14:16:16.284488337Z [11] "cov_bin_hfTRUE"             "cov_bin_anginaTRUE"        
+2025-08-01T14:16:16.284490095Z [1] "Conclusion:"
+2025-08-01T14:16:16.284491716Z character(0)
+2025-08-01T14:16:16.284493316Z [1] FALSE
+2025-08-01T14:16:16.284494853Z [1] "Test is inconclusive, covariate set may or may not be sufficient"
+2025-08-01T14:16:16.287377751Z [1] "***** LASSO_X *****"
+2025-08-01T14:16:16.287395551Z [1] "Variables selected:"
+2025-08-01T14:16:16.287397874Z logical(0)
+2025-08-01T14:16:16.287399497Z [1] "Exposure regression:"
+2025-08-01T14:16:16.287401258Z [1] "exposed ~ 0"
+2025-08-01T14:16:16.287402771Z 
+2025-08-01T14:16:16.287404160Z Call:
+2025-08-01T14:16:16.287405675Z lm(formula = exposure_regression_formula, data = df)
+2025-08-01T14:16:16.287407156Z 
+2025-08-01T14:16:16.287408533Z Residuals:
+2025-08-01T14:16:16.287943193Z    Min     1Q Median     3Q    Max 
+2025-08-01T14:16:16.287957980Z      0      0      0      1      1 
+2025-08-01T14:16:16.287960144Z 
+2025-08-01T14:16:16.287961732Z No Coefficients
+2025-08-01T14:16:16.287963200Z 
+2025-08-01T14:16:16.287964619Z Residual standard error: 0.7019 on 4053 degrees of freedom
+2025-08-01T14:16:16.287974685Z 
+2025-08-01T14:16:16.287976520Z logical(0)
+2025-08-01T14:16:16.288150810Z NULL
+2025-08-01T14:16:16.288157123Z [1] "Outcome regression:"
+2025-08-01T14:16:16.288159436Z [1] "cov_bin_ami ~ exposed"
+2025-08-01T14:16:16.288357421Z 
+2025-08-01T14:16:16.288367141Z Call:
+2025-08-01T14:16:16.288369714Z lm(formula = outcome_regression_formula, data = df)
+2025-08-01T14:16:16.288372218Z 
+2025-08-01T14:16:16.288373894Z Residuals:
+2025-08-01T14:16:16.288478397Z     Min      1Q  Median      3Q     Max 
+2025-08-01T14:16:16.288484468Z -0.2679 -0.2679 -0.2646  0.7321  0.7354 
+2025-08-01T14:16:16.288486690Z 
+2025-08-01T14:16:16.288488309Z Coefficients:
+2025-08-01T14:16:16.289172930Z             Estimate Std. Error t value Pr(>|t|)    
+2025-08-01T14:16:16.289192686Z (Intercept)  0.26459    0.00975  27.138   <2e-16 ***
+2025-08-01T14:16:16.289195398Z exposedTRUE  0.00331    0.01389   0.238    0.812    
+2025-08-01T14:16:16.289197286Z ---
+2025-08-01T14:16:16.289198879Z Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+2025-08-01T14:16:16.289201257Z 
+2025-08-01T14:16:16.289202694Z Residual standard error: 0.4421 on 4051 degrees of freedom
+2025-08-01T14:16:16.289204309Z Multiple R-squared:  1.402e-05,	Adjusted R-squared:  -0.0002328 
+2025-08-01T14:16:16.289205922Z F-statistic: 0.0568 on 1 and 4051 DF,  p-value: 0.8116
+2025-08-01T14:16:16.289207538Z 
+2025-08-01T14:16:16.289209752Z exposedTRUE 
+2025-08-01T14:16:16.289211414Z       FALSE 
+2025-08-01T14:16:16.289212874Z character(0)
+2025-08-01T14:16:16.289214317Z [1] "Conclusion:"
+2025-08-01T14:16:16.289215870Z NULL
+2025-08-01T14:16:16.289217359Z [1] FALSE
+2025-08-01T14:16:16.289218819Z [1] "Test is inconclusive, covariate set may or may not be sufficient"
+2025-08-01T14:16:16.328154563Z [1] "***** LASSO_UNION *****"
+2025-08-01T14:16:16.328196996Z [1] "Variables selected:"
+2025-08-01T14:16:16.328200838Z  [1] "cov_cat_sex"           "cov_cat_imd"           "cov_cat_smoking"      
+2025-08-01T14:16:16.328203105Z  [4] "cov_cat_age_group"     "cov_cat_consrate2019"  "strat_cat_region"     
+2025-08-01T14:16:16.328204998Z  [7] "cov_bin_carehome"      "cov_bin_hcworker"      "cov_bin_dementia"     
+2025-08-01T14:16:16.328206732Z [10] "cov_bin_liver_disease" "cov_bin_ckd"           "cov_bin_cancer"       
+2025-08-01T14:16:16.328208500Z [13] "cov_bin_hypertension"  "cov_bin_diabetes"      "cov_bin_obesity"      
+2025-08-01T14:16:16.328210383Z [16] "cov_bin_depression"    "cov_bin_stroke_all"    "cov_bin_other_ae"     
+2025-08-01T14:16:16.328225057Z [19] "cov_bin_vte"           "cov_bin_hf"            "cov_bin_angina"       
+2025-08-01T14:16:16.328227281Z [22] "cov_bin_lipidmed"      "cov_bin_antiplatelet"  "cov_bin_hrt"          
+2025-08-01T14:16:16.328229099Z [1] "Exposure regression:"
+2025-08-01T14:16:16.328231146Z [1] "exposed ~ cov_cat_sex + cov_cat_imd + cov_cat_smoking + cov_cat_age_group + cov_cat_consrate2019 + strat_cat_region + cov_bin_carehome + cov_bin_hcworker + cov_bin_dementia + cov_bin_liver_disease + cov_bin_ckd + cov_bin_cancer + cov_bin_hypertension + cov_bin_diabetes + cov_bin_obesity + cov_bin_depression + cov_bin_stroke_all + cov_bin_other_ae + cov_bin_vte + cov_bin_hf + cov_bin_angina + cov_bin_lipidmed + cov_bin_antiplatelet + cov_bin_hrt"
+2025-08-01T14:16:16.328586728Z 
+2025-08-01T14:16:16.328615867Z Call:
+2025-08-01T14:16:16.328618728Z lm(formula = exposure_regression_formula, data = df)
+2025-08-01T14:16:16.328620556Z 
+2025-08-01T14:16:16.328622220Z Residuals:
+2025-08-01T14:16:16.328813801Z     Min      1Q  Median      3Q     Max 
+2025-08-01T14:16:16.328820604Z -0.6482 -0.4886 -0.3994  0.5036  0.6409 
+2025-08-01T14:16:16.328822775Z 
+2025-08-01T14:16:16.328824333Z Coefficients:
+2025-08-01T14:16:16.330098972Z                                           Estimate Std. Error t value Pr(>|t|)
+2025-08-01T14:16:16.330125216Z (Intercept)                               0.493177   0.045221  10.906   <2e-16
+2025-08-01T14:16:16.330127825Z cov_cat_sexMale                          -0.011322   0.015819  -0.716   0.4742
+2025-08-01T14:16:16.330129640Z cov_cat_imd2                              0.002578   0.024864   0.104   0.9174
+2025-08-01T14:16:16.330131344Z cov_cat_imd3                              0.013865   0.025479   0.544   0.5863
+2025-08-01T14:16:16.330132939Z cov_cat_imd4                              0.009608   0.024971   0.385   0.7004
+2025-08-01T14:16:16.330134526Z cov_cat_imd5 (least deprived)             0.006993   0.024686   0.283   0.7770
+2025-08-01T14:16:16.330136327Z cov_cat_smokingEver smoker               -0.005896   0.022412  -0.263   0.7925
+2025-08-01T14:16:16.330137882Z cov_cat_smokingMissing                    0.006309   0.019885   0.317   0.7510
+2025-08-01T14:16:16.330139424Z cov_cat_smokingNever smoker              -0.058639   0.061639  -0.951   0.3415
+2025-08-01T14:16:16.330140949Z cov_cat_age_group30-39                    0.022698   0.032613   0.696   0.4865
+2025-08-01T14:16:16.330142482Z cov_cat_age_group40-49                    0.002986   0.032415   0.092   0.9266
+2025-08-01T14:16:16.330144020Z cov_cat_age_group50-69                   -0.030077   0.027764  -1.083   0.2787
+2025-08-01T14:16:16.330145603Z cov_cat_age_group70-79                    0.006659   0.033646   0.198   0.8431
+2025-08-01T14:16:16.330147165Z cov_cat_age_group80-89                   -0.025713   0.032559  -0.790   0.4297
+2025-08-01T14:16:16.330158962Z cov_cat_age_group90+                     -0.037996   0.027996  -1.357   0.1748
+2025-08-01T14:16:16.330161065Z cov_cat_consrate20191-5                   0.009405   0.040135   0.234   0.8147
+2025-08-01T14:16:16.330162813Z strat_cat_regionEast Midlands            -0.030541   0.033599  -0.909   0.3634
+2025-08-01T14:16:16.330164397Z strat_cat_regionLondon                   -0.024521   0.033885  -0.724   0.4693
+2025-08-01T14:16:16.330165969Z strat_cat_regionNorth East               -0.010868   0.033560  -0.324   0.7461
+2025-08-01T14:16:16.330167571Z strat_cat_regionNorth West               -0.005793   0.033857  -0.171   0.8642
+2025-08-01T14:16:16.330169127Z strat_cat_regionSouth East                0.006700   0.033982   0.197   0.8437
+2025-08-01T14:16:16.330170664Z strat_cat_regionSouth West               -0.024952   0.033898  -0.736   0.4617
+2025-08-01T14:16:16.330172244Z strat_cat_regionWest Midlands             0.016096   0.033516   0.480   0.6311
+2025-08-01T14:16:16.330173854Z strat_cat_regionYorkshire and The Humber  0.009928   0.033242   0.299   0.7652
+2025-08-01T14:16:16.330188495Z cov_bin_carehomeTRUE                     -0.004167   0.021582  -0.193   0.8469
+2025-08-01T14:16:16.330190526Z cov_bin_hcworkerTRUE                      0.006893   0.015888   0.434   0.6644
+2025-08-01T14:16:16.330192171Z cov_bin_dementiaTRUE                      0.028791   0.024682   1.166   0.2435
+2025-08-01T14:16:16.330193728Z cov_bin_liver_diseaseTRUE                 0.016229   0.020570   0.789   0.4302
+2025-08-01T14:16:16.330195321Z cov_bin_ckdTRUE                           0.019446   0.018692   1.040   0.2982
+2025-08-01T14:16:16.330196891Z cov_bin_cancerTRUE                        0.039960   0.021295   1.877   0.0607
+2025-08-01T14:16:16.330198463Z cov_bin_hypertensionTRUE                 -0.021366   0.018972  -1.126   0.2602
+2025-08-01T14:16:16.330200019Z cov_bin_diabetesTRUE                     -0.014263   0.017150  -0.832   0.4057
+2025-08-01T14:16:16.330201595Z cov_bin_obesityTRUE                      -0.065580   0.065509  -1.001   0.3168
+2025-08-01T14:16:16.330203132Z cov_bin_depressionTRUE                   -0.002970   0.018834  -0.158   0.8747
+2025-08-01T14:16:16.330204668Z cov_bin_stroke_allTRUE                   -0.001376   0.017524  -0.078   0.9374
+2025-08-01T14:16:16.330206199Z cov_bin_other_aeTRUE                      0.023826   0.026219   0.909   0.3636
+2025-08-01T14:16:16.330207776Z cov_bin_vteTRUE                          -0.021404   0.017617  -1.215   0.2245
+2025-08-01T14:16:16.330209328Z cov_bin_hfTRUE                           -0.035356   0.026024  -1.359   0.1743
+2025-08-01T14:16:16.330210878Z cov_bin_anginaTRUE                       -0.013631   0.027216  -0.501   0.6165
+2025-08-01T14:16:16.330212458Z cov_bin_lipidmedTRUE                      0.032923   0.021047   1.564   0.1178
+2025-08-01T14:16:16.330218330Z cov_bin_antiplateletTRUE                 -0.002762   0.030150  -0.092   0.9270
+2025-08-01T14:16:16.330220023Z cov_bin_hrtTRUE                           0.048910   0.032337   1.512   0.1305
+2025-08-01T14:16:16.330224172Z                                             
+2025-08-01T14:16:16.330225992Z (Intercept)                              ***
+2025-08-01T14:16:16.330227535Z cov_cat_sexMale                             
+2025-08-01T14:16:16.330229020Z cov_cat_imd2                                
+2025-08-01T14:16:16.330230563Z cov_cat_imd3                                
+2025-08-01T14:16:16.330232086Z cov_cat_imd4                                
+2025-08-01T14:16:16.330233564Z cov_cat_imd5 (least deprived)               
+2025-08-01T14:16:16.330235012Z cov_cat_smokingEver smoker                  
+2025-08-01T14:16:16.330236453Z cov_cat_smokingMissing                      
+2025-08-01T14:16:16.330237910Z cov_cat_smokingNever smoker                 
+2025-08-01T14:16:16.330239456Z cov_cat_age_group30-39                      
+2025-08-01T14:16:16.330240995Z cov_cat_age_group40-49                      
+2025-08-01T14:16:16.330242563Z cov_cat_age_group50-69                      
+2025-08-01T14:16:16.330244108Z cov_cat_age_group70-79                      
+2025-08-01T14:16:16.330245696Z cov_cat_age_group80-89                      
+2025-08-01T14:16:16.330247730Z cov_cat_age_group90+                        
+2025-08-01T14:16:16.330249341Z cov_cat_consrate20191-5                     
+2025-08-01T14:16:16.330250889Z strat_cat_regionEast Midlands               
+2025-08-01T14:16:16.330252479Z strat_cat_regionLondon                      
+2025-08-01T14:16:16.330254045Z strat_cat_regionNorth East                  
+2025-08-01T14:16:16.330255614Z strat_cat_regionNorth West                  
+2025-08-01T14:16:16.330257129Z strat_cat_regionSouth East                  
+2025-08-01T14:16:16.330258685Z strat_cat_regionSouth West                  
+2025-08-01T14:16:16.330260237Z strat_cat_regionWest Midlands               
+2025-08-01T14:16:16.330261890Z strat_cat_regionYorkshire and The Humber    
+2025-08-01T14:16:16.330263455Z cov_bin_carehomeTRUE                        
+2025-08-01T14:16:16.330264988Z cov_bin_hcworkerTRUE                        
+2025-08-01T14:16:16.330266516Z cov_bin_dementiaTRUE                        
+2025-08-01T14:16:16.330268064Z cov_bin_liver_diseaseTRUE                   
+2025-08-01T14:16:16.330269620Z cov_bin_ckdTRUE                             
+2025-08-01T14:16:16.330271146Z cov_bin_cancerTRUE                       .  
+2025-08-01T14:16:16.330272647Z cov_bin_hypertensionTRUE                    
+2025-08-01T14:16:16.330274146Z cov_bin_diabetesTRUE                        
+2025-08-01T14:16:16.330275663Z cov_bin_obesityTRUE                         
+2025-08-01T14:16:16.330277154Z cov_bin_depressionTRUE                      
+2025-08-01T14:16:16.330280645Z cov_bin_stroke_allTRUE                      
+2025-08-01T14:16:16.330282448Z cov_bin_other_aeTRUE                        
+2025-08-01T14:16:16.330284019Z cov_bin_vteTRUE                             
+2025-08-01T14:16:16.330285551Z cov_bin_hfTRUE                              
+2025-08-01T14:16:16.330287058Z cov_bin_anginaTRUE                          
+2025-08-01T14:16:16.330288564Z cov_bin_lipidmedTRUE                        
+2025-08-01T14:16:16.330290060Z cov_bin_antiplateletTRUE                    
+2025-08-01T14:16:16.330291560Z cov_bin_hrtTRUE                             
+2025-08-01T14:16:16.330293026Z ---
+2025-08-01T14:16:16.330294501Z Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+2025-08-01T14:16:16.330296961Z 
+2025-08-01T14:16:16.330298399Z Residual standard error: 0.5006 on 4011 degrees of freedom
+2025-08-01T14:16:16.330400656Z Multiple R-squared:  0.007608,	Adjusted R-squared:  -0.002537 
+2025-08-01T14:16:16.330407366Z F-statistic:  0.75 on 41 and 4011 DF,  p-value: 0.8777
+2025-08-01T14:16:16.330409866Z 
+2025-08-01T14:16:16.330411571Z                          cov_cat_sexMale 
+2025-08-01T14:16:16.330413204Z                                    FALSE 
+2025-08-01T14:16:16.330414742Z                             cov_cat_imd2 
+2025-08-01T14:16:16.330416236Z                                    FALSE 
+2025-08-01T14:16:16.330417753Z                             cov_cat_imd3 
+2025-08-01T14:16:16.330419232Z                                    FALSE 
+2025-08-01T14:16:16.330420696Z                             cov_cat_imd4 
+2025-08-01T14:16:16.330422147Z                                    FALSE 
+2025-08-01T14:16:16.330423611Z            cov_cat_imd5 (least deprived) 
+2025-08-01T14:16:16.330425123Z                                    FALSE 
+2025-08-01T14:16:16.330426579Z               cov_cat_smokingEver smoker 
+2025-08-01T14:16:16.330428055Z                                    FALSE 
+2025-08-01T14:16:16.330429482Z                   cov_cat_smokingMissing 
+2025-08-01T14:16:16.330430934Z                                    FALSE 
+2025-08-01T14:16:16.330432349Z              cov_cat_smokingNever smoker 
+2025-08-01T14:16:16.330433818Z                                    FALSE 
+2025-08-01T14:16:16.330435296Z                   cov_cat_age_group30-39 
+2025-08-01T14:16:16.330436761Z                                    FALSE 
+2025-08-01T14:16:16.330438217Z                   cov_cat_age_group40-49 
+2025-08-01T14:16:16.330439657Z                                    FALSE 
+2025-08-01T14:16:16.330441102Z                   cov_cat_age_group50-69 
+2025-08-01T14:16:16.330442547Z                                    FALSE 
+2025-08-01T14:16:16.330448658Z                   cov_cat_age_group70-79 
+2025-08-01T14:16:16.330450620Z                                    FALSE 
+2025-08-01T14:16:16.330452208Z                   cov_cat_age_group80-89 
+2025-08-01T14:16:16.330453758Z                                    FALSE 
+2025-08-01T14:16:16.330455223Z                     cov_cat_age_group90+ 
+2025-08-01T14:16:16.330456726Z                                    FALSE 
+2025-08-01T14:16:16.330458240Z                  cov_cat_consrate20191-5 
+2025-08-01T14:16:16.330459757Z                                    FALSE 
+2025-08-01T14:16:16.330461255Z            strat_cat_regionEast Midlands 
+2025-08-01T14:16:16.330462748Z                                    FALSE 
+2025-08-01T14:16:16.330464216Z                   strat_cat_regionLondon 
+2025-08-01T14:16:16.330465752Z                                    FALSE 
+2025-08-01T14:16:16.330467283Z               strat_cat_regionNorth East 
+2025-08-01T14:16:16.330468781Z                                    FALSE 
+2025-08-01T14:16:16.330470276Z               strat_cat_regionNorth West 
+2025-08-01T14:16:16.330471773Z                                    FALSE 
+2025-08-01T14:16:16.330473251Z               strat_cat_regionSouth East 
+2025-08-01T14:16:16.330474704Z                                    FALSE 
+2025-08-01T14:16:16.330476226Z               strat_cat_regionSouth West 
+2025-08-01T14:16:16.330477764Z                                    FALSE 
+2025-08-01T14:16:16.330479249Z            strat_cat_regionWest Midlands 
+2025-08-01T14:16:16.330480764Z                                    FALSE 
+2025-08-01T14:16:16.330482238Z strat_cat_regionYorkshire and The Humber 
+2025-08-01T14:16:16.330483737Z                                    FALSE 
+2025-08-01T14:16:16.330485784Z                     cov_bin_carehomeTRUE 
+2025-08-01T14:16:16.330487355Z                                    FALSE 
+2025-08-01T14:16:16.330488870Z                     cov_bin_hcworkerTRUE 
+2025-08-01T14:16:16.330490478Z                                    FALSE 
+2025-08-01T14:16:16.330491966Z                     cov_bin_dementiaTRUE 
+2025-08-01T14:16:16.330493430Z                                    FALSE 
+2025-08-01T14:16:16.330494918Z                cov_bin_liver_diseaseTRUE 
+2025-08-01T14:16:16.330496378Z                                    FALSE 
+2025-08-01T14:16:16.330497859Z                          cov_bin_ckdTRUE 
+2025-08-01T14:16:16.330499325Z                                    FALSE 
+2025-08-01T14:16:16.330500783Z                       cov_bin_cancerTRUE 
+2025-08-01T14:16:16.330502418Z                                    FALSE 
+2025-08-01T14:16:16.330503918Z                 cov_bin_hypertensionTRUE 
+2025-08-01T14:16:16.330507232Z                                    FALSE 
+2025-08-01T14:16:16.330509015Z                     cov_bin_diabetesTRUE 
+2025-08-01T14:16:16.330510563Z                                    FALSE 
+2025-08-01T14:16:16.330512092Z                      cov_bin_obesityTRUE 
+2025-08-01T14:16:16.330513604Z                                    FALSE 
+2025-08-01T14:16:16.330515093Z                   cov_bin_depressionTRUE 
+2025-08-01T14:16:16.330516655Z                                    FALSE 
+2025-08-01T14:16:16.330518182Z                   cov_bin_stroke_allTRUE 
+2025-08-01T14:16:16.330519698Z                                    FALSE 
+2025-08-01T14:16:16.330521197Z                     cov_bin_other_aeTRUE 
+2025-08-01T14:16:16.330522728Z                                    FALSE 
+2025-08-01T14:16:16.330524219Z                          cov_bin_vteTRUE 
+2025-08-01T14:16:16.330525703Z                                    FALSE 
+2025-08-01T14:16:16.330527178Z                           cov_bin_hfTRUE 
+2025-08-01T14:16:16.330528672Z                                    FALSE 
+2025-08-01T14:16:16.330530172Z                       cov_bin_anginaTRUE 
+2025-08-01T14:16:16.330531682Z                                    FALSE 
+2025-08-01T14:16:16.330533178Z                     cov_bin_lipidmedTRUE 
+2025-08-01T14:16:16.330534650Z                                    FALSE 
+2025-08-01T14:16:16.330536165Z                 cov_bin_antiplateletTRUE 
+2025-08-01T14:16:16.330537635Z                                    FALSE 
+2025-08-01T14:16:16.330539136Z                          cov_bin_hrtTRUE 
+2025-08-01T14:16:16.330540672Z                                    FALSE 
+2025-08-01T14:16:16.330542191Z character(0)
+2025-08-01T14:16:16.330543757Z [1] "Outcome regression:"
+2025-08-01T14:16:16.330546374Z [1] "cov_bin_ami ~ exposed + cov_cat_sex + cov_cat_imd + cov_cat_smoking + cov_cat_age_group + cov_cat_consrate2019 + strat_cat_region + cov_bin_carehome + cov_bin_hcworker + cov_bin_dementia + cov_bin_liver_disease + cov_bin_ckd + cov_bin_cancer + cov_bin_hypertension + cov_bin_diabetes + cov_bin_obesity + cov_bin_depression + cov_bin_stroke_all + cov_bin_other_ae + cov_bin_vte + cov_bin_hf + cov_bin_angina + cov_bin_lipidmed + cov_bin_antiplatelet + cov_bin_hrt"
+2025-08-01T14:16:16.331233813Z 
+2025-08-01T14:16:16.331260745Z Call:
+2025-08-01T14:16:16.331263108Z lm(formula = outcome_regression_formula, data = df)
+2025-08-01T14:16:16.331264820Z 
+2025-08-01T14:16:16.331266379Z Residuals:
+2025-08-01T14:16:16.331416277Z     Min      1Q  Median      3Q     Max 
+2025-08-01T14:16:16.331422924Z -0.8560 -0.2882 -0.1562  0.3996  1.0418 
+2025-08-01T14:16:16.331425137Z 
+2025-08-01T14:16:16.331436432Z Coefficients:
+2025-08-01T14:16:16.332495005Z                                            Estimate Std. Error t value Pr(>|t|)
+2025-08-01T14:16:16.332522589Z (Intercept)                               0.0405809  0.0382867   1.060  0.28924
+2025-08-01T14:16:16.332525103Z exposedTRUE                               0.0005560  0.0131746   0.042  0.96634
+2025-08-01T14:16:16.332526876Z cov_cat_sexMale                           0.0150418  0.0132000   1.140  0.25455
+2025-08-01T14:16:16.332528525Z cov_cat_imd2                              0.0293153  0.0207463   1.413  0.15772
+2025-08-01T14:16:16.332530086Z cov_cat_imd3                             -0.0305982  0.0212597  -1.439  0.15016
+2025-08-01T14:16:16.332531640Z cov_cat_imd4                             -0.0322229  0.0208358  -1.547  0.12206
+2025-08-01T14:16:16.332533221Z cov_cat_imd5 (least deprived)             0.0152884  0.0205978   0.742  0.45799
+2025-08-01T14:16:16.332534909Z cov_cat_smokingEver smoker                0.0005850  0.0187002   0.031  0.97504
+2025-08-01T14:16:16.332536463Z cov_cat_smokingMissing                    0.0394294  0.0165919   2.376  0.01753
+2025-08-01T14:16:16.332537964Z cov_cat_smokingNever smoker               0.0375650  0.0514366   0.730  0.46524
+2025-08-01T14:16:16.332539499Z cov_cat_age_group30-39                    0.0050994  0.0272137   0.187  0.85137
+2025-08-01T14:16:16.332541005Z cov_cat_age_group40-49                   -0.0403735  0.0270462  -1.493  0.13558
+2025-08-01T14:16:16.332542528Z cov_cat_age_group50-69                   -0.0207183  0.0231691  -0.894  0.37126
+2025-08-01T14:16:16.332544198Z cov_cat_age_group70-79                   -0.0378914  0.0280742  -1.350  0.17719
+2025-08-01T14:16:16.332546183Z cov_cat_age_group80-89                   -0.0073349  0.0271689  -0.270  0.78720
+2025-08-01T14:16:16.332547811Z cov_cat_age_group90+                     -0.0495776  0.0233644  -2.122  0.03390
+2025-08-01T14:16:16.332549299Z cov_cat_consrate20191-5                  -0.0299083  0.0334886  -0.893  0.37186
+2025-08-01T14:16:16.332550823Z strat_cat_regionEast Midlands            -0.0240341  0.0280374  -0.857  0.39138
+2025-08-01T14:16:16.332552367Z strat_cat_regionLondon                   -0.0181702  0.0282751  -0.643  0.52050
+2025-08-01T14:16:16.332553913Z strat_cat_regionNorth East               -0.0216214  0.0280021  -0.772  0.44008
+2025-08-01T14:16:16.332555460Z strat_cat_regionNorth West               -0.0004385  0.0282495  -0.016  0.98761
+2025-08-01T14:16:16.332557003Z strat_cat_regionSouth East               -0.0279054  0.0283537  -0.984  0.32508
+2025-08-01T14:16:16.332558549Z strat_cat_regionSouth West               -0.0698675  0.0282862  -2.470  0.01355
+2025-08-01T14:16:16.332560095Z strat_cat_regionWest Midlands            -0.0147481  0.0279661  -0.527  0.59798
+2025-08-01T14:16:16.332562470Z strat_cat_regionYorkshire and The Humber -0.0487122  0.0277366  -1.756  0.07912
+2025-08-01T14:16:16.332564114Z cov_bin_carehomeTRUE                     -0.0340042  0.0180081  -1.888  0.05906
+2025-08-01T14:16:16.332576120Z cov_bin_hcworkerTRUE                      0.0150324  0.0132566   1.134  0.25688
+2025-08-01T14:16:16.332578170Z cov_bin_dementiaTRUE                      0.0120859  0.0205979   0.587  0.55740
+2025-08-01T14:16:16.332579829Z cov_bin_liver_diseaseTRUE                 0.0561758  0.0171645   3.273  0.00107
+2025-08-01T14:16:16.332581411Z cov_bin_ckdTRUE                           0.0913885  0.0155986   5.859 5.04e-09
+2025-08-01T14:16:16.332583122Z cov_bin_cancerTRUE                        0.1172743  0.0177758   6.597 4.73e-11
+2025-08-01T14:16:16.332584725Z cov_bin_hypertensionTRUE                  0.0125159  0.0158325   0.791  0.42927
+2025-08-01T14:16:16.332586286Z cov_bin_diabetesTRUE                      0.0194266  0.0143110   1.357  0.17471
+2025-08-01T14:16:16.332587832Z cov_bin_obesityTRUE                       0.1526752  0.0546662   2.793  0.00525
+2025-08-01T14:16:16.332589392Z cov_bin_depressionTRUE                    0.0831109  0.0157145   5.289 1.30e-07
+2025-08-01T14:16:16.332590970Z cov_bin_stroke_allTRUE                    0.0889522  0.0146218   6.084 1.29e-09
+2025-08-01T14:16:16.332592515Z cov_bin_other_aeTRUE                      0.0219467  0.0218792   1.003  0.31588
+2025-08-01T14:16:16.332594031Z cov_bin_vteTRUE                           0.0681753  0.0147023   4.637 3.65e-06
+2025-08-01T14:16:16.332595538Z cov_bin_hfTRUE                            0.1142274  0.0217186   5.259 1.52e-07
+2025-08-01T14:16:16.332597065Z cov_bin_anginaTRUE                        0.0680031  0.0227091   2.995  0.00277
+2025-08-01T14:16:16.332598649Z cov_bin_lipidmedTRUE                      0.0166681  0.0175667   0.949  0.34276
+2025-08-01T14:16:16.332607350Z cov_bin_antiplateletTRUE                 -0.0325214  0.0251567  -1.293  0.19617
+2025-08-01T14:16:16.332609445Z cov_bin_hrtTRUE                           0.0280736  0.0269893   1.040  0.29832
+2025-08-01T14:16:16.332611128Z                                             
+2025-08-01T14:16:16.332612687Z (Intercept)                                 
+2025-08-01T14:16:16.332614178Z exposedTRUE                                 
+2025-08-01T14:16:16.332615737Z cov_cat_sexMale                             
+2025-08-01T14:16:16.332617300Z cov_cat_imd2                                
+2025-08-01T14:16:16.332618863Z cov_cat_imd3                                
+2025-08-01T14:16:16.332620416Z cov_cat_imd4                                
+2025-08-01T14:16:16.332621914Z cov_cat_imd5 (least deprived)               
+2025-08-01T14:16:16.332623432Z cov_cat_smokingEver smoker                  
+2025-08-01T14:16:16.332624932Z cov_cat_smokingMissing                   *  
+2025-08-01T14:16:16.332626449Z cov_cat_smokingNever smoker                 
+2025-08-01T14:16:16.332627942Z cov_cat_age_group30-39                      
+2025-08-01T14:16:16.332629793Z cov_cat_age_group40-49                      
+2025-08-01T14:16:16.332631360Z cov_cat_age_group50-69                      
+2025-08-01T14:16:16.332635340Z cov_cat_age_group70-79                      
+2025-08-01T14:16:16.332637071Z cov_cat_age_group80-89                      
+2025-08-01T14:16:16.332638596Z cov_cat_age_group90+                     *  
+2025-08-01T14:16:16.332640074Z cov_cat_consrate20191-5                     
+2025-08-01T14:16:16.332641582Z strat_cat_regionEast Midlands               
+2025-08-01T14:16:16.332643049Z strat_cat_regionLondon                      
+2025-08-01T14:16:16.332644576Z strat_cat_regionNorth East                  
+2025-08-01T14:16:16.332646151Z strat_cat_regionNorth West                  
+2025-08-01T14:16:16.332647635Z strat_cat_regionSouth East                  
+2025-08-01T14:16:16.332649115Z strat_cat_regionSouth West               *  
+2025-08-01T14:16:16.332650617Z strat_cat_regionWest Midlands               
+2025-08-01T14:16:16.332652128Z strat_cat_regionYorkshire and The Humber .  
+2025-08-01T14:16:16.332653640Z cov_bin_carehomeTRUE                     .  
+2025-08-01T14:16:16.332655175Z cov_bin_hcworkerTRUE                        
+2025-08-01T14:16:16.332656773Z cov_bin_dementiaTRUE                        
+2025-08-01T14:16:16.332660196Z cov_bin_liver_diseaseTRUE                ** 
+2025-08-01T14:16:16.332661806Z cov_bin_ckdTRUE                          ***
+2025-08-01T14:16:16.332663303Z cov_bin_cancerTRUE                       ***
+2025-08-01T14:16:16.332664773Z cov_bin_hypertensionTRUE                    
+2025-08-01T14:16:16.332666267Z cov_bin_diabetesTRUE                        
+2025-08-01T14:16:16.332667741Z cov_bin_obesityTRUE                      ** 
+2025-08-01T14:16:16.332669197Z cov_bin_depressionTRUE                   ***
+2025-08-01T14:16:16.332670708Z cov_bin_stroke_allTRUE                   ***
+2025-08-01T14:16:16.332672211Z cov_bin_other_aeTRUE                        
+2025-08-01T14:16:16.332673716Z cov_bin_vteTRUE                          ***
+2025-08-01T14:16:16.332675200Z cov_bin_hfTRUE                           ***
+2025-08-01T14:16:16.332676761Z cov_bin_anginaTRUE                       ** 
+2025-08-01T14:16:16.332678251Z cov_bin_lipidmedTRUE                        
+2025-08-01T14:16:16.332679793Z cov_bin_antiplateletTRUE                    
+2025-08-01T14:16:16.332681301Z cov_bin_hrtTRUE                             
+2025-08-01T14:16:16.332682853Z ---
+2025-08-01T14:16:16.332684361Z Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+2025-08-01T14:16:16.332686799Z 
+2025-08-01T14:16:16.332688249Z Residual standard error: 0.4177 on 4010 degrees of freedom
+2025-08-01T14:16:16.332801596Z Multiple R-squared:  0.1162,	Adjusted R-squared:  0.107 
+2025-08-01T14:16:16.332813375Z F-statistic: 12.56 on 42 and 4010 DF,  p-value: < 2.2e-16
+2025-08-01T14:16:16.332816253Z 
+2025-08-01T14:16:16.332818155Z                              exposedTRUE 
+2025-08-01T14:16:16.332819812Z                                    FALSE 
+2025-08-01T14:16:16.332821393Z                          cov_cat_sexMale 
+2025-08-01T14:16:16.332822940Z                                    FALSE 
+2025-08-01T14:16:16.332824507Z                             cov_cat_imd2 
+2025-08-01T14:16:16.332826097Z                                    FALSE 
+2025-08-01T14:16:16.332827651Z                             cov_cat_imd3 
+2025-08-01T14:16:16.332829149Z                                    FALSE 
+2025-08-01T14:16:16.332830768Z                             cov_cat_imd4 
+2025-08-01T14:16:16.332832348Z                                    FALSE 
+2025-08-01T14:16:16.332833861Z            cov_cat_imd5 (least deprived) 
+2025-08-01T14:16:16.332835588Z                                    FALSE 
+2025-08-01T14:16:16.332837201Z               cov_cat_smokingEver smoker 
+2025-08-01T14:16:16.332838713Z                                    FALSE 
+2025-08-01T14:16:16.332840283Z                   cov_cat_smokingMissing 
+2025-08-01T14:16:16.332841861Z                                     TRUE 
+2025-08-01T14:16:16.332843443Z              cov_cat_smokingNever smoker 
+2025-08-01T14:16:16.332844984Z                                    FALSE 
+2025-08-01T14:16:16.332846530Z                   cov_cat_age_group30-39 
+2025-08-01T14:16:16.332848071Z                                    FALSE 
+2025-08-01T14:16:16.332849612Z                   cov_cat_age_group40-49 
+2025-08-01T14:16:16.332851120Z                                    FALSE 
+2025-08-01T14:16:16.332852680Z                   cov_cat_age_group50-69 
+2025-08-01T14:16:16.332854246Z                                    FALSE 
+2025-08-01T14:16:16.332855812Z                   cov_cat_age_group70-79 
+2025-08-01T14:16:16.332857336Z                                    FALSE 
+2025-08-01T14:16:16.332858838Z                   cov_cat_age_group80-89 
+2025-08-01T14:16:16.332860336Z                                    FALSE 
+2025-08-01T14:16:16.332861856Z                     cov_cat_age_group90+ 
+2025-08-01T14:16:16.332863356Z                                     TRUE 
+2025-08-01T14:16:16.332864855Z                  cov_cat_consrate20191-5 
+2025-08-01T14:16:16.332866346Z                                    FALSE 
+2025-08-01T14:16:16.332867896Z            strat_cat_regionEast Midlands 
+2025-08-01T14:16:16.332869432Z                                    FALSE 
+2025-08-01T14:16:16.332870965Z                   strat_cat_regionLondon 
+2025-08-01T14:16:16.332874551Z                                    FALSE 
+2025-08-01T14:16:16.332876399Z               strat_cat_regionNorth East 
+2025-08-01T14:16:16.332878051Z                                    FALSE 
+2025-08-01T14:16:16.332879626Z               strat_cat_regionNorth West 
+2025-08-01T14:16:16.332881182Z                                    FALSE 
+2025-08-01T14:16:16.332882706Z               strat_cat_regionSouth East 
+2025-08-01T14:16:16.332884224Z                                    FALSE 
+2025-08-01T14:16:16.332885680Z               strat_cat_regionSouth West 
+2025-08-01T14:16:16.332887203Z                                     TRUE 
+2025-08-01T14:16:16.332888644Z            strat_cat_regionWest Midlands 
+2025-08-01T14:16:16.332890112Z                                    FALSE 
+2025-08-01T14:16:16.332892148Z strat_cat_regionYorkshire and The Humber 
+2025-08-01T14:16:16.332893728Z                                    FALSE 
+2025-08-01T14:16:16.332895239Z                     cov_bin_carehomeTRUE 
+2025-08-01T14:16:16.332896680Z                                    FALSE 
+2025-08-01T14:16:16.332898190Z                     cov_bin_hcworkerTRUE 
+2025-08-01T14:16:16.332899682Z                                    FALSE 
+2025-08-01T14:16:16.332901146Z                     cov_bin_dementiaTRUE 
+2025-08-01T14:16:16.332902626Z                                    FALSE 
+2025-08-01T14:16:16.332904085Z                cov_bin_liver_diseaseTRUE 
+2025-08-01T14:16:16.332905596Z                                     TRUE 
+2025-08-01T14:16:16.332907134Z                          cov_bin_ckdTRUE 
+2025-08-01T14:16:16.332908648Z                                     TRUE 
+2025-08-01T14:16:16.332910111Z                       cov_bin_cancerTRUE 
+2025-08-01T14:16:16.332911622Z                                     TRUE 
+2025-08-01T14:16:16.332913123Z                 cov_bin_hypertensionTRUE 
+2025-08-01T14:16:16.332914600Z                                    FALSE 
+2025-08-01T14:16:16.332916141Z                     cov_bin_diabetesTRUE 
+2025-08-01T14:16:16.332917611Z                                    FALSE 
+2025-08-01T14:16:16.332919135Z                      cov_bin_obesityTRUE 
+2025-08-01T14:16:16.332920762Z                                     TRUE 
+2025-08-01T14:16:16.332922320Z                   cov_bin_depressionTRUE 
+2025-08-01T14:16:16.332923833Z                                     TRUE 
+2025-08-01T14:16:16.332925327Z                   cov_bin_stroke_allTRUE 
+2025-08-01T14:16:16.332926806Z                                     TRUE 
+2025-08-01T14:16:16.332928293Z                     cov_bin_other_aeTRUE 
+2025-08-01T14:16:16.332929765Z                                    FALSE 
+2025-08-01T14:16:16.332933650Z                          cov_bin_vteTRUE 
+2025-08-01T14:16:16.332935470Z                                     TRUE 
+2025-08-01T14:16:16.332937051Z                           cov_bin_hfTRUE 
+2025-08-01T14:16:16.332938571Z                                     TRUE 
+2025-08-01T14:16:16.332940141Z                       cov_bin_anginaTRUE 
+2025-08-01T14:16:16.332941701Z                                     TRUE 
+2025-08-01T14:16:16.332943213Z                     cov_bin_lipidmedTRUE 
+2025-08-01T14:16:16.332944688Z                                    FALSE 
+2025-08-01T14:16:16.332946297Z                 cov_bin_antiplateletTRUE 
+2025-08-01T14:16:16.332947906Z                                    FALSE 
+2025-08-01T14:16:16.332949518Z                          cov_bin_hrtTRUE 
+2025-08-01T14:16:16.332951103Z                                    FALSE 
+2025-08-01T14:16:16.332952704Z  [1] "cov_cat_smokingMissing"     "cov_cat_age_group90+"      
+2025-08-01T14:16:16.332954621Z  [3] "strat_cat_regionSouth West" "cov_bin_liver_diseaseTRUE" 
+2025-08-01T14:16:16.332956458Z  [5] "cov_bin_ckdTRUE"            "cov_bin_cancerTRUE"        
+2025-08-01T14:16:16.332958291Z  [7] "cov_bin_obesityTRUE"        "cov_bin_depressionTRUE"    
+2025-08-01T14:16:16.332960102Z  [9] "cov_bin_stroke_allTRUE"     "cov_bin_vteTRUE"           
+2025-08-01T14:16:16.332961930Z [11] "cov_bin_hfTRUE"             "cov_bin_anginaTRUE"        
+2025-08-01T14:16:16.332963768Z [1] "Conclusion:"
+2025-08-01T14:16:16.332965497Z character(0)
+2025-08-01T14:16:16.332967848Z [1] FALSE
+2025-08-01T14:16:16.332969642Z [1] "Test is inconclusive, covariate set may or may not be sufficient"
+2025-08-01T14:16:16.334897756Z        method
+2025-08-01T14:16:16.334923714Z 1       LASSO
+2025-08-01T14:16:16.334926057Z 2     LASSO_X
+2025-08-01T14:16:16.334927605Z 3 LASSO_UNION
+2025-08-01T14:16:16.334929144Z                                                                                                                                                                                                                                                                                                                                                                                                                     vars_selected
+2025-08-01T14:16:16.334931459Z 1 cov_cat_sex\ncov_cat_imd\ncov_cat_smoking\ncov_cat_age_group\ncov_cat_consrate2019\nstrat_cat_region\ncov_bin_carehome\ncov_bin_hcworker\ncov_bin_dementia\ncov_bin_liver_disease\ncov_bin_ckd\ncov_bin_cancer\ncov_bin_hypertension\ncov_bin_diabetes\ncov_bin_obesity\ncov_bin_depression\ncov_bin_stroke_all\ncov_bin_other_ae\ncov_bin_vte\ncov_bin_hf\ncov_bin_angina\ncov_bin_lipidmed\ncov_bin_antiplatelet\ncov_bin_hrt
+2025-08-01T14:16:16.334934484Z 2                                                                                                                                                                                                                                                                                                                                                                                                                                
+2025-08-01T14:16:16.334946498Z 3 cov_cat_sex\ncov_cat_imd\ncov_cat_smoking\ncov_cat_age_group\ncov_cat_consrate2019\nstrat_cat_region\ncov_bin_carehome\ncov_bin_hcworker\ncov_bin_dementia\ncov_bin_liver_disease\ncov_bin_ckd\ncov_bin_cancer\ncov_bin_hypertension\ncov_bin_diabetes\ncov_bin_obesity\ncov_bin_depression\ncov_bin_stroke_all\ncov_bin_other_ae\ncov_bin_vte\ncov_bin_hf\ncov_bin_angina\ncov_bin_lipidmed\ncov_bin_antiplatelet\ncov_bin_hrt
+2025-08-01T14:16:16.334949636Z   exposure_significant_vars
+2025-08-01T14:16:16.334951309Z 1                          
+2025-08-01T14:16:16.334952832Z 2                          
+2025-08-01T14:16:16.334954337Z 3                          
+2025-08-01T14:16:16.334956956Z                                                                                                                                                                                                                                             outcome_significant_vars
+2025-08-01T14:16:16.334959099Z 1 cov_cat_smokingMissing\ncov_cat_age_group90+\nstrat_cat_regionSouth West\ncov_bin_liver_diseaseTRUE\ncov_bin_ckdTRUE\ncov_bin_cancerTRUE\ncov_bin_obesityTRUE\ncov_bin_depressionTRUE\ncov_bin_stroke_allTRUE\ncov_bin_vteTRUE\ncov_bin_hfTRUE\ncov_bin_anginaTRUE
+2025-08-01T14:16:16.334961374Z 2                                                                                                                                                                                                                                                                   
+2025-08-01T14:16:16.334963257Z 3 cov_cat_smokingMissing\ncov_cat_age_group90+\nstrat_cat_regionSouth West\ncov_bin_liver_diseaseTRUE\ncov_bin_ckdTRUE\ncov_bin_cancerTRUE\ncov_bin_obesityTRUE\ncov_bin_depressionTRUE\ncov_bin_stroke_allTRUE\ncov_bin_vteTRUE\ncov_bin_hfTRUE\ncov_bin_anginaTRUE
+2025-08-01T14:16:16.334965398Z   both_significant_vars Condition
+2025-08-01T14:16:16.334966900Z 1                           FALSE
+2025-08-01T14:16:16.334968440Z 2                           FALSE
+2025-08-01T14:16:16.334969978Z 3                           FALSE
+2025-08-01T14:16:16.334971555Z                                                         Conclusion
+2025-08-01T14:16:16.334973128Z 1 Test is inconclusive, covariate set may or may not be sufficient
+2025-08-01T14:16:16.334974675Z 2 Test is inconclusive, covariate set may or may not be sufficient
+2025-08-01T14:16:16.334976232Z 3 Test is inconclusive, covariate set may or may not be sufficient
+
+
+job_definition_id: uppggvv2stbglnlm
+job_definition_request_id: b224088a6e
+docker_image_id: sha256:13f6c027b613bda2d60fbc6dbcd8f7263e1224f1e45a4797375e438f28fd0e5d
+exit_code: 0
+created_at: 1754057622
+completed_at: 1754057777
+status_message: Completed successfully
+
+outputs:
+  output/unconfoundedness_test/unconfoundedness_test-cohort_prevax.csv  - moderately_sensitive

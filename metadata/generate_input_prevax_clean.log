@@ -1,0 +1,660 @@
+2025-08-01T14:25:37.806951837Z Warning message:
+2025-08-01T14:25:37.806983085Z renv 0.16.0 was loaded from project library, but this project is configured to use renv ${VERSION}.
+2025-08-01T14:25:37.806986433Z Use `renv::record("renv@0.16.0")` to record renv 0.16.0 in the lockfile.
+2025-08-01T14:25:37.806988487Z Use `renv::restore(packages = "renv")` to install renv ${VERSION} into the project library. 
+2025-08-01T14:25:37.829431065Z [1] "Load libraries"
+2025-08-01T14:25:38.090238119Z 
+2025-08-01T14:25:38.090278311Z Attaching package: ‘dplyr’
+2025-08-01T14:25:38.090281961Z 
+2025-08-01T14:25:38.090561224Z The following objects are masked from ‘package:stats’:
+2025-08-01T14:25:38.090573337Z 
+2025-08-01T14:25:38.090575465Z     filter, lag
+2025-08-01T14:25:38.090577018Z 
+2025-08-01T14:25:38.090578385Z The following objects are masked from ‘package:base’:
+2025-08-01T14:25:38.090579909Z 
+2025-08-01T14:25:38.090581256Z     intersect, setdiff, setequal, union
+2025-08-01T14:25:38.090582697Z 
+2025-08-01T14:25:38.090600252Z Warning messages:
+2025-08-01T14:25:38.090602337Z 1: replacing previous import ‘ellipsis::check_dots_unnamed’ by ‘rlang::check_dots_unnamed’ when loading ‘tibble’ 
+2025-08-01T14:25:38.090604115Z 2: replacing previous import ‘ellipsis::check_dots_used’ by ‘rlang::check_dots_used’ when loading ‘tibble’ 
+2025-08-01T14:25:38.090605768Z 3: replacing previous import ‘ellipsis::check_dots_empty’ by ‘rlang::check_dots_empty’ when loading ‘tibble’ 
+2025-08-01T14:25:38.090607400Z 4: replacing previous import ‘ellipsis::check_dots_unnamed’ by ‘rlang::check_dots_unnamed’ when loading ‘pillar’ 
+2025-08-01T14:25:38.090609010Z 5: replacing previous import ‘ellipsis::check_dots_used’ by ‘rlang::check_dots_used’ when loading ‘pillar’ 
+2025-08-01T14:25:38.090610657Z 6: replacing previous import ‘ellipsis::check_dots_empty’ by ‘rlang::check_dots_empty’ when loading ‘pillar’ 
+2025-08-01T14:25:39.009583534Z ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+2025-08-01T14:25:39.012237858Z ✔ ggplot2 3.4.2     ✔ purrr   0.3.4
+2025-08-01T14:25:39.012264642Z ✔ tibble  3.0.3     ✔ stringr 1.4.0
+2025-08-01T14:25:39.012267297Z ✔ tidyr   1.1.2     ✔ forcats 0.5.0
+2025-08-01T14:25:39.012269208Z ✔ readr   1.3.1     
+2025-08-01T14:25:39.069016228Z ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+2025-08-01T14:25:39.069075561Z ✖ dplyr::filter() masks stats::filter()
+2025-08-01T14:25:39.069076828Z ✖ dplyr::lag()    masks stats::lag()
+2025-08-01T14:25:39.074179876Z 
+2025-08-01T14:25:39.074222514Z Attaching package: ‘lubridate’
+2025-08-01T14:25:39.074238719Z 
+2025-08-01T14:25:39.074239998Z The following objects are masked from ‘package:base’:
+2025-08-01T14:25:39.074241203Z 
+2025-08-01T14:25:39.074242049Z     date, intersect, setdiff, union
+2025-08-01T14:25:39.074242986Z 
+2025-08-01T14:25:39.115635483Z 
+2025-08-01T14:25:39.115665146Z Attaching package: ‘data.table’
+2025-08-01T14:25:39.115667189Z 
+2025-08-01T14:25:39.115668107Z The following objects are masked from ‘package:lubridate’:
+2025-08-01T14:25:39.115669242Z 
+2025-08-01T14:25:39.115670223Z     hour, isoweek, mday, minute, month, quarter, second, wday, week,
+2025-08-01T14:25:39.115671302Z     yday, year
+2025-08-01T14:25:39.115672288Z 
+2025-08-01T14:25:39.115700164Z The following object is masked from ‘package:purrr’:
+2025-08-01T14:25:39.115701832Z 
+2025-08-01T14:25:39.115702761Z     transpose
+2025-08-01T14:25:39.115703706Z 
+2025-08-01T14:25:39.115891526Z The following objects are masked from ‘package:dplyr’:
+2025-08-01T14:25:39.115898389Z 
+2025-08-01T14:25:39.115899600Z     between, first, last
+2025-08-01T14:25:39.115900628Z 
+2025-08-01T14:25:39.119887712Z 
+2025-08-01T14:25:39.119902524Z Attaching package: ‘jsonlite’
+2025-08-01T14:25:39.119904044Z 
+2025-08-01T14:25:39.119904931Z The following object is masked from ‘package:purrr’:
+2025-08-01T14:25:39.119905965Z 
+2025-08-01T14:25:39.119906857Z     flatten
+2025-08-01T14:25:39.119907766Z 
+2025-08-01T14:25:39.128067055Z here() starts at /workspace
+2025-08-01T14:25:39.132601046Z [1] "Creating output/dataset_clean output folder"
+2025-08-01T14:25:39.134375645Z [1] "Specify redaction threshold"
+2025-08-01T14:25:39.134401860Z [1] "Load json file containing vax study dates"
+2025-08-01T14:25:39.136030127Z [1] "Specify relevant dates"
+2025-08-01T14:25:39.138480085Z [1] "Source common functions"
+2025-08-01T14:25:39.140698737Z [[1]]
+2025-08-01T14:25:39.140728559Z [[1]]$value
+2025-08-01T14:25:39.141434417Z function (input, flow, cohort, vax1_earliest, mixed_vax_threshold, 
+2025-08-01T14:25:39.141456274Z     delta_date, lcd_date) 
+2025-08-01T14:25:39.141458715Z {
+2025-08-01T14:25:39.141460319Z     print("Apply inclusion criteria to all cohorts")
+2025-08-01T14:25:39.141461966Z     input <- subset(input, inex_bin_alive == TRUE)
+2025-08-01T14:25:39.141463838Z     flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Alive at index", 
+2025-08-01T14:25:39.141475652Z         nrow(input))
+2025-08-01T14:25:39.141477511Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141479164Z     input <- subset(input, cov_num_age >= 18)
+2025-08-01T14:25:39.141480772Z     flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Known age 18 or over at index", 
+2025-08-01T14:25:39.141482433Z         nrow(input))
+2025-08-01T14:25:39.141483845Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141485328Z     input <- subset(input, cov_num_age <= 110)
+2025-08-01T14:25:39.141486918Z     flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Known age 110 or under at index", 
+2025-08-01T14:25:39.141488480Z         nrow(input))
+2025-08-01T14:25:39.141489916Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141491354Z     input <- subset(input, cov_cat_sex %in% c("female", "male"))
+2025-08-01T14:25:39.141493066Z     flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Known sex, recorded as male or female, at index", 
+2025-08-01T14:25:39.141494677Z         nrow(input))
+2025-08-01T14:25:39.141496014Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141497397Z     input <- subset(input, cov_cat_imd %in% c("1 (most deprived)", 
+2025-08-01T14:25:39.141498936Z         "2", "3", "4", "5 (least deprived)"))
+2025-08-01T14:25:39.141500611Z     flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Known IMD at index", 
+2025-08-01T14:25:39.141502122Z         nrow(input))
+2025-08-01T14:25:39.141503498Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141504871Z     input <- subset(input, strat_cat_region %in% c("East", "East Midlands", 
+2025-08-01T14:25:39.141506479Z         "London", "North East", "North West", "South East", "South West", 
+2025-08-01T14:25:39.141508100Z         "West Midlands", "Yorkshire and The Humber"))
+2025-08-01T14:25:39.141509687Z     flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Known region at index", 
+2025-08-01T14:25:39.141511234Z         nrow(input))
+2025-08-01T14:25:39.141512586Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141513951Z     input <- subset(input, inex_bin_6m_reg == TRUE)
+2025-08-01T14:25:39.141515489Z     flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Continuous registration with the same practice for at least six months up to and including the index date", 
+2025-08-01T14:25:39.141517163Z         nrow(input))
+2025-08-01T14:25:39.141518527Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141519898Z     input <- subset(input, index_date <= end_date_exposure)
+2025-08-01T14:25:39.141521406Z     flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Index date is before cohort end date", 
+2025-08-01T14:25:39.141522913Z         nrow(input))
+2025-08-01T14:25:39.141524283Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141527478Z     print("Apply cohort specific inclusion criteria")
+2025-08-01T14:25:39.141529272Z     if (cohort == "vax") {
+2025-08-01T14:25:39.141531945Z         input <- subset(input, !is.na(vax_date_covid_1) & !is.na(vax_date_covid_2) & 
+2025-08-01T14:25:39.141533724Z             vax_date_covid_2 < lcd_date)
+2025-08-01T14:25:39.141535240Z         flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Record of two vaccination doses prior to the study end date", 
+2025-08-01T14:25:39.141536918Z             nrow(input))
+2025-08-01T14:25:39.141538279Z         print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141539668Z         input <- subset(input, (is.na(vax_date_covid_1) | vax_date_covid_1 >= 
+2025-08-01T14:25:39.141541187Z             vax1_earliest) & (is.na(vax_date_covid_2) | vax_date_covid_2 >= 
+2025-08-01T14:25:39.141542753Z             vax1_earliest) & (is.na(vax_date_covid_3) | vax_date_covid_3 >= 
+2025-08-01T14:25:39.141544262Z             vax1_earliest))
+2025-08-01T14:25:39.141545651Z         flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Did not receive a vaccination prior to 08-12-2020 (i.e., the start of the vaccination program)", 
+2025-08-01T14:25:39.141547372Z             nrow(input))
+2025-08-01T14:25:39.141548770Z         print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141554046Z         input <- subset(input, vax_date_covid_2 >= vax_date_covid_1)
+2025-08-01T14:25:39.141555672Z         flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Did not receive a second dose vaccination before their first dose vaccination", 
+2025-08-01T14:25:39.141557335Z             nrow(input))
+2025-08-01T14:25:39.141558777Z         print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141560180Z         input <- subset(input, (vax_date_covid_2 - vax_date_covid_1) >= 
+2025-08-01T14:25:39.141561756Z             21)
+2025-08-01T14:25:39.141563221Z         flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Did not receive a second dose vaccination less than three weeks after their first dose", 
+2025-08-01T14:25:39.141565025Z             nrow(input))
+2025-08-01T14:25:39.141566430Z         print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141567867Z         input <- input %>% mutate(AZ_date = case_when(vax_date_AstraZeneca_1 < 
+2025-08-01T14:25:39.141569464Z             mixed_vax_threshold ~ 1, vax_date_AstraZeneca_2 < 
+2025-08-01T14:25:39.141570967Z             mixed_vax_threshold ~ 1, vax_date_AstraZeneca_3 < 
+2025-08-01T14:25:39.141572548Z             mixed_vax_threshold ~ 1, TRUE ~ 0), Moderna_date = case_when(vax_date_Moderna_1 < 
+2025-08-01T14:25:39.141574255Z             mixed_vax_threshold ~ 1, vax_date_Moderna_2 < mixed_vax_threshold ~ 
+2025-08-01T14:25:39.141575760Z             1, vax_date_Moderna_3 < mixed_vax_threshold ~ 1, 
+2025-08-01T14:25:39.141577229Z             TRUE ~ 0), Pfizer_date = case_when(vax_date_Pfizer_1 < 
+2025-08-01T14:25:39.141580643Z             mixed_vax_threshold ~ 1, vax_date_Pfizer_2 < mixed_vax_threshold ~ 
+2025-08-01T14:25:39.141582381Z             1, vax_date_Pfizer_3 < mixed_vax_threshold ~ 1, TRUE ~ 
+2025-08-01T14:25:39.141584317Z             0)) %>% rowwise() %>% mutate(vax_mixed = sum(c_across(c(AZ_date, 
+2025-08-01T14:25:39.141586022Z             Moderna_date, Pfizer_date)), na.rm = TRUE)) %>% ungroup() %>% 
+2025-08-01T14:25:39.141587580Z             dplyr::filter(vax_mixed < 2) %>% select(-AZ_date, 
+2025-08-01T14:25:39.141589081Z             -Moderna_date, -Pfizer_date, -vax_mixed)
+2025-08-01T14:25:39.141590595Z         flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Did not receive a mixed vaccine products before 07-05-2021", 
+2025-08-01T14:25:39.141592225Z             nrow(input))
+2025-08-01T14:25:39.141593597Z         print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141595012Z     }
+2025-08-01T14:25:39.141596386Z     else if (cohort == "unvax") {
+2025-08-01T14:25:39.141598407Z         input <- subset(input, (is.na(vax_date_covid_1) | vax_date_covid_1 >= 
+2025-08-01T14:25:39.141599946Z             index_date) & (is.na(vax_date_covid_2) | vax_date_covid_2 >= 
+2025-08-01T14:25:39.141601458Z             index_date) & (is.na(vax_date_covid_3) | vax_date_covid_3 >= 
+2025-08-01T14:25:39.141602975Z             index_date))
+2025-08-01T14:25:39.141604381Z         flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Does not have a record of one or more vaccination prior to index date", 
+2025-08-01T14:25:39.141606013Z             nrow(input))
+2025-08-01T14:25:39.141607369Z         print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141608750Z         input <- subset(input, vax_cat_jcvi_group %in% c("01", 
+2025-08-01T14:25:39.141610353Z             "02", "03", "04", "05", "06", "07", "08", "09", "10", 
+2025-08-01T14:25:39.141612114Z             "11", "12"))
+2025-08-01T14:25:39.141613552Z         flow[nrow(flow) + 1, ] <- c("Inclusion criteria: Not missing JCVI group", 
+2025-08-01T14:25:39.141615088Z             nrow(input))
+2025-08-01T14:25:39.141616480Z         print(flow[nrow(flow), ])
+2025-08-01T14:25:39.141617898Z     }
+2025-08-01T14:25:39.141619224Z     return(list(input = input, flow = flow))
+2025-08-01T14:25:39.141620696Z }
+2025-08-01T14:25:39.141622050Z 
+2025-08-01T14:25:39.141623429Z [[1]]$visible
+2025-08-01T14:25:39.141624821Z [1] FALSE
+2025-08-01T14:25:39.141626178Z 
+2025-08-01T14:25:39.141627498Z 
+2025-08-01T14:25:39.141628812Z [[2]]
+2025-08-01T14:25:39.141630150Z [[2]]$value
+2025-08-01T14:25:39.142990303Z function (df, cohort) 
+2025-08-01T14:25:39.143030840Z {
+2025-08-01T14:25:39.143032296Z     set.seed(1)
+2025-08-01T14:25:39.143033421Z     pandemic_start <- as.Date(study_dates$pandemic_start, format = "%Y-%m-%d", 
+2025-08-01T14:25:39.143034825Z         origin = "1970-01-01")
+2025-08-01T14:25:39.143035865Z     if (cohort == "vax") {
+2025-08-01T14:25:39.143037014Z         df <- df %>% mutate(vax_date_Pfizer_1 = as.Date(vax_date_eligible) + 
+2025-08-01T14:25:39.143038296Z             days(round(rnorm(nrow(.), mean = 10, sd = 3))), vax_date_AstraZeneca_1 = as.Date(vax_date_eligible) + 
+2025-08-01T14:25:39.143039492Z             days(round(rnorm(nrow(.), mean = 10, sd = 3))), vax_date_Moderna_1 = as.Date(vax_date_eligible) + 
+2025-08-01T14:25:39.143040550Z             days(round(rnorm(nrow(.), mean = 10, sd = 3)))) %>% 
+2025-08-01T14:25:39.143041617Z             mutate(vaccine_1_type = sample(x = c("Pfizer", "AstraZeneca", 
+2025-08-01T14:25:39.143042814Z                 "Moderna", "None"), size = nrow(.), replace = TRUE, 
+2025-08-01T14:25:39.143043985Z                 prob = c(0.4, 0.4, 0.05, 0.1)), missing_pfizer_2 = rbernoulli(nrow(.), 
+2025-08-01T14:25:39.143045046Z                 p = 0.05), missing_az_2 = rbernoulli(nrow(.), 
+2025-08-01T14:25:39.143046061Z                 p = 0.05), missing_moderna_2 = rbernoulli(nrow(.), 
+2025-08-01T14:25:39.143047327Z                 p = 0.05), missing_pfizer_3 = rbernoulli(nrow(.), 
+2025-08-01T14:25:39.143048388Z                 p = 0.9), missing_az_3 = rbernoulli(nrow(.), 
+2025-08-01T14:25:39.143049400Z                 p = 0.9), missing_moderna_3 = rbernoulli(nrow(.), 
+2025-08-01T14:25:39.143050442Z                 p = 0.9)) %>% mutate(across(vax_date_Pfizer_1, 
+2025-08-01T14:25:39.143051511Z             ~if_else(vaccine_1_type %in% "Pfizer", .x, NA_Date_))) %>% 
+2025-08-01T14:25:39.143052575Z             mutate(across(vax_date_AstraZeneca_1, ~if_else(vaccine_1_type %in% 
+2025-08-01T14:25:39.143053597Z                 "AstraZeneca", .x, NA_Date_))) %>% mutate(across(vax_date_Moderna_1, 
+2025-08-01T14:25:39.143054706Z             ~if_else(vaccine_1_type %in% "Moderna", .x, NA_Date_))) %>% 
+2025-08-01T14:25:39.143055796Z             mutate(across(matches("vax_date\\w+_1"), ~if_else(vaccine_1_type %in% 
+2025-08-01T14:25:39.143057020Z                 "None", NA_Date_, .x))) %>% mutate(vax_date_covid_1 = pmin(vax_date_Pfizer_1, 
+2025-08-01T14:25:39.143058152Z             vax_date_AstraZeneca_1, vax_date_Moderna_1, na.rm = T)) %>% 
+2025-08-01T14:25:39.143059183Z             mutate(vax_date_Pfizer_2 = vax_date_Pfizer_1 + days(round(rnorm(nrow(.), 
+2025-08-01T14:25:39.143060187Z                 mean = 10 * 7, sd = 3))), vax_date_AstraZeneca_2 = vax_date_AstraZeneca_1 + 
+2025-08-01T14:25:39.143061194Z                 days(round(rnorm(nrow(.), mean = 10 * 7, sd = 3))), 
+2025-08-01T14:25:39.143062988Z                 vax_date_Moderna_2 = vax_date_Moderna_1 + days(round(rnorm(nrow(.), 
+2025-08-01T14:25:39.143065845Z                   mean = 10 * 7, sd = 3))), ) %>% mutate(vaccine_2_type = ifelse(runif(nrow(df), 
+2025-08-01T14:25:39.143066925Z             0, 1) > 0.95 & vaccine_1_type != "None", sample(x = c("Pfizer", 
+2025-08-01T14:25:39.143068223Z             "AstraZeneca", "Moderna", "None"), size = nrow(.), 
+2025-08-01T14:25:39.143069379Z             replace = TRUE, prob = c(0.4, 0.4, 0.05, 0.1)), vaccine_1_type)) %>% 
+2025-08-01T14:25:39.143070385Z             mutate(across(vax_date_Pfizer_2, ~if_else(vaccine_2_type %in% 
+2025-08-01T14:25:39.143071378Z                 "Pfizer", .x, NA_Date_))) %>% mutate(across(vax_date_AstraZeneca_2, 
+2025-08-01T14:25:39.143072503Z             ~if_else(vaccine_2_type %in% "AstraZeneca", .x, NA_Date_))) %>% 
+2025-08-01T14:25:39.143073615Z             mutate(across(vax_date_Moderna_2, ~if_else(vaccine_2_type %in% 
+2025-08-01T14:25:39.143074607Z                 "Moderna", .x, NA_Date_))) %>% mutate(across(matches("vax_date\\w+_2"), 
+2025-08-01T14:25:39.143075779Z             ~if_else(vaccine_2_type %in% "None", NA_Date_, .x))) %>% 
+2025-08-01T14:25:39.143076909Z             mutate(across(vax_date_Pfizer_2, ~if_else(missing_pfizer_2, 
+2025-08-01T14:25:39.143077878Z                 NA_Date_, .x))) %>% mutate(across(vax_date_AstraZeneca_2, 
+2025-08-01T14:25:39.143078945Z             ~if_else(missing_az_2, NA_Date_, .x))) %>% mutate(across(vax_date_Moderna_2, 
+2025-08-01T14:25:39.143079996Z             ~if_else(missing_moderna_2, NA_Date_, .x))) %>% mutate(vax_date_covid_2 = pmin(vax_date_Pfizer_2, 
+2025-08-01T14:25:39.143081057Z             vax_date_AstraZeneca_2, vax_date_Moderna_2, na.rm = T)) %>% 
+2025-08-01T14:25:39.143082076Z             mutate(vaccine_3_type = ifelse(vaccine_2_type != 
+2025-08-01T14:25:39.143083071Z                 "None", sample(x = c("Pfizer", "AstraZeneca", 
+2025-08-01T14:25:39.143084273Z                 "Moderna", "None"), size = nrow(.), replace = TRUE, 
+2025-08-01T14:25:39.143085477Z                 prob = c(0.6, 0.1, 0.3, 0.1)), vaccine_2_type)) %>% 
+2025-08-01T14:25:39.143086468Z             mutate(vax_date_Pfizer_3 = vax_date_Pfizer_2 + days(round(rnorm(nrow(.), 
+2025-08-01T14:25:39.143087611Z                 mean = 6 * 4 * 7, sd = 7))), vax_date_AstraZeneca_3 = vax_date_AstraZeneca_2 + 
+2025-08-01T14:25:39.143088594Z                 days(round(rnorm(nrow(.), mean = 6 * 4 * 7, sd = 7))), 
+2025-08-01T14:25:39.143089542Z                 vax_date_Moderna_3 = vax_date_Moderna_2 + days(round(rnorm(nrow(.), 
+2025-08-01T14:25:39.143090518Z                   mean = 6 * 4 * 7, sd = 7))), ) %>% mutate(across(vax_date_Pfizer_3, 
+2025-08-01T14:25:39.143091550Z             ~if_else(vaccine_3_type %in% "Pfizer", .x, NA_Date_))) %>% 
+2025-08-01T14:25:39.143092840Z             mutate(across(vax_date_AstraZeneca_3, ~if_else(vaccine_3_type %in% 
+2025-08-01T14:25:39.143095018Z                 "AstraZeneca", .x, NA_Date_))) %>% mutate(across(vax_date_Moderna_3, 
+2025-08-01T14:25:39.143096073Z             ~if_else(vaccine_3_type %in% "Moderna", .x, NA_Date_))) %>% 
+2025-08-01T14:25:39.143097114Z             mutate(across(matches("vax_date\\w+_3"), ~if_else(vaccine_3_type %in% 
+2025-08-01T14:25:39.143098192Z                 "None", NA_Date_, .x))) %>% mutate(across(vax_date_covid_3, 
+2025-08-01T14:25:39.143099286Z             ~if_else(vaccine_3_type %in% "None", NA_Date_, pmin(vax_date_Pfizer_3, 
+2025-08-01T14:25:39.143100350Z                 vax_date_AstraZeneca_3, vax_date_Moderna_3, na.rm = T)))) %>% 
+2025-08-01T14:25:39.143101370Z             mutate(across(vax_date_Pfizer_3, ~if_else(missing_pfizer_3, 
+2025-08-01T14:25:39.143102348Z                 NA_Date_, .x))) %>% mutate(across(vax_date_AstraZeneca_3, 
+2025-08-01T14:25:39.143103361Z             ~if_else(missing_az_3, NA_Date_, .x))) %>% mutate(across(vax_date_Moderna_3, 
+2025-08-01T14:25:39.143104395Z             ~if_else(missing_moderna_3, NA_Date_, .x))) %>% mutate(vax_date_covid_3 = pmin(vax_date_Pfizer_3, 
+2025-08-01T14:25:39.143105449Z             vax_date_AstraZeneca_3, vax_date_Moderna_3, na.rm = T)) %>% 
+2025-08-01T14:25:39.143106428Z             select(-starts_with("missing"), -matches("vaccine_\\d_type")) %>% 
+2025-08-01T14:25:39.143107551Z             mutate(across(vax_date_covid_1, ~if_else(runif(n()) < 
+2025-08-01T14:25:39.143108561Z                 0.002, as.Date("01-12-2020"), .x))) %>% mutate(across(vax_date_covid_1, 
+2025-08-01T14:25:39.143109698Z             ~if_else(runif(n()) < 0.002, vax_date_covid_2 + 10, 
+2025-08-01T14:25:39.143110712Z                 .x))) %>% mutate(across(vax_date_covid_2, ~if_else(runif(n()) < 
+2025-08-01T14:25:39.143111801Z             0.002, vax_date_covid_1 + 15, .x))) %>% mutate(modify_mixed_vax = rbernoulli(nrow(.), 
+2025-08-01T14:25:39.143112867Z             p = 0.002)) %>% mutate(across(vax_date_Moderna_2, 
+2025-08-01T14:25:39.143113885Z             ~if_else(modify_mixed_vax, mixed_vax_threshold - 
+2025-08-01T14:25:39.143114876Z                 2, .x))) %>% mutate(across(vax_date_covid_2, 
+2025-08-01T14:25:39.143115861Z             ~if_else(modify_mixed_vax, mixed_vax_threshold - 
+2025-08-01T14:25:39.143116857Z                 2, .x)))
+2025-08-01T14:25:39.143117806Z     }
+2025-08-01T14:25:39.143118732Z     else if (cohort == "unvax") {
+2025-08-01T14:25:39.143119759Z         print("Redistributing vax_date_covid_1 for unvax cohort")
+2025-08-01T14:25:39.143120800Z         df <- df %>% mutate(vax_date_covid_1 = case_when(vax_date_covid_1 > 
+2025-08-01T14:25:39.143121891Z             as.Date("2021-12-10") ~ vax_date_covid_1 - 360, TRUE ~ 
+2025-08-01T14:25:39.143122958Z             vax_date_covid_1)) %>% mutate(vax_cat_jcvi_group = sample(x = c("12", 
+2025-08-01T14:25:39.143125615Z             "11", "10", "09", "08", "07", "06", "05", "04", "03", 
+2025-08-01T14:25:39.143126811Z             "02", "01", "99"), size = nrow(.), replace = TRUE, 
+2025-08-01T14:25:39.143127862Z             prob = c(rep(0.082, 12), 0.016)))
+2025-08-01T14:25:39.143128824Z     }
+2025-08-01T14:25:39.143129738Z     df <- df %>% mutate(inex_bin_alive = rbernoulli(nrow(.), 
+2025-08-01T14:25:39.143130760Z         p = 0.99)) %>% mutate(inex_bin_6m_reg = rbernoulli(nrow(.), 
+2025-08-01T14:25:39.143131780Z         p = 0.99)) %>% mutate(cov_num_age = sample(c(sample(1:17, 
+2025-08-01T14:25:39.143132790Z         round(nrow(.) * 0.02), replace = TRUE), sample(111:120, 
+2025-08-01T14:25:39.143133776Z         round(nrow(.) * 0.02), replace = TRUE), sample(18:110, 
+2025-08-01T14:25:39.143134740Z         nrow(.) - round(nrow(.) * 0.02) * 2, replace = TRUE)))) %>% 
+2025-08-01T14:25:39.143135772Z         mutate(qa_num_birth_year = as.numeric(format(as.Date(index_date), 
+2025-08-01T14:25:39.143136817Z             "%Y")) - cov_num_age) %>% mutate(cov_cat_sex = sample(x = c("female", 
+2025-08-01T14:25:39.143137930Z         "male", "intersex", "unknown"), size = nrow(.), replace = TRUE, 
+2025-08-01T14:25:39.143139064Z         prob = c(0.49, 0.49, 0.01, 0.01))) %>% mutate(strat_cat_region = sample(x = c("East", 
+2025-08-01T14:25:39.143140167Z         "East Midlands", "London", "North East", "North West", 
+2025-08-01T14:25:39.143141322Z         "South East", "South West", "West Midlands", "Yorkshire and The Humber", 
+2025-08-01T14:25:39.143142440Z         ""), size = nrow(.), replace = TRUE, prob = c(rep(0.11, 
+2025-08-01T14:25:39.143143475Z         9), 0.01))) %>% mutate(cov_cat_imd = sample(x = c("1 (most deprived)", 
+2025-08-01T14:25:39.143144555Z         "2", "3", "4", "5 (least deprived)", NA), size = nrow(.), 
+2025-08-01T14:25:39.143145734Z         replace = TRUE, prob = c(rep(0.195, 5), 0.025))) %>% 
+2025-08-01T14:25:39.143146747Z         mutate(across(starts_with("out_date_"), ~as.Date(ifelse(runif(n()) < 
+2025-08-01T14:25:39.143147850Z             0.5, index_date + round((lcd_date - index_date) * 
+2025-08-01T14:25:39.143148810Z             runif(n(), min = 0, max = 1)), NA_Date_), format = "%Y-%m-%d", 
+2025-08-01T14:25:39.143149851Z             origin = "1970-01-01"))) %>% mutate(across(exp_date_covid, 
+2025-08-01T14:25:39.143150896Z         ~as.Date(ifelse(runif(n()) < 0.5, sample(seq(pandemic_start, 
+2025-08-01T14:25:39.143151933Z             lcd_date, by = "day"), n(), replace = TRUE), NA_Date_), 
+2025-08-01T14:25:39.143153002Z             format = "%Y-%m-%d", origin = "1970-01-01"))) %>% 
+2025-08-01T14:25:39.143154042Z         mutate(sub_cat_covidhospital = sample(x = c("non_hospitalised", 
+2025-08-01T14:25:39.143155116Z             "hospitalised"), size = nrow(.), replace = TRUE, 
+2025-08-01T14:25:39.143157422Z             prob = rep(0.5, 2))) %>% mutate(across(sub_cat_covidhospital, 
+2025-08-01T14:25:39.143158645Z         ~if_else(is.na(exp_date_covid), "no_infection", .x))) %>% 
+2025-08-01T14:25:39.143159727Z         mutate(sub_bin_covidhistory = rbernoulli(nrow(.), p = 0.05)) %>% 
+2025-08-01T14:25:39.143160727Z         mutate(across(qa_num_birth_year, ~if_else(runif(n()) < 
+2025-08-01T14:25:39.143161722Z             0.002, as.numeric(""), .x))) %>% mutate(modify_birth_then = rbernoulli(nrow(.), 
+2025-08-01T14:25:39.143162824Z         p = 0.002)) %>% mutate(across(qa_num_birth_year, ~if_else(modify_birth_then, 
+2025-08-01T14:25:39.143163863Z         2024, .x))) %>% mutate(across(cens_date_death, ~if_else(modify_birth_then, 
+2025-08-01T14:25:39.143164884Z         as.Date("2023-03-02"), .x))) %>% mutate(across(qa_num_birth_year, 
+2025-08-01T14:25:39.143165936Z         ~if_else(runif(n()) < 0.005, as.numeric(format(Sys.Date() + 
+2025-08-01T14:25:39.143166945Z             1000, "%Y")), .x))) %>% mutate(across(cens_date_death, 
+2025-08-01T14:25:39.143168019Z         ~if_else(runif(n()) < 0.002, Sys.Date() + 42, .x))) %>% 
+2025-08-01T14:25:39.143169022Z         mutate(qa_bin_pregnancy = rbernoulli(nrow(.), p = 0.005)) %>% 
+2025-08-01T14:25:39.143170038Z         mutate(qa_bin_hrtcocp = rbernoulli(nrow(.), p = 0.005)) %>% 
+2025-08-01T14:25:39.143171030Z         mutate(qa_bin_prostate_cancer = rbernoulli(nrow(.), p = 0.005)) %>% 
+2025-08-01T14:25:39.143172041Z         select(-starts_with("modify_"))
+2025-08-01T14:25:39.143173071Z }
+2025-08-01T14:25:39.143173967Z 
+2025-08-01T14:25:39.143174908Z [[2]]$visible
+2025-08-01T14:25:39.143175868Z [1] FALSE
+2025-08-01T14:25:39.143176801Z 
+2025-08-01T14:25:39.143177679Z 
+2025-08-01T14:25:39.143178563Z [[3]]
+2025-08-01T14:25:39.143181252Z [[3]]$value
+2025-08-01T14:25:39.143182218Z function (cohort, describe) 
+2025-08-01T14:25:39.143183185Z {
+2025-08-01T14:25:39.143184065Z     print("Get column names")
+2025-08-01T14:25:39.143185072Z     file_path <- paste0("output/dataset_definition/input_", cohort, 
+2025-08-01T14:25:39.143186182Z         ".csv.gz")
+2025-08-01T14:25:39.143187149Z     all_cols <- fread(file_path, header = TRUE, sep = ",", nrows = 0, 
+2025-08-01T14:25:39.143188304Z         stringsAsFactors = FALSE) %>% names()
+2025-08-01T14:25:39.143189336Z     message("Column names found")
+2025-08-01T14:25:39.143190362Z     print(all_cols)
+2025-08-01T14:25:39.143191307Z     print("Define column classes")
+2025-08-01T14:25:39.143192264Z     cat_cols <- c("patient_id", grep("_cat", all_cols, value = TRUE))
+2025-08-01T14:25:39.143193414Z     bin_cols <- c(grep("_bin", all_cols, value = TRUE))
+2025-08-01T14:25:39.143195835Z     num_cols <- c(grep("_num", all_cols, value = TRUE), grep("vax_jcvi_age_", 
+2025-08-01T14:25:39.143196951Z         all_cols, value = TRUE))
+2025-08-01T14:25:39.143197918Z     date_cols <- grep("_date", all_cols, value = TRUE)
+2025-08-01T14:25:39.143198996Z     message("Column classes identified")
+2025-08-01T14:25:39.143200034Z     col_classes <- setNames(c(rep("c", length(cat_cols)), rep("l", 
+2025-08-01T14:25:39.143201318Z         length(bin_cols)), rep("d", length(num_cols)), rep("D", 
+2025-08-01T14:25:39.143202385Z         length(date_cols))), all_cols[match(c(cat_cols, bin_cols, 
+2025-08-01T14:25:39.143203401Z         num_cols, date_cols), all_cols)])
+2025-08-01T14:25:39.143204334Z     message("Column classes defined")
+2025-08-01T14:25:39.143205343Z     print("Load cohort dataset")
+2025-08-01T14:25:39.143206522Z     input <- read_csv(file_path, col_types = col_classes)
+2025-08-01T14:25:39.143207538Z     message(paste0("Dataset has been read successfully with N = ", 
+2025-08-01T14:25:39.143208627Z         nrow(input), " rows"))
+2025-08-01T14:25:39.143209599Z     print("Modify dummy data")
+2025-08-01T14:25:39.143210571Z     if (Sys.getenv("OPENSAFELY_BACKEND") %in% c("", "expectations")) {
+2025-08-01T14:25:39.143211710Z         input <- modify_dummy(input, cohort)
+2025-08-01T14:25:39.143212690Z     }
+2025-08-01T14:25:39.143213607Z     print("Format dataset columns")
+2025-08-01T14:25:39.143214589Z     input <- input %>% mutate(across(all_of(date_cols), ~floor_date(as.Date(., 
+2025-08-01T14:25:39.143215677Z         format = "%Y-%m-%d"), unit = "days")), across(contains("_birth_year"), 
+2025-08-01T14:25:39.143216813Z         ~as.numeric(.)), across(all_of(num_cols), ~as.numeric(.)), 
+2025-08-01T14:25:39.143217832Z         across(all_of(cat_cols), ~as.character(.)))
+2025-08-01T14:25:39.143218786Z     print("Describe data")
+2025-08-01T14:25:39.143219744Z     if (isTRUE(describe)) {
+2025-08-01T14:25:39.143220696Z         describe_data(df = input, name = paste0(cohort, "_raw"))
+2025-08-01T14:25:39.143221780Z     }
+2025-08-01T14:25:39.143222635Z     print("Remove records with missing patient id")
+2025-08-01T14:25:39.143223625Z     input <- input[!is.na(input$patient_id), ]
+2025-08-01T14:25:39.143224610Z     message("All records with valid patient IDs retained.")
+2025-08-01T14:25:39.143225654Z     print("Make Venn diagram input dataset")
+2025-08-01T14:25:39.143226651Z     venn <- input %>% select(starts_with(c("patient_id", "tmp_out_date", 
+2025-08-01T14:25:39.143227741Z         "out_date")))
+2025-08-01T14:25:39.143228678Z     print("Restrict columns")
+2025-08-01T14:25:39.143230834Z     input <- input %>% select(patient_id, starts_with("index_date"), 
+2025-08-01T14:25:39.143231936Z         starts_with("end_date_"), starts_with("sub_"), starts_with("exp_"), 
+2025-08-01T14:25:39.143233048Z         starts_with("out_"), starts_with("cov_"), starts_with("inex_"), 
+2025-08-01T14:25:39.143234234Z         starts_with("cens_"), starts_with("qa_"), starts_with("strat_"), 
+2025-08-01T14:25:39.143235428Z         starts_with("vax_date_"), starts_with("vax_cat_"))
+2025-08-01T14:25:39.143236509Z     print("Describe files")
+2025-08-01T14:25:39.143237486Z     if (isTRUE(describe)) {
+2025-08-01T14:25:39.143238445Z         describe_data(df = venn, name = paste0(cohort, "_venn"))
+2025-08-01T14:25:39.143239494Z         describe_data(df = input, name = paste0(cohort, "_preprocessed"))
+2025-08-01T14:25:39.143240553Z     }
+2025-08-01T14:25:39.143241453Z     print("Return data")
+2025-08-01T14:25:39.143242432Z     return(list(venn = venn, input = input))
+2025-08-01T14:25:39.143243401Z }
+2025-08-01T14:25:39.143244273Z 
+2025-08-01T14:25:39.143245159Z [[3]]$visible
+2025-08-01T14:25:39.143246102Z [1] FALSE
+2025-08-01T14:25:39.143247357Z 
+2025-08-01T14:25:39.143248212Z 
+2025-08-01T14:25:39.143249062Z [[4]]
+2025-08-01T14:25:39.143249989Z [[4]]$value
+2025-08-01T14:25:39.143361965Z function (input, flow, lcd_date) 
+2025-08-01T14:25:39.143369374Z {
+2025-08-01T14:25:39.143371480Z     print("Apply quality assurance to all cohorts")
+2025-08-01T14:25:39.143373230Z     input <- input[((!is.na(input$cens_date_death)) & (year(input$cens_date_death) >= 
+2025-08-01T14:25:39.143374995Z         input$qa_num_birth_year)) | (is.na(input$cens_date_death)), 
+2025-08-01T14:25:39.143376507Z         ]
+2025-08-01T14:25:39.143377958Z     flow[nrow(flow) + 1, ] <- c("Quality assurance: Year of birth is before year of death (if year of death is available)", 
+2025-08-01T14:25:39.143379702Z         nrow(input))
+2025-08-01T14:25:39.143381118Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.143382820Z     input <- input[!is.na(input$qa_num_birth_year) & (input$qa_num_birth_year <= 
+2025-08-01T14:25:39.143384467Z         lcd_date), ]
+2025-08-01T14:25:39.143385933Z     flow[nrow(flow) + 1, ] <- c("Quality assurance: Year of birth is before today (implemented using last data collection date)", 
+2025-08-01T14:25:39.143387608Z         nrow(input))
+2025-08-01T14:25:39.143388982Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.143390454Z     input <- input[(!is.na(input$cens_date_death) & (input$cens_date_death <= 
+2025-08-01T14:25:39.143392070Z         lcd_date)) | is.na(input$cens_date_death), ]
+2025-08-01T14:25:39.143406172Z     flow[nrow(flow) + 1, ] <- c("Quality assurance: Date of death is before today (if year of death is available and implemented using last data collection date)", 
+2025-08-01T14:25:39.143408391Z         nrow(input))
+2025-08-01T14:25:39.143409817Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.143411248Z     input <- input[!(input$cov_cat_sex == "male" & input$qa_bin_pregnancy == 
+2025-08-01T14:25:39.143412846Z         TRUE), ]
+2025-08-01T14:25:39.143416787Z     flow[nrow(flow) + 1, ] <- c("Quality assurance: Men do not have records that contain pregnancy and/or birth codes", 
+2025-08-01T14:25:39.143418579Z         nrow(input))
+2025-08-01T14:25:39.143419964Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.143421357Z     input <- input[!(input$cov_cat_sex == "male" & input$qa_bin_hrtcocp == 
+2025-08-01T14:25:39.143422920Z         TRUE), ]
+2025-08-01T14:25:39.143424262Z     flow[nrow(flow) + 1, ] <- c("Quality assurance: Men do not have records that contain HRT or COCP medication codes", 
+2025-08-01T14:25:39.143425870Z         nrow(input))
+2025-08-01T14:25:39.143427258Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.143428697Z     input <- input[!(input$cov_cat_sex == "female" & input$qa_bin_prostate_cancer == 
+2025-08-01T14:25:39.143430489Z         TRUE), ]
+2025-08-01T14:25:39.143431933Z     flow[nrow(flow) + 1, ] <- c("Quality assurance: Women do not have records that contain prostate cancer codes", 
+2025-08-01T14:25:39.143433533Z         nrow(input))
+2025-08-01T14:25:39.143434886Z     print(flow[nrow(flow), ])
+2025-08-01T14:25:39.143436249Z     return(list(input = input, flow = flow))
+2025-08-01T14:25:39.143437637Z }
+2025-08-01T14:25:39.143438978Z 
+2025-08-01T14:25:39.143440372Z [[4]]$visible
+2025-08-01T14:25:39.143441816Z [1] FALSE
+2025-08-01T14:25:39.143443228Z 
+2025-08-01T14:25:39.143444557Z 
+2025-08-01T14:25:39.143445877Z [[5]]
+2025-08-01T14:25:39.143447280Z [[5]]$value
+2025-08-01T14:25:39.144140262Z function (input) 
+2025-08-01T14:25:39.144149836Z {
+2025-08-01T14:25:39.144152442Z     print("Create supporting variable ")
+2025-08-01T14:25:39.144154355Z     if (all(c("sub_bin_asthma_recent", "sub_bin_copd_ever") %in% 
+2025-08-01T14:25:39.144156131Z         names(input))) {
+2025-08-01T14:25:39.144157623Z         input$sup_bin_preex <- (input$sub_bin_asthma_recent | 
+2025-08-01T14:25:39.144159276Z             input$sub_bin_copd_ever)
+2025-08-01T14:25:39.144160760Z     }
+2025-08-01T14:25:39.144162271Z     else {
+2025-08-01T14:25:39.144163766Z         warning("One or both variables ('sub_bin_asthma_recent', 'sub_bin_copd_ever') are missing. sup_bin_preex will not be created.")
+2025-08-01T14:25:39.144170042Z     }
+2025-08-01T14:25:39.144172028Z     print("Handle missing values in cov_cat_sex")
+2025-08-01T14:25:39.144173704Z     if ("cov_cat_sex" %in% names(input)) {
+2025-08-01T14:25:39.144175318Z         input$cov_cat_sex <- if_else(input$cov_cat_sex %in% c("male", 
+2025-08-01T14:25:39.144177014Z             "female"), input$cov_cat_sex, "missing")
+2025-08-01T14:25:39.144178691Z         if ("missing" %in% unique(input$cov_cat_sex)) {
+2025-08-01T14:25:39.144180312Z             stop("cov_cat_sex contains missing values.")
+2025-08-01T14:25:39.144181917Z         }
+2025-08-01T14:25:39.144183403Z     }
+2025-08-01T14:25:39.144188237Z     print("Handle missing values in cov_cat_imd")
+2025-08-01T14:25:39.144190109Z     if ("cov_cat_imd" %in% names(input)) {
+2025-08-01T14:25:39.144191771Z         input$cov_cat_imd <- if_else(input$cov_cat_imd %in% c("1 (most deprived)", 
+2025-08-01T14:25:39.144193481Z             "2", "3", "4", "5 (least deprived)"), input$cov_cat_imd, 
+2025-08-01T14:25:39.144195288Z             "missing")
+2025-08-01T14:25:39.144196834Z         if ("missing" %in% unique(input$cov_cat_imd)) {
+2025-08-01T14:25:39.144198433Z             stop("cov_cat_imd contains missing values.")
+2025-08-01T14:25:39.144200027Z         }
+2025-08-01T14:25:39.144201532Z     }
+2025-08-01T14:25:39.144202978Z     if ("cov_cat_ethnicity" %in% names(input)) {
+2025-08-01T14:25:39.144204578Z         print("Handle missing values in cov_cat_ethnicity")
+2025-08-01T14:25:39.144206248Z         input$cov_cat_ethnicity <- if_else(input$cov_cat_ethnicity %in% 
+2025-08-01T14:25:39.144207877Z             c("1", "2", "3", "4", "5"), input$cov_cat_ethnicity, 
+2025-08-01T14:25:39.144209633Z             "0")
+2025-08-01T14:25:39.144211159Z     }
+2025-08-01T14:25:39.144212620Z     if ("cov_cat_smoking" %in% names(input)) {
+2025-08-01T14:25:39.144214292Z         print("Handle missing values in cov_cat_smoking")
+2025-08-01T14:25:39.144215873Z         input$cov_cat_smoking <- if_else(input$cov_cat_smoking %in% 
+2025-08-01T14:25:39.144217462Z             c("E", "N", "S"), input$cov_cat_smoking, "M")
+2025-08-01T14:25:39.144219157Z     }
+2025-08-01T14:25:39.144220615Z     print("Recode missing values in binary variables as FALSE")
+2025-08-01T14:25:39.144222274Z     input <- input %>% mutate(across(contains("_bin_"), ~ifelse(. == 
+2025-08-01T14:25:39.144224377Z         TRUE, TRUE, FALSE))) %>% mutate(across(contains("_bin_"), 
+2025-08-01T14:25:39.144226193Z         ~replace_na(., FALSE)))
+2025-08-01T14:25:39.144227699Z     print("Set reference levels for factors")
+2025-08-01T14:25:39.144232005Z     cat_factors <- colnames(input)[grepl("_cat_", colnames(input))]
+2025-08-01T14:25:39.144234663Z     input[, cat_factors] <- lapply(input[, cat_factors], function(x) factor(x, 
+2025-08-01T14:25:39.144236628Z         ordered = FALSE))
+2025-08-01T14:25:39.144238112Z     if ("sub_cat_covidhospital" %in% names(input)) {
+2025-08-01T14:25:39.144239692Z         print("Set reference level for variable: sub_cat_covidhospital")
+2025-08-01T14:25:39.144241343Z         input$sub_cat_covidhospital <- ordered(input$sub_cat_covidhospital, 
+2025-08-01T14:25:39.144242986Z             levels = c("no_infection", "non_hospitalised", "hospitalised"))
+2025-08-01T14:25:39.144244740Z     }
+2025-08-01T14:25:39.144246279Z     if ("cov_cat_ethnicity" %in% names(input)) {
+2025-08-01T14:25:39.144247828Z         print("Set reference level for variable: cov_cat_ethnicity")
+2025-08-01T14:25:39.144249411Z         levels(input$cov_cat_ethnicity) <- list(Missing = "0", 
+2025-08-01T14:25:39.144251076Z             White = "1", Mixed = "2", Asian = "3", Black = "4", 
+2025-08-01T14:25:39.144252805Z             Other = "5")
+2025-08-01T14:25:39.144254341Z         input$cov_cat_ethnicity <- relevel(input$cov_cat_ethnicity, 
+2025-08-01T14:25:39.144255953Z             ref = "White")
+2025-08-01T14:25:39.144257538Z     }
+2025-08-01T14:25:39.144258940Z     if ("cov_cat_imd" %in% names(input)) {
+2025-08-01T14:25:39.144260483Z         print("Set reference level for variable: cov_cat_imd")
+2025-08-01T14:25:39.144262046Z         input$cov_cat_imd <- ordered(input$cov_cat_imd, levels = c("1 (most deprived)", 
+2025-08-01T14:25:39.144263789Z             "2", "3", "4", "5 (least deprived)"))
+2025-08-01T14:25:39.144265504Z     }
+2025-08-01T14:25:39.144266910Z     if ("strat_cat_region" %in% names(input)) {
+2025-08-01T14:25:39.144268583Z         print("Set reference level for variable: strat_cat_region")
+2025-08-01T14:25:39.144270138Z         input$strat_cat_region <- factor(input$strat_cat_region, 
+2025-08-01T14:25:39.144271695Z             levels = c("East", "East Midlands", "London", "North East", 
+2025-08-01T14:25:39.144273446Z                 "North West", "South East", "South West", "West Midlands", 
+2025-08-01T14:25:39.144275168Z                 "Yorkshire and The Humber"))
+2025-08-01T14:25:39.144276651Z         input$strat_cat_region <- relevel(input$strat_cat_region, 
+2025-08-01T14:25:39.144278204Z             ref = "East")
+2025-08-01T14:25:39.144279665Z     }
+2025-08-01T14:25:39.144281066Z     if ("cov_cat_smoking" %in% names(input)) {
+2025-08-01T14:25:39.144282568Z         print("Set reference level for variable: cov_cat_smoking")
+2025-08-01T14:25:39.144285830Z         levels(input$cov_cat_smoking) <- list(`Ever smoker` = "E", 
+2025-08-01T14:25:39.144287660Z             Missing = "M", `Never smoker` = "N", `Current smoker` = "S")
+2025-08-01T14:25:39.144289451Z         input$cov_cat_smoking <- ordered(input$cov_cat_smoking, 
+2025-08-01T14:25:39.144291066Z             levels = c("Never smoker", "Ever smoker", "Current smoker", 
+2025-08-01T14:25:39.144292732Z                 "Missing"))
+2025-08-01T14:25:39.144294221Z     }
+2025-08-01T14:25:39.144295711Z     if ("cov_cat_sex" %in% names(input)) {
+2025-08-01T14:25:39.144297288Z         print("Set reference level for variable: cov_cat_sex")
+2025-08-01T14:25:39.144299191Z         levels(input$cov_cat_sex) <- list(Female = "female", 
+2025-08-01T14:25:39.144300947Z             Male = "male")
+2025-08-01T14:25:39.144302512Z         input$cov_cat_sex <- relevel(input$cov_cat_sex, ref = "Female")
+2025-08-01T14:25:39.144304225Z     }
+2025-08-01T14:25:39.144305731Z     if ("vax_cat_jcvi_group" %in% names(input)) {
+2025-08-01T14:25:39.144307356Z         print("Set reference level for variable: vax_cat_jcvi_group")
+2025-08-01T14:25:39.144309014Z         input$vax_cat_jcvi_group <- ordered(input$vax_cat_jcvi_group, 
+2025-08-01T14:25:39.144310694Z             levels = c("12", "11", "10", "09", "08", "07", "06", 
+2025-08-01T14:25:39.144312546Z                 "05", "04", "03", "02", "01", "99"))
+2025-08-01T14:25:39.144314327Z     }
+2025-08-01T14:25:39.144315763Z     print("Set reference level for binaries")
+2025-08-01T14:25:39.144317341Z     bin_factors <- colnames(input)[grepl("cov_bin_", colnames(input))]
+2025-08-01T14:25:39.144319098Z     input[, bin_factors] <- lapply(input[, bin_factors], function(x) factor(x, 
+2025-08-01T14:25:39.144320683Z         levels = c("FALSE", "TRUE")))
+2025-08-01T14:25:39.144322336Z     return(input)
+2025-08-01T14:25:39.144323844Z }
+2025-08-01T14:25:39.144325282Z 
+2025-08-01T14:25:39.144326695Z [[5]]$visible
+2025-08-01T14:25:39.144328095Z [1] FALSE
+2025-08-01T14:25:39.144329437Z 
+2025-08-01T14:25:39.144330753Z 
+2025-08-01T14:25:39.144332219Z [1] "Specify command arguments"
+2025-08-01T14:25:39.144335709Z [1] 2
+2025-08-01T14:25:39.183951442Z [1] "Get column names"
+2025-08-01T14:25:39.254019651Z Column names found
+2025-08-01T14:25:39.254044700Z  [1] "patient_id"                      "inex_bin_6m_reg"                
+2025-08-01T14:25:39.254058900Z  [3] "inex_bin_alive"                  "cens_date_dereg"                
+2025-08-01T14:25:39.254060410Z  [5] "exp_date_covid"                  "qa_bin_prostate_cancer"         
+2025-08-01T14:25:39.254068592Z  [7] "qa_bin_pregnancy"                "qa_num_birth_year"              
+2025-08-01T14:25:39.254070086Z  [9] "qa_bin_hrtcocp"                  "tmp_out_date_ami_gp"            
+2025-08-01T14:25:39.254071182Z [11] "tmp_out_date_ami_apc"            "tmp_out_date_ami_death"         
+2025-08-01T14:25:39.254072252Z [13] "out_date_ami"                    "tmp_out_date_stroke_sahhs_gp"   
+2025-08-01T14:25:39.254073372Z [15] "tmp_out_date_stroke_sahhs_apc"   "tmp_out_date_stroke_sahhs_death"
+2025-08-01T14:25:39.254074478Z [17] "out_date_stroke_sahhs"           "strat_cat_region"               
+2025-08-01T14:25:39.254075560Z [19] "cov_num_age"                     "cov_cat_sex"                    
+2025-08-01T14:25:39.254076632Z [21] "cov_cat_ethnicity"               "cov_cat_imd"                    
+2025-08-01T14:25:39.254077697Z [23] "cov_cat_smoking"                 "cov_bin_carehome"               
+2025-08-01T14:25:39.254078802Z [25] "cov_num_consrate2019"            "cov_bin_hcworker"               
+2025-08-01T14:25:39.254079840Z [27] "cov_bin_dementia"                "cov_bin_liver_disease"          
+2025-08-01T14:25:39.254080881Z [29] "cov_bin_ckd"                     "cov_bin_cancer"                 
+2025-08-01T14:25:39.254081928Z [31] "cov_bin_hypertension"            "cov_bin_diabetes"               
+2025-08-01T14:25:39.254082929Z [33] "cov_bin_obesity"                 "cov_bin_copd"                   
+2025-08-01T14:25:39.254083975Z [35] "cov_bin_ami"                     "cov_bin_depression"             
+2025-08-01T14:25:39.254085042Z [37] "cov_bin_stroke_all"              "cov_bin_other_ae"               
+2025-08-01T14:25:39.254086057Z [39] "cov_bin_vte"                     "cov_bin_hf"                     
+2025-08-01T14:25:39.254087134Z [41] "cov_bin_angina"                  "cov_bin_lipidmed"               
+2025-08-01T14:25:39.254088168Z [43] "cov_bin_antiplatelet"            "cov_bin_anticoagulant"          
+2025-08-01T14:25:39.254089199Z [45] "cov_bin_cocp"                    "cov_bin_hrt"                    
+2025-08-01T14:25:39.254090236Z [47] "sub_bin_covidhistory"            "sub_cat_covidhospital"          
+2025-08-01T14:25:39.254091244Z [49] "vax_cat_jcvi_group"              "vax_date_eligible"              
+2025-08-01T14:25:39.254093509Z [51] "vax_date_covid_1"                "vax_date_covid_2"               
+2025-08-01T14:25:39.254094559Z [53] "vax_date_covid_3"                "vax_date_Pfizer_1"              
+2025-08-01T14:25:39.254095604Z [55] "vax_date_Pfizer_2"               "vax_date_Pfizer_3"              
+2025-08-01T14:25:39.254102398Z [57] "vax_date_AstraZeneca_1"          "vax_date_AstraZeneca_2"         
+2025-08-01T14:25:39.254103300Z [59] "vax_date_AstraZeneca_3"          "vax_date_Moderna_1"             
+2025-08-01T14:25:39.254104229Z [61] "vax_date_Moderna_2"              "vax_date_Moderna_3"             
+2025-08-01T14:25:39.254106598Z [63] "cens_date_death"                 "index_date"                     
+2025-08-01T14:25:39.254107486Z [65] "end_date_exposure"               "end_date_outcome"               
+2025-08-01T14:25:39.254108421Z [1] "Define column classes"
+2025-08-01T14:25:39.254171904Z [1] "Load cohort dataset"
+2025-08-01T14:25:39.254180313Z Column classes identified
+2025-08-01T14:25:39.254181361Z Column classes defined
+2025-08-01T14:25:39.356596921Z [1] "Modify dummy data"
+2025-08-01T14:25:39.356619848Z Dataset has been read successfully with N = 5000 rows
+2025-08-01T14:25:39.563244823Z [1] "Format dataset columns"
+2025-08-01T14:25:39.586645899Z [1] "Describe data"
+2025-08-01T14:25:39.586696886Z [1] "Remove records with missing patient id"
+2025-08-01T14:25:39.588827014Z [1] "Make Venn diagram input dataset"
+2025-08-01T14:25:39.588845720Z All records with valid patient IDs retained.
+2025-08-01T14:25:39.591599478Z [1] "Restrict columns"
+2025-08-01T14:25:39.611632344Z [1] "Describe files"
+2025-08-01T14:25:39.611659087Z [1] "Return data"
+2025-08-01T14:25:39.617362155Z Venn diagram data saved successfully
+2025-08-01T14:25:39.617387285Z Preprocess dataset has N = 5000 rows
+2025-08-01T14:25:39.617455723Z [1] "Specify flow table"
+2025-08-01T14:25:39.617808521Z [1] "Call inclusion criteria function"
+2025-08-01T14:25:39.694606678Z [1] "Apply inclusion criteria to all cohorts"
+2025-08-01T14:25:39.698784200Z                          Description    N
+2025-08-01T14:25:39.698813225Z 2 Inclusion criteria: Alive at index 4947
+2025-08-01T14:25:39.701887998Z                                         Description    N
+2025-08-01T14:25:39.701913793Z 3 Inclusion criteria: Known age 18 or over at index 4848
+2025-08-01T14:25:39.705382521Z                                           Description    N
+2025-08-01T14:25:39.705410842Z 4 Inclusion criteria: Known age 110 or under at index 4748
+2025-08-01T14:25:39.710085104Z                                                           Description    N
+2025-08-01T14:25:39.710131516Z 5 Inclusion criteria: Known sex, recorded as male or female, at index 4662
+2025-08-01T14:25:39.714040094Z                              Description    N
+2025-08-01T14:25:39.714075186Z 6 Inclusion criteria: Known IMD at index 4538
+2025-08-01T14:25:39.718409836Z                                 Description    N
+2025-08-01T14:25:39.718447209Z 7 Inclusion criteria: Known region at index 4487
+2025-08-01T14:25:39.721578908Z                                                                                                                     Description
+2025-08-01T14:25:39.721617542Z 8 Inclusion criteria: Continuous registration with the same practice for at least six months up to and including the index date
+2025-08-01T14:25:39.721650719Z      N
+2025-08-01T14:25:39.721656313Z 8 4438
+2025-08-01T14:25:39.724849816Z                                                Description    N
+2025-08-01T14:25:39.724868852Z 9 Inclusion criteria: Index date is before cohort end date 4438
+2025-08-01T14:25:39.724871935Z [1] "Apply cohort specific inclusion criteria"
+2025-08-01T14:25:39.725252780Z [1] "Call quality assurance function"
+2025-08-01T14:25:39.794417595Z [1] "Apply quality assurance to all cohorts"
+2025-08-01T14:25:39.797235302Z                                                                                 Description
+2025-08-01T14:25:39.797256897Z 10 Quality assurance: Year of birth is before year of death (if year of death is available)
+2025-08-01T14:25:39.797259711Z       N
+2025-08-01T14:25:39.797261758Z 10 4426
+2025-08-01T14:25:39.799772231Z                                                                                       Description
+2025-08-01T14:25:39.799792261Z 11 Quality assurance: Year of birth is before today (implemented using last data collection date)
+2025-08-01T14:25:39.799795191Z       N
+2025-08-01T14:25:39.799798034Z 11 4420
+2025-08-01T14:25:39.802063337Z                                                                                                                         Description
+2025-08-01T14:25:39.802088248Z 12 Quality assurance: Date of death is before today (if year of death is available and implemented using last data collection date)
+2025-08-01T14:25:39.802093342Z       N
+2025-08-01T14:25:39.802096514Z 12 4297
+2025-08-01T14:25:39.804650284Z                                                                             Description
+2025-08-01T14:25:39.804704816Z 13 Quality assurance: Men do not have records that contain pregnancy and/or birth codes
+2025-08-01T14:25:39.804709889Z       N
+2025-08-01T14:25:39.804713267Z 13 4291
+2025-08-01T14:25:39.807041223Z                                                                             Description
+2025-08-01T14:25:39.807092273Z 14 Quality assurance: Men do not have records that contain HRT or COCP medication codes
+2025-08-01T14:25:39.807097172Z       N
+2025-08-01T14:25:39.807100340Z 14 4285
+2025-08-01T14:25:39.809158459Z                                                                        Description
+2025-08-01T14:25:39.809205864Z 15 Quality assurance: Women do not have records that contain prostate cancer codes
+2025-08-01T14:25:39.809210900Z       N
+2025-08-01T14:25:39.809214398Z 15 4275
+2025-08-01T14:25:39.809414393Z [1] "Call reference function"
+2025-08-01T14:25:39.855947403Z [1] "Create supporting variable "
+2025-08-01T14:25:39.856004351Z [1] "Handle missing values in cov_cat_sex"
+2025-08-01T14:25:39.857735119Z [1] "Handle missing values in cov_cat_imd"
+2025-08-01T14:25:39.858017711Z [1] "Handle missing values in cov_cat_ethnicity"
+2025-08-01T14:25:39.858204725Z [1] "Handle missing values in cov_cat_smoking"
+2025-08-01T14:25:39.858406340Z [1] "Recode missing values in binary variables as FALSE"
+2025-08-01T14:25:39.870661421Z [1] "Set reference levels for factors"
+2025-08-01T14:25:39.871653769Z [1] "Set reference level for variable: sub_cat_covidhospital"
+2025-08-01T14:25:39.871836496Z [1] "Set reference level for variable: cov_cat_ethnicity"
+2025-08-01T14:25:39.872075878Z [1] "Set reference level for variable: cov_cat_imd"
+2025-08-01T14:25:39.872290058Z [1] "Set reference level for variable: strat_cat_region"
+2025-08-01T14:25:39.872300594Z [1] "Set reference level for variable: cov_cat_smoking"
+2025-08-01T14:25:39.872472025Z [1] "Set reference level for variable: cov_cat_sex"
+2025-08-01T14:25:39.872616560Z [1] "Set reference level for variable: vax_cat_jcvi_group"
+2025-08-01T14:25:39.872932793Z [1] "Set reference level for binaries"
+2025-08-01T14:25:39.880936086Z Warning message:
+2025-08-01T14:25:39.880963081Z In ref(qa_results$input) :
+2025-08-01T14:25:39.880965622Z   One or both variables ('sub_bin_asthma_recent', 'sub_bin_copd_ever') are missing. sup_bin_preex will not be created.
+2025-08-01T14:25:39.881015449Z [1] "Saving flow data after Inclusion criteria"
+2025-08-01T14:25:39.882550523Z [1] "Performing redaction"
+2025-08-01T14:25:39.882874269Z [1] "Saving rounded flow data after Inclusion criteria"
+2025-08-01T14:25:39.883286112Z [1] "Saving dataset after preprocessing, applying inclusion criteria, quality assurance checks, and setting reference levels"
+
+
+job_definition_id: k32aw7ovfck6m657
+job_definition_request_id: 305d19a51c
+docker_image_id: sha256:ef02d2a106a19e7d6a5d5a9b895969058ce5a89c6535f13c96d1d73fe995c657
+exit_code: 0
+created_at: 1754058235
+completed_at: 1754058341
+status_message: Completed successfully
+
+outputs:
+  output/dataset_clean/flow-cohort_prevax-midpoint6.csv  - moderately_sensitive
+  output/dataset_clean/flow-cohort_prevax.csv            - moderately_sensitive
+  output/dataset_clean/input_prevax_clean.rds            - highly_sensitive    
+  output/dataset_clean/venn-cohort_prevax.rds            - highly_sensitive    

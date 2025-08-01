@@ -1,0 +1,82 @@
+2025-08-01T14:15:53.871500364Z [1] "Load libraries"
+2025-08-01T14:15:53.886181783Z here() starts at /workspace
+2025-08-01T14:15:54.247133340Z 
+2025-08-01T14:15:54.247172493Z Attaching package: ‘dplyr’
+2025-08-01T14:15:54.247180747Z 
+2025-08-01T14:15:54.249121727Z The following objects are masked from ‘package:stats’:
+2025-08-01T14:15:54.249168688Z 
+2025-08-01T14:15:54.249173535Z     filter, lag
+2025-08-01T14:15:54.249175578Z 
+2025-08-01T14:15:54.249633773Z The following objects are masked from ‘package:base’:
+2025-08-01T14:15:54.249699244Z 
+2025-08-01T14:15:54.249704861Z     intersect, setdiff, setequal, union
+2025-08-01T14:15:54.249709239Z 
+2025-08-01T14:15:54.251842379Z Loading required package: Matrix
+2025-08-01T14:15:55.305005583Z Loaded glmnet 4.1-8
+2025-08-01T14:15:55.308205254Z [1] "Creating output/lasso_X_var_selection output folder"
+2025-08-01T14:15:55.356358139Z [1] "Source common functions"
+2025-08-01T14:15:55.357400656Z [1] "Specify arguments"
+2025-08-01T14:15:55.357804465Z [1] 2
+2025-08-01T14:15:55.389949776Z [1] "Load data"
+2025-08-01T14:15:55.513319374Z [1] "Processing Start"
+2025-08-01T14:15:55.513486233Z [1] "Remove people with history of COVID-19"
+2025-08-01T14:15:55.516902447Z [1] "Create exposure indicator"
+2025-08-01T14:15:55.518158643Z [1] "Select for pre-existing conditions"
+2025-08-01T14:15:55.518248231Z [1] "Define age groups"
+2025-08-01T14:15:55.556736272Z [1] "Filter data"
+2025-08-01T14:15:55.557549048Z [1] "Filter binary data"
+2025-08-01T14:15:56.496469310Z [1] "Check exposure and outcome (acute MI)"
+2025-08-01T14:15:56.496519635Z [1] "Exposure"
+2025-08-01T14:15:56.497141102Z [1] FALSE FALSE  TRUE FALSE FALSE  TRUE
+2025-08-01T14:15:56.497165731Z [1] "Outcome"
+2025-08-01T14:15:56.497615375Z [1] "FALSE" "FALSE" "TRUE"  "FALSE" "TRUE"  "FALSE"
+2025-08-01T14:15:56.497646779Z [1] "Convert explicit data type to binary where applicable"
+2025-08-01T14:15:56.520198471Z   patient_id         exposed        cov_cat_sex        cov_cat_ethnicity 
+2025-08-01T14:15:56.520234870Z  Length:4053        Mode :logical   Length:4053        Length:4053       
+2025-08-01T14:15:56.520237329Z  Class :character   FALSE:2056      Class :character   Class :character  
+2025-08-01T14:15:56.520238913Z  Mode  :character   TRUE :1997      Mode  :character   Mode  :character  
+2025-08-01T14:15:56.520240577Z  cov_cat_imd        cov_cat_smoking    cov_cat_age_group  cov_cat_consrate2019
+2025-08-01T14:15:56.520241957Z  Length:4053        Length:4053        Length:4053        Length:4053         
+2025-08-01T14:15:56.520258255Z  Class :character   Class :character   Class :character   Class :character    
+2025-08-01T14:15:56.520259588Z  Mode  :character   Mode  :character   Mode  :character   Mode  :character    
+2025-08-01T14:15:56.520260674Z  strat_cat_region   cov_bin_carehome cov_bin_hcworker cov_bin_dementia
+2025-08-01T14:15:56.520261830Z  Length:4053        Mode :logical    Mode :logical    Mode :logical   
+2025-08-01T14:15:56.520262933Z  Class :character   FALSE:3404       FALSE:1845       FALSE:3560      
+2025-08-01T14:15:56.520264040Z  Mode  :character   TRUE :649        TRUE :2208       TRUE :493       
+2025-08-01T14:15:56.520265135Z  cov_bin_liver_disease cov_bin_ckd     cov_bin_cancer  cov_bin_hypertension
+2025-08-01T14:15:56.520266183Z  Mode :logical         Mode :logical   Mode :logical   Mode :logical       
+2025-08-01T14:15:56.520267230Z  FALSE:3258            FALSE:2945      FALSE:960       FALSE:1113          
+2025-08-01T14:15:56.520268265Z  TRUE :795             TRUE :1108      TRUE :3093      TRUE :2940          
+2025-08-01T14:15:56.520269295Z  cov_bin_diabetes cov_bin_obesity cov_bin_copd    cov_bin_ami    
+2025-08-01T14:15:56.520270356Z  Mode :logical    Mode :logical   Mode :logical   Mode :logical  
+2025-08-01T14:15:56.520271363Z  FALSE:1775       FALSE:3993      FALSE:1665      FALSE:2974     
+2025-08-01T14:15:56.520272368Z  TRUE :2278       TRUE :60        TRUE :2388      TRUE :1079     
+2025-08-01T14:15:56.520273383Z  cov_bin_depression cov_bin_stroke_all cov_bin_other_ae cov_bin_vte    
+2025-08-01T14:15:56.520274414Z  Mode :logical      Mode :logical      Mode :logical    Mode :logical  
+2025-08-01T14:15:56.520275479Z  FALSE:3002         FALSE:2577         FALSE:3621       FALSE:2649     
+2025-08-01T14:15:56.520278022Z  TRUE :1051         TRUE :1476         TRUE :432        TRUE :1404     
+2025-08-01T14:15:56.520279094Z  cov_bin_hf      cov_bin_angina  cov_bin_lipidmed cov_bin_antiplatelet
+2025-08-01T14:15:56.520280183Z  Mode :logical   Mode :logical   Mode :logical    Mode :logical       
+2025-08-01T14:15:56.520281336Z  FALSE:3611      FALSE:3664      FALSE:3290       FALSE:3741          
+2025-08-01T14:15:56.520282408Z  TRUE :442       TRUE :389       TRUE :763        TRUE :312           
+2025-08-01T14:15:56.520284667Z  cov_bin_anticoagulant cov_bin_cocp    cov_bin_hrt         All           
+2025-08-01T14:15:56.520285732Z  Mode :logical         Mode :logical   Mode :logical   Length:4053       
+2025-08-01T14:15:56.520286794Z  FALSE:3849            FALSE:3930      FALSE:3784      Class :character  
+2025-08-01T14:15:56.520287827Z  TRUE :204             TRUE :123       TRUE :269       Mode  :character  
+2025-08-01T14:15:56.520288935Z [1] "LASSO_X data matrix setup"
+2025-08-01T14:15:56.527634488Z [1] "Fitting the LASSO_X model"
+2025-08-01T14:15:56.646451324Z [1] "Extract covariate selection results"
+2025-08-01T14:15:56.646873685Z character(0)
+2025-08-01T14:15:56.646908895Z [1] "Save Covariate Selection"
+
+
+job_definition_id: acuihiuj4msxgvpt
+job_definition_request_id: b224088a6e
+docker_image_id: sha256:13f6c027b613bda2d60fbc6dbcd8f7263e1224f1e45a4797375e438f28fd0e5d
+exit_code: 0
+created_at: 1754057622
+completed_at: 1754057758
+status_message: Completed successfully
+
+outputs:
+  output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax.csv  - moderately_sensitive

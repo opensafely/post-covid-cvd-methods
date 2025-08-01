@@ -41,23 +41,87 @@ actions:
       highly_sensitive:
         cohort: output/dataset_definition/input_prevax.csv.gz
 
-  ## Generate input_prevax_clean, with describe = TRUE 
+  ## Generate input_prevax_clean, with describe = FALSE 
 
   generate_input_prevax_clean:
-    run: r:latest analysis/dataset_clean/dataset_clean.R prevax TRUE
+    run: r:latest analysis/dataset_clean/dataset_clean.R prevax FALSE
     needs:
     - study_dates
     - generate_input_prevax
     outputs:
       moderately_sensitive:
-        describe_raw: output/describe/prevax_raw.txt
-        describe_venn: output/describe/prevax_venn.txt
-        describe_preprocessed: output/describe/prevax_preprocessed.txt
         flow: output/dataset_clean/flow-cohort_prevax.csv
         flow_midpoint6: output/dataset_clean/flow-cohort_prevax-midpoint6.csv
       highly_sensitive:
         venn: output/dataset_clean/venn-cohort_prevax.rds
         cohort_clean: output/dataset_clean/input_prevax_clean.rds
+
+  ## Generate table1_cohort_prevax 
+
+  table1-cohort_prevax:
+    run: 'r:v2 analysis/table1/table1.R prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    outputs:
+      moderately_sensitive:
+        table1: output/table1/table1-cohort_prevax.csv
+        table1_midpoint6: output/table1/table1-cohort_prevax-midpoint6.csv
+
+  ## Generate make-table1-output 
+
+  make-table1-output:
+    run: r:v2 analysis/make_output/make_other_output.R table1 prevax
+    needs:
+    - table1-cohort_prevax
+    outputs:
+      moderately_sensitive:
+        table1_output_midpoint6: output/make_output/table1_output_midpoint6.csv
+
+  ## Generate lasso_var_selection_cohort_prevax 
+
+  lasso_var_selection-cohort_prevax:
+    run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    outputs:
+      moderately_sensitive:
+        lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax.csv
+
+  ## Generate lasso_X_var_selection_cohort_prevax 
+
+  lasso_X_var_selection-cohort_prevax:
+    run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    - lasso_var_selection-cohort_prevax
+    outputs:
+      moderately_sensitive:
+        lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax.csv
+
+  ## Generate lasso_union_var_selection_cohort_prevax 
+
+  lasso_union_var_selection-cohort_prevax:
+    run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R prevax
+      18;30;40;50;50;70;80;90 '
+    needs:
+    - lasso_var_selection-cohort_prevax
+    - lasso_X_var_selection-cohort_prevax
+    outputs:
+      moderately_sensitive:
+        lasso_union_var_selection: output/lasso_union_var_selection/lasso_union_var_selection-cohort_prevax.csv
+
+  ## Perform unconfoundedness_test_cohort_prevax 
+
+  unconfoundedness_test-cohort_prevax:
+    run: 'r:v2 analysis/unconfoundedness_test/unconfoundedness_test.R prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    - lasso_var_selection-cohort_prevax
+    - lasso_X_var_selection-cohort_prevax
+    - lasso_union_var_selection-cohort_prevax
+    outputs:
+      moderately_sensitive:
+        unconfoundedness_test: output/unconfoundedness_test/unconfoundedness_test-cohort_prevax.csv
 
   ## Run models 
 
@@ -104,4 +168,73 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model/model_output-cohort_prevax-main-stroke_sahhs.csv
+
+  ## Generate table2-cohort_prevax-sub_covidhospital 
+
+  table2-cohort_prevax-sub_covidhospital:
+    run: r:v2 analysis/table2/table2.R prevax covidhospital
+    needs:
+    - make_model_input-cohort_prevax-main-ami
+    - make_model_input-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        table2: output/table2/table2-cohort_prevax-sub_covidhospital.csv
+        table2_midpoint6: output/table2/table2-cohort_prevax-sub_covidhospital-midpoint6.csv
+
+  ## Generate make-table2-sub_covidhospital-output 
+
+  make-table2-sub_covidhospital-output:
+    run: r:v2 analysis/make_output/make_other_output.R table2 prevax covidhospital
+    needs:
+    - table2-cohort_prevax-sub_covidhospital
+    outputs:
+      moderately_sensitive:
+        table1_output_midpoint6: output/make_output/table2-sub_covidhospital_output_midpoint6.csv
+
+  ## Generate venn-cohort_prevax 
+
+  venn-cohort_prevax:
+    run: r:v2 analysis/venn/venn.R prevax
+    needs:
+    - generate_input_prevax_clean
+    - make_model_input-cohort_prevax-main-ami
+    - make_model_input-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        venn: output/venn/venn-cohort_prevax.csv
+        venn_midpoint6: output/venn/venn-cohort_prevax-midpoint6.csv
+
+  ## Generate make-venn-output 
+
+  make-venn-output:
+    run: r:v2 analysis/make_output/make_other_output.R venn prevax
+    needs:
+    - venn-cohort_prevax
+    outputs:
+      moderately_sensitive:
+        table1_output_midpoint6: output/make_output/venn_output_midpoint6.csv
+
+  ## Generate model_output-main 
+
+  make_model_output-main:
+    run: r:v2 analysis/make_output/make_model_output.R main
+    needs:
+    - cox_ipw-cohort_prevax-main-ami
+    - cox_ipw-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        model_output: output/make_output/model_output-main.csv
+        model_output_midpoint6: output/make_output/model_output-main-midpoint6.csv
+
+  ## Make absolute excess risk (AER) input 
+
+  make_aer_input:
+    run: r:v2 analysis/make_output/make_aer_input.R main
+    needs:
+    - make_model_input-cohort_prevax-main-ami
+    - make_model_input-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        aer_input: output/make_output/aer_input-main.csv
+        aer_input_midpoint6: output/make_output/aer_input-main-midpoint6.csv
 

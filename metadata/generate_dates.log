@@ -1,0 +1,17 @@
+2025-08-01T14:24:11.533935876Z [info   ] Compiling dataset definition from analysis/dataset_definition/dataset_definition_dates.py
+2025-08-01T14:24:12.710753171Z [info   ] Generating dummy dataset
+2025-08-01T14:24:12.776433125Z [info   ] Using next generation dummy data generation
+2025-08-01T14:24:12.776483686Z [info   ] Attempting to generate 5000 matching patients (random seed: BwRV3spP, timeout: 60s)
+2025-08-01T14:24:12.776485124Z [info   ] Use `dataset.configure_dummy_data(population_size=N)` to change number of patients generated
+
+
+job_definition_id: gzy6nl7ojqfp5zoh
+job_definition_request_id: 305d19a51c
+docker_image_id: sha256:6983ede8044e767134f0396a2b1f2e929ac1ecf6cafd4c44b70d360d14253a4f
+exit_code: 0
+created_at: 1754058235
+completed_at: 1754058271
+status_message: Completed successfully
+
+outputs:
+  output/dataset_definition/index_dates.csv.gz  - highly_sensitive

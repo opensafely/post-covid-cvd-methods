@@ -1,0 +1,2030 @@
+2025-08-01T14:16:26.941246779Z [1] "Record input arguments"
+2025-08-01T14:16:26.948228063Z                   argument
+2025-08-01T14:16:26.948283717Z 1                 df_input
+2025-08-01T14:16:26.948293480Z 2                      ipw
+2025-08-01T14:16:26.948298948Z 3           sample_exposed
+2025-08-01T14:16:26.948303291Z 4                 exposure
+2025-08-01T14:16:26.948307614Z 5                  outcome
+2025-08-01T14:16:26.948311958Z 6                   strata
+2025-08-01T14:16:26.948316299Z 7            covariate_sex
+2025-08-01T14:16:26.948320441Z 8            covariate_age
+2025-08-01T14:16:26.948324589Z 9          covariate_other
+2025-08-01T14:16:26.948328967Z 10               cox_start
+2025-08-01T14:16:26.948333142Z 11                cox_stop
+2025-08-01T14:16:26.948337277Z 12             study_start
+2025-08-01T14:16:26.948341328Z 13              study_stop
+2025-08-01T14:16:26.948345323Z 14              cut_points
+2025-08-01T14:16:26.948349950Z 15       controls_per_case
+2025-08-01T14:16:26.948354175Z 16   total_event_threshold
+2025-08-01T14:16:26.948358323Z 17 episode_event_threshold
+2025-08-01T14:16:26.948362571Z 18     covariate_threshold
+2025-08-01T14:16:26.948389382Z 19              age_spline
+2025-08-01T14:16:26.948395782Z 20               df_output
+2025-08-01T14:16:26.948400243Z 21                    seed
+2025-08-01T14:16:26.948404498Z 22     save_analysis_ready
+2025-08-01T14:16:26.948408841Z 23            run_analysis
+2025-08-01T14:16:26.948423116Z 24                  config
+2025-08-01T14:16:26.948428090Z 25                    help
+2025-08-01T14:16:26.948433579Z                                                                                                                                                                                                                                                                                                                                                                                                                                      value
+2025-08-01T14:16:26.948442601Z 1                                                                                                                                                                                                                                                                                                                                                                                    model/model_input-cohort_prevax-main-stroke_sahhs.rds
+2025-08-01T14:16:26.948449476Z 2                                                                                                                                                                                                                                                                                                                                                                                                                                     TRUE
+2025-08-01T14:16:26.948560858Z 3                                                                                                                                                                                                                                                                                                                                                                                                                                    FALSE
+2025-08-01T14:16:26.948590495Z 4                                                                                                                                                                                                                                                                                                                                                                                                                                 exp_date
+2025-08-01T14:16:26.948596935Z 5                                                                                                                                                                                                                                                                                                                                                                                                                                 out_date
+2025-08-01T14:16:26.948602009Z 6                                                                                                                                                                                                                                                                                                                                                                                                                         strat_cat_region
+2025-08-01T14:16:26.948607384Z 7                                                                                                                                                                                                                                                                                                                                                                                                                              cov_cat_sex
+2025-08-01T14:16:26.948629392Z 8                                                                                                                                                                                                                                                                                                                                                                                                                              cov_num_age
+2025-08-01T14:16:26.948684925Z 9  cov_cat_ethnicity;cov_cat_imd;cov_num_consrate2019;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
+2025-08-01T14:16:26.948689966Z 10                                                                                                                                                                                                                                                                                                                                                                                                                              index_date
+2025-08-01T14:16:26.948694624Z 11                                                                                                                                                                                                                                                                                                                                                                                                                        end_date_outcome
+2025-08-01T14:16:26.948710596Z 12                                                                                                                                                                                                                                                                                                                                                                                                                              2020-01-01
+2025-08-01T14:16:26.948716287Z 13                                                                                                                                                                                                                                                                                                                                                                                                                              2024-04-30
+2025-08-01T14:16:26.948721090Z 14                                                                                                                                                                                                                                                                                                                                                                                                   1;7;14;28;56;84;183;365;730;1065;1582
+2025-08-01T14:16:26.948726305Z 15                                                                                                                                                                                                                                                                                                                                                                                                                                      20
+2025-08-01T14:16:26.948731125Z 16                                                                                                                                                                                                                                                                                                                                                                                                                                      50
+2025-08-01T14:16:26.948735724Z 17                                                                                                                                                                                                                                                                                                                                                                                                                                       5
+2025-08-01T14:16:26.948740778Z 18                                                                                                                                                                                                                                                                                                                                                                                                                                       5
+2025-08-01T14:16:26.948745473Z 19                                                                                                                                                                                                                                                                                                                                                                                                                                    TRUE
+2025-08-01T14:16:26.948753851Z 20                                                                                                                                                                                                                                                                                                                                                                                  model/model_output-cohort_prevax-main-stroke_sahhs.csv
+2025-08-01T14:16:26.948758448Z 21                                                                                                                                                                                                                                                                                                                                                                                                                                     137
+2025-08-01T14:16:26.948763208Z 22                                                                                                                                                                                                                                                                                                                                                                                                                                   FALSE
+2025-08-01T14:16:26.948768347Z 23                                                                                                                                                                                                                                                                                                                                                                                                                                    TRUE
+2025-08-01T14:16:26.948773013Z 24                                                                                                                                                                                                                                                                                                                                                                                                                                        
+2025-08-01T14:16:26.948777602Z 25                                                                                                                                                                                                                                                                                                                                                                                                                                   FALSE
+2025-08-01T14:16:26.951163907Z [1] "Import libraries"
+2025-08-01T14:16:27.774589790Z [1] "Import functions"
+2025-08-01T14:16:27.777810416Z [[1]]
+2025-08-01T14:16:27.777841651Z [[1]]$value
+2025-08-01T14:16:27.778642629Z function (df, covariate_threshold, strata) 
+2025-08-01T14:16:27.778663507Z {
+2025-08-01T14:16:27.778667807Z     library(magrittr)
+2025-08-01T14:16:27.778670724Z     print("Identify non-numeric covariates to remove")
+2025-08-01T14:16:27.778673777Z     covariate_removed <- NULL
+2025-08-01T14:16:27.778689376Z     for (i in unique(c(colnames(df)[grepl("cov_", colnames(df))], 
+2025-08-01T14:16:27.778692172Z         strata))) {
+2025-08-01T14:16:27.778694048Z         if (grepl("cov_bin_", i) || grepl("cov_cat_", i)) {
+2025-08-01T14:16:27.778696049Z             print(paste0("Covariate: ", i))
+2025-08-01T14:16:27.778697970Z             print("Calculate frequency for each level")
+2025-08-01T14:16:27.778700001Z             tmp <- unique(df[df$exposure_status == 1 & df$outcome_status == 
+2025-08-01T14:16:27.778702038Z                 1, c("patient_id", i)])
+2025-08-01T14:16:27.778703977Z             freq <- data.frame(table(tmp[, i]))
+2025-08-01T14:16:27.778705899Z             print(freq)
+2025-08-01T14:16:27.778707633Z             if (nrow(freq[freq$Freq <= covariate_threshold & 
+2025-08-01T14:16:27.778710221Z                 freq$Var1 != "Missing", ]) > 0) {
+2025-08-01T14:16:27.778712243Z                 print("Add covariate to removal list")
+2025-08-01T14:16:27.778714105Z                 covariate_removed <- c(covariate_removed, i)
+2025-08-01T14:16:27.778715961Z             }
+2025-08-01T14:16:27.778717628Z             if (nrow(freq) == 1) {
+2025-08-01T14:16:27.778719446Z                 print("Add covariate to removal list")
+2025-08-01T14:16:27.778721307Z                 covariate_removed <- c(covariate_removed, i)
+2025-08-01T14:16:27.778723111Z             }
+2025-08-01T14:16:27.778724782Z         }
+2025-08-01T14:16:27.778726464Z     }
+2025-08-01T14:16:27.778728137Z     covariate_collapsed <- NULL
+2025-08-01T14:16:27.778729947Z     if ("cov_cat_region" %in% covariate_removed) {
+2025-08-01T14:16:27.778731746Z         print("Collapsing region as special case")
+2025-08-01T14:16:27.778733650Z         df <- df %>% dplyr::mutate(cov_cat_region = dplyr::case_when(cov_cat_region == 
+2025-08-01T14:16:27.778735736Z             "North East" ~ "Northern England", cov_cat_region == 
+2025-08-01T14:16:27.778737724Z             "North West" ~ "Northern England", cov_cat_region == 
+2025-08-01T14:16:27.778739659Z             "Yorkshire and The Humber" ~ "Northern England", 
+2025-08-01T14:16:27.778741608Z             cov_cat_region == "London" ~ "Southern England", 
+2025-08-01T14:16:27.778743569Z             cov_cat_region == "South East" ~ "Southern England", 
+2025-08-01T14:16:27.778745491Z             cov_cat_region == "East Midlands" ~ "Midlands", cov_cat_region == 
+2025-08-01T14:16:27.778747463Z                 "West Midlands" ~ "Midlands", cov_cat_region == 
+2025-08-01T14:16:27.778749385Z                 "South West" ~ "Southern England", cov_cat_region == 
+2025-08-01T14:16:27.778751299Z                 "East" ~ "Southern England"))
+2025-08-01T14:16:27.778756787Z         df$cov_cat_region <- factor(df$cov_cat_region)
+2025-08-01T14:16:27.778758962Z         df$cov_cat_region <- relevel(df$cov_cat_region, ref = "Southern England")
+2025-08-01T14:16:27.778761046Z         covariate_removed <- setdiff(covariate_removed, "cov_cat_region")
+2025-08-01T14:16:27.778764017Z         covariate_collapsed <- c(covariate_collapsed, "cov_cat_region")
+2025-08-01T14:16:27.778766143Z     }
+2025-08-01T14:16:27.778767845Z     if ("cov_cat_deprivation" %in% covariate_removed) {
+2025-08-01T14:16:27.778769796Z         print("Collapsing deprivation as special case")
+2025-08-01T14:16:27.778771718Z         df <- df %>% dplyr::mutate(cov_cat_deprivation = dplyr::case_when(cov_cat_deprivation == 
+2025-08-01T14:16:27.778773745Z             "1-2 (most deprived)" ~ "1-4", cov_cat_deprivation == 
+2025-08-01T14:16:27.778775714Z             "3-4" ~ "1-4", cov_cat_deprivation == "5-6" ~ "5-6", 
+2025-08-01T14:16:27.778777684Z             cov_cat_deprivation == "7-8" ~ "7-10", cov_cat_deprivation == 
+2025-08-01T14:16:27.778779716Z                 "9-10 (least deprived)" ~ "7-10"))
+2025-08-01T14:16:27.778781658Z         df$cov_cat_deprivation <- ordered(df$cov_cat_deprivation, 
+2025-08-01T14:16:27.778783538Z             levels = c("1-4", "5-6", "7-10"))
+2025-08-01T14:16:27.778785500Z         covariate_removed <- setdiff(covariate_removed, "cov_cat_deprivation")
+2025-08-01T14:16:27.778787499Z         covariate_collapsed <- c(covariate_collapsed, "cov_cat_deprivation")
+2025-08-01T14:16:27.778789420Z     }
+2025-08-01T14:16:27.778791065Z     if ("cov_cat_smoking_status" %in% covariate_removed) {
+2025-08-01T14:16:27.778793053Z         print("Collapsing smoking status as special case")
+2025-08-01T14:16:27.778794931Z         df <- df %>% dplyr::mutate(cov_cat_smoking_status = dplyr::case_when(cov_cat_smoking_status == 
+2025-08-01T14:16:27.778796910Z             "Never smoker" ~ "Never smoker", cov_cat_smoking_status == 
+2025-08-01T14:16:27.778798840Z             "Ever smoker" ~ "Ever smoker", cov_cat_smoking_status == 
+2025-08-01T14:16:27.778800767Z             "Current smoker" ~ "Ever smoker", cov_cat_smoking_status == 
+2025-08-01T14:16:27.778802716Z             "Missing" ~ "Missing"))
+2025-08-01T14:16:27.778804658Z         df$cov_cat_smoking_status <- ordered(df$cov_cat_smoking_status, 
+2025-08-01T14:16:27.778806475Z             levels = c("Never smoker", "Ever smoker", "Missing"))
+2025-08-01T14:16:27.778808457Z         covariate_removed <- setdiff(covariate_removed, "cov_cat_smoking_status")
+2025-08-01T14:16:27.778810311Z     }
+2025-08-01T14:16:27.778811898Z     for (i in c("cov_cat_deprivation", "cov_cat_smoking_status", 
+2025-08-01T14:16:27.778813765Z         "cov_cat_region")) {
+2025-08-01T14:16:27.778815569Z         if (i %in% colnames(df)) {
+2025-08-01T14:16:27.778820150Z             print(paste0("Rechecking covariate: ", i))
+2025-08-01T14:16:27.778822298Z             print("Calculate frequency for each level among exposed with outcome")
+2025-08-01T14:16:27.778824309Z             tmp <- unique(df[df$exposure_status == 1 & df$outcome_status == 
+2025-08-01T14:16:27.778826289Z                 1, c("patient_id", i)])
+2025-08-01T14:16:27.778831056Z             freq <- data.frame(table(tmp[, i]))
+2025-08-01T14:16:27.778833031Z             print(freq)
+2025-08-01T14:16:27.778834775Z             if (nrow(freq[freq$Freq <= covariate_threshold & 
+2025-08-01T14:16:27.778837181Z                 freq$Var1 != "Missing", ]) > 0) {
+2025-08-01T14:16:27.778839248Z                 print("Add covariate to removal list")
+2025-08-01T14:16:27.778841202Z                 covariate_removed <- c(covariate_removed, i)
+2025-08-01T14:16:27.778843133Z                 covariate_collapsed <- setdiff(covariate_collapsed, 
+2025-08-01T14:16:27.778844980Z                   i)
+2025-08-01T14:16:27.778846692Z             }
+2025-08-01T14:16:27.778848408Z             if (nrow(freq) == 1) {
+2025-08-01T14:16:27.778850090Z                 print("Add covariate to removal list")
+2025-08-01T14:16:27.778851921Z                 covariate_removed <- c(covariate_removed, i)
+2025-08-01T14:16:27.778853747Z                 covariate_collapsed <- setdiff(covariate_collapsed, 
+2025-08-01T14:16:27.778855715Z                   i)
+2025-08-01T14:16:27.778857533Z             }
+2025-08-01T14:16:27.778859192Z         }
+2025-08-01T14:16:27.778861040Z     }
+2025-08-01T14:16:27.778862864Z     print("Check strata variables meet covariate threshold")
+2025-08-01T14:16:27.778864800Z     strata_warning <- ""
+2025-08-01T14:16:27.778866760Z     if (length(intersect(covariate_removed, strata)) > 0) {
+2025-08-01T14:16:27.778868718Z         strata_warning <- paste0(intersect(covariate_removed, 
+2025-08-01T14:16:27.778870552Z             strata), collapse = ";")
+2025-08-01T14:16:27.778872315Z         for (i in intersect(covariate_removed, strata)) {
+2025-08-01T14:16:27.778874086Z             tmp <- unique(df[df$exposure_status == 1 & df$outcome_status == 
+2025-08-01T14:16:27.778875929Z                 1, c("patient_id", i)])
+2025-08-01T14:16:27.778877641Z             freq <- data.frame(table(tmp[, i]))
+2025-08-01T14:16:27.778879452Z             print(paste0("Warning: strata variable '", i, "' does not meet covariate threshold"))
+2025-08-01T14:16:27.778881518Z             print(freq)
+2025-08-01T14:16:27.778883361Z         }
+2025-08-01T14:16:27.778885086Z     }
+2025-08-01T14:16:27.778886754Z     print("Remove covariates")
+2025-08-01T14:16:27.778890901Z     df <- df[, !(colnames(df) %in% setdiff(covariate_removed, 
+2025-08-01T14:16:27.778893092Z         strata))]
+2025-08-01T14:16:27.778895132Z     output <- list(df = df, covariate_removed = setdiff(covariate_removed, 
+2025-08-01T14:16:27.778897273Z         strata), covariate_collapsed = covariate_collapsed, strata_warning = strata_warning)
+2025-08-01T14:16:27.778899663Z     return(output)
+2025-08-01T14:16:27.778901594Z }
+2025-08-01T14:16:27.778903981Z 
+2025-08-01T14:16:27.778905688Z [[1]]$visible
+2025-08-01T14:16:27.778907339Z [1] FALSE
+2025-08-01T14:16:27.778909026Z 
+2025-08-01T14:16:27.778910971Z 
+2025-08-01T14:16:27.778912680Z [[2]]
+2025-08-01T14:16:27.778914462Z [[2]]$value
+2025-08-01T14:16:27.778922050Z function (df, time_periods, covariates, strata, age_spline, covariate_removed, 
+2025-08-01T14:16:27.778924748Z     covariate_collapsed, ipw) 
+2025-08-01T14:16:27.778926501Z {
+2025-08-01T14:16:27.778928104Z     print("Define model formula")
+2025-08-01T14:16:27.778929846Z     surv_formula <- paste0("Surv(tstart, tstop, outcome_status) ~ ", 
+2025-08-01T14:16:27.778931680Z         paste(time_periods, collapse = " + "), ifelse("cov_cat_sex" %in% 
+2025-08-01T14:16:27.778933509Z             colnames(df), " + cov_cat_sex", ""), ifelse(is.null(strata), 
+2025-08-01T14:16:27.778935335Z             "", paste(" +", paste0("rms::strat(", strata, ")"), 
+2025-08-01T14:16:27.778937298Z                 collapse = " + ")), ifelse(isTRUE(ipw), " + cluster(patient_id)", 
+2025-08-01T14:16:27.778939149Z             ""))
+2025-08-01T14:16:27.778940783Z     if ("cov_num_age" %in% colnames(df)) {
+2025-08-01T14:16:27.778942460Z         print("Add age covariate")
+2025-08-01T14:16:27.778944146Z         if (age_spline == TRUE) {
+2025-08-01T14:16:27.778945733Z             print("Specify knot placement for age spline")
+2025-08-01T14:16:27.778947456Z             knot_placement <- as.numeric(quantile(df$cov_num_age, 
+2025-08-01T14:16:27.778949210Z                 probs = c(0.1, 0.5, 0.9)))
+2025-08-01T14:16:27.778950837Z             print(paste0("Knots will be placed at: ", paste0(knot_placement, 
+2025-08-01T14:16:27.778952572Z                 collapse = ", ")))
+2025-08-01T14:16:27.778954291Z             surv_formula <- paste0(surv_formula, " + rms::rcs(cov_num_age, parms=knot_placement)")
+2025-08-01T14:16:27.778956202Z         }
+2025-08-01T14:16:27.778957781Z         else {
+2025-08-01T14:16:27.778959398Z             surv_formula <- paste0(surv_formula, " + cov_num_age + cov_num_age_sq")
+2025-08-01T14:16:27.778961225Z         }
+2025-08-01T14:16:27.778964955Z     }
+2025-08-01T14:16:27.778966795Z     print(surv_formula)
+2025-08-01T14:16:27.778985177Z     print("Fit Cox model")
+2025-08-01T14:16:27.778987098Z     dd <<- rms::datadist(df)
+2025-08-01T14:16:27.778988932Z     withr::local_options(list(datadist = "dd", contrasts = c("contr.treatment", 
+2025-08-01T14:16:27.778990809Z         "contr.treatment")))
+2025-08-01T14:16:27.778993958Z     if (ipw == TRUE) {
+2025-08-01T14:16:27.778995615Z         N_obs_in <- nrow(df)
+2025-08-01T14:16:27.778997331Z         fit_cox_model <- rms::cph(formula = as.formula(surv_formula), 
+2025-08-01T14:16:27.778999081Z             data = df, weight = df$cox_weight, method = "breslow", 
+2025-08-01T14:16:27.779000847Z             surv = TRUE, x = TRUE, y = TRUE)
+2025-08-01T14:16:27.779002545Z         N_obs_out <- sum(fit_cox_model$n)
+2025-08-01T14:16:27.779004312Z     }
+2025-08-01T14:16:27.779005936Z     else {
+2025-08-01T14:16:27.779007561Z         N_obs_in <- nrow(df)
+2025-08-01T14:16:27.779009303Z         fit_cox_model <- rms::cph(formula = as.formula(surv_formula), 
+2025-08-01T14:16:27.779011115Z             data = df, method = "breslow", surv = TRUE, x = TRUE, 
+2025-08-01T14:16:27.779012903Z             y = TRUE)
+2025-08-01T14:16:27.779014572Z         N_obs_out <- sum(fit_cox_model$n)
+2025-08-01T14:16:27.779016304Z     }
+2025-08-01T14:16:27.779017878Z     print(fit_cox_model)
+2025-08-01T14:16:27.779019554Z     print("Format results")
+2025-08-01T14:16:27.779021278Z     results <- data.frame(term = names(fit_cox_model$coefficients), 
+2025-08-01T14:16:27.779024037Z         lnhr = fit_cox_model$coefficients, se_lnhr = sqrt(diag(vcov(fit_cox_model))), 
+2025-08-01T14:16:27.779026303Z         model = "mdl_age_sex", surv_formula = surv_formula, covariate_removed = "", 
+2025-08-01T14:16:27.779028378Z         covariate_collapsed = "", obs_warning = ifelse(N_obs_in == 
+2025-08-01T14:16:27.779030273Z             N_obs_out, "", paste0(N_obs_in, " observations provided. ", 
+2025-08-01T14:16:27.779032250Z             N_obs_out, " observations used.")), stringsAsFactors = FALSE)
+2025-08-01T14:16:27.779034201Z     row.names(results) <- NULL
+2025-08-01T14:16:27.779036052Z     covariates <- setdiff(covariates, covariate_removed)
+2025-08-01T14:16:27.779037991Z     if (!is.null(covariates) && length(covariates) > 0) {
+2025-08-01T14:16:27.779040150Z         print("Add covariates to model formula")
+2025-08-01T14:16:27.779042056Z         surv_formula_adj <- paste0(surv_formula, " + ", paste(covariates, 
+2025-08-01T14:16:27.779044061Z             collapse = " + "))
+2025-08-01T14:16:27.779045916Z         print(surv_formula_adj)
+2025-08-01T14:16:27.779050263Z         print("Fit Cox model with covariates")
+2025-08-01T14:16:27.779052484Z         dd_adj <<- rms::datadist(df)
+2025-08-01T14:16:27.779054531Z         withr::local_options(list(datadist = "dd_adj", contrasts = c("contr.treatment", 
+2025-08-01T14:16:27.779056706Z             "contr.treatment")))
+2025-08-01T14:16:27.779058650Z         if (ipw == TRUE) {
+2025-08-01T14:16:27.779060562Z             N_obs_in <- nrow(df)
+2025-08-01T14:16:27.779062495Z             fit_cox_model_adj <- rms::cph(formula = as.formula(surv_formula_adj), 
+2025-08-01T14:16:27.779064426Z                 data = df, weight = df$cox_weight, method = "breslow", 
+2025-08-01T14:16:27.779066354Z                 surv = TRUE, x = TRUE, y = TRUE)
+2025-08-01T14:16:27.779068187Z             N_obs_out <- sum(fit_cox_model$n)
+2025-08-01T14:16:27.779070070Z         }
+2025-08-01T14:16:27.779071828Z         else {
+2025-08-01T14:16:27.779073585Z             N_obs_in <- nrow(df)
+2025-08-01T14:16:27.779075580Z             fit_cox_model_adj <- rms::cph(formula = as.formula(surv_formula_adj), 
+2025-08-01T14:16:27.779077498Z                 data = df, method = "breslow", surv = TRUE, x = TRUE, 
+2025-08-01T14:16:27.779079518Z                 y = TRUE)
+2025-08-01T14:16:27.779081330Z             N_obs_out <- sum(fit_cox_model$n)
+2025-08-01T14:16:27.779083181Z         }
+2025-08-01T14:16:27.779084972Z         print(fit_cox_model_adj)
+2025-08-01T14:16:27.779086853Z         print("Format results")
+2025-08-01T14:16:27.779088729Z         results_adj <- data.frame(term = names(fit_cox_model_adj$coefficients), 
+2025-08-01T14:16:27.779090920Z             lnhr = fit_cox_model_adj$coefficients, se_lnhr = sqrt(diag(vcov(fit_cox_model_adj))), 
+2025-08-01T14:16:27.779092946Z             model = "mdl_max_adj", surv_formula = surv_formula_adj, 
+2025-08-01T14:16:27.779094942Z             covariate_removed = paste0(covariate_removed, collapse = ";"), 
+2025-08-01T14:16:27.779096945Z             covariate_collapsed = paste0(covariate_collapsed, 
+2025-08-01T14:16:27.779098876Z                 collapse = ";"), obs_warning = ifelse(N_obs_in == 
+2025-08-01T14:16:27.779101448Z                 N_obs_out, "", paste0(N_obs_in, " observations provided. ", 
+2025-08-01T14:16:27.779103656Z                 N_obs_out, " observations used.")), stringsAsFactors = FALSE)
+2025-08-01T14:16:27.779105733Z         row.names(results_adj) <- NULL
+2025-08-01T14:16:27.779107604Z         print("Bind to other results")
+2025-08-01T14:16:27.779109685Z         results <- rbind(results, results_adj)
+2025-08-01T14:16:27.779111546Z     }
+2025-08-01T14:16:27.779113383Z     print("Return results")
+2025-08-01T14:16:27.779117852Z     return(results)
+2025-08-01T14:16:27.779119952Z     print(summary(results))
+2025-08-01T14:16:27.779121959Z }
+2025-08-01T14:16:27.779123787Z 
+2025-08-01T14:16:27.779125515Z [[2]]$visible
+2025-08-01T14:16:27.779127246Z [1] FALSE
+2025-08-01T14:16:27.779128959Z 
+2025-08-01T14:16:27.779130615Z 
+2025-08-01T14:16:27.779132357Z [[3]]
+2025-08-01T14:16:27.779134068Z [[3]]$value
+2025-08-01T14:16:27.779135810Z function (df, cut_points, episode_labels, ipw) 
+2025-08-01T14:16:27.779137612Z {
+2025-08-01T14:16:27.779139326Z     library(magrittr)
+2025-08-01T14:16:27.779141064Z     print("Calculate number of events per episode")
+2025-08-01T14:16:27.779143064Z     events <- df[df$outcome_status == 1, c("patient_id", "episode")]
+2025-08-01T14:16:27.779145139Z     events <- aggregate(episode ~ patient_id, data = events, 
+2025-08-01T14:16:27.779147097Z         FUN = max)
+2025-08-01T14:16:27.779148918Z     events <- data.frame(table(events$episode), stringsAsFactors = FALSE)
+2025-08-01T14:16:27.779150868Z     events <- dplyr::rename(events, episode = "Var1", N_events = "Freq")
+2025-08-01T14:16:27.779152980Z     print(events)
+2025-08-01T14:16:27.779154823Z     print("Add number of events to episode info table")
+2025-08-01T14:16:27.779156780Z     episode_info <- merge(episode_labels, events, by = "episode", 
+2025-08-01T14:16:27.779158781Z         all.x = TRUE)
+2025-08-01T14:16:27.779160592Z     episode_info$N_events <- ifelse(is.na(episode_info$N_events), 
+2025-08-01T14:16:27.779162575Z         0, episode_info$N_events)
+2025-08-01T14:16:27.779164341Z     print(episode_info)
+2025-08-01T14:16:27.779166151Z     print("Calculate person-time in each episode")
+2025-08-01T14:16:27.779168164Z     if (ipw == TRUE) {
+2025-08-01T14:16:27.779169990Z         tmp <- df[, c("episode", "tstart", "tstop", "cox_weight")]
+2025-08-01T14:16:27.779172262Z         tmp$person_time_total <- (tmp$tstop - tmp$tstart) * tmp$cox_weight
+2025-08-01T14:16:27.779193127Z         tmp[, c("tstart", "tstop", "cox_weight")] <- NULL
+2025-08-01T14:16:27.779202484Z     }
+2025-08-01T14:16:27.779204636Z     if (ipw == FALSE) {
+2025-08-01T14:16:27.779206658Z         tmp <- df[, c("episode", "tstart", "tstop")]
+2025-08-01T14:16:27.779208786Z         tmp$person_time_total <- (tmp$tstop - tmp$tstart)
+2025-08-01T14:16:27.779210859Z         tmp[, c("tstart", "tstop")] <- NULL
+2025-08-01T14:16:27.779213193Z     }
+2025-08-01T14:16:27.779214928Z     tmp <- aggregate(person_time_total ~ episode, data = tmp, 
+2025-08-01T14:16:27.779221318Z         FUN = sum)
+2025-08-01T14:16:27.779223448Z     episode_info <- merge(episode_info, tmp, by = "episode", 
+2025-08-01T14:16:27.779225507Z         all.x = TRUE)
+2025-08-01T14:16:27.779227334Z     print(episode_info)
+2025-08-01T14:16:27.779229101Z     print("Calculate median person-time")
+2025-08-01T14:16:27.779230937Z     tmp <- df[df$outcome_status == 1, c("episode", "tstart", 
+2025-08-01T14:16:27.779233108Z         "tstop")]
+2025-08-01T14:16:27.779234955Z     tmp$outcome_time <- tmp$tstop - tmp$tstart
+2025-08-01T14:16:27.779236924Z     tmp <- tmp %>% dplyr::group_by(episode) %>% dplyr::mutate(outcome_time_median = median(outcome_time)) %>% 
+2025-08-01T14:16:27.779239183Z         dplyr::ungroup(episode)
+2025-08-01T14:16:27.779242453Z     tmp <- unique(tmp[, c("episode", "outcome_time_median")])
+2025-08-01T14:16:27.779244654Z     episode_info <- merge(episode_info, tmp, by = "episode", 
+2025-08-01T14:16:27.779246758Z         all.x = TRUE)
+2025-08-01T14:16:27.779248568Z     print(episode_info)
+2025-08-01T14:16:27.779250417Z     print("Add time from previous episodes to median person-time")
+2025-08-01T14:16:27.779252426Z     episode_info$add <- as.numeric(gsub("days", "", gsub("_.*", 
+2025-08-01T14:16:27.779254565Z         "", episode_info$time_period)))
+2025-08-01T14:16:27.779256507Z     episode_info$add <- ifelse(is.na(episode_info$add), 0, episode_info$add)
+2025-08-01T14:16:27.779258464Z     episode_info$outcome_time_median <- episode_info$outcome_time_median + 
+2025-08-01T14:16:27.779260537Z         episode_info$add
+2025-08-01T14:16:27.779262425Z     episode_info$add <- NULL
+2025-08-01T14:16:27.779264251Z     print(episode_info)
+2025-08-01T14:16:27.779266058Z     return(episode_info)
+2025-08-01T14:16:27.779267891Z }
+2025-08-01T14:16:27.779269593Z 
+2025-08-01T14:16:27.779271495Z [[3]]$visible
+2025-08-01T14:16:27.779273420Z [1] FALSE
+2025-08-01T14:16:27.779275235Z 
+2025-08-01T14:16:27.779277028Z 
+2025-08-01T14:16:27.779278819Z [[4]]
+2025-08-01T14:16:27.779280755Z [[4]]$value
+2025-08-01T14:16:27.779558974Z function (df, controls_per_case, seed = 137, sample_exposed) 
+2025-08-01T14:16:27.779597859Z {
+2025-08-01T14:16:27.779599439Z     print("Set seed")
+2025-08-01T14:16:27.779600676Z     set.seed(seed)
+2025-08-01T14:16:27.779601807Z     print("Split cases and controls")
+2025-08-01T14:16:27.779603017Z     cases <- df[df$outcome_status == TRUE, ]
+2025-08-01T14:16:27.779604319Z     controls <- df[df$outcome_status == FALSE, ]
+2025-08-01T14:16:27.779605465Z     print(paste0("Cases: ", nrow(cases)))
+2025-08-01T14:16:27.779622022Z     print(summary(cases))
+2025-08-01T14:16:27.779623351Z     print(paste0("Controls: ", nrow(controls)))
+2025-08-01T14:16:27.779624573Z     print(summary(controls))
+2025-08-01T14:16:27.779625698Z     if (sample_exposed == TRUE) {
+2025-08-01T14:16:27.779626763Z         if (nrow(cases) * controls_per_case < nrow(controls)) {
+2025-08-01T14:16:27.779627970Z             print("Sample controls, including exposed control individuals")
+2025-08-01T14:16:27.779629308Z             controls <- controls[sample(seq_len(nrow(controls)), 
+2025-08-01T14:16:27.779630481Z                 nrow(cases) * controls_per_case, replace = FALSE), 
+2025-08-01T14:16:27.779631585Z                 ]
+2025-08-01T14:16:27.779632588Z             controls$cox_weight <- (nrow(df) - nrow(cases))/nrow(controls)
+2025-08-01T14:16:27.779633708Z             print(paste0(nrow(controls), " controls sampled with Cox weight of ", 
+2025-08-01T14:16:27.779634928Z                 controls$cox_weight[1]))
+2025-08-01T14:16:27.779635979Z         }
+2025-08-01T14:16:27.779636967Z         else {
+2025-08-01T14:16:27.779638004Z             print("Retain all controls")
+2025-08-01T14:16:27.779639220Z             controls$cox_weight <- 1
+2025-08-01T14:16:27.779640309Z         }
+2025-08-01T14:16:27.779641296Z     }
+2025-08-01T14:16:27.779642297Z     if (sample_exposed == FALSE) {
+2025-08-01T14:16:27.779643337Z         print("Separate exposed controls so they are not sampled")
+2025-08-01T14:16:27.779644504Z         controls_exposed <- controls[!is.na(controls$exposure), 
+2025-08-01T14:16:27.779645633Z             ]
+2025-08-01T14:16:27.779646625Z         controls_exposed$cox_weight <- 1
+2025-08-01T14:16:27.779647734Z         print(paste0(nrow(controls_exposed), " exposed controls"))
+2025-08-01T14:16:27.779648867Z         print("Exposed controls:")
+2025-08-01T14:16:27.779649908Z         print(summary(controls_exposed))
+2025-08-01T14:16:27.779650948Z         print("Sample unexposed controls")
+2025-08-01T14:16:27.779652014Z         controls_unexposed <- controls[is.na(controls$exposure), 
+2025-08-01T14:16:27.779653101Z             ]
+2025-08-01T14:16:27.779654053Z         if (nrow(cases) * controls_per_case < nrow(controls_unexposed)) {
+2025-08-01T14:16:27.779655282Z             controls_unexposed <- controls_unexposed[sample(seq_len(nrow(controls_unexposed)), 
+2025-08-01T14:16:27.779656417Z                 nrow(cases) * controls_per_case, replace = FALSE), 
+2025-08-01T14:16:27.779657507Z                 ]
+2025-08-01T14:16:27.779658475Z             controls_unexposed$cox_weight <- (nrow(df) - nrow(cases) - 
+2025-08-01T14:16:27.779661377Z                 nrow(controls_exposed))/nrow(controls_unexposed)
+2025-08-01T14:16:27.779662496Z             print(paste0(nrow(controls_unexposed), " unexposed controls sampled with Cox weight of ", 
+2025-08-01T14:16:27.779664132Z                 controls_unexposed$cox_weight[1]))
+2025-08-01T14:16:27.779665229Z             print("Unexposed controls:")
+2025-08-01T14:16:27.779666283Z             print(summary(controls_unexposed))
+2025-08-01T14:16:27.779667323Z             print("Add exposed control individuals back to control dataset")
+2025-08-01T14:16:27.779668464Z             controls <- NULL
+2025-08-01T14:16:27.779669526Z             controls <- rbind(controls_unexposed, controls_exposed)
+2025-08-01T14:16:27.779670644Z             print(paste0("Controls (N=", nrow(controls), "):"))
+2025-08-01T14:16:27.779671873Z             print(summary(controls))
+2025-08-01T14:16:27.779672904Z         }
+2025-08-01T14:16:27.779674007Z         else {
+2025-08-01T14:16:27.779675052Z             print("Insufficient controls so retain all controls")
+2025-08-01T14:16:27.779676198Z             rm(controls_exposed, controls_unexposed)
+2025-08-01T14:16:27.779677224Z             controls$cox_weight <- 1
+2025-08-01T14:16:27.779678274Z         }
+2025-08-01T14:16:27.779679256Z     }
+2025-08-01T14:16:27.779680190Z     print("Specify cox weight for cases")
+2025-08-01T14:16:27.779681358Z     cases$cox_weight <- 1
+2025-08-01T14:16:27.779682343Z     print("Recombine cases and controls")
+2025-08-01T14:16:27.779683364Z     return_df <- rbind(cases, controls)
+2025-08-01T14:16:27.779684426Z     return(return_df)
+2025-08-01T14:16:27.779685412Z }
+2025-08-01T14:16:27.779686359Z 
+2025-08-01T14:16:27.779687336Z [[4]]$visible
+2025-08-01T14:16:27.779688335Z [1] FALSE
+2025-08-01T14:16:27.779689292Z 
+2025-08-01T14:16:27.779690209Z 
+2025-08-01T14:16:27.779691186Z [[5]]
+2025-08-01T14:16:27.779692132Z [[5]]$value
+2025-08-01T14:16:27.779844994Z function (df, cut_points, episode_labels) 
+2025-08-01T14:16:27.779856318Z {
+2025-08-01T14:16:27.779858871Z     print("Calculate where follow-up occurs in study period")
+2025-08-01T14:16:27.779861413Z     df$days_to_start <- as.numeric(df$fup_start - df$study_start)
+2025-08-01T14:16:27.779863815Z     df$days_to_end <- as.numeric(df$fup_stop - df$study_start) + 
+2025-08-01T14:16:27.779866279Z         1
+2025-08-01T14:16:27.779868392Z     print("Set survival data for the exposed")
+2025-08-01T14:16:27.779870607Z     print("Filter data to exposed")
+2025-08-01T14:16:27.779872847Z     exposed <- df[!is.na(df$exposure), ]
+2025-08-01T14:16:27.779883275Z     print("Calculate days to exposure")
+2025-08-01T14:16:27.779886151Z     exposed$days_to_exp <- as.numeric(exposed$exposure - exposed$study_start)
+2025-08-01T14:16:27.779888570Z     print("Put into survival format (dataset d1)")
+2025-08-01T14:16:27.779890882Z     d1 <- exposed[, !(colnames(exposed) %in% c("days_to_start", 
+2025-08-01T14:16:27.779893278Z         "days_to_exp", "days_to_end", "outcome_status"))]
+2025-08-01T14:16:27.779895696Z     print(summary(d1))
+2025-08-01T14:16:27.779897817Z     print("Put into survival format (dataset d2)")
+2025-08-01T14:16:27.779900266Z     d2 <- exposed[, c("patient_id", "days_to_start", "days_to_exp", 
+2025-08-01T14:16:27.779902734Z         "days_to_end", "outcome_status")]
+2025-08-01T14:16:27.779905054Z     print(summary(d2))
+2025-08-01T14:16:27.779907230Z     print("Put into survival format (tmerge)")
+2025-08-01T14:16:27.779909487Z     exposed <- survival::tmerge(data1 = d1, data2 = d2, id = patient_id, 
+2025-08-01T14:16:27.779911836Z         outcome_status = event(days_to_end, outcome_status), 
+2025-08-01T14:16:27.779914119Z         tstart = days_to_start, tstop = days_to_end, exposure_status = tdc(days_to_exp))
+2025-08-01T14:16:27.779916497Z     print(summary(exposed))
+2025-08-01T14:16:27.779918771Z     print("Split post-exposure time for the exposed")
+2025-08-01T14:16:27.779920982Z     print("Filter to post-exposure data")
+2025-08-01T14:16:27.779923232Z     exposed_post <- exposed[exposed$exposure_status == 1, ]
+2025-08-01T14:16:27.779925589Z     print("Format tstart and tstop")
+2025-08-01T14:16:27.779927745Z     exposed_post <- dplyr::rename(exposed_post, t0 = tstart, 
+2025-08-01T14:16:27.779930054Z         t = tstop)
+2025-08-01T14:16:27.779932177Z     exposed_post$tstart <- 0
+2025-08-01T14:16:27.779934387Z     exposed_post$tstop <- exposed_post$t - exposed_post$t0
+2025-08-01T14:16:27.779936666Z     print("Implement post-exposure cut points")
+2025-08-01T14:16:27.779938911Z     print(summary(exposed_post))
+2025-08-01T14:16:27.779941150Z     exposed_post <- survival::survSplit(Surv(tstop, outcome_status) ~ 
+2025-08-01T14:16:27.779943419Z         ., exposed_post, cut = cut_points, episode = "episode")
+2025-08-01T14:16:27.779945701Z     print(summary(exposed_post))
+2025-08-01T14:16:27.779947821Z     print("Account for pre-exposure time")
+2025-08-01T14:16:27.779950107Z     exposed_post$tstart <- exposed_post$tstart + exposed_post$t0
+2025-08-01T14:16:27.779952406Z     exposed_post$tstop <- exposed_post$tstop + exposed_post$t0
+2025-08-01T14:16:27.779954702Z     exposed_post[, c("t0", "t")] <- NULL
+2025-08-01T14:16:27.779957223Z     print(summary(exposed_post))
+2025-08-01T14:16:27.779962750Z     print("Combine pre- and post-exposure time for the exposed")
+2025-08-01T14:16:27.779965592Z     print("Filter to pre-exposure data")
+2025-08-01T14:16:27.779967889Z     exposed_pre <- exposed[exposed$exposure_status == 0, ]
+2025-08-01T14:16:27.779970346Z     if (nrow(exposed_pre) > 0) {
+2025-08-01T14:16:27.779974792Z         print("Set pre-exposure to be episode 0")
+2025-08-01T14:16:27.779977177Z         exposed_pre$episode <- 0
+2025-08-01T14:16:27.779979388Z         print(summary(exposed_pre))
+2025-08-01T14:16:27.779981497Z         print("Bind pre- and post-exposure time")
+2025-08-01T14:16:27.779983710Z         exposed <- plyr::rbind.fill(exposed_pre, exposed_post)
+2025-08-01T14:16:27.779986015Z     }
+2025-08-01T14:16:27.779988081Z     else {
+2025-08-01T14:16:27.779990250Z         print("No pre-exposure time so exposed = post-exposure time only")
+2025-08-01T14:16:27.779992585Z         exposed <- exposed_post
+2025-08-01T14:16:27.779994816Z     }
+2025-08-01T14:16:27.779996851Z     print(summary(exposed))
+2025-08-01T14:16:27.779998980Z     print("Set survival data for the unexposed")
+2025-08-01T14:16:27.780001331Z     print("Filter data to unexposed")
+2025-08-01T14:16:27.780003572Z     unexposed <- df[is.na(df$exposure), ]
+2025-08-01T14:16:27.780005859Z     print("Rename variables to survival variable names")
+2025-08-01T14:16:27.780008167Z     unexposed <- dplyr::rename(unexposed, tstart = "days_to_start", 
+2025-08-01T14:16:27.780010604Z         tstop = "days_to_end")
+2025-08-01T14:16:27.780012855Z     unexposed$exposure_status <- c(0)
+2025-08-01T14:16:27.780015121Z     unexposed$episode <- c(0)
+2025-08-01T14:16:27.780017361Z     unexposed$outcome_status <- as.numeric(unexposed$outcome_status)
+2025-08-01T14:16:27.780019669Z     print(summary(unexposed))
+2025-08-01T14:16:27.780021853Z     print("Combine exposed and unexposed individuals")
+2025-08-01T14:16:27.780024174Z     exposed <- exposed[, intersect(colnames(unexposed), colnames(exposed))]
+2025-08-01T14:16:27.780026507Z     unexposed <- unexposed[, intersect(colnames(unexposed), colnames(exposed))]
+2025-08-01T14:16:27.780028887Z     df <- rbind(exposed, unexposed)
+2025-08-01T14:16:27.780031073Z     print(summary(df))
+2025-08-01T14:16:27.780033136Z     print("Add indicators for episode")
+2025-08-01T14:16:27.780035377Z     for (i in 1:max(episode_labels$episode)) {
+2025-08-01T14:16:27.780037568Z         preserve_cols <- colnames(df)
+2025-08-01T14:16:27.780039700Z         df$tmp <- as.numeric(df$episode == i)
+2025-08-01T14:16:27.780042033Z         colnames(df) <- c(preserve_cols, episode_labels[episode_labels$episode == 
+2025-08-01T14:16:27.780047061Z             i, ]$time_period)
+2025-08-01T14:16:27.780049678Z     }
+2025-08-01T14:16:27.780051853Z     print(summary(df))
+2025-08-01T14:16:27.780053993Z     return(df)
+2025-08-01T14:16:27.780056098Z }
+2025-08-01T14:16:27.780058193Z 
+2025-08-01T14:16:27.780060234Z [[5]]$visible
+2025-08-01T14:16:27.780062314Z [1] FALSE
+2025-08-01T14:16:27.780064517Z 
+2025-08-01T14:16:27.780066606Z 
+2025-08-01T14:16:27.780068653Z [1] "Separate list arguments"
+2025-08-01T14:16:27.962802839Z [1] "Make numeric arguments numeric"
+2025-08-01T14:16:27.962836348Z [1] "Load data"
+2025-08-01T14:16:28.081313938Z   patient_id          index_date         end_date_exposure   
+2025-08-01T14:16:28.081347049Z  Length:4053        Min.   :2020-01-01   Min.   :2020-01-07  
+2025-08-01T14:16:28.081349860Z  Class :character   1st Qu.:2020-01-01   1st Qu.:2020-12-08  
+2025-08-01T14:16:28.081351900Z  Mode  :character   Median :2020-01-01   Median :2021-02-15  
+2025-08-01T14:16:28.081353674Z                     Mean   :2020-01-01   Mean   :2021-02-08  
+2025-08-01T14:16:28.081355392Z                     3rd Qu.:2020-01-01   3rd Qu.:2021-02-15  
+2025-08-01T14:16:28.081357046Z                     Max.   :2020-01-01   Max.   :2021-06-18  
+2025-08-01T14:16:28.081358690Z                                                              
+2025-08-01T14:16:28.081360375Z  end_date_outcome        exp_date             out_date         
+2025-08-01T14:16:28.081362125Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.081363807Z  1st Qu.:2021-12-01   1st Qu.:2020-04-21   1st Qu.:2021-01-15  
+2025-08-01T14:16:28.081365477Z  Median :2024-01-17   Median :2020-07-18   Median :2022-02-11  
+2025-08-01T14:16:28.081367119Z  Mean   :2023-02-19   Mean   :2020-07-31   Mean   :2022-02-18  
+2025-08-01T14:16:28.081368750Z  3rd Qu.:2024-04-30   3rd Qu.:2020-11-03   3rd Qu.:2023-03-21  
+2025-08-01T14:16:28.081370325Z  Max.   :2024-04-30   Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.081371962Z                       NA's   :3573         NA's   :2085        
+2025-08-01T14:16:28.081373646Z                  strat_cat_region  cov_num_age     cov_cat_sex  
+2025-08-01T14:16:28.081375498Z  Yorkshire and The Humber: 479    Min.   : 18.00   Female:2053  
+2025-08-01T14:16:28.081377178Z  West Midlands           : 459    1st Qu.: 41.00   Male  :2000  
+2025-08-01T14:16:28.081379351Z  North East              : 458    Median : 62.00                
+2025-08-01T14:16:28.081381022Z  East Midlands           : 455    Mean   : 63.48                
+2025-08-01T14:16:28.081382754Z  North West              : 443    3rd Qu.: 86.00                
+2025-08-01T14:16:28.081399851Z  London                  : 442    Max.   :110.00                
+2025-08-01T14:16:28.081404638Z  (Other)                 :1317                                  
+2025-08-01T14:16:28.081406365Z  cov_cat_ethnicity             cov_cat_imd  cov_num_consrate2019
+2025-08-01T14:16:28.081408260Z  White  : 353      1 (most deprived) :811   Min.   :0.00000     
+2025-08-01T14:16:28.081413307Z  Missing:2804      2                 :830   1st Qu.:0.00000     
+2025-08-01T14:16:28.081415068Z  Mixed  : 111      3                 :751   Median :0.00000     
+2025-08-01T14:16:28.081416474Z  Asian  : 224      4                 :815   Mean   :0.04589     
+2025-08-01T14:16:28.081417913Z  Black  : 234      5 (least deprived):846   3rd Qu.:0.00000     
+2025-08-01T14:16:28.081419535Z  Other  : 327                               Max.   :3.00000     
+2025-08-01T14:16:28.081421101Z                                                                 
+2025-08-01T14:16:28.081422840Z  cov_bin_hcworker       cov_cat_smoking cov_bin_carehome cov_bin_obesity
+2025-08-01T14:16:28.081424682Z  FALSE:1845       Never smoker  :  70   FALSE:3404       FALSE:3993     
+2025-08-01T14:16:28.081426500Z  TRUE :2208       Ever smoker   : 777   TRUE : 649       TRUE :  60     
+2025-08-01T14:16:28.081427916Z                   Current smoker:1439                                   
+2025-08-01T14:16:28.081430469Z                   Missing       :1767                                   
+2025-08-01T14:16:28.081432351Z                                                                         
+2025-08-01T14:16:28.081434311Z                                                                         
+2025-08-01T14:16:28.081435676Z                                                                         
+2025-08-01T14:16:28.081437391Z  cov_bin_ami  cov_bin_dementia cov_bin_liver_disease cov_bin_ckd 
+2025-08-01T14:16:28.081449792Z  FALSE:2974   FALSE:3560       FALSE:3258            FALSE:2945  
+2025-08-01T14:16:28.081463172Z  TRUE :1079   TRUE : 493       TRUE : 795            TRUE :1108  
+2025-08-01T14:16:28.081466185Z                                                                  
+2025-08-01T14:16:28.081468367Z                                                                  
+2025-08-01T14:16:28.081470352Z                                                                  
+2025-08-01T14:16:28.081478279Z                                                                  
+2025-08-01T14:16:28.081480792Z                                                                  
+2025-08-01T14:16:28.081482844Z  cov_bin_cancer cov_bin_hypertension cov_bin_diabetes cov_bin_depression
+2025-08-01T14:16:28.081484707Z  FALSE: 960     FALSE:1113           FALSE:1775       FALSE:3002        
+2025-08-01T14:16:28.081486554Z  TRUE :3093     TRUE :2940           TRUE :2278       TRUE :1051        
+2025-08-01T14:16:28.081493765Z                                                                         
+2025-08-01T14:16:28.081506597Z                                                                         
+2025-08-01T14:16:28.081509287Z                                                                         
+2025-08-01T14:16:28.081511457Z                                                                         
+2025-08-01T14:16:28.081519386Z                                                                         
+2025-08-01T14:16:28.081521661Z  cov_bin_copd cov_bin_stroke_all cov_bin_other_ae cov_bin_vte  cov_bin_hf  
+2025-08-01T14:16:28.081523638Z  FALSE:1665   FALSE:2577         FALSE:3621       FALSE:2649   FALSE:3611  
+2025-08-01T14:16:28.081530402Z  TRUE :2388   TRUE :1476         TRUE : 432       TRUE :1404   TRUE : 442  
+2025-08-01T14:16:28.081532709Z                                                                            
+2025-08-01T14:16:28.081540267Z                                                                            
+2025-08-01T14:16:28.081542452Z                                                                            
+2025-08-01T14:16:28.081548450Z                                                                            
+2025-08-01T14:16:28.081550716Z                                                                            
+2025-08-01T14:16:28.081559116Z  cov_bin_angina cov_bin_lipidmed cov_bin_antiplatelet cov_bin_anticoagulant
+2025-08-01T14:16:28.081566208Z  FALSE:3664     FALSE:3290       FALSE:3741           FALSE:3849           
+2025-08-01T14:16:28.081575790Z  TRUE : 389     TRUE : 763       TRUE : 312           TRUE : 204           
+2025-08-01T14:16:28.081582794Z                                                                            
+2025-08-01T14:16:28.081585058Z                                                                            
+2025-08-01T14:16:28.081591066Z                                                                            
+2025-08-01T14:16:28.081593293Z                                                                            
+2025-08-01T14:16:28.081595341Z                                                                            
+2025-08-01T14:16:28.081602250Z  cov_bin_cocp cov_bin_hrt 
+2025-08-01T14:16:28.081604625Z  FALSE:3930   FALSE:3784  
+2025-08-01T14:16:28.081626932Z  TRUE : 123   TRUE : 269  
+2025-08-01T14:16:28.081630277Z                           
+2025-08-01T14:16:28.081632269Z                           
+2025-08-01T14:16:28.081634137Z                           
+2025-08-01T14:16:28.081636016Z                           
+2025-08-01T14:16:28.081641809Z                           
+2025-08-01T14:16:28.081752484Z [1] "Make binary variables logical"
+2025-08-01T14:16:28.084335014Z [1] "Make date variables dates"
+2025-08-01T14:16:28.085977364Z [1] "Make categorical variables factors"
+2025-08-01T14:16:28.086358318Z [1] " Make numerical variables numerical"
+2025-08-01T14:16:28.086558493Z [1] "Restrict to core variables"
+2025-08-01T14:16:28.086658664Z [1] "Core variables: patient_id, exp_date, out_date, index_date, end_date_outcome"
+2025-08-01T14:16:28.086667194Z [1] "Give generic names to variables"
+2025-08-01T14:16:28.155463718Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.155508130Z  Length:4053        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.155514720Z  Class :character   1st Qu.:2020-04-21   1st Qu.:2021-01-15  
+2025-08-01T14:16:28.155518606Z  Mode  :character   Median :2020-07-18   Median :2022-02-11  
+2025-08-01T14:16:28.155521994Z                     Mean   :2020-07-31   Mean   :2022-02-18  
+2025-08-01T14:16:28.155525004Z                     3rd Qu.:2020-11-03   3rd Qu.:2023-03-21  
+2025-08-01T14:16:28.155527919Z                     Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.155530859Z                     NA's   :3573         NA's   :2085        
+2025-08-01T14:16:28.155533675Z    index_date         end_date_outcome    
+2025-08-01T14:16:28.155536518Z  Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.155539366Z  1st Qu.:2020-01-01   1st Qu.:2021-12-01  
+2025-08-01T14:16:28.155542081Z  Median :2020-01-01   Median :2024-01-17  
+2025-08-01T14:16:28.155544842Z  Mean   :2020-01-01   Mean   :2023-02-19  
+2025-08-01T14:16:28.155547632Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.155550342Z  Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.155553057Z                                           
+2025-08-01T14:16:28.155555976Z [1] "Specify study dates"
+2025-08-01T14:16:28.159386001Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.159423808Z  Length:4053        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.159427641Z  Class :character   1st Qu.:2020-04-21   1st Qu.:2021-01-15  
+2025-08-01T14:16:28.159430260Z  Mode  :character   Median :2020-07-18   Median :2022-02-11  
+2025-08-01T14:16:28.159432523Z                     Mean   :2020-07-31   Mean   :2022-02-18  
+2025-08-01T14:16:28.159434476Z                     3rd Qu.:2020-11-03   3rd Qu.:2023-03-21  
+2025-08-01T14:16:28.159436605Z                     Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.159438663Z                     NA's   :3573         NA's   :2085        
+2025-08-01T14:16:28.159440827Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.159442807Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.159445624Z  1st Qu.:2020-01-01   1st Qu.:2021-12-01   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.159447716Z  Median :2020-01-01   Median :2024-01-17   Median :2020-01-01  
+2025-08-01T14:16:28.159464460Z  Mean   :2020-01-01   Mean   :2023-02-19   Mean   :2020-01-01  
+2025-08-01T14:16:28.159467092Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.159469093Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.159471323Z                                                                
+2025-08-01T14:16:28.159473777Z    study_stop        
+2025-08-01T14:16:28.159475939Z  Min.   :2024-04-30  
+2025-08-01T14:16:28.159477962Z  1st Qu.:2024-04-30  
+2025-08-01T14:16:28.159489481Z  Median :2024-04-30  
+2025-08-01T14:16:28.159492489Z  Mean   :2024-04-30  
+2025-08-01T14:16:28.159494992Z  3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.159497112Z  Max.   :2024-04-30  
+2025-08-01T14:16:28.159498975Z                      
+2025-08-01T14:16:28.159500928Z [1] "Specify follow-up dates"
+2025-08-01T14:16:28.167798904Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.167831273Z  Length:4053        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.167834371Z  Class :character   1st Qu.:2020-04-21   1st Qu.:2021-01-15  
+2025-08-01T14:16:28.167836754Z  Mode  :character   Median :2020-07-18   Median :2022-02-11  
+2025-08-01T14:16:28.167838819Z                     Mean   :2020-07-31   Mean   :2022-02-18  
+2025-08-01T14:16:28.167841364Z                     3rd Qu.:2020-11-03   3rd Qu.:2023-03-21  
+2025-08-01T14:16:28.167843655Z                     Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.167846077Z                     NA's   :3573         NA's   :2085        
+2025-08-01T14:16:28.167848312Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.167850541Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.167852699Z  1st Qu.:2020-01-01   1st Qu.:2021-12-01   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.167865512Z  Median :2020-01-01   Median :2024-01-17   Median :2020-01-01  
+2025-08-01T14:16:28.167867687Z  Mean   :2020-01-01   Mean   :2023-02-19   Mean   :2020-01-01  
+2025-08-01T14:16:28.167870061Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.167872137Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.167874330Z                                                                
+2025-08-01T14:16:28.167876549Z    study_stop           fup_start             fup_stop         
+2025-08-01T14:16:28.167881653Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.167883942Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2021-12-01  
+2025-08-01T14:16:28.167886156Z  Median :2024-04-30   Median :2020-01-01   Median :2024-01-17  
+2025-08-01T14:16:28.167888365Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-02-19  
+2025-08-01T14:16:28.167909604Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.167911790Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.167914012Z                                                                
+2025-08-01T14:16:28.168067845Z [1] "Remove exposures and outcomes outside follow-up"
+2025-08-01T14:16:28.168987703Z [1] "Exposure data range: 2020-01-01 to 2021-06-18"
+2025-08-01T14:16:28.169170948Z [1] "Outcome data range: 2020-01-01 to 2024-04-30"
+2025-08-01T14:16:28.175926801Z [1] "Exposure data range: 2020-01-01 to 2021-06-18"
+2025-08-01T14:16:28.176048329Z [1] "Outcome data range: 2020-01-01 to 2024-04-30"
+2025-08-01T14:16:28.176061701Z [1] "Make indicator variable for outcome status"
+2025-08-01T14:16:28.177918589Z 
+2025-08-01T14:16:28.177939819Z FALSE  TRUE 
+2025-08-01T14:16:28.177941857Z  2085  1968 
+2025-08-01T14:16:28.177977815Z [1] "N_total = 4053"
+2025-08-01T14:16:28.178758018Z [1] "N_exposed = 432"
+2025-08-01T14:16:28.178904017Z [1] "Sample control population"
+2025-08-01T14:16:28.224284763Z [1] "Set seed"
+2025-08-01T14:16:28.224311499Z [1] "Split cases and controls"
+2025-08-01T14:16:28.224839946Z [1] "Cases: 1968"
+2025-08-01T14:16:28.226942711Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.226966146Z  Length:1968        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.226969983Z  Class :character   1st Qu.:2020-04-21   1st Qu.:2021-01-15  
+2025-08-01T14:16:28.226972390Z  Mode  :character   Median :2020-07-14   Median :2022-02-11  
+2025-08-01T14:16:28.226974413Z                     Mean   :2020-07-16   Mean   :2022-02-18  
+2025-08-01T14:16:28.226976210Z                     3rd Qu.:2020-10-10   3rd Qu.:2023-03-21  
+2025-08-01T14:16:28.226978043Z                     Max.   :2021-06-12   Max.   :2024-04-30  
+2025-08-01T14:16:28.226980006Z                     NA's   :1769                             
+2025-08-01T14:16:28.226988711Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.226991238Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.226993211Z  1st Qu.:2020-01-01   1st Qu.:2021-01-15   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.226995000Z  Median :2020-01-01   Median :2022-02-11   Median :2020-01-01  
+2025-08-01T14:16:28.226996876Z  Mean   :2020-01-01   Mean   :2022-02-18   Mean   :2020-01-01  
+2025-08-01T14:16:28.226998889Z  3rd Qu.:2020-01-01   3rd Qu.:2023-03-21   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.227004449Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.227006573Z                                                                
+2025-08-01T14:16:28.227020133Z    study_stop           fup_start             fup_stop          outcome_status
+2025-08-01T14:16:28.227029466Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-01-01   Mode:logical  
+2025-08-01T14:16:28.227031718Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2021-01-15   TRUE:1968     
+2025-08-01T14:16:28.227033783Z  Median :2024-04-30   Median :2020-01-01   Median :2022-02-11                 
+2025-08-01T14:16:28.227044442Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2022-02-18                 
+2025-08-01T14:16:28.227049846Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2023-03-21                 
+2025-08-01T14:16:28.227058045Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30                 
+2025-08-01T14:16:28.227060271Z                                                                               
+2025-08-01T14:16:28.227228244Z [1] "Controls: 2085"
+2025-08-01T14:16:28.231990896Z   patient_id           exposure             outcome       index_date        
+2025-08-01T14:16:28.232029484Z  Length:2085        Min.   :2020-01-01   Min.   :NA     Min.   :2020-01-01  
+2025-08-01T14:16:28.232034927Z  Class :character   1st Qu.:2020-03-28   1st Qu.:NA     1st Qu.:2020-01-01  
+2025-08-01T14:16:28.232037883Z  Mode  :character   Median :2020-07-10   Median :NA     Median :2020-01-01  
+2025-08-01T14:16:28.232040571Z                     Mean   :2020-08-01   Mean   :NaN    Mean   :2020-01-01  
+2025-08-01T14:16:28.232043041Z                     3rd Qu.:2020-11-14   3rd Qu.:NA     3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.232045413Z                     Max.   :2021-06-18   Max.   :NA     Max.   :2020-01-01  
+2025-08-01T14:16:28.232047783Z                     NA's   :1852         NA's   :2085                       
+2025-08-01T14:16:28.232050331Z  end_date_outcome      study_start           study_stop        
+2025-08-01T14:16:28.232052857Z  Min.   :2020-01-07   Min.   :2020-01-01   Min.   :2024-04-30  
+2025-08-01T14:16:28.232055319Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2024-04-30  
+2025-08-01T14:16:28.232057592Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30  
+2025-08-01T14:16:28.232059920Z  Mean   :2024-01-30   Mean   :2020-01-01   Mean   :2024-04-30  
+2025-08-01T14:16:28.232062442Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.232064738Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.232067153Z                                                                
+2025-08-01T14:16:28.232069501Z    fup_start             fup_stop          outcome_status 
+2025-08-01T14:16:28.232071756Z  Min.   :2020-01-01   Min.   :2020-01-07   Mode :logical  
+2025-08-01T14:16:28.232074024Z  1st Qu.:2020-01-01   1st Qu.:2024-04-30   FALSE:2085     
+2025-08-01T14:16:28.232076261Z  Median :2020-01-01   Median :2024-04-30                  
+2025-08-01T14:16:28.232092839Z  Mean   :2020-01-01   Mean   :2024-01-30                  
+2025-08-01T14:16:28.232096004Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30                  
+2025-08-01T14:16:28.232098565Z  Max.   :2020-01-01   Max.   :2024-04-30                  
+2025-08-01T14:16:28.232100952Z                                                           
+2025-08-01T14:16:28.232106633Z [1] "Separate exposed controls so they are not sampled"
+2025-08-01T14:16:28.232808621Z [1] "233 exposed controls"
+2025-08-01T14:16:28.232832204Z [1] "Exposed controls:"
+2025-08-01T14:16:28.236335123Z   patient_id           exposure             outcome      index_date        
+2025-08-01T14:16:28.236360210Z  Length:233         Min.   :2020-01-01   Min.   :NA    Min.   :2020-01-01  
+2025-08-01T14:16:28.236361986Z  Class :character   1st Qu.:2020-03-28   1st Qu.:NA    1st Qu.:2020-01-01  
+2025-08-01T14:16:28.236363295Z  Mode  :character   Median :2020-07-10   Median :NA    Median :2020-01-01  
+2025-08-01T14:16:28.236364414Z                     Mean   :2020-08-01   Mean   :NaN   Mean   :2020-01-01  
+2025-08-01T14:16:28.236365505Z                     3rd Qu.:2020-11-14   3rd Qu.:NA    3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.236366543Z                     Max.   :2021-06-18   Max.   :NA    Max.   :2020-01-01  
+2025-08-01T14:16:28.236367601Z                                          NA's   :233                       
+2025-08-01T14:16:28.236368654Z  end_date_outcome      study_start           study_stop        
+2025-08-01T14:16:28.236369722Z  Min.   :2020-04-26   Min.   :2020-01-01   Min.   :2024-04-30  
+2025-08-01T14:16:28.236370737Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2024-04-30  
+2025-08-01T14:16:28.236371764Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30  
+2025-08-01T14:16:28.236372772Z  Mean   :2024-02-08   Mean   :2020-01-01   Mean   :2024-04-30  
+2025-08-01T14:16:28.236373787Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.236374811Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.236375827Z                                                                
+2025-08-01T14:16:28.236376864Z    fup_start             fup_stop          outcome_status    cox_weight
+2025-08-01T14:16:28.236377896Z  Min.   :2020-01-01   Min.   :2020-04-26   Mode :logical   Min.   :1   
+2025-08-01T14:16:28.236378916Z  1st Qu.:2020-01-01   1st Qu.:2024-04-30   FALSE:233       1st Qu.:1   
+2025-08-01T14:16:28.236380122Z  Median :2020-01-01   Median :2024-04-30                   Median :1   
+2025-08-01T14:16:28.236381194Z  Mean   :2020-01-01   Mean   :2024-02-08                   Mean   :1   
+2025-08-01T14:16:28.236382219Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30                   3rd Qu.:1   
+2025-08-01T14:16:28.236385167Z  Max.   :2020-01-01   Max.   :2024-04-30                   Max.   :1   
+2025-08-01T14:16:28.236386347Z                                                                        
+2025-08-01T14:16:28.236405022Z [1] "Sample unexposed controls"
+2025-08-01T14:16:28.237041606Z [1] "Insufficient controls so retain all controls"
+2025-08-01T14:16:28.237236468Z [1] "Specify cox weight for cases"
+2025-08-01T14:16:28.237344599Z [1] "Recombine cases and controls"
+2025-08-01T14:16:28.239581049Z [1] "After sampling, N_total = 4053"
+2025-08-01T14:16:28.244237886Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.244267372Z  Length:4053        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.244269932Z  Class :character   1st Qu.:2020-04-15   1st Qu.:2021-01-15  
+2025-08-01T14:16:28.244272187Z  Mode  :character   Median :2020-07-14   Median :2022-02-11  
+2025-08-01T14:16:28.244274411Z                     Mean   :2020-07-25   Mean   :2022-02-18  
+2025-08-01T14:16:28.244276672Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-03-21  
+2025-08-01T14:16:28.244278805Z                     Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.244280868Z                     NA's   :3621         NA's   :2085        
+2025-08-01T14:16:28.244283226Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.244285551Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.244287634Z  1st Qu.:2020-01-01   1st Qu.:2021-12-01   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.244289745Z  Median :2020-01-01   Median :2024-01-17   Median :2020-01-01  
+2025-08-01T14:16:28.244291934Z  Mean   :2020-01-01   Mean   :2023-02-19   Mean   :2020-01-01  
+2025-08-01T14:16:28.244293885Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.244296007Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.244298073Z                                                                
+2025-08-01T14:16:28.244301222Z    study_stop           fup_start             fup_stop          outcome_status 
+2025-08-01T14:16:28.244303606Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-01-01   Mode :logical  
+2025-08-01T14:16:28.244306015Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2021-12-01   FALSE:2085     
+2025-08-01T14:16:28.244314787Z  Median :2024-04-30   Median :2020-01-01   Median :2024-01-17   TRUE :1968     
+2025-08-01T14:16:28.244316991Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-02-19                  
+2025-08-01T14:16:28.244319355Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30                  
+2025-08-01T14:16:28.244321137Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30                  
+2025-08-01T14:16:28.244322849Z                                                                                
+2025-08-01T14:16:28.244324992Z    cox_weight
+2025-08-01T14:16:28.244326630Z  Min.   :1   
+2025-08-01T14:16:28.244344622Z  1st Qu.:1   
+2025-08-01T14:16:28.244346134Z  Median :1   
+2025-08-01T14:16:28.244347377Z  Mean   :1   
+2025-08-01T14:16:28.244348633Z  3rd Qu.:1   
+2025-08-01T14:16:28.244350851Z  Max.   :1   
+2025-08-01T14:16:28.244352868Z              
+2025-08-01T14:16:28.244393579Z [1] "Define episode labels"
+2025-08-01T14:16:28.246318739Z    episode   time_period
+2025-08-01T14:16:28.246356874Z 1        0      days_pre
+2025-08-01T14:16:28.246361561Z 2        1       days0_1
+2025-08-01T14:16:28.246364415Z 3        2       days1_7
+2025-08-01T14:16:28.246366884Z 4        3      days7_14
+2025-08-01T14:16:28.246369351Z 5        4     days14_28
+2025-08-01T14:16:28.246371715Z 6        5     days28_56
+2025-08-01T14:16:28.246373868Z 7        6     days56_84
+2025-08-01T14:16:28.246376045Z 8        7    days84_183
+2025-08-01T14:16:28.246378150Z 9        8   days183_365
+2025-08-01T14:16:28.246380431Z 10       9   days365_730
+2025-08-01T14:16:28.246382585Z 11      10  days730_1065
+2025-08-01T14:16:28.246384706Z 12      11 days1065_1582
+2025-08-01T14:16:28.246386909Z [1] "Survival data setup"
+2025-08-01T14:16:28.295858300Z [1] "Calculate where follow-up occurs in study period"
+2025-08-01T14:16:28.297757055Z [1] "Set survival data for the exposed"
+2025-08-01T14:16:28.297809463Z [1] "Filter data to exposed"
+2025-08-01T14:16:28.298206797Z [1] "Calculate days to exposure"
+2025-08-01T14:16:28.298466307Z [1] "Put into survival format (dataset d1)"
+2025-08-01T14:16:28.301794097Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.301845804Z  Length:432         Min.   :2020-01-01   Min.   :2020-02-25  
+2025-08-01T14:16:28.301848520Z  Class :character   1st Qu.:2020-04-15   1st Qu.:2021-06-13  
+2025-08-01T14:16:28.301850395Z  Mode  :character   Median :2020-07-14   Median :2022-04-05  
+2025-08-01T14:16:28.301852132Z                     Mean   :2020-07-25   Mean   :2022-05-13  
+2025-08-01T14:16:28.301854209Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-04-14  
+2025-08-01T14:16:28.301856145Z                     Max.   :2021-06-18   Max.   :2024-04-26  
+2025-08-01T14:16:28.301857690Z                                          NA's   :233         
+2025-08-01T14:16:28.301859330Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.301861183Z  Min.   :2020-01-01   Min.   :2020-02-25   Min.   :2020-01-01  
+2025-08-01T14:16:28.301863205Z  1st Qu.:2020-01-01   1st Qu.:2022-03-14   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.301865035Z  Median :2020-01-01   Median :2024-04-11   Median :2020-01-01  
+2025-08-01T14:16:28.301885444Z  Mean   :2020-01-01   Mean   :2023-04-22   Mean   :2020-01-01  
+2025-08-01T14:16:28.301887251Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.301889043Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.301891321Z                                                                
+2025-08-01T14:16:28.301893295Z    study_stop           fup_start             fup_stop            cox_weight
+2025-08-01T14:16:28.301894992Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-02-25   Min.   :1   
+2025-08-01T14:16:28.301896797Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-03-14   1st Qu.:1   
+2025-08-01T14:16:28.301898392Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-11   Median :1   
+2025-08-01T14:16:28.301900047Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-04-22   Mean   :1   
+2025-08-01T14:16:28.301901840Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:1   
+2025-08-01T14:16:28.301903992Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30   Max.   :1   
+2025-08-01T14:16:28.301905780Z                                                                             
+2025-08-01T14:16:28.301907632Z [1] "Put into survival format (dataset d2)"
+2025-08-01T14:16:28.303608889Z   patient_id        days_to_start  days_to_exp     days_to_end    
+2025-08-01T14:16:28.303660417Z  Length:432         Min.   :0     Min.   :  0.0   Min.   :  56.0  
+2025-08-01T14:16:28.303664608Z  Class :character   1st Qu.:0     1st Qu.:105.8   1st Qu.: 804.8  
+2025-08-01T14:16:28.303668194Z  Mode  :character   Median :0     Median :195.0   Median :1563.5  
+2025-08-01T14:16:28.303670836Z                     Mean   :0     Mean   :206.3   Mean   :1208.0  
+2025-08-01T14:16:28.303673014Z                     3rd Qu.:0     3rd Qu.:302.0   3rd Qu.:1582.0  
+2025-08-01T14:16:28.303675215Z                     Max.   :0     Max.   :534.0   Max.   :1582.0  
+2025-08-01T14:16:28.303677384Z  outcome_status 
+2025-08-01T14:16:28.303679610Z  Mode :logical  
+2025-08-01T14:16:28.303681949Z  FALSE:233      
+2025-08-01T14:16:28.303683989Z  TRUE :199      
+2025-08-01T14:16:28.303686130Z                 
+2025-08-01T14:16:28.303688138Z                 
+2025-08-01T14:16:28.303690105Z                 
+2025-08-01T14:16:28.303692191Z [1] "Put into survival format (tmerge)"
+2025-08-01T14:16:28.317381589Z Call:
+2025-08-01T14:16:28.317421940Z survival::tmerge(data1 = d1, data2 = d2, id = patient_id, outcome_status = event(days_to_end, 
+2025-08-01T14:16:28.317425953Z     outcome_status), exposure_status = tdc(days_to_exp), tstart = days_to_start, 
+2025-08-01T14:16:28.317428577Z     tstop = days_to_end)
+2025-08-01T14:16:28.317430494Z 
+2025-08-01T14:16:28.317444703Z                 early late gap within boundary leading trailing tied missid
+2025-08-01T14:16:28.317455831Z outcome_status      0    0   0      0        0       0      432    0      0
+2025-08-01T14:16:28.317458160Z exposure_status     0    0   0    429        0       3        0    0      0
+2025-08-01T14:16:28.317473051Z                 early late gap within boundary leading trailing tied missid
+2025-08-01T14:16:28.317481168Z outcome_status      0    0   0      0        0       0      432    0      0
+2025-08-01T14:16:28.317486331Z exposure_status     0    0   0    429        0       3        0    0      0
+2025-08-01T14:16:28.317508743Z [1] "Split post-exposure time for the exposed"
+2025-08-01T14:16:28.317511544Z [1] "Filter to post-exposure data"
+2025-08-01T14:16:28.317760536Z [1] "Format tstart and tstop"
+2025-08-01T14:16:28.319248266Z [1] "Implement post-exposure cut points"
+2025-08-01T14:16:28.321773828Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.321797752Z  Length:432         Min.   :2020-01-01   Min.   :2020-02-25  
+2025-08-01T14:16:28.321800222Z  Class :character   1st Qu.:2020-04-15   1st Qu.:2021-06-13  
+2025-08-01T14:16:28.321802189Z  Mode  :character   Median :2020-07-14   Median :2022-04-05  
+2025-08-01T14:16:28.321804101Z                     Mean   :2020-07-25   Mean   :2022-05-13  
+2025-08-01T14:16:28.321805741Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-04-14  
+2025-08-01T14:16:28.321807347Z                     Max.   :2021-06-18   Max.   :2024-04-26  
+2025-08-01T14:16:28.321808913Z                                          NA's   :233         
+2025-08-01T14:16:28.321810363Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.321811947Z  Min.   :2020-01-01   Min.   :2020-02-25   Min.   :2020-01-01  
+2025-08-01T14:16:28.321813629Z  1st Qu.:2020-01-01   1st Qu.:2022-03-14   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.321815245Z  Median :2020-01-01   Median :2024-04-11   Median :2020-01-01  
+2025-08-01T14:16:28.321817023Z  Mean   :2020-01-01   Mean   :2023-04-22   Mean   :2020-01-01  
+2025-08-01T14:16:28.321818537Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.321820132Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.321822042Z                                                                
+2025-08-01T14:16:28.321823691Z    study_stop           fup_start             fup_stop            cox_weight
+2025-08-01T14:16:28.321825486Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-02-25   Min.   :1   
+2025-08-01T14:16:28.321827123Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-03-14   1st Qu.:1   
+2025-08-01T14:16:28.321828738Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-11   Median :1   
+2025-08-01T14:16:28.321830425Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-04-22   Mean   :1   
+2025-08-01T14:16:28.321845108Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:1   
+2025-08-01T14:16:28.321847097Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30   Max.   :1   
+2025-08-01T14:16:28.321853439Z                                                                             
+2025-08-01T14:16:28.321855620Z        t0              t          outcome_status  exposure_status     tstart 
+2025-08-01T14:16:28.321857385Z  Min.   :  0.0   Min.   :  56.0   Mode :logical   Min.   :1       Min.   :0  
+2025-08-01T14:16:28.321859092Z  1st Qu.:105.8   1st Qu.: 804.8   FALSE:233       1st Qu.:1       1st Qu.:0  
+2025-08-01T14:16:28.321860661Z  Median :195.0   Median :1563.5   TRUE :199       Median :1       Median :0  
+2025-08-01T14:16:28.321862495Z  Mean   :206.3   Mean   :1208.0                   Mean   :1       Mean   :0  
+2025-08-01T14:16:28.321864394Z  3rd Qu.:302.0   3rd Qu.:1582.0                   3rd Qu.:1       3rd Qu.:0  
+2025-08-01T14:16:28.321866235Z  Max.   :534.0   Max.   :1582.0                   Max.   :1       Max.   :0  
+2025-08-01T14:16:28.321867863Z                                                                              
+2025-08-01T14:16:28.321869623Z      tstop       
+2025-08-01T14:16:28.321871337Z  Min.   :   2.0  
+2025-08-01T14:16:28.321872869Z  1st Qu.: 572.5  
+2025-08-01T14:16:28.321874463Z  Median :1198.5  
+2025-08-01T14:16:28.321876020Z  Mean   :1001.7  
+2025-08-01T14:16:28.321877499Z  3rd Qu.:1392.5  
+2025-08-01T14:16:28.321878904Z  Max.   :1579.0  
+2025-08-01T14:16:28.321880390Z                  
+2025-08-01T14:16:28.332833958Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.332866202Z  Length:4306        Min.   :2020-01-01   Min.   :2020-02-25  
+2025-08-01T14:16:28.332871088Z  Class :character   1st Qu.:2020-04-16   1st Qu.:2021-09-16  
+2025-08-01T14:16:28.332873706Z  Mode  :character   Median :2020-07-14   Median :2022-07-14  
+2025-08-01T14:16:28.332875888Z                     Mean   :2020-07-25   Mean   :2022-07-24  
+2025-08-01T14:16:28.332877855Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-08-06  
+2025-08-01T14:16:28.332879650Z                     Max.   :2021-06-18   Max.   :2024-04-26  
+2025-08-01T14:16:28.332881579Z                                          NA's   :2507        
+2025-08-01T14:16:28.332883350Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.332885163Z  Min.   :2020-01-01   Min.   :2020-02-25   Min.   :2020-01-01  
+2025-08-01T14:16:28.332887101Z  1st Qu.:2020-01-01   1st Qu.:2022-09-12   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.332889043Z  Median :2020-01-01   Median :2024-04-30   Median :2020-01-01  
+2025-08-01T14:16:28.332890848Z  Mean   :2020-01-01   Mean   :2023-06-30   Mean   :2020-01-01  
+2025-08-01T14:16:28.332904109Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.332906516Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.332908446Z                                                                
+2025-08-01T14:16:28.332910355Z    study_stop           fup_start             fup_stop            cox_weight
+2025-08-01T14:16:28.332912397Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-02-25   Min.   :1   
+2025-08-01T14:16:28.332914290Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-09-12   1st Qu.:1   
+2025-08-01T14:16:28.332916289Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30   Median :1   
+2025-08-01T14:16:28.332918115Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-06-30   Mean   :1   
+2025-08-01T14:16:28.332919928Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:1   
+2025-08-01T14:16:28.332921753Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30   Max.   :1   
+2025-08-01T14:16:28.332923577Z                                                                             
+2025-08-01T14:16:28.332925417Z        t0              t          exposure_status     tstart      
+2025-08-01T14:16:28.332927626Z  Min.   :  0.0   Min.   :  56.0   Min.   :1       Min.   :   0.0  
+2025-08-01T14:16:28.332929500Z  1st Qu.:106.0   1st Qu.: 986.5   1st Qu.:1       1st Qu.:   7.0  
+2025-08-01T14:16:28.332931367Z  Median :195.0   Median :1582.0   Median :1       Median :  56.0  
+2025-08-01T14:16:28.332933136Z  Mean   :206.3   Mean   :1277.0   Mean   :1       Mean   : 180.7  
+2025-08-01T14:16:28.332934994Z  3rd Qu.:302.0   3rd Qu.:1582.0   3rd Qu.:1       3rd Qu.: 183.0  
+2025-08-01T14:16:28.332938411Z  Max.   :534.0   Max.   :1582.0   Max.   :1       Max.   :1065.0  
+2025-08-01T14:16:28.332940339Z                                                                   
+2025-08-01T14:16:28.332942151Z      tstop        outcome_status       episode      
+2025-08-01T14:16:28.332943975Z  Min.   :   1.0   Min.   :0.00000   Min.   : 1.000  
+2025-08-01T14:16:28.332945739Z  1st Qu.:  14.0   1st Qu.:0.00000   1st Qu.: 3.000  
+2025-08-01T14:16:28.332947479Z  Median :  83.5   Median :0.00000   Median : 6.000  
+2025-08-01T14:16:28.332949248Z  Mean   : 281.2   Mean   :0.04621   Mean   : 5.613  
+2025-08-01T14:16:28.332951017Z  3rd Qu.: 365.0   3rd Qu.:0.00000   3rd Qu.: 8.000  
+2025-08-01T14:16:28.332952823Z  Max.   :1579.0   Max.   :1.00000   Max.   :11.000  
+2025-08-01T14:16:28.332954587Z                                                     
+2025-08-01T14:16:28.332956379Z [1] "Account for pre-exposure time"
+2025-08-01T14:16:28.336457823Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.336484179Z  Length:4306        Min.   :2020-01-01   Min.   :2020-02-25  
+2025-08-01T14:16:28.336498099Z  Class :character   1st Qu.:2020-04-16   1st Qu.:2021-09-16  
+2025-08-01T14:16:28.336501086Z  Mode  :character   Median :2020-07-14   Median :2022-07-14  
+2025-08-01T14:16:28.336503226Z                     Mean   :2020-07-25   Mean   :2022-07-24  
+2025-08-01T14:16:28.336505273Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-08-06  
+2025-08-01T14:16:28.336507242Z                     Max.   :2021-06-18   Max.   :2024-04-26  
+2025-08-01T14:16:28.336509115Z                                          NA's   :2507        
+2025-08-01T14:16:28.336510976Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.336512932Z  Min.   :2020-01-01   Min.   :2020-02-25   Min.   :2020-01-01  
+2025-08-01T14:16:28.336514924Z  1st Qu.:2020-01-01   1st Qu.:2022-09-12   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.336516784Z  Median :2020-01-01   Median :2024-04-30   Median :2020-01-01  
+2025-08-01T14:16:28.336518730Z  Mean   :2020-01-01   Mean   :2023-06-30   Mean   :2020-01-01  
+2025-08-01T14:16:28.336520699Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.336522582Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.336524420Z                                                                
+2025-08-01T14:16:28.336526433Z    study_stop           fup_start             fup_stop            cox_weight
+2025-08-01T14:16:28.336528622Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-02-25   Min.   :1   
+2025-08-01T14:16:28.336530453Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-09-12   1st Qu.:1   
+2025-08-01T14:16:28.336532303Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30   Median :1   
+2025-08-01T14:16:28.336534177Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-06-30   Mean   :1   
+2025-08-01T14:16:28.336536057Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:1   
+2025-08-01T14:16:28.336537996Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30   Max.   :1   
+2025-08-01T14:16:28.336539817Z                                                                             
+2025-08-01T14:16:28.336541689Z  exposure_status     tstart           tstop        outcome_status   
+2025-08-01T14:16:28.336543647Z  Min.   :1       Min.   :   0.0   Min.   :   1.0   Min.   :0.00000  
+2025-08-01T14:16:28.336545550Z  1st Qu.:1       1st Qu.: 171.0   1st Qu.: 196.0   1st Qu.:0.00000  
+2025-08-01T14:16:28.336547430Z  Median :1       Median : 298.0   Median : 344.0   Median :0.00000  
+2025-08-01T14:16:28.336549234Z  Mean   :1       Mean   : 387.0   Mean   : 487.5   Mean   :0.04621  
+2025-08-01T14:16:28.336551049Z  3rd Qu.:1       3rd Qu.: 472.8   3rd Qu.: 611.8   3rd Qu.:0.00000  
+2025-08-01T14:16:28.336554059Z  Max.   :1       Max.   :1581.0   Max.   :1582.0   Max.   :1.00000  
+2025-08-01T14:16:28.336555981Z                                                                     
+2025-08-01T14:16:28.336561213Z     episode      
+2025-08-01T14:16:28.336563480Z  Min.   : 1.000  
+2025-08-01T14:16:28.336565226Z  1st Qu.: 3.000  
+2025-08-01T14:16:28.336567008Z  Median : 6.000  
+2025-08-01T14:16:28.336568676Z  Mean   : 5.613  
+2025-08-01T14:16:28.336570303Z  3rd Qu.: 8.000  
+2025-08-01T14:16:28.336571981Z  Max.   :11.000  
+2025-08-01T14:16:28.336573623Z                  
+2025-08-01T14:16:28.336575269Z [1] "Combine pre- and post-exposure time for the exposed"
+2025-08-01T14:16:28.336577282Z [1] "Filter to pre-exposure data"
+2025-08-01T14:16:28.336788506Z [1] "Set pre-exposure to be episode 0"
+2025-08-01T14:16:28.346136482Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.346170876Z  Length:429         Min.   :2020-01-04   Min.   :2020-02-25  
+2025-08-01T14:16:28.346172405Z  Class :character   1st Qu.:2020-04-18   1st Qu.:2021-06-12  
+2025-08-01T14:16:28.346185935Z  Mode  :character   Median :2020-07-14   Median :2022-04-05  
+2025-08-01T14:16:28.346187981Z                     Mean   :2020-07-26   Mean   :2022-05-11  
+2025-08-01T14:16:28.346189057Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-04-10  
+2025-08-01T14:16:28.346190071Z                     Max.   :2021-06-18   Max.   :2024-04-26  
+2025-08-01T14:16:28.346191083Z                                          NA's   :232         
+2025-08-01T14:16:28.346192093Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.346193131Z  Min.   :2020-01-01   Min.   :2020-02-25   Min.   :2020-01-01  
+2025-08-01T14:16:28.346194164Z  1st Qu.:2020-01-01   1st Qu.:2022-03-18   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.346195167Z  Median :2020-01-01   Median :2024-04-18   Median :2020-01-01  
+2025-08-01T14:16:28.346196221Z  Mean   :2020-01-01   Mean   :2023-04-24   Mean   :2020-01-01  
+2025-08-01T14:16:28.346197376Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.346198381Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.346199426Z                                                                
+2025-08-01T14:16:28.346200460Z    study_stop           fup_start             fup_stop            cox_weight
+2025-08-01T14:16:28.346201598Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-02-25   Min.   :1   
+2025-08-01T14:16:28.346202679Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-03-18   1st Qu.:1   
+2025-08-01T14:16:28.346203718Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-18   Median :1   
+2025-08-01T14:16:28.346204796Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-04-24   Mean   :1   
+2025-08-01T14:16:28.346205807Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:1   
+2025-08-01T14:16:28.346221325Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30   Max.   :1   
+2025-08-01T14:16:28.346222457Z                                                                             
+2025-08-01T14:16:28.346223503Z      tstart      tstop       outcome_status  exposure_status    episode 
+2025-08-01T14:16:28.346224520Z  Min.   :0   Min.   :  3.0   Mode :logical   Min.   :0       Min.   :0  
+2025-08-01T14:16:28.346225585Z  1st Qu.:0   1st Qu.:108.0   FALSE:429       1st Qu.:0       1st Qu.:0  
+2025-08-01T14:16:28.346226605Z  Median :0   Median :195.0                   Median :0       Median :0  
+2025-08-01T14:16:28.346227728Z  Mean   :0   Mean   :207.7                   Mean   :0       Mean   :0  
+2025-08-01T14:16:28.346229717Z  3rd Qu.:0   3rd Qu.:302.0                   3rd Qu.:0       3rd Qu.:0  
+2025-08-01T14:16:28.346230755Z  Max.   :0   Max.   :534.0                   Max.   :0       Max.   :0  
+2025-08-01T14:16:28.346231765Z                                                                         
+2025-08-01T14:16:28.346232903Z [1] "Bind pre- and post-exposure time"
+2025-08-01T14:16:28.470520537Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.470560976Z  Length:4735        Min.   :2020-01-01   Min.   :2020-02-25  
+2025-08-01T14:16:28.470565287Z  Class :character   1st Qu.:2020-04-16   1st Qu.:2021-09-12  
+2025-08-01T14:16:28.470568234Z  Mode  :character   Median :2020-07-14   Median :2022-07-12  
+2025-08-01T14:16:28.470570999Z                     Mean   :2020-07-25   Mean   :2022-07-17  
+2025-08-01T14:16:28.470573733Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-08-06  
+2025-08-01T14:16:28.470576459Z                     Max.   :2021-06-18   Max.   :2024-04-26  
+2025-08-01T14:16:28.470580632Z                                          NA's   :2739        
+2025-08-01T14:16:28.470583386Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.470586131Z  Min.   :2020-01-01   Min.   :2020-02-25   Min.   :2020-01-01  
+2025-08-01T14:16:28.470588829Z  1st Qu.:2020-01-01   1st Qu.:2022-08-26   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.470591609Z  Median :2020-01-01   Median :2024-04-30   Median :2020-01-01  
+2025-08-01T14:16:28.470594315Z  Mean   :2020-01-01   Mean   :2023-06-24   Mean   :2020-01-01  
+2025-08-01T14:16:28.470597025Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.470599782Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.470602500Z                                                                
+2025-08-01T14:16:28.470605361Z    study_stop           fup_start             fup_stop            cox_weight
+2025-08-01T14:16:28.470608242Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-02-25   Min.   :1   
+2025-08-01T14:16:28.470629664Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-08-26   1st Qu.:1   
+2025-08-01T14:16:28.470649276Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30   Median :1   
+2025-08-01T14:16:28.470652223Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-06-24   Mean   :1   
+2025-08-01T14:16:28.470654996Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:1   
+2025-08-01T14:16:28.470657762Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30   Max.   :1   
+2025-08-01T14:16:28.470660539Z                                                                             
+2025-08-01T14:16:28.470663533Z      tstart           tstop        outcome_status    exposure_status 
+2025-08-01T14:16:28.470666222Z  Min.   :   0.0   Min.   :   1.0   Min.   :0.00000   Min.   :0.0000  
+2025-08-01T14:16:28.470669141Z  1st Qu.: 131.0   1st Qu.: 183.0   1st Qu.:0.00000   1st Qu.:1.0000  
+2025-08-01T14:16:28.470671787Z  Median : 269.0   Median : 323.0   Median :0.00000   Median :1.0000  
+2025-08-01T14:16:28.470674762Z  Mean   : 351.9   Mean   : 462.1   Mean   :0.04203   Mean   :0.9094  
+2025-08-01T14:16:28.470677523Z  3rd Qu.: 445.5   3rd Qu.: 557.0   3rd Qu.:0.00000   3rd Qu.:1.0000  
+2025-08-01T14:16:28.470682754Z  Max.   :1581.0   Max.   :1582.0   Max.   :1.00000   Max.   :1.0000  
+2025-08-01T14:16:28.470685480Z                                                                      
+2025-08-01T14:16:28.470688321Z     episode      
+2025-08-01T14:16:28.470690960Z  Min.   : 0.000  
+2025-08-01T14:16:28.470693547Z  1st Qu.: 2.000  
+2025-08-01T14:16:28.470695968Z  Median : 5.000  
+2025-08-01T14:16:28.470698430Z  Mean   : 5.104  
+2025-08-01T14:16:28.470701040Z  3rd Qu.: 8.000  
+2025-08-01T14:16:28.470703690Z  Max.   :11.000  
+2025-08-01T14:16:28.470706088Z                  
+2025-08-01T14:16:28.470708612Z [1] "Set survival data for the unexposed"
+2025-08-01T14:16:28.470711538Z [1] "Filter data to unexposed"
+2025-08-01T14:16:28.471685187Z [1] "Rename variables to survival variable names"
+2025-08-01T14:16:28.482836486Z   patient_id           exposure       outcome             index_date        
+2025-08-01T14:16:28.482893525Z  Length:3621        Min.   :NA     Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.482901052Z  Class :character   1st Qu.:NA     1st Qu.:2020-12-27   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.482906003Z  Mode  :character   Median :NA     Median :2022-01-30   Median :2020-01-01  
+2025-08-01T14:16:28.482910463Z                     Mean   :NaN    Mean   :2022-02-09   Mean   :2020-01-01  
+2025-08-01T14:16:28.482915241Z                     3rd Qu.:NA     3rd Qu.:2023-03-19   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.482919875Z                     Max.   :NA     Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.482924245Z                     NA's   :3621   NA's   :1852                             
+2025-08-01T14:16:28.482949076Z  end_date_outcome      study_start           study_stop        
+2025-08-01T14:16:28.482954737Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2024-04-30  
+2025-08-01T14:16:28.482959194Z  1st Qu.:2021-11-13   1st Qu.:2020-01-01   1st Qu.:2024-04-30  
+2025-08-01T14:16:28.482963524Z  Median :2024-01-10   Median :2020-01-01   Median :2024-04-30  
+2025-08-01T14:16:28.482967859Z  Mean   :2023-02-12   Mean   :2020-01-01   Mean   :2024-04-30  
+2025-08-01T14:16:28.482972186Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.482976464Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.482980731Z                                                                
+2025-08-01T14:16:28.482984933Z    fup_start             fup_stop          outcome_status     cox_weight
+2025-08-01T14:16:28.482989175Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :0.0000   Min.   :1   
+2025-08-01T14:16:28.482993334Z  1st Qu.:2020-01-01   1st Qu.:2021-11-13   1st Qu.:0.0000   1st Qu.:1   
+2025-08-01T14:16:28.482998038Z  Median :2020-01-01   Median :2024-01-10   Median :0.0000   Median :1   
+2025-08-01T14:16:28.483002308Z  Mean   :2020-01-01   Mean   :2023-02-12   Mean   :0.4885   Mean   :1   
+2025-08-01T14:16:28.483006607Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:1.0000   3rd Qu.:1   
+2025-08-01T14:16:28.483010803Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :1.0000   Max.   :1   
+2025-08-01T14:16:28.483014938Z                                                                         
+2025-08-01T14:16:28.483019166Z      tstart      tstop      exposure_status    episode 
+2025-08-01T14:16:28.483023315Z  Min.   :0   Min.   :   1   Min.   :0       Min.   :0  
+2025-08-01T14:16:28.483040988Z  1st Qu.:0   1st Qu.: 683   1st Qu.:0       1st Qu.:0  
+2025-08-01T14:16:28.483046511Z  Median :0   Median :1471   Median :0       Median :0  
+2025-08-01T14:16:28.483051129Z  Mean   :0   Mean   :1139   Mean   :0       Mean   :0  
+2025-08-01T14:16:28.483055262Z  3rd Qu.:0   3rd Qu.:1582   3rd Qu.:0       3rd Qu.:0  
+2025-08-01T14:16:28.483059549Z  Max.   :0   Max.   :1582   Max.   :0       Max.   :0  
+2025-08-01T14:16:28.483063811Z                                                        
+2025-08-01T14:16:28.483068063Z [1] "Combine exposed and unexposed individuals"
+2025-08-01T14:16:28.495843929Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.495890532Z  Length:8356        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.495898989Z  Class :character   1st Qu.:2020-04-16   1st Qu.:2021-05-08  
+2025-08-01T14:16:28.495903759Z  Mode  :character   Median :2020-07-14   Median :2022-05-03  
+2025-08-01T14:16:28.495907635Z                     Mean   :2020-07-25   Mean   :2022-05-03  
+2025-08-01T14:16:28.495911410Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-05-10  
+2025-08-01T14:16:28.495935380Z                     Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.495940762Z                     NA's   :3621         NA's   :4591        
+2025-08-01T14:16:28.495944947Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.495949189Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.495953012Z  1st Qu.:2020-01-01   1st Qu.:2022-04-22   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.495956774Z  Median :2020-01-01   Median :2024-04-30   Median :2020-01-01  
+2025-08-01T14:16:28.495960359Z  Mean   :2020-01-01   Mean   :2023-04-27   Mean   :2020-01-01  
+2025-08-01T14:16:28.495964017Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.495967775Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.495971530Z                                                                
+2025-08-01T14:16:28.495975176Z    study_stop           fup_start             fup_stop         
+2025-08-01T14:16:28.495978807Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.495982516Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-04-22  
+2025-08-01T14:16:28.495986235Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30  
+2025-08-01T14:16:28.495990079Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-04-27  
+2025-08-01T14:16:28.496071158Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.496099162Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.496103217Z                                                                
+2025-08-01T14:16:28.496106141Z  outcome_status     cox_weight     tstart           tstop       
+2025-08-01T14:16:28.496109274Z  Min.   :0.0000   Min.   :1    Min.   :   0.0   Min.   :   1.0  
+2025-08-01T14:16:28.496112533Z  1st Qu.:0.0000   1st Qu.:1    1st Qu.:   0.0   1st Qu.: 244.0  
+2025-08-01T14:16:28.496115483Z  Median :0.0000   Median :1    Median :  33.0   Median : 526.0  
+2025-08-01T14:16:28.496118434Z  Mean   :0.2355   Mean   :1    Mean   : 199.4   Mean   : 755.5  
+2025-08-01T14:16:28.496120928Z  3rd Qu.:0.0000   3rd Qu.:1    3rd Qu.: 307.0   3rd Qu.:1452.2  
+2025-08-01T14:16:28.496123428Z  Max.   :1.0000   Max.   :1    Max.   :1581.0   Max.   :1582.0  
+2025-08-01T14:16:28.496126499Z                                                                 
+2025-08-01T14:16:28.496128920Z  exposure_status     episode      
+2025-08-01T14:16:28.496131429Z  Min.   :0.0000   Min.   : 0.000  
+2025-08-01T14:16:28.496133854Z  1st Qu.:0.0000   1st Qu.: 0.000  
+2025-08-01T14:16:28.496136435Z  Median :1.0000   Median : 1.000  
+2025-08-01T14:16:28.496138896Z  Mean   :0.5153   Mean   : 2.892  
+2025-08-01T14:16:28.496141368Z  3rd Qu.:1.0000   3rd Qu.: 6.000  
+2025-08-01T14:16:28.496163910Z  Max.   :1.0000   Max.   :11.000  
+2025-08-01T14:16:28.496166848Z                                   
+2025-08-01T14:16:28.496170397Z [1] "Add indicators for episode"
+2025-08-01T14:16:28.513951435Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.513987586Z  Length:8356        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.513990460Z  Class :character   1st Qu.:2020-04-16   1st Qu.:2021-05-08  
+2025-08-01T14:16:28.513992206Z  Mode  :character   Median :2020-07-14   Median :2022-05-03  
+2025-08-01T14:16:28.513994147Z                     Mean   :2020-07-25   Mean   :2022-05-03  
+2025-08-01T14:16:28.513995812Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-05-10  
+2025-08-01T14:16:28.513997609Z                     Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.513999639Z                     NA's   :3621         NA's   :4591        
+2025-08-01T14:16:28.514001538Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.514003589Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.514008894Z  1st Qu.:2020-01-01   1st Qu.:2022-04-22   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.514010696Z  Median :2020-01-01   Median :2024-04-30   Median :2020-01-01  
+2025-08-01T14:16:28.514012697Z  Mean   :2020-01-01   Mean   :2023-04-27   Mean   :2020-01-01  
+2025-08-01T14:16:28.514014573Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.514016580Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.514018568Z                                                                
+2025-08-01T14:16:28.514020703Z    study_stop           fup_start             fup_stop         
+2025-08-01T14:16:28.514022404Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.514024413Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-04-22  
+2025-08-01T14:16:28.514026250Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30  
+2025-08-01T14:16:28.514027867Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-04-27  
+2025-08-01T14:16:28.514029508Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.514032433Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.514034350Z                                                                
+2025-08-01T14:16:28.514036298Z  outcome_status     cox_weight     tstart           tstop       
+2025-08-01T14:16:28.514038032Z  Min.   :0.0000   Min.   :1    Min.   :   0.0   Min.   :   1.0  
+2025-08-01T14:16:28.514039840Z  1st Qu.:0.0000   1st Qu.:1    1st Qu.:   0.0   1st Qu.: 244.0  
+2025-08-01T14:16:28.514041977Z  Median :0.0000   Median :1    Median :  33.0   Median : 526.0  
+2025-08-01T14:16:28.514217327Z  Mean   :0.2355   Mean   :1    Mean   : 199.4   Mean   : 755.5  
+2025-08-01T14:16:28.514242534Z  3rd Qu.:0.0000   3rd Qu.:1    3rd Qu.: 307.0   3rd Qu.:1452.2  
+2025-08-01T14:16:28.514246843Z  Max.   :1.0000   Max.   :1    Max.   :1581.0   Max.   :1582.0  
+2025-08-01T14:16:28.514249707Z                                                                 
+2025-08-01T14:16:28.514256666Z  exposure_status     episode          days0_1          days1_7      
+2025-08-01T14:16:28.514260003Z  Min.   :0.0000   Min.   : 0.000   Min.   :0.0000   Min.   :0.0000  
+2025-08-01T14:16:28.514262840Z  1st Qu.:0.0000   1st Qu.: 0.000   1st Qu.:0.0000   1st Qu.:0.0000  
+2025-08-01T14:16:28.514265401Z  Median :1.0000   Median : 1.000   Median :0.0000   Median :0.0000  
+2025-08-01T14:16:28.514267841Z  Mean   :0.5153   Mean   : 2.892   Mean   :0.0517   Mean   :0.0517  
+2025-08-01T14:16:28.514270167Z  3rd Qu.:1.0000   3rd Qu.: 6.000   3rd Qu.:0.0000   3rd Qu.:0.0000  
+2025-08-01T14:16:28.514273045Z  Max.   :1.0000   Max.   :11.000   Max.   :1.0000   Max.   :1.0000  
+2025-08-01T14:16:28.514275359Z                                                                     
+2025-08-01T14:16:28.514277655Z     days7_14         days14_28         days28_56         days56_84      
+2025-08-01T14:16:28.514280021Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.514282511Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.514284733Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.514286999Z  Mean   :0.05146   Mean   :0.05134   Mean   :0.05086   Mean   :0.05026  
+2025-08-01T14:16:28.514289342Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.514292070Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.514294310Z                                                                         
+2025-08-01T14:16:28.514296555Z    days84_183       days183_365       days365_730       days730_1065    
+2025-08-01T14:16:28.514299740Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.514302155Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.514304395Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.514306617Z  Mean   :0.04966   Mean   :0.04799   Mean   :0.04368   Mean   :0.03626  
+2025-08-01T14:16:28.514308872Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.514311090Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.514313327Z                                                                         
+2025-08-01T14:16:28.514315604Z  days1065_1582   
+2025-08-01T14:16:28.514317876Z  Min.   :0.0000  
+2025-08-01T14:16:28.514331816Z  1st Qu.:0.0000  
+2025-08-01T14:16:28.514334870Z  Median :0.0000  
+2025-08-01T14:16:28.514337065Z  Mean   :0.0304  
+2025-08-01T14:16:28.514339218Z  3rd Qu.:0.0000  
+2025-08-01T14:16:28.514341295Z  Max.   :1.0000  
+2025-08-01T14:16:28.514343412Z                  
+2025-08-01T14:16:28.525530357Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.525562605Z  Length:8356        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.525564989Z  Class :character   1st Qu.:2020-04-16   1st Qu.:2021-05-08  
+2025-08-01T14:16:28.525566713Z  Mode  :character   Median :2020-07-14   Median :2022-05-03  
+2025-08-01T14:16:28.525568250Z                     Mean   :2020-07-25   Mean   :2022-05-03  
+2025-08-01T14:16:28.525569869Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-05-10  
+2025-08-01T14:16:28.525571437Z                     Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.525573127Z                     NA's   :3621         NA's   :4591        
+2025-08-01T14:16:28.525574710Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.525576263Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.525577795Z  1st Qu.:2020-01-01   1st Qu.:2022-04-22   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.525579235Z  Median :2020-01-01   Median :2024-04-30   Median :2020-01-01  
+2025-08-01T14:16:28.525580744Z  Mean   :2020-01-01   Mean   :2023-04-27   Mean   :2020-01-01  
+2025-08-01T14:16:28.525582214Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.525583754Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.525588770Z                                                                
+2025-08-01T14:16:28.525590190Z    study_stop           fup_start             fup_stop         
+2025-08-01T14:16:28.525591640Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.525593052Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-04-22  
+2025-08-01T14:16:28.525594551Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30  
+2025-08-01T14:16:28.525596047Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-04-27  
+2025-08-01T14:16:28.525597598Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.525599011Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.525600466Z                                                                
+2025-08-01T14:16:28.525601912Z  outcome_status     cox_weight     tstart           tstop       
+2025-08-01T14:16:28.525603288Z  Min.   :0.0000   Min.   :1    Min.   :   0.0   Min.   :   1.0  
+2025-08-01T14:16:28.525604676Z  1st Qu.:0.0000   1st Qu.:1    1st Qu.:   0.0   1st Qu.: 244.0  
+2025-08-01T14:16:28.525631695Z  Median :0.0000   Median :1    Median :  33.0   Median : 526.0  
+2025-08-01T14:16:28.525633499Z  Mean   :0.2355   Mean   :1    Mean   : 199.4   Mean   : 755.5  
+2025-08-01T14:16:28.525634968Z  3rd Qu.:0.0000   3rd Qu.:1    3rd Qu.: 307.0   3rd Qu.:1452.2  
+2025-08-01T14:16:28.525636375Z  Max.   :1.0000   Max.   :1    Max.   :1581.0   Max.   :1582.0  
+2025-08-01T14:16:28.525637924Z                                                                 
+2025-08-01T14:16:28.525640837Z  exposure_status     episode          days0_1          days1_7      
+2025-08-01T14:16:28.525642432Z  Min.   :0.0000   Min.   : 0.000   Min.   :0.0000   Min.   :0.0000  
+2025-08-01T14:16:28.525643925Z  1st Qu.:0.0000   1st Qu.: 0.000   1st Qu.:0.0000   1st Qu.:0.0000  
+2025-08-01T14:16:28.525645355Z  Median :1.0000   Median : 1.000   Median :0.0000   Median :0.0000  
+2025-08-01T14:16:28.525646815Z  Mean   :0.5153   Mean   : 2.892   Mean   :0.0517   Mean   :0.0517  
+2025-08-01T14:16:28.525648262Z  3rd Qu.:1.0000   3rd Qu.: 6.000   3rd Qu.:0.0000   3rd Qu.:0.0000  
+2025-08-01T14:16:28.525649702Z  Max.   :1.0000   Max.   :11.000   Max.   :1.0000   Max.   :1.0000  
+2025-08-01T14:16:28.525651149Z                                                                     
+2025-08-01T14:16:28.525652585Z     days7_14         days14_28         days28_56         days56_84      
+2025-08-01T14:16:28.525654045Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.525655478Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.525656936Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.525658366Z  Mean   :0.05146   Mean   :0.05134   Mean   :0.05086   Mean   :0.05026  
+2025-08-01T14:16:28.525659819Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.525661338Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.525663389Z                                                                         
+2025-08-01T14:16:28.525664813Z    days84_183       days183_365       days365_730       days730_1065    
+2025-08-01T14:16:28.525666241Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.525667669Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.525669137Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.525670557Z  Mean   :0.04966   Mean   :0.04799   Mean   :0.04368   Mean   :0.03626  
+2025-08-01T14:16:28.525671963Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.525673394Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.525674899Z                                                                         
+2025-08-01T14:16:28.525678705Z  days1065_1582   
+2025-08-01T14:16:28.525680202Z  Min.   :0.0000  
+2025-08-01T14:16:28.525681546Z  1st Qu.:0.0000  
+2025-08-01T14:16:28.525682912Z  Median :0.0000  
+2025-08-01T14:16:28.525684234Z  Mean   :0.0304  
+2025-08-01T14:16:28.525685553Z  3rd Qu.:0.0000  
+2025-08-01T14:16:28.525686828Z  Max.   :1.0000  
+2025-08-01T14:16:28.525688183Z                  
+2025-08-01T14:16:28.525750545Z [1] "Calculate events in each time period"
+2025-08-01T14:16:28.546588835Z [1] "Calculate number of events per episode"
+2025-08-01T14:16:28.560739043Z    episode N_events
+2025-08-01T14:16:28.560767839Z 1        0     1769
+2025-08-01T14:16:28.560769654Z 2        2        1
+2025-08-01T14:16:28.560770737Z 3        3        1
+2025-08-01T14:16:28.560771698Z 4        4        4
+2025-08-01T14:16:28.560772658Z 5        5        5
+2025-08-01T14:16:28.560773604Z 6        6        5
+2025-08-01T14:16:28.560774583Z 7        7       11
+2025-08-01T14:16:28.560775550Z 8        8       32
+2025-08-01T14:16:28.560776548Z 9        9       54
+2025-08-01T14:16:28.560777502Z 10      10       42
+2025-08-01T14:16:28.560778452Z 11      11       44
+2025-08-01T14:16:28.560779433Z [1] "Add number of events to episode info table"
+2025-08-01T14:16:28.562015381Z    episode   time_period N_events
+2025-08-01T14:16:28.562030363Z 1        0      days_pre     1769
+2025-08-01T14:16:28.562032034Z 2        1       days0_1        0
+2025-08-01T14:16:28.562033138Z 3        2       days1_7        1
+2025-08-01T14:16:28.562034506Z 4        3      days7_14        1
+2025-08-01T14:16:28.562035522Z 5        4     days14_28        4
+2025-08-01T14:16:28.562036499Z 6        5     days28_56        5
+2025-08-01T14:16:28.562037478Z 7        6     days56_84        5
+2025-08-01T14:16:28.562038464Z 8        7    days84_183       11
+2025-08-01T14:16:28.562039443Z 9        8   days183_365       32
+2025-08-01T14:16:28.562040409Z 10       9   days365_730       54
+2025-08-01T14:16:28.562041364Z 11      10  days730_1065       42
+2025-08-01T14:16:28.562042353Z 12      11 days1065_1582       44
+2025-08-01T14:16:28.562043347Z [1] "Calculate person-time in each episode"
+2025-08-01T14:16:28.574393532Z    episode   time_period N_events person_time_total
+2025-08-01T14:16:28.574425230Z 1        0      days_pre     1769           4214100
+2025-08-01T14:16:28.574428863Z 2        1       days0_1        0               432
+2025-08-01T14:16:28.574431064Z 3        2       days1_7        1              2587
+2025-08-01T14:16:28.574450751Z 4        3      days7_14        1              3008
+2025-08-01T14:16:28.574453814Z 5        4     days14_28        4              5972
+2025-08-01T14:16:28.574455784Z 6        5     days28_56        5             11829
+2025-08-01T14:16:28.574457673Z 7        6     days56_84        5             11719
+2025-08-01T14:16:28.574459480Z 8        7    days84_183       11             40283
+2025-08-01T14:16:28.574461355Z 9        8   days183_365       32             69803
+2025-08-01T14:16:28.574463231Z 10       9   days365_730       54            120368
+2025-08-01T14:16:28.574464984Z 11      10  days730_1065       42             93319
+2025-08-01T14:16:28.574466693Z 12      11 days1065_1582       44             73431
+2025-08-01T14:16:28.574468452Z [1] "Calculate median person-time"
+2025-08-01T14:16:28.587509823Z    episode   time_period N_events person_time_total outcome_time_median
+2025-08-01T14:16:28.587538005Z 1        0      days_pre     1769           4214100               761.0
+2025-08-01T14:16:28.587541419Z 2        1       days0_1        0               432                  NA
+2025-08-01T14:16:28.587543589Z 3        2       days1_7        1              2587                 1.0
+2025-08-01T14:16:28.587545553Z 4        3      days7_14        1              3008                 5.0
+2025-08-01T14:16:28.587547464Z 5        4     days14_28        4              5972                 5.5
+2025-08-01T14:16:28.587549674Z 6        5     days28_56        5             11829                13.0
+2025-08-01T14:16:28.587551491Z 7        6     days56_84        5             11719                24.0
+2025-08-01T14:16:28.587553231Z 8        7    days84_183       11             40283                36.0
+2025-08-01T14:16:28.587555137Z 9        8   days183_365       32             69803                88.5
+2025-08-01T14:16:28.587556900Z 10       9   days365_730       54            120368               157.0
+2025-08-01T14:16:28.587558781Z 11      10  days730_1065       42             93319               194.0
+2025-08-01T14:16:28.587560549Z 12      11 days1065_1582       44             73431               221.0
+2025-08-01T14:16:28.587562291Z [1] "Add time from previous episodes to median person-time"
+2025-08-01T14:16:28.588113927Z    episode   time_period N_events person_time_total outcome_time_median
+2025-08-01T14:16:28.588121580Z 1        0      days_pre     1769           4214100               761.0
+2025-08-01T14:16:28.588124577Z 2        1       days0_1        0               432                  NA
+2025-08-01T14:16:28.588126623Z 3        2       days1_7        1              2587                 2.0
+2025-08-01T14:16:28.588128326Z 4        3      days7_14        1              3008                12.0
+2025-08-01T14:16:28.588130039Z 5        4     days14_28        4              5972                19.5
+2025-08-01T14:16:28.588131678Z 6        5     days28_56        5             11829                41.0
+2025-08-01T14:16:28.588142445Z 7        6     days56_84        5             11719                80.0
+2025-08-01T14:16:28.588144674Z 8        7    days84_183       11             40283               120.0
+2025-08-01T14:16:28.588146372Z 9        8   days183_365       32             69803               271.5
+2025-08-01T14:16:28.588148035Z 10       9   days365_730       54            120368               522.0
+2025-08-01T14:16:28.588149661Z 11      10  days730_1065       42             93319               924.0
+2025-08-01T14:16:28.588151265Z 12      11 days1065_1582       44             73431              1286.0
+2025-08-01T14:16:28.588491241Z    episode   time_period N_events person_time_total outcome_time_median
+2025-08-01T14:16:28.588507232Z 1        0      days_pre     1769           4214100               761.0
+2025-08-01T14:16:28.588508840Z 2        1       days0_1        0               432                  NA
+2025-08-01T14:16:28.588510054Z 3        2       days1_7        1              2587                 2.0
+2025-08-01T14:16:28.588511162Z 4        3      days7_14        1              3008                12.0
+2025-08-01T14:16:28.588512225Z 5        4     days14_28        4              5972                19.5
+2025-08-01T14:16:28.588513283Z 6        5     days28_56        5             11829                41.0
+2025-08-01T14:16:28.588514314Z 7        6     days56_84        5             11719                80.0
+2025-08-01T14:16:28.588515339Z 8        7    days84_183       11             40283               120.0
+2025-08-01T14:16:28.588516461Z 9        8   days183_365       32             69803               271.5
+2025-08-01T14:16:28.588520542Z 10       9   days365_730       54            120368               522.0
+2025-08-01T14:16:28.588521690Z 11      10  days730_1065       42             93319               924.0
+2025-08-01T14:16:28.588522782Z 12      11 days1065_1582       44             73431              1286.0
+2025-08-01T14:16:28.603473280Z [1] "Add strata information to data"
+2025-08-01T14:16:28.631056680Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.631086909Z  Length:8356        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.631089291Z  Class :character   1st Qu.:2020-04-16   1st Qu.:2021-05-08  
+2025-08-01T14:16:28.631090856Z  Mode  :character   Median :2020-07-14   Median :2022-05-03  
+2025-08-01T14:16:28.631092217Z                     Mean   :2020-07-25   Mean   :2022-05-03  
+2025-08-01T14:16:28.631093617Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-05-10  
+2025-08-01T14:16:28.631095009Z                     Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.631096574Z                     NA's   :3621         NA's   :4591        
+2025-08-01T14:16:28.631098246Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.631116394Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.631117968Z  1st Qu.:2020-01-01   1st Qu.:2022-04-22   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.631119455Z  Median :2020-01-01   Median :2024-04-30   Median :2020-01-01  
+2025-08-01T14:16:28.631120762Z  Mean   :2020-01-01   Mean   :2023-04-27   Mean   :2020-01-01  
+2025-08-01T14:16:28.631122229Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.631123713Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.631125310Z                                                                
+2025-08-01T14:16:28.631126777Z    study_stop           fup_start             fup_stop         
+2025-08-01T14:16:28.631128440Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.631129759Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-04-22  
+2025-08-01T14:16:28.631131162Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30  
+2025-08-01T14:16:28.631132469Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-04-27  
+2025-08-01T14:16:28.631134004Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.631135339Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.631136709Z                                                                
+2025-08-01T14:16:28.631138186Z  outcome_status     cox_weight     tstart           tstop       
+2025-08-01T14:16:28.631139694Z  Min.   :0.0000   Min.   :1    Min.   :   0.0   Min.   :   1.0  
+2025-08-01T14:16:28.631141146Z  1st Qu.:0.0000   1st Qu.:1    1st Qu.:   0.0   1st Qu.: 244.0  
+2025-08-01T14:16:28.631142570Z  Median :0.0000   Median :1    Median :  33.0   Median : 526.0  
+2025-08-01T14:16:28.631144081Z  Mean   :0.2355   Mean   :1    Mean   : 199.4   Mean   : 755.5  
+2025-08-01T14:16:28.631145459Z  3rd Qu.:0.0000   3rd Qu.:1    3rd Qu.: 307.0   3rd Qu.:1452.2  
+2025-08-01T14:16:28.631146836Z  Max.   :1.0000   Max.   :1    Max.   :1581.0   Max.   :1582.0  
+2025-08-01T14:16:28.631148149Z                                                                 
+2025-08-01T14:16:28.631151253Z  exposure_status     episode          days0_1          days1_7      
+2025-08-01T14:16:28.631152908Z  Min.   :0.0000   Min.   : 0.000   Min.   :0.0000   Min.   :0.0000  
+2025-08-01T14:16:28.631154364Z  1st Qu.:0.0000   1st Qu.: 0.000   1st Qu.:0.0000   1st Qu.:0.0000  
+2025-08-01T14:16:28.631155910Z  Median :1.0000   Median : 1.000   Median :0.0000   Median :0.0000  
+2025-08-01T14:16:28.631157632Z  Mean   :0.5153   Mean   : 2.892   Mean   :0.0517   Mean   :0.0517  
+2025-08-01T14:16:28.631159158Z  3rd Qu.:1.0000   3rd Qu.: 6.000   3rd Qu.:0.0000   3rd Qu.:0.0000  
+2025-08-01T14:16:28.631160722Z  Max.   :1.0000   Max.   :11.000   Max.   :1.0000   Max.   :1.0000  
+2025-08-01T14:16:28.631162432Z                                                                     
+2025-08-01T14:16:28.631165980Z     days7_14         days14_28         days28_56         days56_84      
+2025-08-01T14:16:28.631167564Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.631168875Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.631170339Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.631196537Z  Mean   :0.05146   Mean   :0.05134   Mean   :0.05086   Mean   :0.05026  
+2025-08-01T14:16:28.631198326Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.631199924Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.631201273Z                                                                         
+2025-08-01T14:16:28.631202649Z    days84_183       days183_365       days365_730       days730_1065    
+2025-08-01T14:16:28.631204206Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.631205553Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.631206905Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.631208291Z  Mean   :0.04966   Mean   :0.04799   Mean   :0.04368   Mean   :0.03626  
+2025-08-01T14:16:28.631209659Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.631211263Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.631212648Z                                                                         
+2025-08-01T14:16:28.631214228Z  days1065_1582                    strat_cat_region
+2025-08-01T14:16:28.631215658Z  Min.   :0.0000   West Midlands           :1024   
+2025-08-01T14:16:28.631217141Z  1st Qu.:0.0000   North West              :1023   
+2025-08-01T14:16:28.631218434Z  Median :0.0000   North East              : 959   
+2025-08-01T14:16:28.631220024Z  Mean   :0.0304   Yorkshire and The Humber: 941   
+2025-08-01T14:16:28.631221572Z  3rd Qu.:0.0000   East Midlands           : 904   
+2025-08-01T14:16:28.631223638Z  Max.   :1.0000   East                    : 890   
+2025-08-01T14:16:28.631241575Z                   (Other)                 :2615   
+2025-08-01T14:16:28.631243330Z [1] "Add age covariates"
+2025-08-01T14:16:28.652301718Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.652347268Z  Length:8356        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.652349668Z  Class :character   1st Qu.:2020-04-16   1st Qu.:2021-05-08  
+2025-08-01T14:16:28.652351448Z  Mode  :character   Median :2020-07-14   Median :2022-05-03  
+2025-08-01T14:16:28.652353183Z                     Mean   :2020-07-25   Mean   :2022-05-03  
+2025-08-01T14:16:28.652374418Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-05-10  
+2025-08-01T14:16:28.652376225Z                     Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.652378331Z                     NA's   :3621         NA's   :4591        
+2025-08-01T14:16:28.652384652Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.652386479Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.652388015Z  1st Qu.:2020-01-01   1st Qu.:2022-04-22   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.652389758Z  Median :2020-01-01   Median :2024-04-30   Median :2020-01-01  
+2025-08-01T14:16:28.652391506Z  Mean   :2020-01-01   Mean   :2023-04-27   Mean   :2020-01-01  
+2025-08-01T14:16:28.652393089Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.652394767Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.652396483Z                                                                
+2025-08-01T14:16:28.652398262Z    study_stop           fup_start             fup_stop         
+2025-08-01T14:16:28.652399937Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.652401621Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-04-22  
+2025-08-01T14:16:28.652403265Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30  
+2025-08-01T14:16:28.652405046Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-04-27  
+2025-08-01T14:16:28.652406723Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.652408388Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.652410173Z                                                                
+2025-08-01T14:16:28.652411956Z  outcome_status     cox_weight     tstart           tstop       
+2025-08-01T14:16:28.652413278Z  Min.   :0.0000   Min.   :1    Min.   :   0.0   Min.   :   1.0  
+2025-08-01T14:16:28.652414879Z  1st Qu.:0.0000   1st Qu.:1    1st Qu.:   0.0   1st Qu.: 244.0  
+2025-08-01T14:16:28.652416464Z  Median :0.0000   Median :1    Median :  33.0   Median : 526.0  
+2025-08-01T14:16:28.652417843Z  Mean   :0.2355   Mean   :1    Mean   : 199.4   Mean   : 755.5  
+2025-08-01T14:16:28.652419308Z  3rd Qu.:0.0000   3rd Qu.:1    3rd Qu.: 307.0   3rd Qu.:1452.2  
+2025-08-01T14:16:28.652420621Z  Max.   :1.0000   Max.   :1    Max.   :1581.0   Max.   :1582.0  
+2025-08-01T14:16:28.652421879Z                                                                 
+2025-08-01T14:16:28.652424927Z  exposure_status     episode          days0_1          days1_7      
+2025-08-01T14:16:28.652426392Z  Min.   :0.0000   Min.   : 0.000   Min.   :0.0000   Min.   :0.0000  
+2025-08-01T14:16:28.652427903Z  1st Qu.:0.0000   1st Qu.: 0.000   1st Qu.:0.0000   1st Qu.:0.0000  
+2025-08-01T14:16:28.652429599Z  Median :1.0000   Median : 1.000   Median :0.0000   Median :0.0000  
+2025-08-01T14:16:28.652444968Z  Mean   :0.5153   Mean   : 2.892   Mean   :0.0517   Mean   :0.0517  
+2025-08-01T14:16:28.652446437Z  3rd Qu.:1.0000   3rd Qu.: 6.000   3rd Qu.:0.0000   3rd Qu.:0.0000  
+2025-08-01T14:16:28.652447874Z  Max.   :1.0000   Max.   :11.000   Max.   :1.0000   Max.   :1.0000  
+2025-08-01T14:16:28.652449151Z                                                                     
+2025-08-01T14:16:28.652450638Z     days7_14         days14_28         days28_56         days56_84      
+2025-08-01T14:16:28.652452128Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.652453954Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.652455964Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.652457355Z  Mean   :0.05146   Mean   :0.05134   Mean   :0.05086   Mean   :0.05026  
+2025-08-01T14:16:28.652459109Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.652461194Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.652462815Z                                                                         
+2025-08-01T14:16:28.652464267Z    days84_183       days183_365       days365_730       days730_1065    
+2025-08-01T14:16:28.652465984Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.652467290Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.652468661Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.652469873Z  Mean   :0.04966   Mean   :0.04799   Mean   :0.04368   Mean   :0.03626  
+2025-08-01T14:16:28.652471317Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.652536488Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.652550367Z                                                                         
+2025-08-01T14:16:28.652553446Z  days1065_1582                    strat_cat_region  cov_num_age    
+2025-08-01T14:16:28.652555816Z  Min.   :0.0000   West Midlands           :1024    Min.   : 18.00  
+2025-08-01T14:16:28.652561932Z  1st Qu.:0.0000   North West              :1023    1st Qu.: 40.00  
+2025-08-01T14:16:28.652564206Z  Median :0.0000   North East              : 959    Median : 61.00  
+2025-08-01T14:16:28.652587752Z  Mean   :0.0304   Yorkshire and The Humber: 941    Mean   : 63.02  
+2025-08-01T14:16:28.652590801Z  3rd Qu.:0.0000   East Midlands           : 904    3rd Qu.: 86.00  
+2025-08-01T14:16:28.652592822Z  Max.   :1.0000   East                    : 890    Max.   :110.00  
+2025-08-01T14:16:28.652594710Z                   (Other)                 :2615                    
+2025-08-01T14:16:28.652596708Z  cov_num_age_sq 
+2025-08-01T14:16:28.652609871Z  Min.   :  324  
+2025-08-01T14:16:28.652620498Z  1st Qu.: 1600  
+2025-08-01T14:16:28.652622698Z  Median : 3721  
+2025-08-01T14:16:28.652624796Z  Mean   : 4680  
+2025-08-01T14:16:28.652626622Z  3rd Qu.: 7396  
+2025-08-01T14:16:28.652628790Z  Max.   :12100  
+2025-08-01T14:16:28.652630893Z                 
+2025-08-01T14:16:28.652782083Z [1] "Add sex covariate"
+2025-08-01T14:16:28.683448073Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.683470049Z  Length:8356        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.683473295Z  Class :character   1st Qu.:2020-04-16   1st Qu.:2021-05-08  
+2025-08-01T14:16:28.683475614Z  Mode  :character   Median :2020-07-14   Median :2022-05-03  
+2025-08-01T14:16:28.683477568Z                     Mean   :2020-07-25   Mean   :2022-05-03  
+2025-08-01T14:16:28.683479470Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-05-10  
+2025-08-01T14:16:28.683481370Z                     Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.683483300Z                     NA's   :3621         NA's   :4591        
+2025-08-01T14:16:28.683485099Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.683487052Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.683488903Z  1st Qu.:2020-01-01   1st Qu.:2022-04-22   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.683490987Z  Median :2020-01-01   Median :2024-04-30   Median :2020-01-01  
+2025-08-01T14:16:28.683492762Z  Mean   :2020-01-01   Mean   :2023-04-27   Mean   :2020-01-01  
+2025-08-01T14:16:28.683494577Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.683496360Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.683498113Z                                                                
+2025-08-01T14:16:28.683499766Z    study_stop           fup_start             fup_stop         
+2025-08-01T14:16:28.683501528Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.683503265Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-04-22  
+2025-08-01T14:16:28.683504973Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30  
+2025-08-01T14:16:28.683506730Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-04-27  
+2025-08-01T14:16:28.683508472Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.683510235Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.683516029Z                                                                
+2025-08-01T14:16:28.683518109Z  outcome_status     cox_weight     tstart           tstop       
+2025-08-01T14:16:28.683519971Z  Min.   :0.0000   Min.   :1    Min.   :   0.0   Min.   :   1.0  
+2025-08-01T14:16:28.683532375Z  1st Qu.:0.0000   1st Qu.:1    1st Qu.:   0.0   1st Qu.: 244.0  
+2025-08-01T14:16:28.683534767Z  Median :0.0000   Median :1    Median :  33.0   Median : 526.0  
+2025-08-01T14:16:28.683536617Z  Mean   :0.2355   Mean   :1    Mean   : 199.4   Mean   : 755.5  
+2025-08-01T14:16:28.683538372Z  3rd Qu.:0.0000   3rd Qu.:1    3rd Qu.: 307.0   3rd Qu.:1452.2  
+2025-08-01T14:16:28.683540120Z  Max.   :1.0000   Max.   :1    Max.   :1581.0   Max.   :1582.0  
+2025-08-01T14:16:28.683541892Z                                                                 
+2025-08-01T14:16:28.683543662Z  exposure_status     episode          days0_1          days1_7      
+2025-08-01T14:16:28.683545562Z  Min.   :0.0000   Min.   : 0.000   Min.   :0.0000   Min.   :0.0000  
+2025-08-01T14:16:28.683547351Z  1st Qu.:0.0000   1st Qu.: 0.000   1st Qu.:0.0000   1st Qu.:0.0000  
+2025-08-01T14:16:28.683549127Z  Median :1.0000   Median : 1.000   Median :0.0000   Median :0.0000  
+2025-08-01T14:16:28.683550888Z  Mean   :0.5153   Mean   : 2.892   Mean   :0.0517   Mean   :0.0517  
+2025-08-01T14:16:28.683552642Z  3rd Qu.:1.0000   3rd Qu.: 6.000   3rd Qu.:0.0000   3rd Qu.:0.0000  
+2025-08-01T14:16:28.683554420Z  Max.   :1.0000   Max.   :11.000   Max.   :1.0000   Max.   :1.0000  
+2025-08-01T14:16:28.683557585Z                                                                     
+2025-08-01T14:16:28.683559468Z     days7_14         days14_28         days28_56         days56_84      
+2025-08-01T14:16:28.683561397Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.683563241Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.683564998Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.683566767Z  Mean   :0.05146   Mean   :0.05134   Mean   :0.05086   Mean   :0.05026  
+2025-08-01T14:16:28.683568523Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.683570274Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.683572022Z                                                                         
+2025-08-01T14:16:28.683573783Z    days84_183       days183_365       days365_730       days730_1065    
+2025-08-01T14:16:28.683576557Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.683578458Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.683580222Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.683582028Z  Mean   :0.04966   Mean   :0.04799   Mean   :0.04368   Mean   :0.03626  
+2025-08-01T14:16:28.683584500Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.683586339Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.683590560Z                                                                         
+2025-08-01T14:16:28.683593198Z  days1065_1582                    strat_cat_region  cov_num_age    
+2025-08-01T14:16:28.683596677Z  Min.   :0.0000   West Midlands           :1024    Min.   : 18.00  
+2025-08-01T14:16:28.683599089Z  1st Qu.:0.0000   North West              :1023    1st Qu.: 40.00  
+2025-08-01T14:16:28.683601329Z  Median :0.0000   North East              : 959    Median : 61.00  
+2025-08-01T14:16:28.683625007Z  Mean   :0.0304   Yorkshire and The Humber: 941    Mean   : 63.02  
+2025-08-01T14:16:28.683639725Z  3rd Qu.:0.0000   East Midlands           : 904    3rd Qu.: 86.00  
+2025-08-01T14:16:28.683642657Z  Max.   :1.0000   East                    : 890    Max.   :110.00  
+2025-08-01T14:16:28.683646346Z                   (Other)                 :2615                    
+2025-08-01T14:16:28.683648506Z  cov_num_age_sq  cov_cat_sex  
+2025-08-01T14:16:28.683650367Z  Min.   :  324   Female:4288  
+2025-08-01T14:16:28.683652114Z  1st Qu.: 1600   Male  :4068  
+2025-08-01T14:16:28.683653829Z  Median : 3721                
+2025-08-01T14:16:28.683655524Z  Mean   : 4680                
+2025-08-01T14:16:28.683657175Z  3rd Qu.: 7396                
+2025-08-01T14:16:28.683658857Z  Max.   :12100                
+2025-08-01T14:16:28.683660549Z                               
+2025-08-01T14:16:28.683692222Z [1] "Additional covariates specified: Add covariate information to data"
+2025-08-01T14:16:28.696430644Z [1] "Additional covariates specified: Remove covariates with insufficient variation"
+2025-08-01T14:16:28.738725984Z [1] "Identify non-numeric covariates to remove"
+2025-08-01T14:16:28.738756501Z [1] "Covariate: cov_cat_sex"
+2025-08-01T14:16:28.738760865Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.739867494Z     Var1 Freq
+2025-08-01T14:16:28.739891861Z 1 Female  109
+2025-08-01T14:16:28.739894286Z 2   Male   90
+2025-08-01T14:16:28.740233515Z [1] "Covariate: cov_cat_ethnicity"
+2025-08-01T14:16:28.740254018Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.741291680Z      Var1 Freq
+2025-08-01T14:16:28.741304455Z 1   White   14
+2025-08-01T14:16:28.741306394Z 2 Missing  141
+2025-08-01T14:16:28.741307818Z 3   Mixed    4
+2025-08-01T14:16:28.741309167Z 4   Asian   12
+2025-08-01T14:16:28.741314149Z 5   Black    8
+2025-08-01T14:16:28.741315529Z 6   Other   20
+2025-08-01T14:16:28.741368235Z [1] "Add covariate to removal list"
+2025-08-01T14:16:28.741381871Z [1] "Covariate: cov_cat_imd"
+2025-08-01T14:16:28.741385144Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.742317785Z                 Var1 Freq
+2025-08-01T14:16:28.742321579Z 1  1 (most deprived)   41
+2025-08-01T14:16:28.742322605Z 2                  2   41
+2025-08-01T14:16:28.742323591Z 3                  3   32
+2025-08-01T14:16:28.742324715Z 4                  4   43
+2025-08-01T14:16:28.742325725Z 5 5 (least deprived)   42
+2025-08-01T14:16:28.742359957Z [1] "Covariate: cov_bin_hcworker"
+2025-08-01T14:16:28.742361520Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.743308440Z    Var1 Freq
+2025-08-01T14:16:28.743313346Z 1 FALSE  101
+2025-08-01T14:16:28.743314327Z 2  TRUE   98
+2025-08-01T14:16:28.743315286Z [1] "Covariate: cov_cat_smoking"
+2025-08-01T14:16:28.743316323Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.744220485Z             Var1 Freq
+2025-08-01T14:16:28.744248778Z 1   Never smoker    5
+2025-08-01T14:16:28.744250698Z 2    Ever smoker   40
+2025-08-01T14:16:28.744252300Z 3 Current smoker   66
+2025-08-01T14:16:28.744254176Z 4        Missing   88
+2025-08-01T14:16:28.744282420Z [1] "Add covariate to removal list"
+2025-08-01T14:16:28.744366073Z [1] "Covariate: cov_bin_carehome"
+2025-08-01T14:16:28.744369410Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.745236612Z    Var1 Freq
+2025-08-01T14:16:28.745244498Z 1 FALSE  165
+2025-08-01T14:16:28.745245770Z 2  TRUE   34
+2025-08-01T14:16:28.745285586Z [1] "Covariate: cov_bin_obesity"
+2025-08-01T14:16:28.745287685Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.746211149Z    Var1 Freq
+2025-08-01T14:16:28.746236169Z 1 FALSE  195
+2025-08-01T14:16:28.746239075Z 2  TRUE    4
+2025-08-01T14:16:28.746241105Z [1] "Add covariate to removal list"
+2025-08-01T14:16:28.746248465Z [1] "Covariate: cov_bin_ami"
+2025-08-01T14:16:28.746250939Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.747074748Z    Var1 Freq
+2025-08-01T14:16:28.747085619Z 1 FALSE  141
+2025-08-01T14:16:28.747088897Z 2  TRUE   58
+2025-08-01T14:16:28.747145797Z [1] "Covariate: cov_bin_dementia"
+2025-08-01T14:16:28.747151450Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.748091589Z    Var1 Freq
+2025-08-01T14:16:28.748104767Z 1 FALSE  174
+2025-08-01T14:16:28.748107359Z 2  TRUE   25
+2025-08-01T14:16:28.748109206Z [1] "Covariate: cov_bin_liver_disease"
+2025-08-01T14:16:28.748111190Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.748874336Z    Var1 Freq
+2025-08-01T14:16:28.748902778Z 1 FALSE  153
+2025-08-01T14:16:28.748905577Z 2  TRUE   46
+2025-08-01T14:16:28.748957684Z [1] "Covariate: cov_bin_ckd"
+2025-08-01T14:16:28.748968598Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.749912908Z    Var1 Freq
+2025-08-01T14:16:28.749926976Z 1 FALSE  142
+2025-08-01T14:16:28.749930150Z 2  TRUE   57
+2025-08-01T14:16:28.749946364Z [1] "Covariate: cov_bin_cancer"
+2025-08-01T14:16:28.749949198Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.750848096Z    Var1 Freq
+2025-08-01T14:16:28.750867519Z 1 FALSE   44
+2025-08-01T14:16:28.750870794Z 2  TRUE  155
+2025-08-01T14:16:28.750922311Z [1] "Covariate: cov_bin_hypertension"
+2025-08-01T14:16:28.750925739Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.751831205Z    Var1 Freq
+2025-08-01T14:16:28.751852517Z 1 FALSE   57
+2025-08-01T14:16:28.751855885Z 2  TRUE  142
+2025-08-01T14:16:28.751884825Z [1] "Covariate: cov_bin_diabetes"
+2025-08-01T14:16:28.751893030Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.752750005Z    Var1 Freq
+2025-08-01T14:16:28.752765496Z 1 FALSE   98
+2025-08-01T14:16:28.752768487Z 2  TRUE  101
+2025-08-01T14:16:28.752800991Z [1] "Covariate: cov_bin_depression"
+2025-08-01T14:16:28.752805533Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.753657715Z    Var1 Freq
+2025-08-01T14:16:28.753675862Z 1 FALSE  139
+2025-08-01T14:16:28.753678248Z 2  TRUE   60
+2025-08-01T14:16:28.753680114Z [1] "Covariate: cov_bin_copd"
+2025-08-01T14:16:28.753681981Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.754414450Z    Var1 Freq
+2025-08-01T14:16:28.754420153Z 1 FALSE   88
+2025-08-01T14:16:28.754422371Z 2  TRUE  111
+2025-08-01T14:16:28.754485611Z [1] "Covariate: cov_bin_stroke_all"
+2025-08-01T14:16:28.754489244Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.755264524Z    Var1 Freq
+2025-08-01T14:16:28.755269668Z 1 FALSE  118
+2025-08-01T14:16:28.755271613Z 2  TRUE   81
+2025-08-01T14:16:28.755314585Z [1] "Covariate: cov_bin_other_ae"
+2025-08-01T14:16:28.755317637Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.756112403Z    Var1 Freq
+2025-08-01T14:16:28.756115867Z 1 FALSE  177
+2025-08-01T14:16:28.756117714Z 2  TRUE   22
+2025-08-01T14:16:28.756119343Z [1] "Covariate: cov_bin_vte"
+2025-08-01T14:16:28.756121225Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.756862970Z    Var1 Freq
+2025-08-01T14:16:28.756868682Z 1 FALSE  120
+2025-08-01T14:16:28.756870765Z 2  TRUE   79
+2025-08-01T14:16:28.756930377Z [1] "Covariate: cov_bin_hf"
+2025-08-01T14:16:28.756933714Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.757715475Z    Var1 Freq
+2025-08-01T14:16:28.757721787Z 1 FALSE  178
+2025-08-01T14:16:28.757723853Z 2  TRUE   21
+2025-08-01T14:16:28.757776545Z [1] "Covariate: cov_bin_angina"
+2025-08-01T14:16:28.757780815Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.758506122Z    Var1 Freq
+2025-08-01T14:16:28.758512162Z 1 FALSE  185
+2025-08-01T14:16:28.758514317Z 2  TRUE   14
+2025-08-01T14:16:28.758568920Z [1] "Covariate: cov_bin_lipidmed"
+2025-08-01T14:16:28.758572496Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.759349769Z    Var1 Freq
+2025-08-01T14:16:28.759354988Z 1 FALSE  164
+2025-08-01T14:16:28.759356985Z 2  TRUE   35
+2025-08-01T14:16:28.759413087Z [1] "Covariate: cov_bin_antiplatelet"
+2025-08-01T14:16:28.759416450Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.760274130Z    Var1 Freq
+2025-08-01T14:16:28.760297395Z 1 FALSE  190
+2025-08-01T14:16:28.760300877Z 2  TRUE    9
+2025-08-01T14:16:28.760306928Z [1] "Covariate: cov_bin_anticoagulant"
+2025-08-01T14:16:28.760309485Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.761158137Z    Var1 Freq
+2025-08-01T14:16:28.761164660Z 1 FALSE  190
+2025-08-01T14:16:28.761166658Z 2  TRUE    9
+2025-08-01T14:16:28.761200018Z [1] "Covariate: cov_bin_cocp"
+2025-08-01T14:16:28.761213195Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.762077972Z    Var1 Freq
+2025-08-01T14:16:28.762085649Z 1 FALSE  193
+2025-08-01T14:16:28.762088206Z 2  TRUE    6
+2025-08-01T14:16:28.762151987Z [1] "Covariate: cov_bin_hrt"
+2025-08-01T14:16:28.762156078Z [1] "Calculate frequency for each level"
+2025-08-01T14:16:28.762925759Z    Var1 Freq
+2025-08-01T14:16:28.762933883Z 1 FALSE  182
+2025-08-01T14:16:28.762936056Z 2  TRUE   17
+2025-08-01T14:16:28.763027093Z [1] "Check strata variables meet covariate threshold"
+2025-08-01T14:16:28.763052114Z [1] "Remove covariates"
+2025-08-01T14:16:28.803517060Z   patient_id           exposure             outcome          
+2025-08-01T14:16:28.803552536Z  Length:8356        Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.803554883Z  Class :character   1st Qu.:2020-04-16   1st Qu.:2021-05-08  
+2025-08-01T14:16:28.803569442Z  Mode  :character   Median :2020-07-14   Median :2022-05-03  
+2025-08-01T14:16:28.803571318Z                     Mean   :2020-07-25   Mean   :2022-05-03  
+2025-08-01T14:16:28.803573065Z                     3rd Qu.:2020-10-29   3rd Qu.:2023-05-10  
+2025-08-01T14:16:28.803574847Z                     Max.   :2021-06-18   Max.   :2024-04-30  
+2025-08-01T14:16:28.803576585Z                     NA's   :3621         NA's   :4591        
+2025-08-01T14:16:28.803578471Z    index_date         end_date_outcome      study_start        
+2025-08-01T14:16:28.803580252Z  Min.   :2020-01-01   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.803581974Z  1st Qu.:2020-01-01   1st Qu.:2022-04-22   1st Qu.:2020-01-01  
+2025-08-01T14:16:28.803583759Z  Median :2020-01-01   Median :2024-04-30   Median :2020-01-01  
+2025-08-01T14:16:28.803585569Z  Mean   :2020-01-01   Mean   :2023-04-27   Mean   :2020-01-01  
+2025-08-01T14:16:28.803707483Z  3rd Qu.:2020-01-01   3rd Qu.:2024-04-30   3rd Qu.:2020-01-01  
+2025-08-01T14:16:28.803713250Z  Max.   :2020-01-01   Max.   :2024-04-30   Max.   :2020-01-01  
+2025-08-01T14:16:28.803715871Z                                                                
+2025-08-01T14:16:28.803718314Z    study_stop           fup_start             fup_stop         
+2025-08-01T14:16:28.803720416Z  Min.   :2024-04-30   Min.   :2020-01-01   Min.   :2020-01-01  
+2025-08-01T14:16:28.803727971Z  1st Qu.:2024-04-30   1st Qu.:2020-01-01   1st Qu.:2022-04-22  
+2025-08-01T14:16:28.803737077Z  Median :2024-04-30   Median :2020-01-01   Median :2024-04-30  
+2025-08-01T14:16:28.803739923Z  Mean   :2024-04-30   Mean   :2020-01-01   Mean   :2023-04-27  
+2025-08-01T14:16:28.803741937Z  3rd Qu.:2024-04-30   3rd Qu.:2020-01-01   3rd Qu.:2024-04-30  
+2025-08-01T14:16:28.803743755Z  Max.   :2024-04-30   Max.   :2020-01-01   Max.   :2024-04-30  
+2025-08-01T14:16:28.803745626Z                                                                
+2025-08-01T14:16:28.803747532Z  outcome_status     cox_weight     tstart           tstop       
+2025-08-01T14:16:28.803779819Z  Min.   :0.0000   Min.   :1    Min.   :   0.0   Min.   :   1.0  
+2025-08-01T14:16:28.803784729Z  1st Qu.:0.0000   1st Qu.:1    1st Qu.:   0.0   1st Qu.: 244.0  
+2025-08-01T14:16:28.803786234Z  Median :0.0000   Median :1    Median :  33.0   Median : 526.0  
+2025-08-01T14:16:28.803787371Z  Mean   :0.2355   Mean   :1    Mean   : 199.4   Mean   : 755.5  
+2025-08-01T14:16:28.803788488Z  3rd Qu.:0.0000   3rd Qu.:1    3rd Qu.: 307.0   3rd Qu.:1452.2  
+2025-08-01T14:16:28.803789585Z  Max.   :1.0000   Max.   :1    Max.   :1581.0   Max.   :1582.0  
+2025-08-01T14:16:28.803790613Z                                                                 
+2025-08-01T14:16:28.803791887Z  exposure_status     episode          days0_1          days1_7      
+2025-08-01T14:16:28.803799006Z  Min.   :0.0000   Min.   : 0.000   Min.   :0.0000   Min.   :0.0000  
+2025-08-01T14:16:28.803800149Z  1st Qu.:0.0000   1st Qu.: 0.000   1st Qu.:0.0000   1st Qu.:0.0000  
+2025-08-01T14:16:28.803801278Z  Median :1.0000   Median : 1.000   Median :0.0000   Median :0.0000  
+2025-08-01T14:16:28.803802303Z  Mean   :0.5153   Mean   : 2.892   Mean   :0.0517   Mean   :0.0517  
+2025-08-01T14:16:28.803803428Z  3rd Qu.:1.0000   3rd Qu.: 6.000   3rd Qu.:0.0000   3rd Qu.:0.0000  
+2025-08-01T14:16:28.803804504Z  Max.   :1.0000   Max.   :11.000   Max.   :1.0000   Max.   :1.0000  
+2025-08-01T14:16:28.803805605Z                                                                     
+2025-08-01T14:16:28.803806727Z     days7_14         days14_28         days28_56         days56_84      
+2025-08-01T14:16:28.803807915Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.803809512Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.803811234Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.803812778Z  Mean   :0.05146   Mean   :0.05134   Mean   :0.05086   Mean   :0.05026  
+2025-08-01T14:16:28.803814245Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.803815718Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.803817214Z                                                                         
+2025-08-01T14:16:28.803820438Z    days84_183       days183_365       days365_730       days730_1065    
+2025-08-01T14:16:28.803821990Z  Min.   :0.00000   Min.   :0.00000   Min.   :0.00000   Min.   :0.00000  
+2025-08-01T14:16:28.803823406Z  1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:0.00000  
+2025-08-01T14:16:28.803824999Z  Median :0.00000   Median :0.00000   Median :0.00000   Median :0.00000  
+2025-08-01T14:16:28.803826487Z  Mean   :0.04966   Mean   :0.04799   Mean   :0.04368   Mean   :0.03626  
+2025-08-01T14:16:28.803827970Z  3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+2025-08-01T14:16:28.803829545Z  Max.   :1.00000   Max.   :1.00000   Max.   :1.00000   Max.   :1.00000  
+2025-08-01T14:16:28.803831147Z                                                                         
+2025-08-01T14:16:28.803832868Z  days1065_1582                    strat_cat_region  cov_num_age    
+2025-08-01T14:16:28.803834468Z  Min.   :0.0000   West Midlands           :1024    Min.   : 18.00  
+2025-08-01T14:16:28.803836270Z  1st Qu.:0.0000   North West              :1023    1st Qu.: 40.00  
+2025-08-01T14:16:28.803837664Z  Median :0.0000   North East              : 959    Median : 61.00  
+2025-08-01T14:16:28.803839409Z  Mean   :0.0304   Yorkshire and The Humber: 941    Mean   : 63.02  
+2025-08-01T14:16:28.803840552Z  3rd Qu.:0.0000   East Midlands           : 904    3rd Qu.: 86.00  
+2025-08-01T14:16:28.803843061Z  Max.   :1.0000   East                    : 890    Max.   :110.00  
+2025-08-01T14:16:28.803844174Z                   (Other)                 :2615                    
+2025-08-01T14:16:28.803845435Z  cov_num_age_sq  cov_cat_sex               cov_cat_imd   cov_num_consrate2019
+2025-08-01T14:16:28.803847101Z  Min.   :  324   Female:4288   1 (most deprived) :1675   Min.   :0.00000     
+2025-08-01T14:16:28.803848613Z  1st Qu.: 1600   Male  :4068   2                 :1633   1st Qu.:0.00000     
+2025-08-01T14:16:28.803850151Z  Median : 3721                 3                 :1571   Median :0.00000     
+2025-08-01T14:16:28.803851843Z  Mean   : 4680                 4                 :1727   Mean   :0.04117     
+2025-08-01T14:16:28.803853538Z  3rd Qu.: 7396                 5 (least deprived):1750   3rd Qu.:0.00000     
+2025-08-01T14:16:28.803855172Z  Max.   :12100                                           Max.   :3.00000     
+2025-08-01T14:16:28.803856779Z                                                                              
+2025-08-01T14:16:28.803858457Z  cov_bin_hcworker cov_bin_carehome cov_bin_ami     cov_bin_dementia
+2025-08-01T14:16:28.803861565Z  Mode :logical    Mode :logical    Mode :logical   Mode :logical   
+2025-08-01T14:16:28.803862774Z  FALSE:3770       FALSE:6919       FALSE:6154      FALSE:7179      
+2025-08-01T14:16:28.803863820Z  TRUE :4586       TRUE :1437       TRUE :2202      TRUE :1177      
+2025-08-01T14:16:28.803866819Z                                                                    
+2025-08-01T14:16:28.803868511Z                                                                    
+2025-08-01T14:16:28.803870024Z                                                                    
+2025-08-01T14:16:28.803871492Z                                                                    
+2025-08-01T14:16:28.803873028Z  cov_bin_liver_disease cov_bin_ckd     cov_bin_cancer  cov_bin_hypertension
+2025-08-01T14:16:28.803874494Z  Mode :logical         Mode :logical   Mode :logical   Mode :logical       
+2025-08-01T14:16:28.803876121Z  FALSE:6756            FALSE:6105      FALSE:2048      FALSE:2492          
+2025-08-01T14:16:28.803878232Z  TRUE :1600            TRUE :2251      TRUE :6308      TRUE :5864          
+2025-08-01T14:16:28.803879601Z                                                                            
+2025-08-01T14:16:28.803880930Z                                                                            
+2025-08-01T14:16:28.803882424Z                                                                            
+2025-08-01T14:16:28.803883867Z                                                                            
+2025-08-01T14:16:28.803885986Z  cov_bin_diabetes cov_bin_depression cov_bin_copd    cov_bin_stroke_all
+2025-08-01T14:16:28.803891446Z  Mode :logical    Mode :logical      Mode :logical   Mode :logical     
+2025-08-01T14:16:28.803893416Z  FALSE:3747       FALSE:6141         FALSE:3510      FALSE:5216        
+2025-08-01T14:16:28.803896843Z  TRUE :4609       TRUE :2215         TRUE :4846      TRUE :3140        
+2025-08-01T14:16:28.803911935Z                                                                        
+2025-08-01T14:16:28.803913684Z                                                                        
+2025-08-01T14:16:28.803914766Z                                                                        
+2025-08-01T14:16:28.803915839Z                                                                        
+2025-08-01T14:16:28.803919720Z  cov_bin_other_ae cov_bin_vte     cov_bin_hf      cov_bin_angina 
+2025-08-01T14:16:28.803923037Z  Mode :logical    Mode :logical   Mode :logical   Mode :logical  
+2025-08-01T14:16:28.803927105Z  FALSE:7375       FALSE:5382      FALSE:7503      FALSE:7603     
+2025-08-01T14:16:28.803935803Z  TRUE :981        TRUE :2974      TRUE :853       TRUE :753      
+2025-08-01T14:16:28.803937380Z                                                                  
+2025-08-01T14:16:28.803938770Z                                                                  
+2025-08-01T14:16:28.803943697Z                                                                  
+2025-08-01T14:16:28.803945084Z                                                                  
+2025-08-01T14:16:28.803950897Z  cov_bin_lipidmed cov_bin_antiplatelet cov_bin_anticoagulant cov_bin_cocp   
+2025-08-01T14:16:28.803952633Z  Mode :logical    Mode :logical        Mode :logical         Mode :logical  
+2025-08-01T14:16:28.803974311Z  FALSE:6770       FALSE:7785           FALSE:7923            FALSE:8103     
+2025-08-01T14:16:28.803980930Z  TRUE :1586       TRUE :571            TRUE :433             TRUE :253      
+2025-08-01T14:16:28.803982412Z                                                                             
+2025-08-01T14:16:28.803983575Z                                                                             
+2025-08-01T14:16:28.803984675Z                                                                             
+2025-08-01T14:16:28.803985860Z                                                                             
+2025-08-01T14:16:28.803989215Z  cov_bin_hrt    
+2025-08-01T14:16:28.803990291Z  Mode :logical  
+2025-08-01T14:16:28.803991271Z  FALSE:7760     
+2025-08-01T14:16:28.803992351Z  TRUE :596      
+2025-08-01T14:16:28.803993313Z                 
+2025-08-01T14:16:28.803994226Z                 
+2025-08-01T14:16:28.803995200Z                 
+2025-08-01T14:16:28.803996237Z                 
+2025-08-01T14:16:28.804137373Z [1] "Removed covariates: cov_cat_ethnicity"
+2025-08-01T14:16:28.804140516Z [2] "Removed covariates: cov_cat_smoking"  
+2025-08-01T14:16:28.804141634Z [3] "Removed covariates: cov_bin_obesity"  
+2025-08-01T14:16:28.804146022Z [1] "Collapsed covariates: "
+2025-08-01T14:16:28.804147197Z [1] "Save analysis ready dataset"
+2025-08-01T14:16:28.823202627Z [1] "Perform Cox modelling"
+2025-08-01T14:16:28.865939254Z [1] "Define model formula"
+2025-08-01T14:16:28.866088096Z [1] "Add age covariate"
+2025-08-01T14:16:28.866118594Z [1] "Specify knot placement for age spline"
+2025-08-01T14:16:28.867245559Z [1] "Knots will be placed at: 27, 61, 100"
+2025-08-01T14:16:28.867273064Z [1] "Surv(tstart, tstop, outcome_status) ~ days0_1 + days1_7 + days7_14 + days14_28 + days28_56 + days56_84 + days84_183 + days183_365 + days365_730 + days730_1065 + days1065_1582 + cov_cat_sex + rms::strat(strat_cat_region) + cluster(patient_id) + rms::rcs(cov_num_age, parms=knot_placement)"
+2025-08-01T14:16:28.867278225Z [1] "Fit Cox model"
+2025-08-01T14:16:29.669778089Z Cox Proportional Hazards Model
+2025-08-01T14:16:29.669818901Z 
+2025-08-01T14:16:29.669820277Z rms::cph(formula = as.formula(surv_formula), data = df, weights = df$cox_weight, 
+2025-08-01T14:16:29.669821584Z     method = "breslow", x = TRUE, y = TRUE, surv = TRUE)
+2025-08-01T14:16:29.669822842Z 
+2025-08-01T14:16:29.669823766Z                        Model Tests      Discrimination    
+2025-08-01T14:16:29.669824765Z                                                Indexes    
+2025-08-01T14:16:29.669825754Z Obs      8356    LR chi2      8.80      R2       0.001    
+2025-08-01T14:16:29.669826791Z Events   1968    d.f.           14    R2(14,8356)0.000    
+2025-08-01T14:16:29.669828016Z Center -0.155    Pr(> chi2) 0.8438    R2(14,1968)0.000    
+2025-08-01T14:16:29.669829272Z                  Score chi2   9.00      Dxy      0.030    
+2025-08-01T14:16:29.669830335Z                  Pr(> chi2) 0.8313                        
+2025-08-01T14:16:29.669831410Z 
+2025-08-01T14:16:29.669832391Z                  Coef    S.E.   Wald Z Pr(>|Z|)
+2025-08-01T14:16:29.669833475Z days0_1          -2.0013 0.0842 -23.77 <0.0001 
+2025-08-01T14:16:29.669834561Z days1_7           0.1203 1.0013   0.12 0.9044  
+2025-08-01T14:16:29.669835557Z days7_14         -0.0327 1.0015  -0.03 0.9740  
+2025-08-01T14:16:29.669836558Z days14_28         0.6480 0.4897   1.32 0.1857  
+2025-08-01T14:16:29.669837524Z days28_56         0.1790 0.4501   0.40 0.6909  
+2025-08-01T14:16:29.669838525Z days56_84         0.1721 0.4472   0.38 0.7003  
+2025-08-01T14:16:29.669839551Z days84_183       -0.3028 0.3036  -1.00 0.3186  
+2025-08-01T14:16:29.669840552Z days183_365       0.1947 0.1815   1.07 0.2834  
+2025-08-01T14:16:29.669842657Z days365_730       0.1015 0.1425   0.71 0.4764  
+2025-08-01T14:16:29.669843615Z days730_1065     -0.0796 0.1586  -0.50 0.6158  
+2025-08-01T14:16:29.669844580Z days1065_1582     0.0402 0.1557   0.26 0.7962  
+2025-08-01T14:16:29.669856103Z cov_cat_sex=Male -0.0752 0.0451  -1.67 0.0958  
+2025-08-01T14:16:29.669856878Z cov_num_age      -0.0020 0.0024  -0.83 0.4082  
+2025-08-01T14:16:29.669857629Z cov_num_age'      0.0032 0.0031   1.03 0.3016  
+2025-08-01T14:16:29.669858398Z 
+2025-08-01T14:16:29.669859107Z [1] "Format results"
+2025-08-01T14:16:29.670049552Z [1] "Add covariates to model formula"
+2025-08-01T14:16:29.670059081Z [1] "Surv(tstart, tstop, outcome_status) ~ days0_1 + days1_7 + days7_14 + days14_28 + days28_56 + days56_84 + days84_183 + days183_365 + days365_730 + days730_1065 + days1065_1582 + cov_cat_sex + rms::strat(strat_cat_region) + cluster(patient_id) + rms::rcs(cov_num_age, parms=knot_placement) + cov_cat_imd + cov_num_consrate2019 + cov_bin_hcworker + cov_bin_carehome + cov_bin_ami + cov_bin_dementia + cov_bin_liver_disease + cov_bin_ckd + cov_bin_cancer + cov_bin_hypertension + cov_bin_diabetes + cov_bin_depression + cov_bin_copd + cov_bin_stroke_all + cov_bin_other_ae + cov_bin_vte + cov_bin_hf + cov_bin_angina + cov_bin_lipidmed + cov_bin_antiplatelet + cov_bin_anticoagulant + cov_bin_cocp + cov_bin_hrt"
+2025-08-01T14:16:29.670063870Z [1] "Fit Cox model with covariates"
+2025-08-01T14:16:29.852523872Z Cox Proportional Hazards Model
+2025-08-01T14:16:29.852561101Z 
+2025-08-01T14:16:29.852563480Z rms::cph(formula = as.formula(surv_formula_adj), data = df, weights = df$cox_weight, 
+2025-08-01T14:16:29.852565270Z     method = "breslow", x = TRUE, y = TRUE, surv = TRUE)
+2025-08-01T14:16:29.852567024Z 
+2025-08-01T14:16:29.852568389Z                         Model Tests      Discrimination    
+2025-08-01T14:16:29.852570287Z                                                 Indexes    
+2025-08-01T14:16:29.852572006Z Obs       8356    LR chi2     34.84      R2       0.004    
+2025-08-01T14:16:29.852573760Z Events    1968    d.f.           40    R2(40,8356)0.000    
+2025-08-01T14:16:29.852575310Z Center -0.2261    Pr(> chi2) 0.7014    R2(40,1968)0.000    
+2025-08-01T14:16:29.852577250Z                   Score chi2  34.94      Dxy      0.077    
+2025-08-01T14:16:29.852578896Z                   Pr(> chi2) 0.6973                        
+2025-08-01T14:16:29.852580547Z 
+2025-08-01T14:16:29.852581982Z                                Coef    S.E.   Wald Z Pr(>|Z|)
+2025-08-01T14:16:29.852583714Z days0_1                        -2.0098 0.0847 -23.74 <0.0001 
+2025-08-01T14:16:29.852585461Z days1_7                         0.1102 1.0013   0.11 0.9124  
+2025-08-01T14:16:29.852587115Z days7_14                       -0.0447 1.0014  -0.04 0.9644  
+2025-08-01T14:16:29.852588707Z days14_28                       0.6389 0.4897   1.30 0.1920  
+2025-08-01T14:16:29.852590356Z days28_56                       0.1699 0.4500   0.38 0.7058  
+2025-08-01T14:16:29.852591875Z days56_84                       0.1619 0.4475   0.36 0.7176  
+2025-08-01T14:16:29.852593562Z days84_183                     -0.3117 0.3038  -1.03 0.3049  
+2025-08-01T14:16:29.852620030Z days183_365                     0.1847 0.1817   1.02 0.3095  
+2025-08-01T14:16:29.852621761Z days365_730                     0.0878 0.1432   0.61 0.5398  
+2025-08-01T14:16:29.852623347Z days730_1065                   -0.0943 0.1585  -0.59 0.5519  
+2025-08-01T14:16:29.852624981Z days1065_1582                   0.0197 0.1567   0.13 0.9000  
+2025-08-01T14:16:29.852626557Z cov_cat_sex=Male               -0.0817 0.0455  -1.79 0.0728  
+2025-08-01T14:16:29.852628093Z cov_num_age                    -0.0019 0.0024  -0.78 0.4374  
+2025-08-01T14:16:29.852629637Z cov_num_age'                    0.0030 0.0031   0.97 0.3327  
+2025-08-01T14:16:29.852631202Z cov_cat_imd=2                  -0.0659 0.0724  -0.91 0.3625  
+2025-08-01T14:16:29.852632849Z cov_cat_imd=3                  -0.1229 0.0743  -1.65 0.0980  
+2025-08-01T14:16:29.852634405Z cov_cat_imd=4                   0.0725 0.0715   1.01 0.3106  
+2025-08-01T14:16:29.852648244Z cov_cat_imd=5 (least deprived)  0.0383 0.0704   0.54 0.5867  
+2025-08-01T14:16:29.852649962Z cov_num_consrate2019            0.0951 0.0916   1.04 0.2989  
+2025-08-01T14:16:29.852651684Z cov_bin_hcworker               -0.0485 0.0456  -1.07 0.2868  
+2025-08-01T14:16:29.852653444Z cov_bin_carehome                0.0034 0.0616   0.05 0.9564  
+2025-08-01T14:16:29.852655222Z cov_bin_ami                     0.0271 0.0538   0.50 0.6147  
+2025-08-01T14:16:29.852658797Z cov_bin_dementia                0.1060 0.0686   1.54 0.1224  
+2025-08-01T14:16:29.852661298Z cov_bin_liver_disease          -0.0711 0.0588  -1.21 0.2261  
+2025-08-01T14:16:29.852662824Z cov_bin_ckd                     0.0792 0.0534   1.48 0.1380  
+2025-08-01T14:16:29.852664487Z cov_bin_cancer                 -0.1018 0.0599  -1.70 0.0890  
+2025-08-01T14:16:29.852666230Z cov_bin_hypertension            0.0296 0.0551   0.54 0.5909  
+2025-08-01T14:16:29.852667954Z cov_bin_diabetes               -0.0264 0.0490  -0.54 0.5902  
+2025-08-01T14:16:29.852669601Z cov_bin_depression              0.0593 0.0537   1.10 0.2695  
+2025-08-01T14:16:29.852671306Z cov_bin_copd                    0.0321 0.0527   0.61 0.5427  
+2025-08-01T14:16:29.852673019Z cov_bin_stroke_all             -0.0031 0.0503  -0.06 0.9509  
+2025-08-01T14:16:29.852674713Z cov_bin_other_ae               -0.0244 0.0761  -0.32 0.7482  
+2025-08-01T14:16:29.852676249Z cov_bin_vte                    -0.0064 0.0501  -0.13 0.8991  
+2025-08-01T14:16:29.852677994Z cov_bin_hf                     -0.0673 0.0748  -0.90 0.3682  
+2025-08-01T14:16:29.852679579Z cov_bin_angina                 -0.0040 0.0778  -0.05 0.9585  
+2025-08-01T14:16:29.852681288Z cov_bin_lipidmed               -0.0121 0.0621  -0.19 0.8461  
+2025-08-01T14:16:29.852682911Z cov_bin_antiplatelet           -0.1550 0.0916  -1.69 0.0906  
+2025-08-01T14:16:29.852684649Z cov_bin_anticoagulant           0.0345 0.1026   0.34 0.7368  
+2025-08-01T14:16:29.852688777Z cov_bin_cocp                    0.0228 0.1315   0.17 0.8624  
+2025-08-01T14:16:29.852690597Z cov_bin_hrt                    -0.0094 0.0916  -0.10 0.9183  
+2025-08-01T14:16:29.852692180Z 
+2025-08-01T14:16:29.852693730Z [1] "Format results"
+2025-08-01T14:16:29.852949244Z [1] "Bind to other results"
+2025-08-01T14:16:29.853128353Z [1] "Return results"
+2025-08-01T14:16:29.853135776Z [1] "Merge results with number of events and person time"
+2025-08-01T14:16:29.854980323Z      term                lnhr              se_lnhr            model          
+2025-08-01T14:16:29.854992266Z  Length:54          Min.   :-2.009849   Min.   :0.002388   Length:54         
+2025-08-01T14:16:29.854993698Z  Class :character   1st Qu.:-0.061547   1st Qu.:0.054111   Class :character  
+2025-08-01T14:16:29.854994679Z  Mode  :character   Median : 0.003057   Median :0.081012   Mode  :character  
+2025-08-01T14:16:29.854995613Z                     Mean   :-0.042983   Mean   :0.198834                     
+2025-08-01T14:16:29.854996549Z                     3rd Qu.: 0.085640   3rd Qu.:0.175774                     
+2025-08-01T14:16:29.854997478Z                     Max.   : 0.648016   Max.   :1.001549                     
+2025-08-01T14:16:29.854998404Z                                                                              
+2025-08-01T14:16:29.854999361Z  surv_formula       covariate_removed  covariate_collapsed obs_warning       
+2025-08-01T14:16:29.855000324Z  Length:54          Length:54          Length:54           Length:54         
+2025-08-01T14:16:29.855001266Z  Class :character   Class :character   Class :character    Class :character  
+2025-08-01T14:16:29.855002173Z  Mode  :character   Mode  :character   Mode  :character    Mode  :character  
+2025-08-01T14:16:29.855003082Z                                                                              
+2025-08-01T14:16:29.855003980Z                                                                              
+2025-08-01T14:16:29.855004899Z                                                                              
+2025-08-01T14:16:29.855005835Z                                                                              
+2025-08-01T14:16:29.855006766Z     N_events     person_time_total outcome_time_median
+2025-08-01T14:16:29.855007812Z  Min.   : 0.00   Min.   :   432    Min.   :   2.0     
+2025-08-01T14:16:29.855008727Z  1st Qu.: 1.75   1st Qu.:  3749    1st Qu.:  19.5     
+2025-08-01T14:16:29.855009590Z  Median : 5.00   Median : 11829    Median : 100.0     
+2025-08-01T14:16:29.855010461Z  Mean   :18.09   Mean   : 39341    Mean   : 327.8     
+2025-08-01T14:16:29.855011332Z  3rd Qu.:39.50   3rd Qu.: 72524    3rd Qu.: 522.0     
+2025-08-01T14:16:29.855012198Z  Max.   :54.00   Max.   :120368    Max.   :1286.0     
+2025-08-01T14:16:29.855013065Z  NA's   :32      NA's   :32        NA's   :34         
+2025-08-01T14:16:29.855021763Z [1] "Add dummy row for days_pre term"
+2025-08-01T14:16:29.856798473Z      term                lnhr              se_lnhr            model          
+2025-08-01T14:16:29.856809041Z  Length:56          Min.   :-2.009849   Min.   :0.002388   Length:56         
+2025-08-01T14:16:29.856811171Z  Class :character   1st Qu.:-0.061547   1st Qu.:0.054111   Class :character  
+2025-08-01T14:16:29.856812637Z  Mode  :character   Median : 0.003057   Median :0.081012   Mode  :character  
+2025-08-01T14:16:29.856814223Z                     Mean   :-0.042983   Mean   :0.198834                     
+2025-08-01T14:16:29.856815914Z                     3rd Qu.: 0.085640   3rd Qu.:0.175774                     
+2025-08-01T14:16:29.856817561Z                     Max.   : 0.648016   Max.   :1.001549                     
+2025-08-01T14:16:29.856819225Z                     NA's   :2           NA's   :2                            
+2025-08-01T14:16:29.856821041Z  surv_formula       covariate_removed  covariate_collapsed obs_warning       
+2025-08-01T14:16:29.856822593Z  Length:56          Length:56          Length:56           Length:56         
+2025-08-01T14:16:29.856824188Z  Class :character   Class :character   Class :character    Class :character  
+2025-08-01T14:16:29.856825783Z  Mode  :character   Mode  :character   Mode  :character    Mode  :character  
+2025-08-01T14:16:29.856827154Z                                                                              
+2025-08-01T14:16:29.856828575Z                                                                              
+2025-08-01T14:16:29.856830282Z                                                                              
+2025-08-01T14:16:29.856831565Z                                                                              
+2025-08-01T14:16:29.856832967Z     N_events       person_time_total outcome_time_median
+2025-08-01T14:16:29.856834199Z  Min.   :   0.00   Min.   :    432   Min.   :   2.00    
+2025-08-01T14:16:29.856835775Z  1st Qu.:   3.25   1st Qu.:   5231   1st Qu.:  24.88    
+2025-08-01T14:16:29.856837279Z  Median :   8.00   Median :  26056   Median : 120.00    
+2025-08-01T14:16:29.856843077Z  Mean   : 164.00   Mean   : 387238   Mean   : 367.18    
+2025-08-01T14:16:29.856844431Z  3rd Qu.:  42.50   3rd Qu.:  78403   3rd Qu.: 701.25    
+2025-08-01T14:16:29.856845790Z  Max.   :1769.00   Max.   :4214100   Max.   :1286.00    
+2025-08-01T14:16:29.856847203Z  NA's   :32        NA's   :32        NA's   :34         
+2025-08-01T14:16:29.856848873Z [1] "Tidy variables for outputting"
+2025-08-01T14:16:29.857544163Z Warning messages:
+2025-08-01T14:16:29.857554934Z 1: In rms::datadist(df) : index_date is constant
+2025-08-01T14:16:29.857557407Z 2: In rms::datadist(df) : fup_start is constant
+2025-08-01T14:16:29.857559109Z 3: In rms::datadist(df) : cox_weight is constant
+2025-08-01T14:16:29.857567148Z 4: In rms::datadist(df) : index_date is constant
+2025-08-01T14:16:29.857569215Z 5: In rms::datadist(df) : fup_start is constant
+2025-08-01T14:16:29.857570887Z 6: In rms::datadist(df) : cox_weight is constant
+2025-08-01T14:16:29.857778831Z [1] "Save output"
+2025-08-01T14:16:29.860591765Z     model             exposure           outcome              term          
+2025-08-01T14:16:29.860606541Z  Length:56          Length:56          Length:56          Length:56         
+2025-08-01T14:16:29.860608857Z  Class :character   Class :character   Class :character   Class :character  
+2025-08-01T14:16:29.860610616Z  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+2025-08-01T14:16:29.860625034Z                                                                             
+2025-08-01T14:16:29.860627487Z                                                                             
+2025-08-01T14:16:29.860629182Z                                                                             
+2025-08-01T14:16:29.860630698Z                                                                             
+2025-08-01T14:16:29.860632190Z       lnhr              se_lnhr               hr            conf_low     
+2025-08-01T14:16:29.860633681Z  Min.   :-2.009849   Min.   :0.002388   Min.   :0.1340   Min.   :0.1135  
+2025-08-01T14:16:29.860635109Z  1st Qu.:-0.061547   1st Qu.:0.054111   1st Qu.:0.9403   1st Qu.:0.6865  
+2025-08-01T14:16:29.860636523Z  Median : 0.003057   Median :0.081012   Median :1.0031   Median :0.8335  
+2025-08-01T14:16:29.860637976Z  Mean   :-0.042983   Mean   :0.198834   Mean   :1.0140   Mean   :0.7333  
+2025-08-01T14:16:29.860639397Z  3rd Qu.: 0.085640   3rd Qu.:0.175774   3rd Qu.:1.0894   3rd Qu.:0.9026  
+2025-08-01T14:16:29.860640927Z  Max.   : 0.648016   Max.   :1.001549   Max.   :1.9117   Max.   :0.9972  
+2025-08-01T14:16:29.860642298Z  NA's   :2           NA's   :2          NA's   :2        NA's   :2       
+2025-08-01T14:16:29.860643718Z    conf_high         N_total       N_exposed      N_events      
+2025-08-01T14:16:29.860645144Z  Min.   :0.1582   Min.   :4053   Min.   :432   Min.   :   0.00  
+2025-08-01T14:16:29.860646556Z  1st Qu.:1.0739   1st Qu.:4053   1st Qu.:432   1st Qu.:   3.25  
+2025-08-01T14:16:29.860647984Z  Median :1.1892   Median :4053   Median :432   Median :   8.00  
+2025-08-01T14:16:29.860649442Z  Mean   :1.8790   Mean   :4053   Mean   :432   Mean   : 164.00  
+2025-08-01T14:16:29.860650853Z  3rd Qu.:1.4373   3rd Qu.:4053   3rd Qu.:432   3rd Qu.:  42.50  
+2025-08-01T14:16:29.860652246Z  Max.   :8.0263   Max.   :4053   Max.   :432   Max.   :1769.00  
+2025-08-01T14:16:29.860653687Z  NA's   :2                                     NA's   :32       
+2025-08-01T14:16:29.860655097Z  person_time_total outcome_time_median covariate_collapsed strata_warning    
+2025-08-01T14:16:29.860656574Z  Min.   :    432   Min.   :   2.00     Length:56           Length:56         
+2025-08-01T14:16:29.860664920Z  1st Qu.:   5231   1st Qu.:  24.88     Class :character    Class :character  
+2025-08-01T14:16:29.860667007Z  Median :  26056   Median : 120.00     Mode  :character    Mode  :character  
+2025-08-01T14:16:29.860669192Z  Mean   : 387238   Mean   : 367.18                                           
+2025-08-01T14:16:29.860670784Z  3rd Qu.:  78403   3rd Qu.: 701.25                                           
+2025-08-01T14:16:29.860672252Z  Max.   :4214100   Max.   :1286.00                                           
+2025-08-01T14:16:29.860673700Z  NA's   :32        NA's   :34                                                
+2025-08-01T14:16:29.860675195Z  obs_warning        surv_formula          input             cox_ipw         
+2025-08-01T14:16:29.860676653Z  Length:56          Length:56          Length:56          Length:56         
+2025-08-01T14:16:29.860678118Z  Class :character   Class :character   Class :character   Class :character  
+2025-08-01T14:16:29.860679794Z  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+2025-08-01T14:16:29.860897251Z                                                                             
+2025-08-01T14:16:29.860906815Z                                                                             
+2025-08-01T14:16:29.860907964Z                                                                             
+2025-08-01T14:16:29.860908939Z                                                                             
+
+
+job_definition_id: pjy5ad2hcv2to4fd
+job_definition_request_id: b224088a6e
+commit: 80168305fee16e2edc662c398b58e7a4d61658cd
+docker_image_id: sha256:13f6c027b613bda2d60fbc6dbcd8f7263e1224f1e45a4797375e438f28fd0e5d
+exit_code: 0
+created_at: 1754057622
+completed_at: 1754057790
+status_message: Completed successfully
+
+outputs:
+  output/model/model_output-cohort_prevax-main-stroke_sahhs.csv  - moderately_sensitive
