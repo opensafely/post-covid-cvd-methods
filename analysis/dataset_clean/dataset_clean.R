@@ -54,9 +54,11 @@ print('Specify command arguments')
 args <- commandArgs(trailingOnly = TRUE)
 print(length(args))
 if (length(args) == 0) {
-  cohort <- "vax"
-  describe <- TRUE
+  # default args
+  cohort <- "prevax"
+  describe <- FALSE
 } else {
+  # YAML args
   cohort <- args[[1]]
   describe <- args[[2]]
 }
