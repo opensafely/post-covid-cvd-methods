@@ -96,6 +96,8 @@ df$exposed <- !is.na(df$exp_date_covid)
 # Select for pre-existing conditions
 print("Select for pre-existing conditions")
 
+# preex optional argument deliberately ignored, sup_bin_preex does not exist
+# because neither asthma nor copdoutcomes are present
 preex_string <- ""
 # if (preex != "All") {
 #   df <- df[df$sup_bin_preex == preex, ]
@@ -221,8 +223,6 @@ df$percent_midpoint6_derived <- paste0(
   )
 )
 
-#print(summary(df))
-
 df$percent_exposed_midpoint6 <- paste0(
   ifelse(
     df$characteristic == "All",
@@ -238,9 +238,6 @@ df$percent_exposed_midpoint6 <- paste0(
     )
   )
 )
-
-#print(summary(df))
-#stop("development")
 
 df <- df[, c(
   "characteristic",
