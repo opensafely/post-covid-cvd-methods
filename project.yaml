@@ -123,38 +123,3 @@ actions:
       moderately_sensitive:
         model_output: output/model/model_output-cohort_prevax-main-stroke_sahhs.csv
 
-  ## Generate venn-cohort_prevax 
-
-  venn-cohort_prevax:
-    run: r:v2 analysis/venn/venn.R prevax
-    needs:
-    - generate_input_prevax_clean
-    - make_model_input-cohort_prevax-main-ami
-    - make_model_input-cohort_prevax-main-stroke_sahhs
-    outputs:
-      moderately_sensitive:
-        venn: output/venn/venn-cohort_prevax.csv
-        venn_midpoint6: output/venn/venn-cohort_prevax-midpoint6.csv
-
-  ## Generate make-venn-output 
-
-  make-venn-output:
-    run: r:v2 analysis/make_output/make_other_output.R venn prevax
-    needs:
-    - venn-cohort_prevax
-    outputs:
-      moderately_sensitive:
-        table1_output_midpoint6: output/make_output/venn_output_midpoint6.csv
-
-  ## Make absolute excess risk (AER) input 
-
-  make_aer_input:
-    run: r:v2 analysis/make_output/make_aer_input.R main
-    needs:
-    - make_model_input-cohort_prevax-main-ami
-    - make_model_input-cohort_prevax-main-stroke_sahhs
-    outputs:
-      moderately_sensitive:
-        aer_input: output/make_output/aer_input-main.csv
-        aer_input_midpoint6: output/make_output/aer_input-main-midpoint6.csv
-
