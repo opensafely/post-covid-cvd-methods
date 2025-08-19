@@ -188,6 +188,9 @@ write.csv(
     row.names = FALSE
 )
 
+print(input)
+stop("development")
+
 # Perform redaction ------------------------------------------------------------
 print('Perform redaction')
 
@@ -204,5 +207,3 @@ write.csv(
     paste0(makeout_dir, "aer_input-", analysis, "-midpoint6.csv"),
     row.names = FALSE
 )
-
-

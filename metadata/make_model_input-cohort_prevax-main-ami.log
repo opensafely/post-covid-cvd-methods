@@ -1,0 +1,150 @@
+2025-08-19T09:49:14.898832039Z Warning message:
+2025-08-19T09:49:14.898900219Z renv 0.16.0 was loaded from project library, but this project is configured to use renv ${VERSION}.
+2025-08-19T09:49:14.898907029Z Use `renv::record("renv@0.16.0")` to record renv 0.16.0 in the lockfile.
+2025-08-19T09:49:14.898911527Z Use `renv::restore(packages = "renv")` to install renv ${VERSION} into the project library. 
+2025-08-19T09:49:14.988204955Z [1] "Load packages"
+2025-08-19T09:49:15.513089179Z 
+2025-08-19T09:49:15.513121489Z Attaching package: ‘lubridate’
+2025-08-19T09:49:15.513126146Z 
+2025-08-19T09:49:15.513772786Z The following objects are masked from ‘package:data.table’:
+2025-08-19T09:49:15.513784888Z 
+2025-08-19T09:49:15.513788274Z     hour, isoweek, mday, minute, month, quarter, second, wday, week,
+2025-08-19T09:49:15.513791067Z     yday, year
+2025-08-19T09:49:15.513793497Z 
+2025-08-19T09:49:15.513916330Z The following objects are masked from ‘package:base’:
+2025-08-19T09:49:15.513932993Z 
+2025-08-19T09:49:15.513935021Z     date, intersect, setdiff, union
+2025-08-19T09:49:15.513936878Z 
+2025-08-19T09:49:15.514102896Z [1] "Source functions"
+2025-08-19T09:49:15.515125494Z [[1]]
+2025-08-19T09:49:15.515131767Z [[1]]$value
+2025-08-19T09:49:15.515435730Z function (df) 
+2025-08-19T09:49:15.515439150Z {
+2025-08-19T09:49:15.515440876Z     if (nrow(df) != nrow(df[!is.na(df$patient_id), ])) {
+2025-08-19T09:49:15.515442647Z         stop("Patient ID is not present for everyone in the dataset")
+2025-08-19T09:49:15.515444606Z     }
+2025-08-19T09:49:15.515446174Z     for (i in c("index_date", "exp_date", "out_date")) {
+2025-08-19T09:49:15.515448420Z         if (!(i %in% colnames(df))) {
+2025-08-19T09:49:15.515450118Z             stop(paste0(i, " is not in dataset"))
+2025-08-19T09:49:15.515452005Z         }
+2025-08-19T09:49:15.515453560Z         else {
+2025-08-19T09:49:15.515455224Z             if (sapply(df[, i], lubridate::is.Date) == FALSE) {
+2025-08-19T09:49:15.515456948Z                 stop(paste0(i, " does not have a date format"))
+2025-08-19T09:49:15.515458753Z             }
+2025-08-19T09:49:15.515460279Z         }
+2025-08-19T09:49:15.515461799Z     }
+2025-08-19T09:49:15.515463240Z     if (!("strat_cat_region" %in% colnames(df))) {
+2025-08-19T09:49:15.515469622Z         stop("strat_cat_region is not in dataset")
+2025-08-19T09:49:15.515471481Z     }
+2025-08-19T09:49:15.515472952Z     for (i in colnames(df)[grepl("cov_bin_", colnames(df))]) {
+2025-08-19T09:49:15.515474806Z         if (sapply(df[, i], is.factor) == FALSE) {
+2025-08-19T09:49:15.515487226Z             stop(paste0(i, " is not a factor"))
+2025-08-19T09:49:15.515489291Z         }
+2025-08-19T09:49:15.515491026Z         else {
+2025-08-19T09:49:15.515492599Z             if (length(sapply(df[, i], levels)) != 2) {
+2025-08-19T09:49:15.515494520Z                 stop(paste0(i, " does not have two levels (levels = ", 
+2025-08-19T09:49:15.515496412Z                   length(sapply(df[, i], levels)), ")"))
+2025-08-19T09:49:15.515498279Z             }
+2025-08-19T09:49:15.515499834Z         }
+2025-08-19T09:49:15.515501342Z     }
+2025-08-19T09:49:15.515502791Z     for (i in colnames(df)[grepl("cov_cat_", colnames(df))]) {
+2025-08-19T09:49:15.515504642Z         if (sapply(df[, i], is.factor) == FALSE) {
+2025-08-19T09:49:15.515506278Z             stop(paste0(i, " is not a factor"))
+2025-08-19T09:49:15.515507978Z         }
+2025-08-19T09:49:15.515509490Z     }
+2025-08-19T09:49:15.515511039Z }
+2025-08-19T09:49:15.515512674Z 
+2025-08-19T09:49:15.515514205Z [[1]]$visible
+2025-08-19T09:49:15.515515768Z [1] FALSE
+2025-08-19T09:49:15.515517295Z 
+2025-08-19T09:49:15.515518718Z 
+2025-08-19T09:49:15.515520179Z [[2]]
+2025-08-19T09:49:15.515521679Z [[2]]$value
+2025-08-19T09:49:15.516219224Z function (name) 
+2025-08-19T09:49:15.516238613Z {
+2025-08-19T09:49:15.516242523Z     print("Load active analyses")
+2025-08-19T09:49:15.516245630Z     active_analyses <- readr::read_rds("lib/active_analyses.rds")
+2025-08-19T09:49:15.516248836Z     print("Filter active_analyses to model inputs to be prepared")
+2025-08-19T09:49:15.516251452Z     active_analyses <- active_analyses[active_analyses$name == 
+2025-08-19T09:49:15.516254004Z         name, ]
+2025-08-19T09:49:15.516256402Z     if (nrow(active_analyses) == 0) {
+2025-08-19T09:49:15.516258856Z         stop(paste0("Input: ", name, " does not match any analyses"))
+2025-08-19T09:49:15.516261707Z     }
+2025-08-19T09:49:15.516264170Z     print(paste0("Load data for ", active_analyses$name))
+2025-08-19T09:49:15.516267243Z     input <- readr::read_rds(paste0("output/dataset_clean/input_", 
+2025-08-19T09:49:15.516270016Z         active_analyses$cohort, "_clean.rds"))
+2025-08-19T09:49:15.516272593Z     print("Restrict to required variables for dataset preparation")
+2025-08-19T09:49:15.516275204Z     reqvars <- unique(c("patient_id", "index_date", "end_date_exposure", 
+2025-08-19T09:49:15.516277972Z         "end_date_outcome", active_analyses$exposure, active_analyses$outcome, 
+2025-08-19T09:49:15.516280590Z         active_analyses$strata, active_analyses$covariate_age, 
+2025-08-19T09:49:15.516290549Z         "cov_cat_sex", "cov_cat_ethnicity", "cov_cat_smoking", 
+2025-08-19T09:49:15.516294035Z         unlist(strsplit(active_analyses$covariate_other, split = ";")), 
+2025-08-19T09:49:15.516296894Z         c(grep("sub_", colnames(input), value = TRUE)), "sup_bin_preex"))
+2025-08-19T09:49:15.516299565Z     input <- input[, intersect(reqvars, colnames(input))]
+2025-08-19T09:49:15.516302205Z     if (length(setdiff(reqvars, colnames(input))) > 0) {
+2025-08-19T09:49:15.516304801Z         message("Variables (", setdiff(reqvars, colnames(input)), 
+2025-08-19T09:49:15.516307508Z             ") not present in dataset")
+2025-08-19T09:49:15.516310075Z     }
+2025-08-19T09:49:15.516312473Z     print("Identify final list of variables to keep")
+2025-08-19T09:49:15.516315049Z     keep <- c("patient_id", "index_date", "end_date_exposure", 
+2025-08-19T09:49:15.516317844Z         "end_date_outcome", "exp_date", "out_date")
+2025-08-19T09:49:15.516320485Z     varlists <- c("strata", "covariate_age", "covariate_sex", 
+2025-08-19T09:49:15.516323338Z         "covariate_other")
+2025-08-19T09:49:15.516325904Z     for (j in varlists) {
+2025-08-19T09:49:15.516328319Z         if (active_analyses[, j] != "NULL") {
+2025-08-19T09:49:15.516330954Z             keep <- c(keep, stringr::str_split(as.vector(active_analyses[, 
+2025-08-19T09:49:15.516333679Z                 j]), ";")[[1]])
+2025-08-19T09:49:15.516336283Z         }
+2025-08-19T09:49:15.516338685Z     }
+2025-08-19T09:49:15.516340973Z     input <- dplyr::rename(input, out_date = active_analyses$outcome, 
+2025-08-19T09:49:15.516343520Z         exp_date = active_analyses$exposure)
+2025-08-19T09:49:15.516345936Z     print("Remove outcomes outside of follow-up time")
+2025-08-19T09:49:15.516348549Z     input <- input %>% dplyr::mutate(out_date = replace(out_date, 
+2025-08-19T09:49:15.516351259Z         which(out_date > end_date_outcome | out_date < index_date), 
+2025-08-19T09:49:15.516355090Z         NA), exp_date = replace(exp_date, which(exp_date > end_date_exposure | 
+2025-08-19T09:49:15.516357848Z         exp_date < index_date), NA), sub_cat_covidhospital = replace(sub_cat_covidhospital, 
+2025-08-19T09:49:15.516360593Z         which(is.na(exp_date)), "no_infection"))
+2025-08-19T09:49:15.516363078Z     print("Update end date to be outcome date where applicable")
+2025-08-19T09:49:15.516365623Z     input <- input %>% dplyr::rowwise() %>% dplyr::mutate(end_date_outcome = min(end_date_outcome, 
+2025-08-19T09:49:15.516368427Z         out_date, na.rm = TRUE)) %>% dplyr::ungroup()
+2025-08-19T09:49:15.516370962Z     return(list(input = input, keep = keep))
+2025-08-19T09:49:15.516373441Z }
+2025-08-19T09:49:15.516379944Z 
+2025-08-19T09:49:15.516382766Z [[2]]$visible
+2025-08-19T09:49:15.516385242Z [1] FALSE
+2025-08-19T09:49:15.516387599Z 
+2025-08-19T09:49:15.516389871Z 
+2025-08-19T09:49:15.516392186Z [1] "Specify arguments"
+2025-08-19T09:49:15.516742000Z [1] "Creating output/model output folder"
+2025-08-19T09:49:15.569155715Z [1] "Load and prepare data for analysis"
+2025-08-19T09:49:15.610340047Z [1] "Load active analyses"
+2025-08-19T09:49:15.914358105Z [1] "Filter active_analyses to model inputs to be prepared"
+2025-08-19T09:49:15.914391662Z [1] "Load data for cohort_prevax-main-ami"
+2025-08-19T09:49:15.922958621Z [1] "Restrict to required variables for dataset preparation"
+2025-08-19T09:49:15.924979579Z Variables (sup_bin_preex) not present in dataset
+2025-08-19T09:49:15.925004760Z [1] "Identify final list of variables to keep"
+2025-08-19T09:49:16.196860958Z [1] "Remove outcomes outside of follow-up time"
+2025-08-19T09:49:16.274547730Z [1] "Update end date to be outcome date where applicable"
+2025-08-19T09:49:16.825836296Z Warning messages:
+2025-08-19T09:49:16.825890847Z 1: replacing previous import ‘ellipsis::check_dots_unnamed’ by ‘rlang::check_dots_unnamed’ when loading ‘tibble’ 
+2025-08-19T09:49:16.825902301Z 2: replacing previous import ‘ellipsis::check_dots_used’ by ‘rlang::check_dots_used’ when loading ‘tibble’ 
+2025-08-19T09:49:16.825908699Z 3: replacing previous import ‘ellipsis::check_dots_empty’ by ‘rlang::check_dots_empty’ when loading ‘tibble’ 
+2025-08-19T09:49:16.825914294Z 4: replacing previous import ‘ellipsis::check_dots_unnamed’ by ‘rlang::check_dots_unnamed’ when loading ‘pillar’ 
+2025-08-19T09:49:16.825919416Z 5: replacing previous import ‘ellipsis::check_dots_used’ by ‘rlang::check_dots_used’ when loading ‘pillar’ 
+2025-08-19T09:49:16.825924916Z 6: replacing previous import ‘ellipsis::check_dots_empty’ by ‘rlang::check_dots_empty’ when loading ‘pillar’ 
+2025-08-19T09:49:16.826171262Z [1] "Restrict to required population"
+2025-08-19T09:49:16.827573948Z [1] "Perform subgroup-specific manipulation"
+2025-08-19T09:49:16.827794116Z [1] "Make model input: main-ami"
+2025-08-19T09:49:17.000260373Z [1] "Saved: output/model/model_input-cohort_prevax-main-ami.rds"
+
+
+job_definition_id: olcqlsmr2tmfxgfl
+job_definition_request_id: 170099df16
+docker_image_id: sha256:ef02d2a106a19e7d6a5d5a9b895969058ce5a89c6535f13c96d1d73fe995c657
+exit_code: 0
+created_at: 1755596732
+completed_at: 1755596957
+status_message: Completed successfully
+
+outputs:
+  output/model/model_input-cohort_prevax-main-ami.rds  - highly_sensitive

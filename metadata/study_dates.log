@@ -1,0 +1,36 @@
+2025-08-19T09:45:45.284832659Z Warning message:
+2025-08-19T09:45:45.284927825Z renv 0.16.0 was loaded from project library, but this project is configured to use renv ${VERSION}.
+2025-08-19T09:45:45.284934691Z Use `renv::record("renv@0.16.0")` to record renv 0.16.0 in the lockfile.
+2025-08-19T09:45:45.284938324Z Use `renv::restore(packages = "renv")` to install renv ${VERSION} into the project library. 
+2025-08-19T09:45:45.381665946Z [1] "Import libraries"
+2025-08-19T09:45:47.516456235Z ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+2025-08-19T09:45:47.526120205Z ✔ ggplot2 3.4.2     ✔ purrr   0.3.4
+2025-08-19T09:45:47.526187608Z ✔ tibble  3.0.3     ✔ dplyr   1.0.2
+2025-08-19T09:45:47.526195865Z ✔ tidyr   1.1.2     ✔ stringr 1.4.0
+2025-08-19T09:45:47.526201603Z ✔ readr   1.3.1     ✔ forcats 0.5.0
+2025-08-19T09:45:47.705918009Z ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+2025-08-19T09:45:47.705989860Z ✖ dplyr::filter() masks stats::filter()
+2025-08-19T09:45:47.705998901Z ✖ dplyr::lag()    masks stats::lag()
+2025-08-19T09:45:47.710090947Z Warning messages:
+2025-08-19T09:45:47.710150414Z 1: replacing previous import ‘ellipsis::check_dots_unnamed’ by ‘rlang::check_dots_unnamed’ when loading ‘tibble’ 
+2025-08-19T09:45:47.710157643Z 2: replacing previous import ‘ellipsis::check_dots_used’ by ‘rlang::check_dots_used’ when loading ‘tibble’ 
+2025-08-19T09:45:47.710161510Z 3: replacing previous import ‘ellipsis::check_dots_empty’ by ‘rlang::check_dots_empty’ when loading ‘tibble’ 
+2025-08-19T09:45:47.710165264Z 4: replacing previous import ‘ellipsis::check_dots_unnamed’ by ‘rlang::check_dots_unnamed’ when loading ‘pillar’ 
+2025-08-19T09:45:47.710168501Z 5: replacing previous import ‘ellipsis::check_dots_used’ by ‘rlang::check_dots_used’ when loading ‘pillar’ 
+2025-08-19T09:45:47.710171721Z 6: replacing previous import ‘ellipsis::check_dots_empty’ by ‘rlang::check_dots_empty’ when loading ‘pillar’ 
+2025-08-19T09:45:47.742004712Z here() starts at /workspace
+2025-08-19T09:45:47.746598821Z [1] "Create output/dataset_definition directory"
+2025-08-19T09:45:47.753772620Z [1] "Create study_dates"
+2025-08-19T09:45:47.755009181Z [1] "Save study_dates"
+
+
+job_definition_id: 3zue4xddzfznwhkx
+job_definition_request_id: 170099df16
+docker_image_id: sha256:ef02d2a106a19e7d6a5d5a9b895969058ce5a89c6535f13c96d1d73fe995c657
+exit_code: 0
+created_at: 1755596732
+completed_at: 1755596749
+status_message: Completed successfully
+
+outputs:
+  output/study_dates.json  - highly_sensitive

@@ -1,0 +1,17 @@
+2025-08-19T09:46:44.852510006Z [info   ] Compiling dataset definition from analysis/dataset_definition/dataset_definition_prevax.py
+2025-08-19T09:46:48.350950347Z [info   ] Generating dummy dataset
+2025-08-19T09:46:49.174136069Z [info   ] Using next generation dummy data generation
+2025-08-19T09:46:49.175137497Z [info   ] Attempting to generate 5000 matching patients (random seed: BwRV3spP, timeout: 60s)
+2025-08-19T09:46:49.175185911Z [info   ] Use `dataset.configure_dummy_data(population_size=N)` to change number of patients generated
+
+
+job_definition_id: co6v5mrsczkmw5ck
+job_definition_request_id: 170099df16
+docker_image_id: sha256:6983ede8044e767134f0396a2b1f2e929ac1ecf6cafd4c44b70d360d14253a4f
+exit_code: 0
+created_at: 1755596732
+completed_at: 1755596932
+status_message: Completed successfully
+
+outputs:
+  output/dataset_definition/input_prevax.csv.gz  - highly_sensitive

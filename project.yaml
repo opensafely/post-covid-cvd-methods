@@ -41,18 +41,15 @@ actions:
       highly_sensitive:
         cohort: output/dataset_definition/input_prevax.csv.gz
 
-  ## Generate input_prevax_clean, with describe = TRUE 
+  ## Generate input_prevax_clean, with describe = FALSE 
 
   generate_input_prevax_clean:
-    run: r:latest analysis/dataset_clean/dataset_clean.R prevax TRUE
+    run: r:latest analysis/dataset_clean/dataset_clean.R prevax FALSE
     needs:
     - study_dates
     - generate_input_prevax
     outputs:
       moderately_sensitive:
-        describe_raw: output/describe/prevax_raw.txt
-        describe_venn: output/describe/prevax_venn.txt
-        describe_preprocessed: output/describe/prevax_preprocessed.txt
         flow: output/dataset_clean/flow-cohort_prevax.csv
         flow_midpoint6: output/dataset_clean/flow-cohort_prevax-midpoint6.csv
       highly_sensitive:
@@ -148,18 +145,6 @@ actions:
     outputs:
       moderately_sensitive:
         table1_output_midpoint6: output/make_output/venn_output_midpoint6.csv
-
-  ## Generate model_output-main 
-
-  make_model_output-main:
-    run: r:v2 analysis/make_output/make_model_output.R main
-    needs:
-    - cox_ipw-cohort_prevax-main-ami
-    - cox_ipw-cohort_prevax-main-stroke_sahhs
-    outputs:
-      moderately_sensitive:
-        model_output: output/make_output/model_output-main.csv
-        model_output_midpoint6: output/make_output/model_output-main-midpoint6.csv
 
   ## Make absolute excess risk (AER) input 
 

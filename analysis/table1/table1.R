@@ -10,7 +10,7 @@
 #  - cohort - string, defines which of three opensafely cohorts to describe
 #             (prevax, vax, unvax)
 #  - age_str - vector of form "XX;XX;XX;XX;XX"
-#              defines the age ranges over which the ... is stratified
+#              defines the age ranges over which the study population is stratified
 #  - preex - boolean/string, defines preexisting conditions
 #            for the replication preex = FALSE always
 #            ("All", TRUE, or FALSE)
@@ -55,7 +55,7 @@ if (length(args) == 0) {
   # default argument values
   cohort  <- "prevax"
   age_str <- "18;30;40;50;50;70;80;90"
-  preex   <- FALSE
+  preex   <- "All"
 } else {
   # YAML arguments
   cohort  <- args[[1]]
@@ -97,10 +97,10 @@ df$exposed <- !is.na(df$exp_date_covid)
 print("Select for pre-existing conditions")
 
 preex_string <- ""
-if (preex != "All") {
-  df <- df[df$sup_bin_preex == preex, ]
-  preex_string <- paste0("-preex_", preex)
-}
+# if (preex != "All") {
+#   df <- df[df$sup_bin_preex == preex, ]
+#   preex_string <- paste0("-preex_", preex)
+# }
 
 # Define age groups ------------------------------------------------------------
 print("Define age groups")
@@ -221,15 +221,37 @@ df$percent_midpoint6_derived <- paste0(
   )
 )
 
+#print(summary(df))
+
+df$percent_exposed_midpoint6 <- paste0(
+  ifelse(
+    df$characteristic == "All",
+    "",
+    paste0(
+      round(
+        100 *
+          (df$exposed_midpoint6 /
+            df[df$characteristic == "All", "exposed_midpoint6"]),
+        1
+      ),
+      "%"
+    )
+  )
+)
+
+#print(summary(df))
+#stop("development")
+
 df <- df[, c(
   "characteristic",
   "subcharacteristic",
   "N_midpoint6_derived",
   "percent_midpoint6_derived",
-  "exposed_midpoint6"
+  "exposed_midpoint6",
+  "percent_exposed_midpoint6"
 )]
 
-df[nrow(df) + 1, ] <- c("Age, years", "Median (IQR)", median_iqr_age, "", 0)
+df[nrow(df) + 1, ] <- c("Age, years", "Median (IQR)", median_iqr_age, "", 0, "")
 
 df <- dplyr::rename(
   df,

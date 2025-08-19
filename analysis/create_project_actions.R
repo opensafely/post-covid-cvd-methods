@@ -48,7 +48,8 @@ active_age <- active_analyses[grepl("_age_", active_analyses$name), ]$name
 
 age_str <- "18;30;40;50;50;70;80;90"
 
-describe <- TRUE # This prints descriptive files for each dataset in the pipeline
+# NB: For performance, this should be FALSE when running on the server
+describe <- FALSE # Prints descriptive files for each dataset in the pipeline
 
 # List of models excluded from model output generation
 
@@ -184,7 +185,6 @@ clean_data <- function(cohort, describe = describe) {
 
 
 # Create function for table1 --------------------------------------------
-## NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
 
 table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
   if (preex == "All" | preex == "") {
@@ -210,6 +210,7 @@ table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
     )
   )
 }
+
 
 
 # Create function to make model input and run a model --------------------------
@@ -306,38 +307,8 @@ venn <- function(cohort, analyses = "") {
 }
 
 
-# Create funtion for making model outputs --------------------------------------
-
-make_model_output <- function(subgroup) {
-  splice(
-    comment(glue("Generate model_output-{subgroup}")),
-    action(
-      name = glue(
-        "make_model_output-{subgroup}"
-      ),
-      run = "r:v2 analysis/make_output/make_model_output.R",
-      arguments = c(subgroup),
-      needs = as.list(c(
-        paste0(
-          "cox_ipw-",
-          active_analyses$name[
-            !(active_analyses$name %in% excluded_models) &
-              str_detect(active_analyses$analysis, subgroup)
-          ]
-        )
-      )),
-      moderately_sensitive = list(
-        model_output = glue("output/make_output/model_output-{subgroup}.csv"),
-        model_output_midpoint6 = glue(
-          "output/make_output/model_output-{subgroup}-midpoint6.csv"
-        )
-      )
-    )
-  )
-}
-
-
 # Create funtion for making combined table/venn outputs ------------------------
+# NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
 
 make_other_output <- function(action_name, cohort, subgroup = "") {
   cohort_names <- stringr::str_split(as.vector(cohort), ";")[[1]]
@@ -507,15 +478,6 @@ actions_list <- splice(
       action_name = "venn",
       cohort = paste0(cohorts, collapse = ";"),
       subgroup = ""
-    )
-  ),
-
-  ## Model output --------------------------------------------------------------
-
-  splice(
-    unlist(
-      lapply(subgroups, function(x) make_model_output(subgroup = x)),
-      recursive = FALSE
     )
   ),
 
