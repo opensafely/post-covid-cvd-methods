@@ -1,3 +1,0 @@
-name,cohort,exposure,outcome,analysis,unexposed_person_days,unexposed_events_midpoint6,exposed_person_days,exposed_events_midpoint6,total_person_days,total_events_midpoint6_derived,day0_events_midpoint6,total_exposed_midpoint6,sample_size_midpoint6
-cohort_prevax-main-ami,prevax,exp_date_covid,out_date_ami,main,4215673,1761,476818,189,4692491,1950,0,453,4053
-cohort_prevax-main-stroke_sahhs,prevax,exp_date_covid,out_date_stroke_sahhs,main,4213227,1779,437262,207,4650489,1986,0,435,4053
