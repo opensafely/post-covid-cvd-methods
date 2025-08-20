@@ -91,7 +91,8 @@ if (output == "table1") {
     values_from = c(
       "N [midpoint6_derived]",
       "(%) [midpoint6_derived]",
-      "COVID-19 diagnoses [midpoint6]"
+      "COVID-19 diagnoses [midpoint6]",
+      "percent_exposed_midpoint6"
     ),
     names_vary = "slowest"
   )
