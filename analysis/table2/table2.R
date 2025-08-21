@@ -9,7 +9,8 @@
 # Arguments:
 #  - cohort - string, defines which of three opensafely cohorts to describe
 #             (prevax, vax, unvax)
-#  - subgroup - string, does something
+#  - subgroup - string, subdivide cohorts further by covid19 severity
+#               (no covid19, hospitalisedcovid, non-hospitalisedcovid)
 #
 # Returns:
 #  - The outcome frequencies data table, rounded
