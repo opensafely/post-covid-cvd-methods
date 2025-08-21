@@ -212,6 +212,47 @@ table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
 }
 
 
+# Create function to make Table 2 ----------------------------------------------
+
+table2 <- function(cohort, subgroup) {
+  table2_names <- gsub(
+    "out_date_",
+    "",
+    unique(
+      active_analyses[
+        active_analyses$cohort ==
+          {
+            cohort
+          },
+      ]$name
+    )
+  )
+
+  table2_names <- table2_names[
+    grepl("-main", table2_names) |
+      grepl(paste0("-sub_", subgroup), table2_names)
+  ]
+
+  splice(
+    comment(glue("Generate table2-cohort_{cohort}-sub_{subgroup}")),
+    action(
+      name = glue("table2-cohort_{cohort}-sub_{subgroup}"),
+      run = "r:v2 analysis/table2/table2.R",
+      arguments = c(cohort, subgroup),
+      needs = c(as.list(paste0("make_model_input-", table2_names))),
+      moderately_sensitive = list(
+        table2 = glue(
+          "output/table2/table2-cohort_{cohort}-sub_{subgroup}.csv"
+        ),
+        table2_midpoint6 = glue(
+          "output/table2/table2-cohort_{cohort}-sub_{subgroup}-midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
+
 
 # Create function to make model input and run a model --------------------------
 
@@ -458,6 +499,26 @@ actions_list <- splice(
           )
       ),
       recursive = FALSE
+    )
+  ),
+
+  ## Table 2 -------------------------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        cohorts,
+        function(x) table2(cohort = x, subgroup = "covidhospital")
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  splice(
+    make_other_output(
+      action_name = "table2",
+      cohort = paste0(cohorts, collapse = ";"),
+      subgroup = "covidhospital"
     )
   )
 )

@@ -123,3 +123,25 @@ actions:
       moderately_sensitive:
         model_output: output/model/model_output-cohort_prevax-main-stroke_sahhs.csv
 
+  ## Generate table2-cohort_prevax-sub_covidhospital 
+
+  table2-cohort_prevax-sub_covidhospital:
+    run: r:v2 analysis/table2/table2.R prevax covidhospital
+    needs:
+    - make_model_input-cohort_prevax-main-ami
+    - make_model_input-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        table2: output/table2/table2-cohort_prevax-sub_covidhospital.csv
+        table2_midpoint6: output/table2/table2-cohort_prevax-sub_covidhospital-midpoint6.csv
+
+  ## Generate make-table2-sub_covidhospital-output 
+
+  make-table2-sub_covidhospital-output:
+    run: r:v2 analysis/make_output/make_other_output.R table2 prevax covidhospital
+    needs:
+    - table2-cohort_prevax-sub_covidhospital
+    outputs:
+      moderately_sensitive:
+        table1_output_midpoint6: output/make_output/table2-sub_covidhospital_output_midpoint6.csv
+
