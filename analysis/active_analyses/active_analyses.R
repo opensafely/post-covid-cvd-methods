@@ -15,7 +15,25 @@ lapply(
 cohorts <- c("prevax")
 
 # Define subgroups ----
-subgroups <- c()
+subgroups <- c(
+  "sub_covidhospital_TRUE",
+  "sub_covidhospital_FALSE",
+  "sub_covidhistory",
+  "sub_sex_female",
+  "sub_sex_male",
+  "sub_age_18_39",
+  "sub_age_40_59",
+  "sub_age_60_79",
+  "sub_age_80_110",
+  "sub_ethnicity_white",
+  "sub_ethnicity_black",
+  "sub_ethnicity_mixed",
+  "sub_ethnicity_asian",
+  "sub_ethnicity_other",
+  "sub_smoking_never",
+  "sub_smoking_ever",
+  "sub_smoking_current"
+)
 
 # Define preex groups ----
 # Options are: "" (which means none), "_preex_TRUE", "_preex_FALSE"

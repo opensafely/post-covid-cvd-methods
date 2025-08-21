@@ -41,23 +41,41 @@ actions:
       highly_sensitive:
         cohort: output/dataset_definition/input_prevax.csv.gz
 
-  ## Generate input_prevax_clean, with describe = TRUE 
+  ## Generate input_prevax_clean, with describe = FALSE 
 
   generate_input_prevax_clean:
-    run: r:latest analysis/dataset_clean/dataset_clean.R prevax TRUE
+    run: r:latest analysis/dataset_clean/dataset_clean.R prevax FALSE
     needs:
     - study_dates
     - generate_input_prevax
     outputs:
       moderately_sensitive:
-        describe_raw: output/describe/prevax_raw.txt
-        describe_venn: output/describe/prevax_venn.txt
-        describe_preprocessed: output/describe/prevax_preprocessed.txt
         flow: output/dataset_clean/flow-cohort_prevax.csv
         flow_midpoint6: output/dataset_clean/flow-cohort_prevax-midpoint6.csv
       highly_sensitive:
         venn: output/dataset_clean/venn-cohort_prevax.rds
         cohort_clean: output/dataset_clean/input_prevax_clean.rds
+
+  ## Generate table1_cohort_prevax 
+
+  table1-cohort_prevax:
+    run: 'r:v2 analysis/table1/table1.R prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    outputs:
+      moderately_sensitive:
+        table1: output/table1/table1-cohort_prevax.csv
+        table1_midpoint6: output/table1/table1-cohort_prevax-midpoint6.csv
+
+  ## Generate make-table1-output 
+
+  make-table1-output:
+    run: r:v2 analysis/make_output/make_other_output.R table1 prevax
+    needs:
+    - table1-cohort_prevax
+    outputs:
+      moderately_sensitive:
+        table1_output_midpoint6: output/make_output/table1_output_midpoint6.csv
 
   ## Run models 
 
