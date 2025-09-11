@@ -109,11 +109,11 @@ print("Define age groups")
 
 df$cov_cat_age_group <- numerical_to_categorical(df$cov_num_age, age_bounds) # See utility.R
 
-df$cov_cat_consrate2019 <- numerical_to_categorical(
-  df$cov_num_consrate2019,
-  c(1, 6),
-  zero_flag = TRUE
-)
+# df$cov_cat_consrate2019 <- numerical_to_categorical(
+#   df$cov_num_consrate2019,
+#   c(1, 6),
+#   zero_flag = TRUE
+# )
 
 median_iqr_age <- create_median_iqr_string(df$cov_num_age) # See utility.R
 

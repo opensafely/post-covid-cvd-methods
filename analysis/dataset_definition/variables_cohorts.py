@@ -239,22 +239,22 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         addresses.for_patient_on(index_date).care_home_does_not_require_nursing
     )
 
-    ### Consultation rate in 2019
-    tmp_cov_num_consrate2019 = appointments.where(
-        appointments.status.is_in([
-            "Arrived",
-            "In Progress",
-            "Finished",
-            "Visit",
-            "Waiting",
-            "Patient Walked Out",
-            ]) & appointments.start_date.is_on_or_between("2019-01-01", "2019-12-31")
-            ).count_for_patient()    
+    # ### Consultation rate in 2019
+    # tmp_cov_num_consrate2019 = appointments.where(
+    #     appointments.status.is_in([
+    #         "Arrived",
+    #         "In Progress",
+    #         "Finished",
+    #         "Visit",
+    #         "Waiting",
+    #         "Patient Walked Out",
+    #         ]) & appointments.start_date.is_on_or_between("2019-01-01", "2019-12-31")
+    #         ).count_for_patient()    
 
-    cov_num_consrate2019 = case(
-        when(tmp_cov_num_consrate2019 <= 365).then(tmp_cov_num_consrate2019),
-        otherwise=365,
-    )
+    # cov_num_consrate2019 = case(
+    #     when(tmp_cov_num_consrate2019 <= 365).then(tmp_cov_num_consrate2019),
+    #     otherwise=365,
+    # )
 
     ### Healthcare worker
     cov_bin_hcworker = occupation_on_covid_vaccine_record.where(
@@ -544,7 +544,7 @@ def generate_variables(index_date, end_date_exp, end_date_out):
         cov_cat_imd = cov_cat_imd,
         cov_cat_smoking = cov_cat_smoking,
         cov_bin_carehome = cov_bin_carehome,
-        cov_num_consrate2019 = cov_num_consrate2019,
+        #cov_num_consrate2019 = cov_num_consrate2019,
         cov_bin_hcworker = cov_bin_hcworker,
         cov_bin_dementia = cov_bin_dementia,
         cov_bin_liver_disease = cov_bin_liver_disease,

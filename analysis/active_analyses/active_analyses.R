@@ -29,7 +29,7 @@ preex_groups <- c("")
 core_covariates <- c(
   "cov_cat_ethnicity",
   "cov_cat_imd",
-  "cov_num_consrate2019",
+#  "cov_num_consrate2019",
   "cov_bin_hcworker",
   "cov_cat_smoking",
   "cov_bin_carehome",
