@@ -212,6 +212,47 @@ table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
 }
 
 
+# Create function to make Table 2 ----------------------------------------------
+
+table2 <- function(cohort, subgroup) {
+  table2_names <- gsub(
+    "out_date_",
+    "",
+    unique(
+      active_analyses[
+        active_analyses$cohort ==
+          {
+            cohort
+          },
+      ]$name
+    )
+  )
+
+  table2_names <- table2_names[
+    grepl("-main", table2_names) |
+      grepl(paste0("-sub_", subgroup), table2_names)
+  ]
+
+  splice(
+    comment(glue("Generate table2-cohort_{cohort}-sub_{subgroup}")),
+    action(
+      name = glue("table2-cohort_{cohort}-sub_{subgroup}"),
+      run = "r:v2 analysis/table2/table2.R",
+      arguments = c(cohort, subgroup),
+      needs = c(as.list(paste0("make_model_input-", table2_names))),
+      moderately_sensitive = list(
+        table2 = glue(
+          "output/table2/table2-cohort_{cohort}-sub_{subgroup}.csv"
+        ),
+        table2_midpoint6 = glue(
+          "output/table2/table2-cohort_{cohort}-sub_{subgroup}-midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
+
 
 # Create function to make model input and run a model --------------------------
 
@@ -243,17 +284,17 @@ apply_model_function <- function(
       highly_sensitive = list(
         model_input = glue("output/model/model_input-{name}.rds")
       )
-    ),
-    action(
-      name = glue("cox_ipw-{name}"),
-      run = glue(
-        "cox-ipw:v0.0.37 --df_input=model/model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model/model_output-{name}.csv"
-      ),
-      needs = list(glue("make_model_input-{name}")),
-      moderately_sensitive = list(
-        model_output = glue("output/model/model_output-{name}.csv")
-      )
-    )
+    ) #,
+    # action(
+    #   name = glue("cox_ipw-{name}"),
+    #   run = glue(
+    #     "cox-ipw:v0.0.37 --df_input=model/model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model/model_output-{name}.csv"
+    #   ),
+    #   needs = list(glue("make_model_input-{name}")),
+    #   moderately_sensitive = list(
+    #     model_output = glue("output/model/model_output-{name}.csv")
+    #   )
+    # )
   )
 }
 
@@ -458,6 +499,26 @@ actions_list <- splice(
           )
       ),
       recursive = FALSE
+    )
+  ),
+
+  ## Table 2 -------------------------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        cohorts,
+        function(x) table2(cohort = x, subgroup = "covidhospital")
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  splice(
+    make_other_output(
+      action_name = "table2",
+      cohort = paste0(cohorts, collapse = ";"),
+      subgroup = "covidhospital"
     )
   )
 )

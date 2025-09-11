@@ -88,12 +88,16 @@ if (grepl("sub_covidhistory", analysis)) {
 # Make model input: sub_covidhospital ----------------------------------------
 if (grepl("sub_covidhospital", analysis)) {
   check_for_subgroup <- TRUE
-  covidhosp <- as.logical(gsub(
-    ".*sub_covidhospital_",
-    "",
-    analysis
-  ))
+
+  if (grepl("sub_covidhospital_TRUE", analysis)) {
+    covidhosp <- TRUE
+  }
+  if (grepl("sub_covidhospital_FALSE", analysis)) {
+    covidhosp <- FALSE
+  }
+
   str_covidhosp_cens <- ifelse(covidhosp, "non_hospitalised", "hospitalised")
+
   df <- df %>%
     dplyr::mutate(
       end_date_outcome = as.Date(
