@@ -7,6 +7,7 @@ print('Load packages')
 
 library(magrittr)
 library(data.table)
+library(stringr)
 library(tidyr)
 
 # Define make_output folder ------------------------------------------
@@ -96,6 +97,24 @@ if (output == "table1") {
     ),
     names_vary = "slowest"
   )
+
+  # ensure same decimal places for n_percent_midpoint6 column
+  n_percent_midpoint6 <- unname(unlist(df[4]))
+  for (i in seq_along(n_percent_midpoint6)) {
+    if ((!is.na(n_percent_midpoint6[i])) && (!grepl(".", n_percent_midpoint6[i], fixed = TRUE))) {
+      n_percent_midpoint6[i] <- paste0(str_sub(n_percent_midpoint6[i], end=-2), ".0%")
+    }
+  }
+  df[4] <- n_percent_midpoint6
+
+  # ensure same decimal places for percent_exposed_midpoint6_prevax column
+  percent_exposed_midpoint6_prevax <- unname(unlist(df[6]))
+  for (i in seq_along(percent_exposed_midpoint6_prevax)) {
+    if ((!is.na(percent_exposed_midpoint6_prevax[i])) && (!grepl(".", percent_exposed_midpoint6_prevax[i], fixed = TRUE))) {
+      percent_exposed_midpoint6_prevax[i] <- paste0(str_sub(percent_exposed_midpoint6_prevax[i], end=-2), ".0%")
+    }
+  }
+  df[6] <- percent_exposed_midpoint6_prevax
 }
 
 # Save output ------------------------------------------------------------------
