@@ -7,7 +7,6 @@ print('Load packages')
 
 library(magrittr)
 library(data.table)
-library(dplyr)
 library(stringr)
 library(tidyr)
 
@@ -100,25 +99,22 @@ if (output == "table1") {
   )
 
   # ensure same decimal places for n_percent_midpoint6 column
-  n_percent_midpoint6_fixed <- unname(unlist(df[4]))
-  for (i in seq_along(n_percent_midpoint6_fixed)) {
-    if ((!is.na(n_percent_midpoint6_fixed[i])) && (!grepl(".", n_percent_midpoint6_fixed[i], fixed = TRUE))) {
-      n_percent_midpoint6_fixed[i] <- paste0(str_sub(n_percent_midpoint6_fixed[i], end=-2), ".0%")
+  n_percent_midpoint6 <- unname(unlist(df[4]))
+  for (i in seq_along(n_percent_midpoint6)) {
+    if ((!is.na(n_percent_midpoint6[i])) && (!grepl(".", n_percent_midpoint6[i], fixed = TRUE))) {
+      n_percent_midpoint6[i] <- paste0(str_sub(n_percent_midpoint6[i], end=-2), ".0%")
     }
   }
-  n_percent_midpoint6_fixed[is.na(n_percent_midpoint6_fixed)] <- ""
+  df[4] <- n_percent_midpoint6
 
   # ensure same decimal places for percent_exposed_midpoint6_prevax column
-  percent_exposed_midpoint6_prevax_fixed <- unname(unlist(df[6]))
-  for (i in seq_along(percent_exposed_midpoint6_prevax_fixed)) {
-    if ((!is.na(percent_exposed_midpoint6_prevax_fixed[i])) && (!grepl(".", percent_exposed_midpoint6_prevax_fixed[i], fixed = TRUE))) {
-      percent_exposed_midpoint6_prevax_fixed[i] <- paste0(str_sub(percent_exposed_midpoint6_prevax_fixed[i], end=-2), ".0%")
+  percent_exposed_midpoint6_prevax <- unname(unlist(df[6]))
+  for (i in seq_along(percent_exposed_midpoint6_prevax)) {
+    if ((!is.na(percent_exposed_midpoint6_prevax[i])) && (!grepl(".", percent_exposed_midpoint6_prevax[i], fixed = TRUE))) {
+      percent_exposed_midpoint6_prevax[i] <- paste0(str_sub(percent_exposed_midpoint6_prevax[i], end=-2), ".0%")
     }
   }
-  percent_exposed_midpoint6_prevax_fixed[is.na(percent_exposed_midpoint6_prevax_fixed)] <- ""
-
-  df <- df %>% mutate(`N [midpoint6_derived]_prevax`   = n_percent_midpoint6_fixed)
-  df <- df %>% mutate(percent_exposed_midpoint6_prevax = percent_exposed_midpoint6_prevax_fixed)
+  df[6] <- percent_exposed_midpoint6_prevax
 }
 
 # Save output ------------------------------------------------------------------
