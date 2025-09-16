@@ -1,5 +1,29 @@
-# make_other_output.R - handles any other required post-processing of any table
-# NB: copied tastefully from post-covid-respiratory, credit to ehrQL team
+# ------------------------------------------------------------------------------
+#
+# make_other_output.R
+#
+# This file handles any other required post-processing of tables 1 and 2
+# (patient characteristics and outcomes)
+# for the replicated Covid-19 x Cardiovascular paper
+# Original text: https://doi.org/10.1038/s41467-024-46497-0
+#
+# Arguments:
+#  - output - string, spoecifies which table is being processed
+#             (table1, table2, etc)
+#  - cohort - string, specifies which study cohort is being processed
+#             (prevax, vax, unvax)
+#  - subgroup - string, specifies other subgroups by which the study population
+#               can be divided (e.g. main, covid hospitalisation)
+#
+# Returns:
+#  - The post-processed patient characteristics data table
+#    (output/make_output/table1_output_midpoint6.csv)
+#  - The post-processed outcomes table
+#    (output/make_output/table2-sub_covidhospital_output_midpoint.csv)
+#
+# Authors: Emma Tarmey, Venexia Walker, UoB ehrQL Team
+#
+# ------------------------------------------------------------------------------
 
 
 # Load packages ----------------------------------------------------------------

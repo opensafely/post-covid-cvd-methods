@@ -284,17 +284,17 @@ apply_model_function <- function(
       highly_sensitive = list(
         model_input = glue("output/model/model_input-{name}.rds")
       )
-    ) #,
-    # action(
-    #   name = glue("cox_ipw-{name}"),
-    #   run = glue(
-    #     "cox-ipw:v0.0.37 --df_input=model/model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model/model_output-{name}.csv"
-    #   ),
-    #   needs = list(glue("make_model_input-{name}")),
-    #   moderately_sensitive = list(
-    #     model_output = glue("output/model/model_output-{name}.csv")
-    #   )
-    # )
+    ),
+    action(
+      name = glue("cox_ipw-{name}"),
+      run = glue(
+        "cox-ipw:v0.0.37 --df_input=model/model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model/model_output-{name}.csv"
+      ),
+      needs = list(glue("make_model_input-{name}")),
+      moderately_sensitive = list(
+        model_output = glue("output/model/model_output-{name}.csv")
+      )
+    )
   )
 }
 
@@ -348,8 +348,87 @@ venn <- function(cohort, analyses = "") {
 }
 
 
+# Create function to make Venn data --------------------------------------------
+
+venn <- function(cohort, analyses = "") {
+  if (analyses == "") {
+    analyses_str <- ""
+    analyses <- "main"
+    analyses_input <- ""
+  } else {
+    analyses_str <- paste0("-", analyses)
+    analyses_input <- analyses
+  }
+
+  venn_outcomes <- gsub(
+    "cohort_",
+    "",
+    unique(
+      active_analyses[
+        active_analyses$cohort == cohort &
+          grepl(analyses, active_analyses$analysis),
+      ]$name
+    )
+  )
+
+  splice(
+    comment(glue("Generate venn-cohort_{cohort}{analyses_str}")),
+    action(
+      name = glue("venn-cohort_{cohort}{analyses_str}"),
+      run = "r:v2 analysis/venn/venn.R",
+      arguments = lapply(list(c(cohort, analyses_input)), function(x) {
+        x[x != ""]
+      }),
+      needs = c(
+        as.list(glue("generate_input_{cohort}_clean")),
+        as.list(paste0(
+          glue("make_model_input-cohort_"),
+          venn_outcomes
+        ))
+      ),
+      moderately_sensitive = list(
+        venn = glue("output/venn/venn-cohort_{cohort}{analyses_str}.csv"),
+        venn_midpoint6 = glue(
+          "output/venn/venn-cohort_{cohort}{analyses_str}-midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
+
+# Create funtion for making model outputs --------------------------------------
+
+make_model_output <- function(subgroup) {
+  splice(
+    comment(glue("Generate model_output-{subgroup}")),
+    action(
+      name = glue(
+        "make_model_output-{subgroup}"
+      ),
+      run = "r:v2 analysis/make_output/make_model_output.R",
+      arguments = c(subgroup),
+      needs = as.list(c(
+        paste0(
+          "cox_ipw-",
+          active_analyses$name[
+            !(active_analyses$name %in% excluded_models) &
+              str_detect(active_analyses$analysis, subgroup)
+          ]
+        )
+      )),
+      moderately_sensitive = list(
+        model_output = glue("output/make_output/model_output-{subgroup}.csv"),
+        model_output_midpoint6 = glue(
+          "output/make_output/model_output-{subgroup}-midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
+
 # Create funtion for making combined table/venn outputs ------------------------
-# NB: tastefully copied from post-covid-neurodegenerative, credit ehrQL team
 
 make_other_output <- function(action_name, cohort, subgroup = "") {
   cohort_names <- stringr::str_split(as.vector(cohort), ";")[[1]]
@@ -519,6 +598,35 @@ actions_list <- splice(
       action_name = "table2",
       cohort = paste0(cohorts, collapse = ";"),
       subgroup = "covidhospital"
+    )
+  ),
+
+  ## Venn data -----------------------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        unique(active_analyses$cohort),
+        function(x) venn(cohort = x)
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  splice(
+    make_other_output(
+      action_name = "venn",
+      cohort = paste0(cohorts, collapse = ";"),
+      subgroup = ""
+    )
+  ),
+
+  ## Model output --------------------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(subgroups, function(x) make_model_output(subgroup = x)),
+      recursive = FALSE
     )
   )
 )
