@@ -77,6 +77,39 @@ actions:
       moderately_sensitive:
         table1_output_midpoint6: output/make_output/table1_output_midpoint6.csv
 
+  ## Generate lasso_var_selection_cohort_prevax 
+
+  lasso_var_selection-cohort_prevax:
+    run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    outputs:
+      moderately_sensitive:
+        lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax.csv
+
+  ## Generate lasso_X_var_selection_cohort_prevax 
+
+  lasso_X_var_selection-cohort_prevax:
+    run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    - lasso_var_selection-cohort_prevax
+    outputs:
+      moderately_sensitive:
+        lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax.csv
+
+  ## Generate lasso_union_var_selection_cohort_prevax 
+
+  lasso_union_var_selection-cohort_prevax:
+    run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R prevax
+      18;30;40;50;50;70;80;90 '
+    needs:
+    - lasso_var_selection-cohort_prevax
+    - lasso_X_var_selection-cohort_prevax
+    outputs:
+      moderately_sensitive:
+        lasso_union_var_selection: output/lasso_union_var_selection/lasso_union_var_selection-cohort_prevax.csv
+
   ## Run models 
 
   make_model_input-cohort_prevax-main-ami:
