@@ -212,6 +212,81 @@ table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
 }
 
 
+# Create function for LASSO variable selection ---------------------------------
+
+lasso_var_selection <- function(cohort, ages = "18;40;60;80", preex = "All") {
+  if (preex == "All" | preex == "") {
+    preex_str <- ""
+  } else {
+    preex_str <- paste0("-preex_", preex)
+  }
+  splice(
+    comment(glue("Generate lasso_var_selection_cohort_{cohort}{preex_str}")),
+    action(
+      name = glue("lasso_var_selection-cohort_{cohort}{preex_str}"),
+      run = "r:v2 analysis/lasso_var_selection/lasso_var_selection.R",
+      arguments = c(c(cohort), c(ages), c(preex)),
+      needs = list(glue("generate_input_{cohort}_clean")),
+      moderately_sensitive = list(
+        lasso_var_selection = glue(
+          "output/lasso_var_selection/lasso_var_selection-cohort_{cohort}{preex_str}.csv"
+        )
+      )
+    )
+  )
+}
+
+
+# Create function for LASSO_X variable selection -------------------------------
+
+lasso_X_var_selection <- function(cohort, ages = "18;40;60;80", preex = "All") {
+  if (preex == "All" | preex == "") {
+    preex_str <- ""
+  } else {
+    preex_str <- paste0("-preex_", preex)
+  }
+  splice(
+    comment(glue("Generate lasso_X_var_selection_cohort_{cohort}{preex_str}")),
+    action(
+      name = glue("lasso_X_var_selection-cohort_{cohort}{preex_str}"),
+      run = "r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R",
+      arguments = c(c(cohort), c(ages), c(preex)),
+      needs = list(glue("generate_input_{cohort}_clean"), glue("lasso_var_selection-cohort_{cohort}{preex_str}")),
+      moderately_sensitive = list(
+        lasso_X_var_selection = glue(
+          "output/lasso_X_var_selection/lasso_X_var_selection-cohort_{cohort}{preex_str}.csv"
+        )
+      )
+    )
+  )
+}
+
+
+# Create function for LASSO_union variable selection --------------------------
+
+lasso_union_var_selection <- function(cohort, ages = "18;40;60;80", preex = "All") {
+  if (preex == "All" | preex == "") {
+    preex_str <- ""
+  } else {
+    preex_str <- paste0("-preex_", preex)
+  }
+  splice(
+    comment(glue("Generate lasso_union_var_selection_cohort_{cohort}{preex_str}")),
+    action(
+      name = glue("lasso_union_var_selection-cohort_{cohort}{preex_str}"),
+      run = "r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R",
+      arguments = c(c(cohort), c(ages), c(preex)),
+      needs = list(glue("lasso_var_selection-cohort_{cohort}{preex_str}"), glue("lasso_X_var_selection-cohort_{cohort}{preex_str}")),
+      moderately_sensitive = list(
+        lasso_union_var_selection = glue(
+          "output/lasso_union_var_selection/lasso_union_var_selection-cohort_{cohort}{preex_str}.csv"
+        )
+      )
+    )
+  )
+}
+
+
 # Create function to make Table 2 ----------------------------------------------
 
 table2 <- function(cohort, subgroup) {
@@ -543,6 +618,43 @@ actions_list <- splice(
       action_name = "table1",
       cohort = paste0(cohorts, collapse = ";"),
       subgroup = ""
+    )
+  ),
+
+
+  ## LASSO Variable Selection --------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        unique(active_analyses$cohort),
+        function(x) lasso_var_selection(cohort = x, ages = age_str, preex = "")
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  ## LASSO_X Variable Selection ------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        unique(active_analyses$cohort),
+        function(x) lasso_X_var_selection(cohort = x, ages = age_str, preex = "")
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  ## LASSO_union Variable Selection --------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        unique(active_analyses$cohort),
+        function(x) lasso_union_var_selection(cohort = x, ages = age_str, preex = "")
+      ),
+      recursive = FALSE
     )
   ),
 
