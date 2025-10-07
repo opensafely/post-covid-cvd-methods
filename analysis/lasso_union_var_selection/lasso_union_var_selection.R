@@ -53,36 +53,39 @@ print(length(args))
 
 if (length(args) == 0) {
   # default argument values
+  name    <- "cohort_prevax-main-ami"
   cohort  <- "prevax"
   age_str <- "18;30;40;50;50;70;80;90"
   preex   <- FALSE
 } else {
   # YAML arguments
-  cohort  <- args[[1]]
-  age_str <- args[[2]]
+  name    <- args[[1]]
+  cohort  <- args[[2]]
+  age_str <- args[[3]]
 
   # optional argument
-  if (length(args) < 3) {
+  if (length(args) < 4) {
     preex <- "All"
   } else {
-    preex <- args[[3]]
+    preex <- args[[4]]
   } # allow an empty input for the preex variable
 }
 
 age_bounds <- as.numeric(stringr::str_split(as.vector(age_str), ";")[[1]])
 
+
 # Load data --------------------------------------------------------------------
 print("Load data")
 
 lasso_vars_selected <- read.csv(paste0(
-  "output/lasso_var_selection/lasso_var_selection-cohort_",
-  cohort,
+  "output/lasso_var_selection/lasso_var_selection-",
+  name,
   ".csv"
 ))$x
 
 lasso_X_vars_selected <- read.csv(paste0(
-  "output/lasso_X_var_selection/lasso_X_var_selection-cohort_",
-  cohort,
+  "output/lasso_X_var_selection/lasso_X_var_selection-",
+  name,
   ".csv"
 ))$x
 
@@ -104,6 +107,6 @@ print("Save Covariate Selection")
 
 write.csv(
   lasso_union_vars_selected,
-  paste0(lasso_union_var_selection_dir, "lasso_union_var_selection-cohort_", cohort, preex_string, ".csv"),
+  paste0(lasso_union_var_selection_dir, "lasso_union_var_selection-", name, preex_string, ".csv"),
   row.names = FALSE
 )

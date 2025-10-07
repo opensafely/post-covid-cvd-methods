@@ -77,38 +77,235 @@ actions:
       moderately_sensitive:
         table1_output_midpoint6: output/make_output/table1_output_midpoint6.csv
 
-  ## Generate lasso_var_selection_cohort_prevax 
+  ## Generate lasso_var_selection-cohort_prevax-main-ami 
 
-  lasso_var_selection-cohort_prevax:
-    run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R prevax 18;30;40;50;50;70;80;90 '
+  lasso_var_selection-cohort_prevax-main-ami:
+    run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-main-ami
+      prevax 18;30;40;50;50;70;80;90 '
     needs:
     - generate_input_prevax_clean
     outputs:
       moderately_sensitive:
-        lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax.csv
+        lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-main-ami.csv
 
-  ## Generate lasso_X_var_selection_cohort_prevax 
+  ## Generate lasso_var_selection-cohort_prevax-main-stroke_sahhs 
 
-  lasso_X_var_selection-cohort_prevax:
-    run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R prevax 18;30;40;50;50;70;80;90 '
+  lasso_var_selection-cohort_prevax-main-stroke_sahhs:
+    run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-main-stroke_sahhs
+      prevax 18;30;40;50;50;70;80;90 '
     needs:
     - generate_input_prevax_clean
-    - lasso_var_selection-cohort_prevax
     outputs:
       moderately_sensitive:
-        lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax.csv
+        lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-main-stroke_sahhs.csv
 
-  ## Generate lasso_union_var_selection_cohort_prevax 
+  ## Generate lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami 
 
-  lasso_union_var_selection-cohort_prevax:
-    run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R prevax
-      18;30;40;50;50;70;80;90 '
+  lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami:
+    run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_FALSE-ami
+      prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - lasso_var_selection-cohort_prevax
-    - lasso_X_var_selection-cohort_prevax
+    - generate_input_prevax_clean
     outputs:
       moderately_sensitive:
-        lasso_union_var_selection: output/lasso_union_var_selection/lasso_union_var_selection-cohort_prevax.csv
+        lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+
+  ## Generate lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+
+    
+
+  lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
+    run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    outputs:
+      moderately_sensitive:
+        lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+
+  ## Generate lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami 
+
+  lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami:
+    run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_TRUE-ami
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    outputs:
+      moderately_sensitive:
+        lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+
+  ## Generate lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+
+    
+
+  lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
+    run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    outputs:
+      moderately_sensitive:
+        lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+
+  ## Generate lasso_X_var_selection-cohort_prevax-main-ami 
+
+  lasso_X_var_selection-cohort_prevax-main-ami:
+    run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-main-ami
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    - lasso_var_selection-cohort_prevax-main-ami
+    outputs:
+      moderately_sensitive:
+        lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-main-ami.csv
+
+  ## Generate lasso_X_var_selection-cohort_prevax-main-stroke_sahhs 
+
+  lasso_X_var_selection-cohort_prevax-main-stroke_sahhs:
+    run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-main-stroke_sahhs
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    - lasso_var_selection-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-main-stroke_sahhs.csv
+
+  ## Generate lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
+
+    
+
+  lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami:
+    run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_FALSE-ami
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+
+  ## Generate lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+
+    
+
+  lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
+    run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+
+  ## Generate lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
+
+    
+
+  lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami:
+    run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_TRUE-ami
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+
+  ## Generate lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+
+    
+
+  lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
+    run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_input_prevax_clean
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+
+  ## Generate lasso_union_var_selection_cohort_prevax-main-ami 
+
+  lasso_union_var_selection-cohort_prevax-main-ami:
+    run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-main-ami
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - lasso_var_selection-cohort_prevax-main-ami
+    - lasso_X_var_selection-cohort_prevax-main-ami
+    outputs:
+      moderately_sensitive:
+        lasso_union_var_selection: output/lasso_union_var_selection/lasso_union_var_selection-cohort_prevax-main-ami.csv
+
+  ## Generate lasso_union_var_selection_cohort_prevax-main-stroke_sahhs 
+
+  lasso_union_var_selection-cohort_prevax-main-stroke_sahhs:
+    run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-main-stroke_sahhs
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - lasso_var_selection-cohort_prevax-main-stroke_sahhs
+    - lasso_X_var_selection-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_union_var_selection: output/lasso_union_var_selection/lasso_union_var_selection-cohort_prevax-main-stroke_sahhs.csv
+
+  ## Generate lasso_union_var_selection_cohort_prevax-sub_covidhospital_FALSE-ami
+
+    
+
+  lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami:
+    run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-sub_covidhospital_FALSE-ami
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_union_var_selection: output/lasso_union_var_selection/lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+
+  ## Generate lasso_union_var_selection_cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+
+    
+
+  lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
+    run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_union_var_selection: output/lasso_union_var_selection/lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+
+  ## Generate lasso_union_var_selection_cohort_prevax-sub_covidhospital_TRUE-ami
+
+    
+
+  lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami:
+    run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-sub_covidhospital_TRUE-ami
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_union_var_selection: output/lasso_union_var_selection/lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+
+  ## Generate lasso_union_var_selection_cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+
+    
+
+  lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
+    run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+      prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_union_var_selection: output/lasso_union_var_selection/lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
 
   ## Run models 
 
@@ -121,13 +318,29 @@ actions:
         model_input: output/model/model_input-cohort_prevax-main-ami.rds
 
   cox_ipw-cohort_prevax-main-ami:
-    run: cox-ipw:v0.0.38 --df_input=model/model_input-cohort_prevax-main-ami.rds --ipw=TRUE
-      --exposure=exp_date --outcome=out_date --strata=strat_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
-      --study_stop=2024-04-30 --cut_points=1;7;14;28;56;84;183;365;730;1065;1582 --controls_per_case=20
-      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
-      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model/model_output-cohort_prevax-main-ami.csv
+    run: |-
+      cox-ipw:v0.0.38
+      --df_input=model/model_input-cohort_prevax-main-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/model_output-cohort_prevax-main-ami.csv
     needs:
     - make_model_input-cohort_prevax-main-ami
     outputs:
@@ -143,13 +356,29 @@ actions:
         model_input: output/model/model_input-cohort_prevax-main-stroke_sahhs.rds
 
   cox_ipw-cohort_prevax-main-stroke_sahhs:
-    run: cox-ipw:v0.0.38 --df_input=model/model_input-cohort_prevax-main-stroke_sahhs.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=strat_cat_region
-      --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
-      --study_stop=2024-04-30 --cut_points=1;7;14;28;56;84;183;365;730;1065;1582 --controls_per_case=20
-      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
-      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model/model_output-cohort_prevax-main-stroke_sahhs.csv
+    run: |-
+      cox-ipw:v0.0.38
+      --df_input=model/model_input-cohort_prevax-main-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/model_output-cohort_prevax-main-stroke_sahhs.csv
     needs:
     - make_model_input-cohort_prevax-main-stroke_sahhs
     outputs:
@@ -165,13 +394,29 @@ actions:
         model_input: output/model/model_input-cohort_prevax-sub_covidhospital_FALSE-ami.rds
 
   cox_ipw-cohort_prevax-sub_covidhospital_FALSE-ami:
-    run: cox-ipw:v0.0.38 --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-ami.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=strat_cat_region
-      --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
-      --study_stop=2024-04-30 --cut_points=1;7;14;28;56;84;183;365;730;1065;1582 --controls_per_case=20
-      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
-      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model/model_output-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+    run: |-
+      cox-ipw:v0.0.38
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/model_output-cohort_prevax-sub_covidhospital_FALSE-ami.csv
     needs:
     - make_model_input-cohort_prevax-sub_covidhospital_FALSE-ami
     outputs:
@@ -187,13 +432,29 @@ actions:
         model_input: output/model/model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.rds
 
   cox_ipw-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
-    run: cox-ipw:v0.0.38 --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=strat_cat_region
-      --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
-      --study_stop=2024-04-30 --cut_points=1;7;14;28;56;84;183;365;730;1065;1582 --controls_per_case=20
-      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
-      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model/model_output-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+    run: |-
+      cox-ipw:v0.0.38
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/model_output-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
     needs:
     - make_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     outputs:
@@ -209,13 +470,29 @@ actions:
         model_input: output/model/model_input-cohort_prevax-sub_covidhospital_TRUE-ami.rds
 
   cox_ipw-cohort_prevax-sub_covidhospital_TRUE-ami:
-    run: cox-ipw:v0.0.38 --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-ami.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=strat_cat_region
-      --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
-      --study_stop=2024-04-30 --cut_points=1;7;14;28;56;84;183;365;730;1065;1582 --controls_per_case=20
-      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
-      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model/model_output-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+    run: |-
+      cox-ipw:v0.0.38
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/model_output-cohort_prevax-sub_covidhospital_TRUE-ami.csv
     needs:
     - make_model_input-cohort_prevax-sub_covidhospital_TRUE-ami
     outputs:
@@ -231,13 +508,29 @@ actions:
         model_input: output/model/model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.rds
 
   cox_ipw-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
-    run: cox-ipw:v0.0.38 --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=strat_cat_region
-      --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
-      --study_stop=2024-04-30 --cut_points=1;7;14;28;56;84;183;365;730;1065;1582 --controls_per_case=20
-      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
-      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model/model_output-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+    run: |-
+      cox-ipw:v0.0.38
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=cov_cat_ethnicity;cov_cat_imd;cov_bin_hcworker;cov_cat_smoking;cov_bin_carehome;cov_bin_obesity;cov_bin_ami;cov_bin_dementia;cov_bin_liver_disease;cov_bin_ckd;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_depression;cov_bin_copd;cov_bin_stroke_all;cov_bin_other_ae;cov_bin_vte;cov_bin_hf;cov_bin_angina;cov_bin_lipidmed;cov_bin_antiplatelet;cov_bin_anticoagulant;cov_bin_cocp;cov_bin_hrt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/model_output-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
     needs:
     - make_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     outputs:

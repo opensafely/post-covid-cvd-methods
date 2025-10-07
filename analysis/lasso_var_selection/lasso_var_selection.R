@@ -52,19 +52,21 @@ print(length(args))
 
 if (length(args) == 0) {
   # default argument values
+  name    <- "cohort_prevax-main-ami"
   cohort  <- "prevax"
   age_str <- "18;30;40;50;50;70;80;90"
   preex   <- FALSE
 } else {
   # YAML arguments
-  cohort  <- args[[1]]
-  age_str <- args[[2]]
+  name    <- args[[1]]
+  cohort  <- args[[2]]
+  age_str <- args[[3]]
 
   # optional argument
-  if (length(args) < 3) {
+  if (length(args) < 4) {
     preex <- "All"
   } else {
-    preex <- args[[3]]
+    preex <- args[[4]]
   } # allow an empty input for the preex variable
 }
 
@@ -117,6 +119,14 @@ df$cov_cat_age_group <- numerical_to_categorical(df$cov_num_age, age_bounds) # S
 
 median_iqr_age <- create_median_iqr_string(df$cov_num_age) # See utility.R
 
+
+# Define binary sahhs column using out_date_sahhs column ----------------------
+print("Define binary Subarachnoid haemorrhage / haemorrhage stroke column")
+
+cov_bin_sahhs <- !is.na(df$out_date_stroke_sahhs)
+df$cov_bin_sahhs <- cov_bin_sahhs
+
+
 # Filter data ------------------------------------------------------------------
 print("Filter data")
 
@@ -142,13 +152,16 @@ df <- df %>%
 
 
 # Check exposure and outcome (acute MI) ----------------------------------------
-print("Check exposure and outcome (acute MI)")
+print("Check exposure and outcome (acute MI and SAHHS)")
 
 print("Exposure")
 print(head(df$exposed))
 
-print("Outcome")
+print("Outcome (acute MI)")
 print(head(df$cov_bin_ami))
+
+print("Outcome (SAHHS)")
+print(head(df$cov_bin_sahhs))
 
 
 # Convert explicit data type to binary where applicable ------------------------
@@ -186,17 +199,22 @@ df$cov_bin_antiplatelet <- as.logical(df$cov_bin_antiplatelet)
 df$cov_bin_anticoagulant <- as.logical(df$cov_bin_anticoagulant)
 df$cov_bin_cocp <- as.logical(df$cov_bin_cocp)
 df$cov_bin_hrt <- as.logical(df$cov_bin_hrt)
+df$cov_bin_sahhs <- as.logical(df$cov_bin_sahhs)
 
 print(summary(df))
-print(colnames(df))
-print(length(colnames(df)))
 
 
 # LASSO data matrix setup ------------------------------------------------------
 print("LASSO data matrix setup")
 
-df2 <- (df %>% select(!c(patient_id, cov_bin_ami)))
-df3 <- (df %>% select(cov_bin_ami))
+# find outcome from name string (assumes either ami or sahhs)
+if (grepl("ami", name)) {
+  df2 <- (df %>% select(!c(patient_id, cov_bin_ami)))
+  df3 <- (df %>% select(cov_bin_ami))
+} else {
+  df2 <- (df %>% select(!c(patient_id, cov_bin_sahhs)))
+  df3 <- (df %>% select(cov_bin_sahhs))
+}
 
 lasso_exposure_and_conf_matrix <- data.matrix(df2)
 lasso_outcome_matrix <- data.matrix(df3)
@@ -233,6 +251,6 @@ print("Save Covariate Selection")
 
 write.csv(
   vars_selected,
-  paste0(lasso_var_selection_dir, "lasso_var_selection-cohort_", cohort, preex_string, ".csv"),
+  paste0(lasso_var_selection_dir, "lasso_var_selection-", name, preex_string, ".csv"),
   row.names = FALSE
 )

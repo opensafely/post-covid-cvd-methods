@@ -214,22 +214,22 @@ table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
 
 # Create function for LASSO variable selection ---------------------------------
 
-lasso_var_selection <- function(cohort, ages = "18;40;60;80", preex = "All") {
+lasso_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All") {
   if (preex == "All" | preex == "") {
     preex_str <- ""
   } else {
     preex_str <- paste0("-preex_", preex)
   }
   splice(
-    comment(glue("Generate lasso_var_selection_cohort_{cohort}{preex_str}")),
+    comment(glue("Generate lasso_var_selection-{name}{preex_str}")),
     action(
-      name = glue("lasso_var_selection-cohort_{cohort}{preex_str}"),
+      name = glue("lasso_var_selection-{name}{preex_str}"),
       run = "r:v2 analysis/lasso_var_selection/lasso_var_selection.R",
-      arguments = c(c(cohort), c(ages), c(preex)),
+      arguments = c(c(name), c(cohort), c(ages), c(preex)),
       needs = list(glue("generate_input_{cohort}_clean")),
       moderately_sensitive = list(
         lasso_var_selection = glue(
-          "output/lasso_var_selection/lasso_var_selection-cohort_{cohort}{preex_str}.csv"
+          "output/lasso_var_selection/lasso_var_selection-{name}{preex_str}.csv"
         )
       )
     )
@@ -237,24 +237,24 @@ lasso_var_selection <- function(cohort, ages = "18;40;60;80", preex = "All") {
 }
 
 
-# Create function for LASSO_X variable selection -------------------------------
+# Create function for LASSO_X variable selection ---------------------------------
 
-lasso_X_var_selection <- function(cohort, ages = "18;40;60;80", preex = "All") {
+lasso_X_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All") {
   if (preex == "All" | preex == "") {
     preex_str <- ""
   } else {
     preex_str <- paste0("-preex_", preex)
   }
   splice(
-    comment(glue("Generate lasso_X_var_selection_cohort_{cohort}{preex_str}")),
+    comment(glue("Generate lasso_X_var_selection-{name}{preex_str}")),
     action(
-      name = glue("lasso_X_var_selection-cohort_{cohort}{preex_str}"),
+      name = glue("lasso_X_var_selection-{name}{preex_str}"),
       run = "r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R",
-      arguments = c(c(cohort), c(ages), c(preex)),
-      needs = list(glue("generate_input_{cohort}_clean"), glue("lasso_var_selection-cohort_{cohort}{preex_str}")),
+      arguments = c(c(name), c(cohort), c(ages), c(preex)),
+      needs = list(glue("generate_input_{cohort}_clean"), glue("lasso_var_selection-{name}{preex_str}")),
       moderately_sensitive = list(
         lasso_X_var_selection = glue(
-          "output/lasso_X_var_selection/lasso_X_var_selection-cohort_{cohort}{preex_str}.csv"
+          "output/lasso_X_var_selection/lasso_X_var_selection-{name}{preex_str}.csv"
         )
       )
     )
@@ -264,22 +264,22 @@ lasso_X_var_selection <- function(cohort, ages = "18;40;60;80", preex = "All") {
 
 # Create function for LASSO_union variable selection --------------------------
 
-lasso_union_var_selection <- function(cohort, ages = "18;40;60;80", preex = "All") {
+lasso_union_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All") {
   if (preex == "All" | preex == "") {
     preex_str <- ""
   } else {
     preex_str <- paste0("-preex_", preex)
   }
   splice(
-    comment(glue("Generate lasso_union_var_selection_cohort_{cohort}{preex_str}")),
+    comment(glue("Generate lasso_union_var_selection_{name}{preex_str}")),
     action(
-      name = glue("lasso_union_var_selection-cohort_{cohort}{preex_str}"),
+      name = glue("lasso_union_var_selection-{name}{preex_str}"),
       run = "r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R",
-      arguments = c(c(cohort), c(ages), c(preex)),
-      needs = list(glue("lasso_var_selection-cohort_{cohort}{preex_str}"), glue("lasso_X_var_selection-cohort_{cohort}{preex_str}")),
+      arguments = c(c(name), c(cohort), c(ages), c(preex)),
+      needs = list(glue("lasso_var_selection-{name}{preex_str}"), glue("lasso_X_var_selection-{name}{preex_str}")),
       moderately_sensitive = list(
         lasso_union_var_selection = glue(
-          "output/lasso_union_var_selection/lasso_union_var_selection-cohort_{cohort}{preex_str}.csv"
+          "output/lasso_union_var_selection/lasso_union_var_selection-{name}{preex_str}.csv"
         )
       )
     )
@@ -363,7 +363,28 @@ apply_model_function <- function(
     action(
       name = glue("cox_ipw-{name}"),
       run = glue(
-        "cox-ipw:v0.0.38 --df_input=model/model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model/model_output-{name}.csv"
+        "cox-ipw:v0.0.38
+        --df_input=model/model_input-{name}.rds
+        --ipw={ipw}
+        --exposure=exp_date
+        --outcome=out_date
+        --strata={strata}
+        --covariate_sex={covariate_sex}
+        --covariate_age={covariate_age}
+        --covariate_other={covariate_other}
+        --cox_start={cox_start}
+        --cox_stop={cox_stop}
+        --study_start={study_start}
+        --study_stop={study_stop}
+        --cut_points={cut_points}
+        --controls_per_case={controls_per_case}
+        --total_event_threshold={total_event_threshold}
+        --episode_event_threshold={episode_event_threshold}
+        --covariate_threshold={covariate_threshold}
+        --age_spline={age_spline}
+        --save_analysis_ready=FALSE
+        --run_analysis=TRUE
+        --df_output=model/model_output-{name}.csv"
       ),
       needs = list(glue("make_model_input-{name}")),
       moderately_sensitive = list(
@@ -623,12 +644,16 @@ actions_list <- splice(
 
 
   ## LASSO Variable Selection --------------------------------------------------
-
   splice(
     unlist(
       lapply(
-        unique(active_analyses$cohort),
-        function(x) lasso_var_selection(cohort = x, ages = age_str, preex = "")
+        1:nrow(active_analyses),
+        function(x)
+          lasso_var_selection(
+            name   = active_analyses$name[x],
+            cohort = active_analyses$cohort[x],
+            ages   = age_str,
+            preex  = "")
       ),
       recursive = FALSE
     )
@@ -639,8 +664,13 @@ actions_list <- splice(
   splice(
     unlist(
       lapply(
-        unique(active_analyses$cohort),
-        function(x) lasso_X_var_selection(cohort = x, ages = age_str, preex = "")
+        1:nrow(active_analyses),
+        function(x)
+          lasso_X_var_selection(
+            name   = active_analyses$name[x],
+            cohort = active_analyses$cohort[x],
+            ages   = age_str,
+            preex  = "")
       ),
       recursive = FALSE
     )
@@ -651,8 +681,13 @@ actions_list <- splice(
   splice(
     unlist(
       lapply(
-        unique(active_analyses$cohort),
-        function(x) lasso_union_var_selection(cohort = x, ages = age_str, preex = "")
+        1:nrow(active_analyses),
+        function(x)
+          lasso_union_var_selection(
+            name   = active_analyses$name[x],
+            cohort = active_analyses$cohort[x],
+            ages   = age_str,
+            preex  = "")
       ),
       recursive = FALSE
     )
@@ -692,7 +727,7 @@ actions_list <- splice(
       recursive = FALSE
     )
   ),
-
+  
   ## Table 2 -------------------------------------------------------------------
 
   splice(
