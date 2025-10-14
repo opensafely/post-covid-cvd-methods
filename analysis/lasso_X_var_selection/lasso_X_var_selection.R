@@ -225,15 +225,19 @@ lasso_X_exposure_matrix <- data.matrix(df3)
 # Fitting the LASSO_X model ----------------------------------------------------
 print("Fitting the LASSO_X model")
 
-cv_lasso_X_model <- cv.glmnet(x = lasso_X_conf_matrix,
-                              y = lasso_X_exposure_matrix,
-                              alpha=1)
+cv_lasso_X_model <- cv.glmnet(x      = lasso_X_conf_matrix,
+                              y      = lasso_X_exposure_matrix,
+                              family = "binomial", # logistic regression
+                              alpha  = 1)          # LASSO penalty
 
+# tune regularisation parameter lambda to minimise cross-validated error (cvm)
 lambda         <- cv_lasso_X_model$lambda.min
+
 lasso_X_model    <- glmnet(x = lasso_X_conf_matrix,
                            y = lasso_X_exposure_matrix,
-                           alpha=1,
-                           lambda=lambda)
+                           family = "binomial", # logistic regression
+                           alpha=1,             # LASSO penalty
+                           lambda=lambda)       # optimal lambda
 
 
 # Extract covariate selection results ------------------------------------------

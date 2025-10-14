@@ -84,6 +84,7 @@ actions:
       prevax 18;30;40;50;50;70;80;90 '
     needs:
     - generate_input_prevax_clean
+    - make_model_input-cohort_prevax-main-ami
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-main-ami.csv
@@ -95,6 +96,7 @@ actions:
       prevax 18;30;40;50;50;70;80;90 '
     needs:
     - generate_input_prevax_clean
+    - make_model_input-cohort_prevax-main-stroke_sahhs
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-main-stroke_sahhs.csv
@@ -106,6 +108,7 @@ actions:
       prevax 18;30;40;50;50;70;80;90 '
     needs:
     - generate_input_prevax_clean
+    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-ami
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami.csv
@@ -119,6 +122,7 @@ actions:
       prevax 18;30;40;50;50;70;80;90 '
     needs:
     - generate_input_prevax_clean
+    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
@@ -130,6 +134,7 @@ actions:
       prevax 18;30;40;50;50;70;80;90 '
     needs:
     - generate_input_prevax_clean
+    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-ami
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami.csv
@@ -143,6 +148,7 @@ actions:
       prevax 18;30;40;50;50;70;80;90 '
     needs:
     - generate_input_prevax_clean
+    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv

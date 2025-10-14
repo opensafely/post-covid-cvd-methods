@@ -226,7 +226,7 @@ lasso_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All
       name = glue("lasso_var_selection-{name}{preex_str}"),
       run = "r:v2 analysis/lasso_var_selection/lasso_var_selection.R",
       arguments = c(c(name), c(cohort), c(ages), c(preex)),
-      needs = list(glue("generate_input_{cohort}_clean")),
+      needs = list(glue("generate_input_{cohort}_clean"), glue("make_model_input-{name}")),
       moderately_sensitive = list(
         lasso_var_selection = glue(
           "output/lasso_var_selection/lasso_var_selection-{name}{preex_str}.csv"
