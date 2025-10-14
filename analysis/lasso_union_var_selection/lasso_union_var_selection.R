@@ -31,7 +31,6 @@ print("Load libraries")
 library(magrittr)
 library(here)
 library(dplyr)
-library(glmnet)
 
 # Define lasso_union_var_selection output folder -------------------------------
 print("Creating output/lasso_union_var_selection output folder")
