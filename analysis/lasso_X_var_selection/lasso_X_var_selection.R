@@ -125,8 +125,7 @@ median_iqr_age <- create_median_iqr_string(df$cov_num_age) # See utility.R
 # Define binary sahhs column using out_date_sahhs column ----------------------
 print("Define binary Subarachnoid haemorrhage / haemorrhage stroke column")
 
-cov_bin_sahhs <- !is.na(df$out_date_stroke_sahhs)
-df$cov_bin_sahhs <- cov_bin_sahhs
+df <- (df %>% mutate(cov_bin_sahhs = !is.na(out_date_stroke_sahhs)))
 
 
 # Filter data ------------------------------------------------------------------
