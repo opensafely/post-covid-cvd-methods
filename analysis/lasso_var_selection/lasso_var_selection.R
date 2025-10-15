@@ -23,7 +23,6 @@
 #
 # ------------------------------------------------------------------------------
 
-
 # Load libraries ---------------------------------------------------------------
 print("Load libraries")
 
@@ -88,12 +87,14 @@ model_input_df <- df <- readr::read_rds(paste0(
 # LASSO data matrix setup ------------------------------------------------------
 print("LASSO data matrix setup")
 
-model_input_df$binary_outcome  <- !is.na(model_input_df$out_date)
-model_input_df$binary_exposure <- !is.na(model_input_df$exp_date)
+model_input_df$binary_outcome          <- !is.na(model_input_df$out_date)
+model_input_df$binary_covid19_exposure <- !is.na(model_input_df$exp_date)
 
 # remove unnecessary columns, remove all Date columns where unnecessary
 # exposure (covid-19) is recast to binary
-df2 <- (model_input_df %>% select(!c(patient_id, index_date, out_date, end_date_outcome, exp_date, end_date_exposure)))
+df2 <- (model_input_df %>% select(!c(patient_id, index_date,                     # admin
+                                     binary_outcome, out_date, end_date_outcome, # outcome
+                                     exp_date)))                                 # remove unnecessary
 df3 <- (model_input_df %>% select(c(binary_outcome, out_date, end_date_outcome)))
 
 df3$outcome_cox_dates <- rep(as.Date(NA), times = nrow(df3))
@@ -104,7 +105,6 @@ for (i in c(1:nrow(df3))) {
     df3$outcome_cox_dates[i] <- df3$end_date_outcome[i]
   }
 }
-
 
 lasso_exposure_and_conf_matrix <- data.matrix(df2)
 lasso_outcome_survival         <- Surv(time  = as.numeric(df3$outcome_cox_dates),
@@ -143,10 +143,14 @@ names(lasso_coefs) <- rownames(lasso_model$beta)
 vars_selected <- names(lasso_coefs[lasso_coefs != 0.0])
 vars_selected <- vars_selected[vars_selected != "(Intercept)"]
 
+# always include exposure
+if (!("binary_covid19_exposure" %in% vars_selected)) {
+  vars_selected <- c(vars_selected, "binary_covid19_exposure")
+}
 print(vars_selected)
 
 
-# Save covariate selection ----------------------------------------------------------
+# Save covariate selection ----------------------------------------------------
 print("Save Covariate Selection")
 
 write.csv(
