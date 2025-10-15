@@ -77,7 +77,7 @@ preex_string <- ""
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-model_input_df <- df <- readr::read_rds(paste0(
+model_input_df <- readr::read_rds(paste0(
   "output/model/model_input-",
   name,
   ".rds"
