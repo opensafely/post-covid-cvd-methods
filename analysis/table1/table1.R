@@ -32,12 +32,13 @@ print("Load libraries")
 library(magrittr)
 library(here)
 library(dplyr)
+library(fs)
 
 # Define table1 output folder ---------------------------------------------------------
 print("Creating output/table1 output folder")
 
 table1_dir <- "output/table1/"
-fs::dir_create(here::here(table1_dir))
+dir_create(here::here(table1_dir))
 
 # Source common functions ------------------------------------------------------
 print("Source common functions")
