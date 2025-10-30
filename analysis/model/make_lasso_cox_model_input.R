@@ -103,12 +103,15 @@ lasso_union_vars_text <- paste(lasso_union_vars_selected, collapse = ";")
 # empty string currently cannot be handled by the cox_ipw reusable action
 if (lasso_vars_text == "") {
   lasso_vars_text <- "cov_cat_ethnicity"
+  print("LOG NOTE: Lasso variable selection has produced an empty covariate set.  Ethnicity variable chosen as default.")
 }
 if (lasso_X_vars_text == "") {
   lasso_X_vars_text <- "cov_cat_ethnicity"
+  print("LOG NOTE: Exposure lasso variable selection has produced an empty covariate set.  Ethnicity variable chosen as default.")
 }
 if (lasso_union_vars_text == "") {
   lasso_union_vars_text <- "cov_cat_ethnicity"
+  print("LOG NOTE: Union lasso variable selection has produced an empty covariate set.  Ethnicity variable chosen as default.")
 }
 
 
