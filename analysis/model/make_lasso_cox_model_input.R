@@ -84,12 +84,41 @@ lasso_union_vars_selected <- read.csv(paste0(
 ))$x
 
 
-# Remove non-confounders -------------------------------------------------------
-print("Removing non-confounder variables")
+# Remove non-confounders and remove double-counted variables -------------------
+print("Removing non-confounders and remove double-counted variables")
 
 lasso_vars_selected       <- lasso_vars_selected[lasso_vars_selected != "binary_covid19_exposure"]
-lass_X_vars_selected      <- lasso_X_vars_selected[lasso_X_vars_selected != "binary_covid19_exposure"]
-lasso_union_vars_selected <- lasso_union_vars_selected[lasso_union_vars_selected != "binary_covid19_exposure"]
+lasso_vars_selected       <- lasso_vars_selected[lasso_vars_selected != "exp_date"]
+lasso_vars_selected       <- lasso_vars_selected[lasso_vars_selected != "out_date"]
+lasso_vars_selected       <- lasso_vars_selected[lasso_vars_selected != "strat_cat_region"]
+lasso_vars_selected       <- lasso_vars_selected[lasso_vars_selected != "cov_cat_sex"]
+lasso_vars_selected       <- lasso_vars_selected[lasso_vars_selected != "cov_num_age"]
+lasso_vars_selected       <- lasso_vars_selected[lasso_vars_selected != "cov_cat_age_group"]
+lasso_vars_selected       <- lasso_vars_selected[lasso_vars_selected != "median_iqr_age"]
+lasso_vars_selected       <- lasso_vars_selected[lasso_vars_selected != "index_date"]
+lasso_vars_selected       <- lasso_vars_selected[lasso_vars_selected != "end_date_outcome"]
+
+lasso_X_vars_selected       <- lasso_X_vars_selected[lasso_X_vars_selected != "binary_covid19_exposure"]
+lasso_X_vars_selected       <- lasso_X_vars_selected[lasso_X_vars_selected != "exp_date"]
+lasso_X_vars_selected       <- lasso_X_vars_selected[lasso_X_vars_selected != "out_date"]
+lasso_X_vars_selected       <- lasso_X_vars_selected[lasso_X_vars_selected != "strat_cat_region"]
+lasso_X_vars_selected       <- lasso_X_vars_selected[lasso_X_vars_selected != "cov_cat_sex"]
+lasso_X_vars_selected       <- lasso_X_vars_selected[lasso_X_vars_selected != "cov_num_age"]
+lasso_X_vars_selected       <- lasso_X_vars_selected[lasso_X_vars_selected != "cov_cat_age_group"]
+lasso_X_vars_selected       <- lasso_X_vars_selected[lasso_X_vars_selected != "median_iqr_age"]
+lasso_X_vars_selected       <- lasso_X_vars_selected[lasso_X_vars_selected != "index_date"]
+lasso_X_vars_selected       <- lasso_X_vars_selected[lasso_X_vars_selected != "end_date_outcome"]
+
+lasso_union_vars_selected       <- lasso_union_vars_selected[lasso_union_vars_selected != "binary_covid19_exposure"]
+lasso_union_vars_selected       <- lasso_union_vars_selected[lasso_union_vars_selected != "exp_date"]
+lasso_union_vars_selected       <- lasso_union_vars_selected[lasso_union_vars_selected != "out_date"]
+lasso_union_vars_selected       <- lasso_union_vars_selected[lasso_union_vars_selected != "strat_cat_region"]
+lasso_union_vars_selected       <- lasso_union_vars_selected[lasso_union_vars_selected != "cov_cat_sex"]
+lasso_union_vars_selected       <- lasso_union_vars_selected[lasso_union_vars_selected != "cov_num_age"]
+lasso_union_vars_selected       <- lasso_union_vars_selected[lasso_union_vars_selected != "cov_cat_age_group"]
+lasso_union_vars_selected       <- lasso_union_vars_selected[lasso_union_vars_selected != "median_iqr_age"]
+lasso_union_vars_selected       <- lasso_union_vars_selected[lasso_union_vars_selected != "index_date"]
+lasso_union_vars_selected       <- lasso_union_vars_selected[lasso_union_vars_selected != "end_date_outcome"]
 
 
 # Generate text ----------------------------------------------------------------
