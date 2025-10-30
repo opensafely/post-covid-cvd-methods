@@ -363,7 +363,7 @@ apply_model_function <- function(
     action(
       name = glue("cox_ipw-{name}"),
       run = glue(
-        "cox-ipw:v0.0.38
+        "cox-ipw:v0.0.39
         --df_input=model/model_input-{name}.rds
         --ipw={ipw}
         --exposure=exp_date
@@ -389,6 +389,205 @@ apply_model_function <- function(
       needs = list(glue("make_model_input-{name}")),
       moderately_sensitive = list(
         model_output = glue("output/model/model_output-{name}.csv")
+      )
+    )
+  )
+}
+
+
+# Create function to make lasso cox model inputs -------------------------------
+
+make_lasso_cox_model_input <- function(name) {
+  splice(
+    comment(glue("Make input for lasso_cox_model_{name}")),
+    action(
+      name = glue("make_lasso_cox_model-{name}"),
+      run = "r:v2 analysis/model/make_lasso_cox_model_input.R",
+      arguments = c(c(name)),
+      needs = list(glue("lasso_var_selection-{name}"),
+                   glue("lasso_X_var_selection-{name}"),
+                   glue("lasso_union_var_selection-{name}")),
+      moderately_sensitive = list(
+        lasso_cox_model_input       = glue("output/model/lasso_cox_model_input-{name}.txt"),
+        lasso_X_cox_model_input     = glue("output/model/lasso_X_cox_model_input-{name}.txt"),
+        lasso_union_cox_model_input = glue("output/model/lasso_union_cox_model_input-{name}.txt")
+      )
+    )
+  )
+}
+
+
+# Create function to run a cox lasso model -------------------------------------
+
+apply_lasso_cox_model_function <- function(
+  name,
+  cohort,
+  analysis,
+  ipw,
+  strata,
+  covariate_sex,
+  covariate_age,
+  # covariate_other,
+  cox_start,
+  cox_stop,
+  study_start,
+  study_stop,
+  cut_points,
+  controls_per_case,
+  total_event_threshold,
+  episode_event_threshold,
+  covariate_threshold,
+  age_spline
+) {
+  splice(
+    action(
+      name = glue("lasso_cox_ipw-{name}"),
+      run = glue(
+        "cox-ipw:v0.0.39
+        --df_input=model/model_input-{name}.rds
+        --ipw={ipw}
+        --exposure=exp_date
+        --outcome=out_date
+        --strata={strata}
+        --covariate_sex={covariate_sex}
+        --covariate_age={covariate_age}
+        --covariate_other=output/model/lasso_cox_model_input-{name}.txt
+        --cox_start={cox_start}
+        --cox_stop={cox_stop}
+        --study_start={study_start}
+        --study_stop={study_stop}
+        --cut_points={cut_points}
+        --controls_per_case={controls_per_case}
+        --total_event_threshold={total_event_threshold}
+        --episode_event_threshold={episode_event_threshold}
+        --covariate_threshold={covariate_threshold}
+        --age_spline={age_spline}
+        --save_analysis_ready=FALSE
+        --run_analysis=TRUE
+        --df_output=model/lasso_cox_model_output-{name}.csv"
+      ),
+      needs = list(glue("make_model_input-{name}"),
+                   glue("make_lasso_cox_model-{name}")),
+      moderately_sensitive = list(
+        lasso_model_output = glue("output/model/lasso_cox_model_output-{name}.csv")
+      )
+    )
+  )
+}
+
+
+# Create function to run a cox lasso_X model -------------------------------------
+
+apply_lasso_X_cox_model_function <- function(
+  name,
+  cohort,
+  analysis,
+  ipw,
+  strata,
+  covariate_sex,
+  covariate_age,
+  # covariate_other,
+  cox_start,
+  cox_stop,
+  study_start,
+  study_stop,
+  cut_points,
+  controls_per_case,
+  total_event_threshold,
+  episode_event_threshold,
+  covariate_threshold,
+  age_spline
+) {
+  splice(
+    action(
+      name = glue("lasso_X_cox_ipw-{name}"),
+      run = glue(
+        "cox-ipw:v0.0.39
+        --df_input=model/model_input-{name}.rds
+        --ipw={ipw}
+        --exposure=exp_date
+        --outcome=out_date
+        --strata={strata}
+        --covariate_sex={covariate_sex}
+        --covariate_age={covariate_age}
+        --covariate_other=output/model/lasso_X_cox_model_input-{name}.txt
+        --cox_start={cox_start}
+        --cox_stop={cox_stop}
+        --study_start={study_start}
+        --study_stop={study_stop}
+        --cut_points={cut_points}
+        --controls_per_case={controls_per_case}
+        --total_event_threshold={total_event_threshold}
+        --episode_event_threshold={episode_event_threshold}
+        --covariate_threshold={covariate_threshold}
+        --age_spline={age_spline}
+        --save_analysis_ready=FALSE
+        --run_analysis=TRUE
+        --df_output=model/lasso_X_cox_model_output-{name}.csv"
+      ),
+      needs = list(glue("make_model_input-{name}"),
+                   glue("make_lasso_cox_model-{name}")),
+      moderately_sensitive = list(
+        lasso_X_model_output = glue("output/model/lasso_X_cox_model_output-{name}.csv")
+      )
+    )
+  )
+}
+
+
+# Create function to run a cox lasso_union model -------------------------------------
+
+apply_lasso_union_cox_model_function <- function(
+  name,
+  cohort,
+  analysis,
+  ipw,
+  strata,
+  covariate_sex,
+  covariate_age,
+  # covariate_other,
+  cox_start,
+  cox_stop,
+  study_start,
+  study_stop,
+  cut_points,
+  controls_per_case,
+  total_event_threshold,
+  episode_event_threshold,
+  covariate_threshold,
+  age_spline
+) {
+  splice(
+    action(
+      name = glue("lasso_union_cox_ipw-{name}"),
+      run = glue(
+        "cox-ipw:v0.0.39
+        --df_input=model/model_input-{name}.rds
+        --ipw={ipw}
+        --exposure=exp_date
+        --outcome=out_date
+        --strata={strata}
+        --covariate_sex={covariate_sex}
+        --covariate_age={covariate_age}
+        --covariate_other=output/model/lasso_union_cox_model_input-{name}.txt
+        --cox_start={cox_start}
+        --cox_stop={cox_stop}
+        --study_start={study_start}
+        --study_stop={study_stop}
+        --cut_points={cut_points}
+        --controls_per_case={controls_per_case}
+        --total_event_threshold={total_event_threshold}
+        --episode_event_threshold={episode_event_threshold}
+        --covariate_threshold={covariate_threshold}
+        --age_spline={age_spline}
+        --save_analysis_ready=FALSE
+        --run_analysis=TRUE
+        --df_output=model/lasso_union_cox_model_output-{name}.csv"
+      ),
+      needs = list(glue("make_model_input-{name}"),
+                   glue("make_lasso_cox_model-{name}")),
+      moderately_sensitive = list(
+        lasso_union_model_output = glue("output/model/lasso_union_cox_model_output-{name}.csv")
       )
     )
   )
@@ -710,6 +909,126 @@ actions_list <- splice(
             covariate_sex = active_analyses$covariate_sex[x],
             covariate_age = active_analyses$covariate_age[x],
             covariate_other = active_analyses$covariate_other[x],
+            cox_start = active_analyses$cox_start[x],
+            cox_stop = active_analyses$cox_stop[x],
+            study_start = active_analyses$study_start[x],
+            study_stop = active_analyses$study_stop[x],
+            cut_points = active_analyses$cut_points[x],
+            controls_per_case = active_analyses$controls_per_case[x],
+            total_event_threshold = active_analyses$total_event_threshold[x],
+            episode_event_threshold = active_analyses$episode_event_threshold[
+              x
+            ],
+            covariate_threshold = active_analyses$covariate_threshold[x],
+            age_spline = active_analyses$age_spline[x]
+          )
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  # Make LASSO cox model input -------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        1:nrow(active_analyses),
+        function(x)
+          make_lasso_cox_model_input(
+            name   = active_analyses$name[x]
+          )
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  ## Run lasso cox models -----------------------------------------------------
+  comment("Run models"),
+
+  splice(
+    unlist(
+      lapply(
+        1:nrow(active_analyses),
+        function(x)
+          apply_lasso_cox_model_function(
+            name = active_analyses$name[x],
+            cohort = active_analyses$cohort[x],
+            analysis = active_analyses$analysis[x],
+            ipw = active_analyses$ipw[x],
+            strata = active_analyses$strata[x],
+            covariate_sex = active_analyses$covariate_sex[x],
+            covariate_age = active_analyses$covariate_age[x],
+            # covariate_other = active_analyses$covariate_other[x],
+            cox_start = active_analyses$cox_start[x],
+            cox_stop = active_analyses$cox_stop[x],
+            study_start = active_analyses$study_start[x],
+            study_stop = active_analyses$study_stop[x],
+            cut_points = active_analyses$cut_points[x],
+            controls_per_case = active_analyses$controls_per_case[x],
+            total_event_threshold = active_analyses$total_event_threshold[x],
+            episode_event_threshold = active_analyses$episode_event_threshold[
+              x
+            ],
+            covariate_threshold = active_analyses$covariate_threshold[x],
+            age_spline = active_analyses$age_spline[x]
+          )
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  ## Run lasso_X cox models -----------------------------------------------------
+  comment("Run models"),
+
+  splice(
+    unlist(
+      lapply(
+        1:nrow(active_analyses),
+        function(x)
+          apply_lasso_X_cox_model_function(
+            name = active_analyses$name[x],
+            cohort = active_analyses$cohort[x],
+            analysis = active_analyses$analysis[x],
+            ipw = active_analyses$ipw[x],
+            strata = active_analyses$strata[x],
+            covariate_sex = active_analyses$covariate_sex[x],
+            covariate_age = active_analyses$covariate_age[x],
+            # covariate_other = active_analyses$covariate_other[x],
+            cox_start = active_analyses$cox_start[x],
+            cox_stop = active_analyses$cox_stop[x],
+            study_start = active_analyses$study_start[x],
+            study_stop = active_analyses$study_stop[x],
+            cut_points = active_analyses$cut_points[x],
+            controls_per_case = active_analyses$controls_per_case[x],
+            total_event_threshold = active_analyses$total_event_threshold[x],
+            episode_event_threshold = active_analyses$episode_event_threshold[
+              x
+            ],
+            covariate_threshold = active_analyses$covariate_threshold[x],
+            age_spline = active_analyses$age_spline[x]
+          )
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  ## Run lasso_union cox models -----------------------------------------------------
+  comment("Run models"),
+
+  splice(
+    unlist(
+      lapply(
+        1:nrow(active_analyses),
+        function(x)
+          apply_lasso_union_cox_model_function(
+            name = active_analyses$name[x],
+            cohort = active_analyses$cohort[x],
+            analysis = active_analyses$analysis[x],
+            ipw = active_analyses$ipw[x],
+            strata = active_analyses$strata[x],
+            covariate_sex = active_analyses$covariate_sex[x],
+            covariate_age = active_analyses$covariate_age[x],
+            # covariate_other = active_analyses$covariate_other[x],
             cox_start = active_analyses$cox_start[x],
             cox_stop = active_analyses$cox_stop[x],
             study_start = active_analyses$study_start[x],

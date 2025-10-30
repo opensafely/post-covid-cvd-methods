@@ -8,6 +8,7 @@
 # in turn determining the cox_ipw argument. "--covariate_other=this;that;other"
 #
 # Arguments:
+#  - name   - string, specifies cohort and subgroup pairing
 #  - cohort - string, defines which of three opensafely cohorts to describe
 #             (prevax, vax, unvax)
 #  - age_str - vector of form "XX;XX;XX;XX;XX"
