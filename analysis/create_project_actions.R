@@ -594,6 +594,34 @@ apply_lasso_union_cox_model_function <- function(
 }
 
 
+# Create function for unconfoundedness testing --------------------------------
+
+unconfoundedness_test <- function(name, cohort, ages = "18;40;60;80", preex = "All") {
+  if (preex == "All" | preex == "") {
+    preex_str <- ""
+  } else {
+    preex_str <- paste0("-preex_", preex)
+  }
+  splice(
+    comment(glue("Generate unconfoundedness_test_{name}{preex_str}")),
+    action(
+      name = glue("unconfoundedness_test-{name}{preex_str}"),
+      run = "r:v2 analysis/unconfoundedness_test/unconfoundedness_test.R",
+      arguments = c(c(name), c(cohort), c(ages), c(preex)),
+      needs = list(glue("lasso_var_selection-{name}{preex_str}"),
+                   glue("lasso_X_var_selection-{name}{preex_str}"),
+                   glue("lasso_union_var_selection-{name}{preex_str}"),
+                   glue("make_model_input-{name}")),
+      moderately_sensitive = list(
+        unconfoundedness_test = glue(
+          "output/unconfoundedness_test/unconfoundedness_test-{name}{preex_str}.csv"
+        )
+      )
+    )
+  )
+}
+
+
 # Create function to make Venn data --------------------------------------------
 
 venn <- function(cohort, analyses = "") {
@@ -1042,6 +1070,23 @@ actions_list <- splice(
             covariate_threshold = active_analyses$covariate_threshold[x],
             age_spline = active_analyses$age_spline[x]
           )
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  ## Unfoundedness testing ----------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        1:nrow(active_analyses),
+        function(x)
+          unconfoundedness_test(
+            name   = active_analyses$name[x],
+            cohort = active_analyses$cohort[x],
+            ages   = age_str,
+            preex  = "")
       ),
       recursive = FALSE
     )
