@@ -325,7 +325,7 @@ actions:
 
   cox_ipw-cohort_prevax-main-ami:
     run: |-
-      cox-ipw:v0.0.38
+      cox-ipw:v0.0.39
       --df_input=model/model_input-cohort_prevax-main-ami.rds
       --ipw=TRUE
       --exposure=exp_date
@@ -363,7 +363,7 @@ actions:
 
   cox_ipw-cohort_prevax-main-stroke_sahhs:
     run: |-
-      cox-ipw:v0.0.38
+      cox-ipw:v0.0.39
       --df_input=model/model_input-cohort_prevax-main-stroke_sahhs.rds
       --ipw=TRUE
       --exposure=exp_date
@@ -401,7 +401,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_covidhospital_FALSE-ami:
     run: |-
-      cox-ipw:v0.0.38
+      cox-ipw:v0.0.39
       --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-ami.rds
       --ipw=TRUE
       --exposure=exp_date
@@ -439,7 +439,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
     run: |-
-      cox-ipw:v0.0.38
+      cox-ipw:v0.0.39
       --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.rds
       --ipw=TRUE
       --exposure=exp_date
@@ -477,7 +477,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_covidhospital_TRUE-ami:
     run: |-
-      cox-ipw:v0.0.38
+      cox-ipw:v0.0.39
       --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-ami.rds
       --ipw=TRUE
       --exposure=exp_date
@@ -515,7 +515,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
     run: |-
-      cox-ipw:v0.0.38
+      cox-ipw:v0.0.39
       --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.rds
       --ipw=TRUE
       --exposure=exp_date
@@ -542,6 +542,662 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model/model_output-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+
+  ## Make input for lasso_cox_model_cohort_prevax-main-ami 
+
+  make_lasso_cox_model-cohort_prevax-main-ami:
+    run: r:v2 analysis/model/make_lasso_cox_model_input.R cohort_prevax-main-ami
+    needs:
+    - lasso_var_selection-cohort_prevax-main-ami
+    - lasso_X_var_selection-cohort_prevax-main-ami
+    - lasso_union_var_selection-cohort_prevax-main-ami
+    outputs:
+      moderately_sensitive:
+        lasso_cox_model_input: output/model/lasso_cox_model_input-cohort_prevax-main-ami.txt
+        lasso_X_cox_model_input: output/model/lasso_X_cox_model_input-cohort_prevax-main-ami.txt
+        lasso_union_cox_model_input: output/model/lasso_union_cox_model_input-cohort_prevax-main-ami.txt
+
+  ## Make input for lasso_cox_model_cohort_prevax-main-stroke_sahhs 
+
+  make_lasso_cox_model-cohort_prevax-main-stroke_sahhs:
+    run: r:v2 analysis/model/make_lasso_cox_model_input.R cohort_prevax-main-stroke_sahhs
+    needs:
+    - lasso_var_selection-cohort_prevax-main-stroke_sahhs
+    - lasso_X_var_selection-cohort_prevax-main-stroke_sahhs
+    - lasso_union_var_selection-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_cox_model_input: output/model/lasso_cox_model_input-cohort_prevax-main-stroke_sahhs.txt
+        lasso_X_cox_model_input: output/model/lasso_X_cox_model_input-cohort_prevax-main-stroke_sahhs.txt
+        lasso_union_cox_model_input: output/model/lasso_union_cox_model_input-cohort_prevax-main-stroke_sahhs.txt
+
+  ## Make input for lasso_cox_model_cohort_prevax-sub_covidhospital_FALSE-ami
+
+    
+
+  make_lasso_cox_model-cohort_prevax-sub_covidhospital_FALSE-ami:
+    run: r:v2 analysis/model/make_lasso_cox_model_input.R cohort_prevax-sub_covidhospital_FALSE-ami
+    needs:
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
+    - lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_cox_model_input: output/model/lasso_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-ami.txt
+        lasso_X_cox_model_input: output/model/lasso_X_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-ami.txt
+        lasso_union_cox_model_input: output/model/lasso_union_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-ami.txt
+
+  ## Make input for lasso_cox_model_cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+
+    
+
+  make_lasso_cox_model-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
+    run: r:v2 analysis/model/make_lasso_cox_model_input.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    needs:
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_cox_model_input: output/model/lasso_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.txt
+        lasso_X_cox_model_input: output/model/lasso_X_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.txt
+        lasso_union_cox_model_input: output/model/lasso_union_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.txt
+
+  ## Make input for lasso_cox_model_cohort_prevax-sub_covidhospital_TRUE-ami
+
+    
+
+  make_lasso_cox_model-cohort_prevax-sub_covidhospital_TRUE-ami:
+    run: r:v2 analysis/model/make_lasso_cox_model_input.R cohort_prevax-sub_covidhospital_TRUE-ami
+    needs:
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
+    - lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_cox_model_input: output/model/lasso_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-ami.txt
+        lasso_X_cox_model_input: output/model/lasso_X_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-ami.txt
+        lasso_union_cox_model_input: output/model/lasso_union_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-ami.txt
+
+  ## Make input for lasso_cox_model_cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+
+    
+
+  make_lasso_cox_model-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
+    run: r:v2 analysis/model/make_lasso_cox_model_input.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    needs:
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    - lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_cox_model_input: output/model/lasso_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.txt
+        lasso_X_cox_model_input: output/model/lasso_X_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.txt
+        lasso_union_cox_model_input: output/model/lasso_union_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.txt
+
+  ## Run models 
+
+  lasso_cox_ipw-cohort_prevax-main-ami:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-main-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_cox_model_input-cohort_prevax-main-ami.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_cox_model_output-cohort_prevax-main-ami.csv
+    needs:
+    - make_model_input-cohort_prevax-main-ami
+    - make_lasso_cox_model-cohort_prevax-main-ami
+    outputs:
+      moderately_sensitive:
+        lasso_model_output: output/model/lasso_cox_model_output-cohort_prevax-main-ami.csv
+
+  lasso_cox_ipw-cohort_prevax-main-stroke_sahhs:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-main-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_cox_model_input-cohort_prevax-main-stroke_sahhs.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_cox_model_output-cohort_prevax-main-stroke_sahhs.csv
+    needs:
+    - make_model_input-cohort_prevax-main-stroke_sahhs
+    - make_lasso_cox_model-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_model_output: output/model/lasso_cox_model_output-cohort_prevax-main-stroke_sahhs.csv
+
+  lasso_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-ami:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-ami.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-ami
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_FALSE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_model_output: output/model/lasso_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+
+  lasso_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_model_output: output/model/lasso_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+
+  lasso_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-ami:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-ami.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-ami
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_TRUE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_model_output: output/model/lasso_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+
+  lasso_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_model_output: output/model/lasso_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+
+  ## Run models 
+
+  lasso_X_cox_ipw-cohort_prevax-main-ami:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-main-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_X_cox_model_input-cohort_prevax-main-ami.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_X_cox_model_output-cohort_prevax-main-ami.csv
+    needs:
+    - make_model_input-cohort_prevax-main-ami
+    - make_lasso_cox_model-cohort_prevax-main-ami
+    outputs:
+      moderately_sensitive:
+        lasso_X_model_output: output/model/lasso_X_cox_model_output-cohort_prevax-main-ami.csv
+
+  lasso_X_cox_ipw-cohort_prevax-main-stroke_sahhs:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-main-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_X_cox_model_input-cohort_prevax-main-stroke_sahhs.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_X_cox_model_output-cohort_prevax-main-stroke_sahhs.csv
+    needs:
+    - make_model_input-cohort_prevax-main-stroke_sahhs
+    - make_lasso_cox_model-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_X_model_output: output/model/lasso_X_cox_model_output-cohort_prevax-main-stroke_sahhs.csv
+
+  lasso_X_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-ami:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_X_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-ami.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_X_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-ami
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_FALSE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_X_model_output: output/model/lasso_X_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+
+  lasso_X_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_X_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_X_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_X_model_output: output/model/lasso_X_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+
+  lasso_X_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-ami:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_X_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-ami.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_X_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-ami
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_TRUE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_X_model_output: output/model/lasso_X_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+
+  lasso_X_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_X_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_X_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_X_model_output: output/model/lasso_X_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+
+  ## Run models 
+
+  lasso_union_cox_ipw-cohort_prevax-main-ami:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-main-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_union_cox_model_input-cohort_prevax-main-ami.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_union_cox_model_output-cohort_prevax-main-ami.csv
+    needs:
+    - make_model_input-cohort_prevax-main-ami
+    - make_lasso_cox_model-cohort_prevax-main-ami
+    outputs:
+      moderately_sensitive:
+        lasso_union_model_output: output/model/lasso_union_cox_model_output-cohort_prevax-main-ami.csv
+
+  lasso_union_cox_ipw-cohort_prevax-main-stroke_sahhs:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-main-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_union_cox_model_input-cohort_prevax-main-stroke_sahhs.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_union_cox_model_output-cohort_prevax-main-stroke_sahhs.csv
+    needs:
+    - make_model_input-cohort_prevax-main-stroke_sahhs
+    - make_lasso_cox_model-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_union_model_output: output/model/lasso_union_cox_model_output-cohort_prevax-main-stroke_sahhs.csv
+
+  lasso_union_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-ami:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_union_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-ami.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_union_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-ami
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_FALSE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_union_model_output: output/model/lasso_union_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+
+  lasso_union_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_union_cox_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_union_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_union_model_output: output/model/lasso_union_cox_model_output-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+
+  lasso_union_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-ami:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-ami.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_union_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-ami.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_union_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-ami
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_TRUE-ami
+    outputs:
+      moderately_sensitive:
+        lasso_union_model_output: output/model/lasso_union_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+
+  lasso_union_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
+    run: |-
+      cox-ipw:v0.0.39
+      --df_input=model/model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.rds
+      --ipw=TRUE
+      --exposure=exp_date
+      --outcome=out_date
+      --strata=strat_cat_region
+      --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age
+      --covariate_other=output/model/lasso_union_cox_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.txt
+      --cox_start=index_date
+      --cox_stop=end_date_outcome
+      --study_start=2020-01-01
+      --study_stop=2024-04-30
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --controls_per_case=20
+      --total_event_threshold=50
+      --episode_event_threshold=5
+      --covariate_threshold=5
+      --age_spline=TRUE
+      --save_analysis_ready=FALSE
+      --run_analysis=TRUE
+      --df_output=model/lasso_union_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    - make_lasso_cox_model-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_union_model_output: output/model/lasso_union_cox_model_output-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
 
   ## Generate table2-cohort_prevax-sub_covidhospital 
 
