@@ -46,6 +46,20 @@ print("Source common functions")
 
 source("analysis/utility.R")
 
+fill_in_blanks <- function(p_values = NULL, labels = NULL) {
+  for (label in labels) {
+    # if a given variable doesn't exist, create as NaN
+    if (!(label %in% names(p_values))) {
+      p_values[label] <- NaN
+    }
+  }
+  
+  # assert variable ordering
+  p_values <- p_values[order(factor(names(p_values), levels = labels))]
+  
+  return (p_values)
+}
+
 # Specify arguments ------------------------------------------------------------
 print("Specify arguments")
 
@@ -87,6 +101,12 @@ model_input_df <- readr::read_rds(paste0(
 ))
 
 
+# Re-define missing variables --------------------------------------------------
+print("Re-define missing variables")
+
+model_input_df$cov_cat_age_group <- numerical_to_categorical(model_input_df$cov_num_age, age_bounds) # See utility.R
+
+
 # Cox data setup ---------------------------------------------------------------
 print("Cox data matrix setup")
 
@@ -105,10 +125,9 @@ for (i in c(1:nrow(model_input_df))) {
 }
 
 
-# Test LASSO selection --------------------------------------------------------
-print("Performing empirical unfoncoundedness plausibility test on LASSO results")
+# Test lasso selection --------------------------------------------------------
+print("Performing empirical unfoncoundedness plausibility test on lasso results")
 
-method <- "lasso"
 vars_selected <- read.csv(paste0("output/lasso_var_selection/lasso_var_selection-", name, ".csv"))[, 'x']
 vars_selected_without_exposure <- vars_selected[vars_selected != "binary_covid19_exposure"]
 vars_selected_without_exposure <- vars_selected_without_exposure[vars_selected_without_exposure != "exp_date"]
@@ -127,12 +146,11 @@ if (length(vars_selected_without_exposure) > 1) {
   exposure_regression_formula    <- paste0("binary_covid19_exposure ~ cov_cat_ethnicity")
 }
 
-exposure_regression       <- glm(exposure_regression_formula,
+exposure_regression <- glm(exposure_regression_formula,
                                  family = binomial(link = 'logit'),
                                  data   = model_input_df)
-exposure_significance     <- ((summary(exposure_regression)$coefficients)[, "Pr(>|z|)"] <= 0.05)
-exposure_significant_vars <- names(exposure_significance[exposure_significance == TRUE])
-exposure_significant_vars <- exposure_significant_vars[exposure_significant_vars != "(Intercept)"]
+exposure_p_values   <- (summary(exposure_regression)$coefficients)[, "Pr(>|z|)"]
+exposure_p_values   <- exposure_p_values[names(exposure_p_values) != "(Intercept)"]
 
 
 ## outcome cox regression
@@ -149,68 +167,92 @@ if (length(vars_selected_without_exposure) > 1) {
   outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure")
 }
 
-print(outcome_regression_formula)
-print(("cov_bin_hf" %in% colnames(model_input_df)))
-
 outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formula)),
                             data    = model_input_df)
+outcome_p_values   <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
+outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
 
-outcome_significance     <- ((summary(outcome_regression)$coefficients)[, "Pr(>|z|)"] <= 0.05)
-outcome_significant_vars <- names(outcome_significance[outcome_significance == TRUE])
-outcome_significant_vars <- outcome_significant_vars[outcome_significant_vars != "(Intercept)"]
 
-## check empirical unconfoundedness plausibility test condition
+## check empirical unconfoundedness plausibility test conditions
 
-both_significant_vars <- intersect(exposure_significant_vars, outcome_significant_vars)
+all_var_names <- union(names(exposure_p_values), names(outcome_p_values))
 
-if (length(both_significant_vars) == 0) {
-  condition <- FALSE
+exposure_p_values <- fill_in_blanks(exposure_p_values, all_var_names)
+outcome_p_values  <- fill_in_blanks(outcome_p_values,  all_var_names)
+
+lasso_all_p_values <- data.frame(array(data     = NaN,
+                                 dim      = c(2, length(all_var_names)),
+                                 dimnames = list(c("exposure", "outcome"), all_var_names) ))
+
+lasso_all_p_values["exposure", ] <- exposure_p_values
+lasso_all_p_values["outcome", ]  <- outcome_p_values
+
+# condition (i)
+# Z is associated with (i.e., not independent of) X given all other covariates
+condition_i <- rep(FALSE, length.out = length(all_var_names))
+for (i in c(1:length(exposure_p_values))) {
+  if (!is.nan(exposure_p_values[i])) {
+    # check association is significant using corresponding p-value
+    if (exposure_p_values[i] < 0.05) {
+      condition_i[i] <- TRUE
+    }
+  }
+}
+names(condition_i) <- all_var_names
+
+# condition (ii)
+# Z and Y are conditionally independent given X and all other covariates
+condition_ii <- rep(FALSE, length.out = length(all_var_names))
+for (i in c(1:length(outcome_p_values))) {
+  if (!is.nan(outcome_p_values[i])) {
+    # check conditional independence using corresponding p-value
+    if (outcome_p_values[i] > 0.05) {
+      condition_ii[i] <- TRUE
+    }
+  }
+}
+names(condition_ii) <- all_var_names
+
+# conditions (i) and (ii)
+conditions_i_and_ii <- condition_i & condition_ii
+names(conditions_i_and_ii) <- all_var_names
+
+# test is TRUE if any covariate Z satisfies (i) and (ii)
+# test is FALSE otherwise
+conclusion <- any(conditions_i_and_ii)
+conclusion_string <- ""
+if (conclusion) {
+  conclusion_string <- "Covariate set is sufficient for confounding adjustment"
 } else {
-  condition <- TRUE
+  conclusion_string <- "Test is inconclusive, covariate set may or may not be sufficient"
 }
 
-conclusion <- ""
-if (condition) {
-  conclusion <- "covariate set is sufficient for confounding adjustment"
-} else {
-  conclusion <- "Test is inconclusive, covariate set may or may not be sufficient"
-}
+lasso_all_tests <- data.frame(array(data     = NaN,
+                              dim      = c(3, length(all_var_names)),
+                              dimnames = list(c("Condition (i)", "Condition (ii)", "Conditions (i) and (ii)"), all_var_names) ))
+lasso_all_tests["Condition (i)", ]           <- condition_i
+lasso_all_tests["Condition (ii)", ]          <- condition_ii
+lasso_all_tests["Conditions (i) and (ii)", ] <- conditions_i_and_ii
 
-print("***** LASSO *****")
+message("\n\nlasso p values:")
+print(lasso_all_p_values)
 
-print("Variables selected:")
-print(vars_selected)
+message("\n\nlasso all test conditions:")
+print(lasso_all_tests)
 
-print("Exposure regression:")
-print(exposure_regression_formula)
-print(summary(exposure_regression))
-print(exposure_significance)
-print(exposure_significant_vars)
-
-print("Outcome regression:")
-print(outcome_regression_formula)
-print(summary(outcome_regression))
-print(outcome_significance)
-print(outcome_significant_vars)
-
-print("Conclusion:")
-print(both_significant_vars)
-print(condition)
+message("\n\nfinal results:")
 print(conclusion)
+print(conclusion_string)
 
-lasso_results <- c(method,
-                   paste(vars_selected,             collapse = "\n"),
-                   paste(exposure_significant_vars, collapse = "\n"),
-                   paste(outcome_significant_vars,  collapse = "\n"),
-                   paste(both_significant_vars,     collapse = "\n"),
-                   condition,
-                   conclusion)
+lasso_results <- c("lasso",
+                   conclusion,
+                   conclusion_string)
+
 
 
 # Test lasso_X selection --------------------------------------------------------
 print("Performing empirical unfoncoundedness plausibility test on lasso_X results")
 
-method <- "lasso_X"
 vars_selected <- read.csv(paste0("output/lasso_X_var_selection/lasso_X_var_selection-", name, ".csv"))[, 'x']
 vars_selected_without_exposure <- vars_selected[vars_selected != "binary_covid19_exposure"]
 vars_selected_without_exposure <- vars_selected_without_exposure[vars_selected_without_exposure != "exp_date"]
@@ -229,12 +271,11 @@ if (length(vars_selected_without_exposure) > 1) {
   exposure_regression_formula    <- paste0("binary_covid19_exposure ~ cov_cat_ethnicity")
 }
 
-exposure_regression       <- glm(exposure_regression_formula,
+exposure_regression <- glm(exposure_regression_formula,
                                  family = binomial(link = 'logit'),
                                  data   = model_input_df)
-exposure_significance     <- ((summary(exposure_regression)$coefficients)[, "Pr(>|z|)"] <= 0.05)
-exposure_significant_vars <- names(exposure_significance[exposure_significance == TRUE])
-exposure_significant_vars <- exposure_significant_vars[exposure_significant_vars != "(Intercept)"]
+exposure_p_values   <- (summary(exposure_regression)$coefficients)[, "Pr(>|z|)"]
+exposure_p_values   <- exposure_p_values[names(exposure_p_values) != "(Intercept)"]
 
 
 ## outcome cox regression
@@ -251,68 +292,92 @@ if (length(vars_selected_without_exposure) > 1) {
   outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure")
 }
 
-print(outcome_regression_formula)
-print(("cov_bin_hf" %in% colnames(model_input_df)))
-
 outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formula)),
                             data    = model_input_df)
+outcome_p_values   <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
+outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
 
-outcome_significance     <- ((summary(outcome_regression)$coefficients)[, "Pr(>|z|)"] <= 0.05)
-outcome_significant_vars <- names(outcome_significance[outcome_significance == TRUE])
-outcome_significant_vars <- outcome_significant_vars[outcome_significant_vars != "(Intercept)"]
 
-## check empirical unconfoundedness plausibility test condition
+## check empirical unconfoundedness plausibility test conditions
 
-both_significant_vars <- intersect(exposure_significant_vars, outcome_significant_vars)
+all_var_names <- union(names(exposure_p_values), names(outcome_p_values))
 
-if (length(both_significant_vars) == 0) {
-  condition <- FALSE
+exposure_p_values <- fill_in_blanks(exposure_p_values, all_var_names)
+outcome_p_values  <- fill_in_blanks(outcome_p_values,  all_var_names)
+
+lasso_X_all_p_values <- data.frame(array(data     = NaN,
+                                 dim      = c(2, length(all_var_names)),
+                                 dimnames = list(c("exposure", "outcome"), all_var_names) ))
+
+lasso_X_all_p_values["exposure", ] <- exposure_p_values
+lasso_X_all_p_values["outcome", ]  <- outcome_p_values
+
+# condition (i)
+# Z is associated with (i.e., not independent of) X given all other covariates
+condition_i <- rep(FALSE, length.out = length(all_var_names))
+for (i in c(1:length(exposure_p_values))) {
+  if (!is.nan(exposure_p_values[i])) {
+    # check association is significant using corresponding p-value
+    if (exposure_p_values[i] < 0.05) {
+      condition_i[i] <- TRUE
+    }
+  }
+}
+names(condition_i) <- all_var_names
+
+# condition (ii)
+# Z and Y are conditionally independent given X and all other covariates
+condition_ii <- rep(FALSE, length.out = length(all_var_names))
+for (i in c(1:length(outcome_p_values))) {
+  if (!is.nan(outcome_p_values[i])) {
+    # check conditional independence using corresponding p-value
+    if (outcome_p_values[i] > 0.05) {
+      condition_ii[i] <- TRUE
+    }
+  }
+}
+names(condition_ii) <- all_var_names
+
+# conditions (i) and (ii)
+conditions_i_and_ii <- condition_i & condition_ii
+names(conditions_i_and_ii) <- all_var_names
+
+# test is TRUE if any covariate Z satisfies (i) and (ii)
+# test is FALSE otherwise
+conclusion <- any(conditions_i_and_ii)
+conclusion_string <- ""
+if (conclusion) {
+  conclusion_string <- "Covariate set is sufficient for confounding adjustment"
 } else {
-  condition <- TRUE
+  conclusion_string <- "Test is inconclusive, covariate set may or may not be sufficient"
 }
 
-conclusion <- ""
-if (condition) {
-  conclusion <- "covariate set is sufficient for confounding adjustment"
-} else {
-  conclusion <- "Test is inconclusive, covariate set may or may not be sufficient"
-}
+lasso_X_all_tests <- data.frame(array(data     = NaN,
+                              dim      = c(3, length(all_var_names)),
+                              dimnames = list(c("Condition (i)", "Condition (ii)", "Conditions (i) and (ii)"), all_var_names) ))
+lasso_X_all_tests["Condition (i)", ]           <- condition_i
+lasso_X_all_tests["Condition (ii)", ]          <- condition_ii
+lasso_X_all_tests["Conditions (i) and (ii)", ] <- conditions_i_and_ii
 
-print("***** lasso_X *****")
+message("\n\nlasso_X p values:")
+print(lasso_X_all_p_values)
 
-print("Variables selected:")
-print(vars_selected)
+message("\n\nlasso_X all test conditions:")
+print(lasso_X_all_tests)
 
-print("Exposure regression:")
-print(exposure_regression_formula)
-print(summary(exposure_regression))
-print(exposure_significance)
-print(exposure_significant_vars)
-
-print("Outcome regression:")
-print(outcome_regression_formula)
-print(summary(outcome_regression))
-print(outcome_significance)
-print(outcome_significant_vars)
-
-print("Conclusion:")
-print(both_significant_vars)
-print(condition)
+message("\n\nfinal results:")
 print(conclusion)
+print(conclusion_string)
 
-lasso_X_results <- c(method,
-                   paste(vars_selected,             collapse = "\n"),
-                   paste(exposure_significant_vars, collapse = "\n"),
-                   paste(outcome_significant_vars,  collapse = "\n"),
-                   paste(both_significant_vars,     collapse = "\n"),
-                   condition,
-                   conclusion)
+lasso_X_results <- c("lasso_X",
+                   conclusion,
+                   conclusion_string)
+
 
 
 # Test lasso_union selection --------------------------------------------------------
 print("Performing empirical unfoncoundedness plausibility test on lasso_union results")
 
-method <- "lasso_union"
 vars_selected <- read.csv(paste0("output/lasso_union_var_selection/lasso_union_var_selection-", name, ".csv"))[, 'x']
 vars_selected_without_exposure <- vars_selected[vars_selected != "binary_covid19_exposure"]
 vars_selected_without_exposure <- vars_selected_without_exposure[vars_selected_without_exposure != "exp_date"]
@@ -331,12 +396,11 @@ if (length(vars_selected_without_exposure) > 1) {
   exposure_regression_formula    <- paste0("binary_covid19_exposure ~ cov_cat_ethnicity")
 }
 
-exposure_regression       <- glm(exposure_regression_formula,
+exposure_regression <- glm(exposure_regression_formula,
                                  family = binomial(link = 'logit'),
                                  data   = model_input_df)
-exposure_significance     <- ((summary(exposure_regression)$coefficients)[, "Pr(>|z|)"] <= 0.05)
-exposure_significant_vars <- names(exposure_significance[exposure_significance == TRUE])
-exposure_significant_vars <- exposure_significant_vars[exposure_significant_vars != "(Intercept)"]
+exposure_p_values   <- (summary(exposure_regression)$coefficients)[, "Pr(>|z|)"]
+exposure_p_values   <- exposure_p_values[names(exposure_p_values) != "(Intercept)"]
 
 
 ## outcome cox regression
@@ -353,62 +417,86 @@ if (length(vars_selected_without_exposure) > 1) {
   outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure")
 }
 
-print(outcome_regression_formula)
-print(("cov_bin_hf" %in% colnames(model_input_df)))
-
 outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formula)),
                             data    = model_input_df)
+outcome_p_values   <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
+outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
 
-outcome_significance     <- ((summary(outcome_regression)$coefficients)[, "Pr(>|z|)"] <= 0.05)
-outcome_significant_vars <- names(outcome_significance[outcome_significance == TRUE])
-outcome_significant_vars <- outcome_significant_vars[outcome_significant_vars != "(Intercept)"]
 
-## check empirical unconfoundedness plausibility test condition
+## check empirical unconfoundedness plausibility test conditions
 
-both_significant_vars <- intersect(exposure_significant_vars, outcome_significant_vars)
+all_var_names <- union(names(exposure_p_values), names(outcome_p_values))
 
-if (length(both_significant_vars) == 0) {
-  condition <- FALSE
+exposure_p_values <- fill_in_blanks(exposure_p_values, all_var_names)
+outcome_p_values  <- fill_in_blanks(outcome_p_values,  all_var_names)
+
+lasso_union_all_p_values <- data.frame(array(data     = NaN,
+                                 dim      = c(2, length(all_var_names)),
+                                 dimnames = list(c("exposure", "outcome"), all_var_names) ))
+
+lasso_union_all_p_values["exposure", ] <- exposure_p_values
+lasso_union_all_p_values["outcome", ]  <- outcome_p_values
+
+# condition (i)
+# Z is associated with (i.e., not independent of) X given all other covariates
+condition_i <- rep(FALSE, length.out = length(all_var_names))
+for (i in c(1:length(exposure_p_values))) {
+  if (!is.nan(exposure_p_values[i])) {
+    # check association is significant using corresponding p-value
+    if (exposure_p_values[i] < 0.05) {
+      condition_i[i] <- TRUE
+    }
+  }
+}
+names(condition_i) <- all_var_names
+
+# condition (ii)
+# Z and Y are conditionally independent given X and all other covariates
+condition_ii <- rep(FALSE, length.out = length(all_var_names))
+for (i in c(1:length(outcome_p_values))) {
+  if (!is.nan(outcome_p_values[i])) {
+    # check conditional independence using corresponding p-value
+    if (outcome_p_values[i] > 0.05) {
+      condition_ii[i] <- TRUE
+    }
+  }
+}
+names(condition_ii) <- all_var_names
+
+# conditions (i) and (ii)
+conditions_i_and_ii <- condition_i & condition_ii
+names(conditions_i_and_ii) <- all_var_names
+
+# test is TRUE if any covariate Z satisfies (i) and (ii)
+# test is FALSE otherwise
+conclusion <- any(conditions_i_and_ii)
+conclusion_string <- ""
+if (conclusion) {
+  conclusion_string <- "Covariate set is sufficient for confounding adjustment"
 } else {
-  condition <- TRUE
+  conclusion_string <- "Test is inconclusive, covariate set may or may not be sufficient"
 }
 
-conclusion <- ""
-if (condition) {
-  conclusion <- "covariate set is sufficient for confounding adjustment"
-} else {
-  conclusion <- "Test is inconclusive, covariate set may or may not be sufficient"
-}
+lasso_union_all_tests <- data.frame(array(data     = NaN,
+                              dim      = c(3, length(all_var_names)),
+                              dimnames = list(c("Condition (i)", "Condition (ii)", "Conditions (i) and (ii)"), all_var_names) ))
+lasso_union_all_tests["Condition (i)", ]           <- condition_i
+lasso_union_all_tests["Condition (ii)", ]          <- condition_ii
+lasso_union_all_tests["Conditions (i) and (ii)", ] <- conditions_i_and_ii
 
-print("***** lasso_union *****")
+message("\n\nlasso_union p values:")
+print(lasso_union_all_p_values)
 
-print("Variables selected:")
-print(vars_selected)
+message("\n\nlasso_union all test conditions:")
+print(lasso_union_all_tests)
 
-print("Exposure regression:")
-print(exposure_regression_formula)
-print(summary(exposure_regression))
-print(exposure_significance)
-print(exposure_significant_vars)
-
-print("Outcome regression:")
-print(outcome_regression_formula)
-print(summary(outcome_regression))
-print(outcome_significance)
-print(outcome_significant_vars)
-
-print("Conclusion:")
-print(both_significant_vars)
-print(condition)
+message("\n\nfinal results:")
 print(conclusion)
+print(conclusion_string)
 
-lasso_union_results <- c(method,
-                   paste(vars_selected,             collapse = "\n"),
-                   paste(exposure_significant_vars, collapse = "\n"),
-                   paste(outcome_significant_vars,  collapse = "\n"),
-                   paste(both_significant_vars,     collapse = "\n"),
-                   condition,
-                   conclusion)
+lasso_union_results <- c("lasso_union",
+                   conclusion,
+                   conclusion_string)
 
 
 
@@ -416,8 +504,8 @@ lasso_union_results <- c(method,
 
 results <- array(
     data = NaN,
-    dim = c(3, 7),
-    dimnames = list(c(1:3), c("method", "vars_selected", "exposure_significant_vars", "outcome_significant_vars", "both_significant_vars", "Condition", "Conclusion"))
+    dim = c(3, 3),
+    dimnames = list(c(1:3), c("method", "Condition", "Conclusion"))
 )
 
 results[1,] <- lasso_results
@@ -428,11 +516,48 @@ results_table <- data.frame(results)
 print(results_table)
 
 
+
 # Save results ----------------------------------------------------------------
 
 write.csv(
+  lasso_all_p_values,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_p_values-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lasso_all_tests,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_tests-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lasso_X_all_p_values,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_p_values-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lasso_X_all_tests,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_tests-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lasso_union_all_p_values,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_p_values-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lasso_union_all_tests,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_tests-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
   results_table,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test-", name, ".csv"),
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_results-", name, ".csv"),
   row.names = FALSE
 )
 
