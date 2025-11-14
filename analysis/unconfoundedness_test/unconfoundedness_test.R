@@ -171,6 +171,7 @@ outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formu
                             data    = model_input_df)
 outcome_p_values   <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
 outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
+outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "binary_covid19_exposure"] # remove exposure
 
 
 ## check empirical unconfoundedness plausibility test conditions
@@ -193,7 +194,7 @@ condition_i <- rep(FALSE, length.out = length(all_var_names))
 for (i in c(1:length(exposure_p_values))) {
   if (!is.nan(exposure_p_values[i])) {
     # check association is significant using corresponding p-value
-    if (exposure_p_values[i] < 0.05) {
+    if (exposure_p_values[i] <= 0.05) {
       condition_i[i] <- TRUE
     }
   }
@@ -206,7 +207,7 @@ condition_ii <- rep(FALSE, length.out = length(all_var_names))
 for (i in c(1:length(outcome_p_values))) {
   if (!is.nan(outcome_p_values[i])) {
     # check conditional independence using corresponding p-value
-    if (outcome_p_values[i] > 0.05) {
+    if (outcome_p_values[i] >= 0.05) {
       condition_ii[i] <- TRUE
     }
   }
@@ -247,6 +248,7 @@ print(conclusion_string)
 lasso_results <- c("lasso",
                    conclusion,
                    conclusion_string)
+
 
 
 
@@ -296,6 +298,7 @@ outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formu
                             data    = model_input_df)
 outcome_p_values   <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
 outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
+outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "binary_covid19_exposure"] # remove exposure
 
 
 ## check empirical unconfoundedness plausibility test conditions
@@ -318,7 +321,7 @@ condition_i <- rep(FALSE, length.out = length(all_var_names))
 for (i in c(1:length(exposure_p_values))) {
   if (!is.nan(exposure_p_values[i])) {
     # check association is significant using corresponding p-value
-    if (exposure_p_values[i] < 0.05) {
+    if (exposure_p_values[i] <= 0.05) {
       condition_i[i] <- TRUE
     }
   }
@@ -331,7 +334,7 @@ condition_ii <- rep(FALSE, length.out = length(all_var_names))
 for (i in c(1:length(outcome_p_values))) {
   if (!is.nan(outcome_p_values[i])) {
     # check conditional independence using corresponding p-value
-    if (outcome_p_values[i] > 0.05) {
+    if (outcome_p_values[i] >= 0.05) {
       condition_ii[i] <- TRUE
     }
   }
@@ -421,6 +424,7 @@ outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formu
                             data    = model_input_df)
 outcome_p_values   <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
 outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
+outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "binary_covid19_exposure"] # remove exposure
 
 
 ## check empirical unconfoundedness plausibility test conditions
@@ -443,7 +447,7 @@ condition_i <- rep(FALSE, length.out = length(all_var_names))
 for (i in c(1:length(exposure_p_values))) {
   if (!is.nan(exposure_p_values[i])) {
     # check association is significant using corresponding p-value
-    if (exposure_p_values[i] < 0.05) {
+    if (exposure_p_values[i] <= 0.05) {
       condition_i[i] <- TRUE
     }
   }
@@ -456,7 +460,7 @@ condition_ii <- rep(FALSE, length.out = length(all_var_names))
 for (i in c(1:length(outcome_p_values))) {
   if (!is.nan(outcome_p_values[i])) {
     # check conditional independence using corresponding p-value
-    if (outcome_p_values[i] > 0.05) {
+    if (outcome_p_values[i] >= 0.05) {
       condition_ii[i] <- TRUE
     }
   }
