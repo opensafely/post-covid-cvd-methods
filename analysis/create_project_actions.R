@@ -613,13 +613,19 @@ unconfoundedness_test <- function(name, cohort, ages = "18;40;60;80", preex = "A
                    glue("lasso_union_var_selection-{name}{preex_str}"),
                    glue("make_model_input-{name}")),
       moderately_sensitive = list(
-        unconfoundedness_test_lasso_p_values       = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_p_values-{name}{preex_str}.csv"),
-        unconfoundedness_test_lasso_tests          = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_tests-{name}{preex_str}.csv"),
-        unconfoundedness_test_lasso_X_p_values     = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_X_p_values-{name}{preex_str}.csv"),
-        unconfoundedness_test_lasso_X_tests        = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_X_tests-{name}{preex_str}.csv"),
-        unconfoundedness_test_lasso_union_p_values = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_union_p_values-{name}{preex_str}.csv"),
-        unconfoundedness_test_lasso_union_tests    = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_union_tests-{name}{preex_str}.csv"),
-        unconfoundedness_test_results              = glue("output/unconfoundedness_test/unconfoundedness_test_results-{name}{preex_str}.csv")
+        unconfoundedness_test_lasso_p_values              = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_p_values-{name}{preex_str}.csv"),
+        unconfoundedness_test_lasso_coefs                 = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_coefs-{name}{preex_str}.csv"),
+        unconfoundedness_test_lasso_standard_errors       = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_standard_errors-{name}{preex_str}.csv"),
+        unconfoundedness_test_lasso_tests                 = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_tests-{name}{preex_str}.csv"),
+        unconfoundedness_test_lasso_X_p_values            = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_X_p_values-{name}{preex_str}.csv"),
+        unconfoundedness_test_lasso_X_coefs               = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_X_coefs-{name}{preex_str}.csv"),
+        unconfoundedness_test_lasso_X_standard_errors     = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_X_standard_errors-{name}{preex_str}.csv"),
+        unconfoundedness_test_lasso_X_tests               = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_X_tests-{name}{preex_str}.csv"),
+        unconfoundedness_test_lasso_union_p_values        = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_union_p_values-{name}{preex_str}.csv"),
+        unconfoundedness_test_lasso_union_coefs           = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_union_coefs-{name}{preex_str}.csv"),
+        unconfoundedness_test_lasso_union_standard_errors = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_union_standard_errors-{name}{preex_str}.csv"),
+        unconfoundedness_test_lasso_union_tests           = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_union_tests-{name}{preex_str}.csv"),
+        unconfoundedness_test_results                     = glue("output/unconfoundedness_test/unconfoundedness_test_results-{name}{preex_str}.csv")
       )
     )
   )

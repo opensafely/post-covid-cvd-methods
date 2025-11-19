@@ -149,8 +149,18 @@ if (length(vars_selected_without_exposure) > 1) {
 exposure_regression <- glm(exposure_regression_formula,
                                  family = binomial(link = 'logit'),
                                  data   = model_input_df)
-exposure_p_values   <- (summary(exposure_regression)$coefficients)[, "Pr(>|z|)"]
-exposure_p_values   <- exposure_p_values[names(exposure_p_values) != "(Intercept)"]
+
+exposure_p_values        <- (summary(exposure_regression)$coefficients)[, "Pr(>|z|)"]
+exposure_p_values        <- exposure_p_values[names(exposure_p_values) != "(Intercept)"]
+exposure_p_values        <- exposure_p_values[names(exposure_p_values) != "binary_covid19_exposure"] # remove exposure
+
+exposure_coefs           <- (summary(exposure_regression)$coefficients)[, "Estimate"]
+exposure_coefs           <- exposure_coefs[names(exposure_coefs) != "(Intercept)"]
+exposure_coefs           <- exposure_coefs[names(exposure_coefs) != "binary_covid19_exposure"] # remove exposure
+
+exposure_standard_errors <- (summary(exposure_regression)$coefficients)[, "Std. Error"]
+exposure_standard_errors <- exposure_standard_errors[names(exposure_standard_errors) != "(Intercept)"]
+exposure_standard_errors <- exposure_standard_errors[names(exposure_standard_errors) != "binary_covid19_exposure"] # remove exposure
 
 
 ## outcome cox regression
@@ -169,9 +179,18 @@ if (length(vars_selected_without_exposure) > 1) {
 
 outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formula)),
                             data    = model_input_df)
-outcome_p_values   <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
-outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
-outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "binary_covid19_exposure"] # remove exposure
+
+outcome_p_values        <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
+outcome_p_values        <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
+outcome_p_values        <- outcome_p_values[names(outcome_p_values) != "binary_covid19_exposure"] # remove exposure
+
+outcome_coefs           <- (summary(outcome_regression)$coefficients)[, "coef"]
+outcome_coefs           <- outcome_coefs[names(outcome_coefs) != "(Intercept)"]
+outcome_coefs           <- outcome_coefs[names(outcome_coefs) != "binary_covid19_exposure"] # remove exposure
+
+outcome_standard_errors <- (summary(outcome_regression)$coefficients)[, "se(coef)"]
+outcome_standard_errors <- outcome_standard_errors[names(outcome_standard_errors) != "(Intercept)"]
+outcome_standard_errors <- outcome_standard_errors[names(outcome_standard_errors) != "binary_covid19_exposure"] # remove exposure
 
 
 ## check empirical unconfoundedness plausibility test conditions
@@ -181,12 +200,29 @@ all_var_names <- union(names(exposure_p_values), names(outcome_p_values))
 exposure_p_values <- fill_in_blanks(exposure_p_values, all_var_names)
 outcome_p_values  <- fill_in_blanks(outcome_p_values,  all_var_names)
 
+exposure_coefs <- fill_in_blanks(exposure_coefs, all_var_names)
+outcome_coefs  <- fill_in_blanks(outcome_coefs,  all_var_names)
+
+exposure_standard_errors <- fill_in_blanks(exposure_standard_errors, all_var_names)
+outcome_standard_errors  <- fill_in_blanks(outcome_standard_errors,  all_var_names)
+
 lasso_all_p_values <- data.frame(array(data     = NaN,
                                  dim      = c(2, length(all_var_names)),
                                  dimnames = list(c("exposure", "outcome"), all_var_names) ))
-
 lasso_all_p_values["exposure", ] <- exposure_p_values
 lasso_all_p_values["outcome", ]  <- outcome_p_values
+
+lasso_all_coefs <- data.frame(array(data     = NaN,
+                                 dim      = c(2, length(all_var_names)),
+                                 dimnames = list(c("exposure", "outcome"), all_var_names) ))
+lasso_all_coefs["exposure", ] <- exposure_coefs
+lasso_all_coefs["outcome", ]  <- outcome_coefs
+
+lasso_all_standard_errors <- data.frame(array(data     = NaN,
+                                 dim      = c(2, length(all_var_names)),
+                                 dimnames = list(c("exposure", "outcome"), all_var_names) ))
+lasso_all_standard_errors["exposure", ] <- exposure_standard_errors
+lasso_all_standard_errors["outcome", ]  <- outcome_standard_errors
 
 # condition (i)
 # Z is associated with (i.e., not independent of) X given all other covariates
@@ -194,7 +230,7 @@ condition_i <- rep(FALSE, length.out = length(all_var_names))
 for (i in c(1:length(exposure_p_values))) {
   if (!is.nan(exposure_p_values[i])) {
     # check association is significant using corresponding p-value
-    if (exposure_p_values[i] <= 0.05) {
+    if (exposure_p_values[i] < 0.05) {
       condition_i[i] <- TRUE
     }
   }
@@ -251,7 +287,6 @@ lasso_results <- c("lasso",
 
 
 
-
 # Test lasso_X selection --------------------------------------------------------
 print("Performing empirical unfoncoundedness plausibility test on lasso_X results")
 
@@ -276,8 +311,18 @@ if (length(vars_selected_without_exposure) > 1) {
 exposure_regression <- glm(exposure_regression_formula,
                                  family = binomial(link = 'logit'),
                                  data   = model_input_df)
-exposure_p_values   <- (summary(exposure_regression)$coefficients)[, "Pr(>|z|)"]
-exposure_p_values   <- exposure_p_values[names(exposure_p_values) != "(Intercept)"]
+
+exposure_p_values        <- (summary(exposure_regression)$coefficients)[, "Pr(>|z|)"]
+exposure_p_values        <- exposure_p_values[names(exposure_p_values) != "(Intercept)"]
+exposure_p_values        <- exposure_p_values[names(exposure_p_values) != "binary_covid19_exposure"] # remove exposure
+
+exposure_coefs           <- (summary(exposure_regression)$coefficients)[, "Estimate"]
+exposure_coefs           <- exposure_coefs[names(exposure_coefs) != "(Intercept)"]
+exposure_coefs           <- exposure_coefs[names(exposure_coefs) != "binary_covid19_exposure"] # remove exposure
+
+exposure_standard_errors <- (summary(exposure_regression)$coefficients)[, "Std. Error"]
+exposure_standard_errors <- exposure_standard_errors[names(exposure_standard_errors) != "(Intercept)"]
+exposure_standard_errors <- exposure_standard_errors[names(exposure_standard_errors) != "binary_covid19_exposure"] # remove exposure
 
 
 ## outcome cox regression
@@ -296,9 +341,18 @@ if (length(vars_selected_without_exposure) > 1) {
 
 outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formula)),
                             data    = model_input_df)
-outcome_p_values   <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
-outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
-outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "binary_covid19_exposure"] # remove exposure
+
+outcome_p_values        <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
+outcome_p_values        <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
+outcome_p_values        <- outcome_p_values[names(outcome_p_values) != "binary_covid19_exposure"] # remove exposure
+
+outcome_coefs           <- (summary(outcome_regression)$coefficients)[, "coef"]
+outcome_coefs           <- outcome_coefs[names(outcome_coefs) != "(Intercept)"]
+outcome_coefs           <- outcome_coefs[names(outcome_coefs) != "binary_covid19_exposure"] # remove exposure
+
+outcome_standard_errors <- (summary(outcome_regression)$coefficients)[, "se(coef)"]
+outcome_standard_errors <- outcome_standard_errors[names(outcome_standard_errors) != "(Intercept)"]
+outcome_standard_errors <- outcome_standard_errors[names(outcome_standard_errors) != "binary_covid19_exposure"] # remove exposure
 
 
 ## check empirical unconfoundedness plausibility test conditions
@@ -308,12 +362,29 @@ all_var_names <- union(names(exposure_p_values), names(outcome_p_values))
 exposure_p_values <- fill_in_blanks(exposure_p_values, all_var_names)
 outcome_p_values  <- fill_in_blanks(outcome_p_values,  all_var_names)
 
+exposure_coefs <- fill_in_blanks(exposure_coefs, all_var_names)
+outcome_coefs  <- fill_in_blanks(outcome_coefs,  all_var_names)
+
+exposure_standard_errors <- fill_in_blanks(exposure_standard_errors, all_var_names)
+outcome_standard_errors  <- fill_in_blanks(outcome_standard_errors,  all_var_names)
+
 lasso_X_all_p_values <- data.frame(array(data     = NaN,
                                  dim      = c(2, length(all_var_names)),
                                  dimnames = list(c("exposure", "outcome"), all_var_names) ))
-
 lasso_X_all_p_values["exposure", ] <- exposure_p_values
 lasso_X_all_p_values["outcome", ]  <- outcome_p_values
+
+lasso_X_all_coefs <- data.frame(array(data     = NaN,
+                                 dim      = c(2, length(all_var_names)),
+                                 dimnames = list(c("exposure", "outcome"), all_var_names) ))
+lasso_X_all_coefs["exposure", ] <- exposure_coefs
+lasso_X_all_coefs["outcome", ]  <- outcome_coefs
+
+lasso_X_all_standard_errors <- data.frame(array(data     = NaN,
+                                 dim      = c(2, length(all_var_names)),
+                                 dimnames = list(c("exposure", "outcome"), all_var_names) ))
+lasso_X_all_standard_errors["exposure", ] <- exposure_standard_errors
+lasso_X_all_standard_errors["outcome", ]  <- outcome_standard_errors
 
 # condition (i)
 # Z is associated with (i.e., not independent of) X given all other covariates
@@ -321,7 +392,7 @@ condition_i <- rep(FALSE, length.out = length(all_var_names))
 for (i in c(1:length(exposure_p_values))) {
   if (!is.nan(exposure_p_values[i])) {
     # check association is significant using corresponding p-value
-    if (exposure_p_values[i] <= 0.05) {
+    if (exposure_p_values[i] < 0.05) {
       condition_i[i] <- TRUE
     }
   }
@@ -377,7 +448,6 @@ lasso_X_results <- c("lasso_X",
                    conclusion_string)
 
 
-
 # Test lasso_union selection --------------------------------------------------------
 print("Performing empirical unfoncoundedness plausibility test on lasso_union results")
 
@@ -402,8 +472,18 @@ if (length(vars_selected_without_exposure) > 1) {
 exposure_regression <- glm(exposure_regression_formula,
                                  family = binomial(link = 'logit'),
                                  data   = model_input_df)
-exposure_p_values   <- (summary(exposure_regression)$coefficients)[, "Pr(>|z|)"]
-exposure_p_values   <- exposure_p_values[names(exposure_p_values) != "(Intercept)"]
+
+exposure_p_values        <- (summary(exposure_regression)$coefficients)[, "Pr(>|z|)"]
+exposure_p_values        <- exposure_p_values[names(exposure_p_values) != "(Intercept)"]
+exposure_p_values        <- exposure_p_values[names(exposure_p_values) != "binary_covid19_exposure"] # remove exposure
+
+exposure_coefs           <- (summary(exposure_regression)$coefficients)[, "Estimate"]
+exposure_coefs           <- exposure_coefs[names(exposure_coefs) != "(Intercept)"]
+exposure_coefs           <- exposure_coefs[names(exposure_coefs) != "binary_covid19_exposure"] # remove exposure
+
+exposure_standard_errors <- (summary(exposure_regression)$coefficients)[, "Std. Error"]
+exposure_standard_errors <- exposure_standard_errors[names(exposure_standard_errors) != "(Intercept)"]
+exposure_standard_errors <- exposure_standard_errors[names(exposure_standard_errors) != "binary_covid19_exposure"] # remove exposure
 
 
 ## outcome cox regression
@@ -422,9 +502,18 @@ if (length(vars_selected_without_exposure) > 1) {
 
 outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formula)),
                             data    = model_input_df)
-outcome_p_values   <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
-outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
-outcome_p_values   <- outcome_p_values[names(outcome_p_values) != "binary_covid19_exposure"] # remove exposure
+
+outcome_p_values        <- (summary(outcome_regression)$coefficients)[, "Pr(>|z|)"]
+outcome_p_values        <- outcome_p_values[names(outcome_p_values) != "(Intercept)"]
+outcome_p_values        <- outcome_p_values[names(outcome_p_values) != "binary_covid19_exposure"] # remove exposure
+
+outcome_coefs           <- (summary(outcome_regression)$coefficients)[, "coef"]
+outcome_coefs           <- outcome_coefs[names(outcome_coefs) != "(Intercept)"]
+outcome_coefs           <- outcome_coefs[names(outcome_coefs) != "binary_covid19_exposure"] # remove exposure
+
+outcome_standard_errors <- (summary(outcome_regression)$coefficients)[, "se(coef)"]
+outcome_standard_errors <- outcome_standard_errors[names(outcome_standard_errors) != "(Intercept)"]
+outcome_standard_errors <- outcome_standard_errors[names(outcome_standard_errors) != "binary_covid19_exposure"] # remove exposure
 
 
 ## check empirical unconfoundedness plausibility test conditions
@@ -434,12 +523,29 @@ all_var_names <- union(names(exposure_p_values), names(outcome_p_values))
 exposure_p_values <- fill_in_blanks(exposure_p_values, all_var_names)
 outcome_p_values  <- fill_in_blanks(outcome_p_values,  all_var_names)
 
+exposure_coefs <- fill_in_blanks(exposure_coefs, all_var_names)
+outcome_coefs  <- fill_in_blanks(outcome_coefs,  all_var_names)
+
+exposure_standard_errors <- fill_in_blanks(exposure_standard_errors, all_var_names)
+outcome_standard_errors  <- fill_in_blanks(outcome_standard_errors,  all_var_names)
+
 lasso_union_all_p_values <- data.frame(array(data     = NaN,
                                  dim      = c(2, length(all_var_names)),
                                  dimnames = list(c("exposure", "outcome"), all_var_names) ))
-
 lasso_union_all_p_values["exposure", ] <- exposure_p_values
 lasso_union_all_p_values["outcome", ]  <- outcome_p_values
+
+lasso_union_all_coefs <- data.frame(array(data     = NaN,
+                                 dim      = c(2, length(all_var_names)),
+                                 dimnames = list(c("exposure", "outcome"), all_var_names) ))
+lasso_union_all_coefs["exposure", ] <- exposure_coefs
+lasso_union_all_coefs["outcome", ]  <- outcome_coefs
+
+lasso_union_all_standard_errors <- data.frame(array(data     = NaN,
+                                 dim      = c(2, length(all_var_names)),
+                                 dimnames = list(c("exposure", "outcome"), all_var_names) ))
+lasso_union_all_standard_errors["exposure", ] <- exposure_standard_errors
+lasso_union_all_standard_errors["outcome", ]  <- outcome_standard_errors
 
 # condition (i)
 # Z is associated with (i.e., not independent of) X given all other covariates
@@ -447,7 +553,7 @@ condition_i <- rep(FALSE, length.out = length(all_var_names))
 for (i in c(1:length(exposure_p_values))) {
   if (!is.nan(exposure_p_values[i])) {
     # check association is significant using corresponding p-value
-    if (exposure_p_values[i] <= 0.05) {
+    if (exposure_p_values[i] < 0.05) {
       condition_i[i] <- TRUE
     }
   }
@@ -530,6 +636,18 @@ write.csv(
 )
 
 write.csv(
+  lasso_all_coefs,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_coefs-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lasso_all_standard_errors,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_standard_errors-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
   lasso_all_tests,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_tests-", name, ".csv"),
   row.names = FALSE
@@ -542,6 +660,24 @@ write.csv(
 )
 
 write.csv(
+  lasso_X_all_coefs,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_coefs-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lasso_X_all_standard_errors,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_standard_errors-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lasso_X_all_tests,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_tests-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
   lasso_X_all_tests,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_tests-", name, ".csv"),
   row.names = FALSE
@@ -550,6 +686,24 @@ write.csv(
 write.csv(
   lasso_union_all_p_values,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_p_values-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lasso_union_all_coefs,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_coefs-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lasso_union_all_standard_errors,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_standard_errors-", name, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lasso_union_all_tests,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_tests-", name, ".csv"),
   row.names = FALSE
 )
 
