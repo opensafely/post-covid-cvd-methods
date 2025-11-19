@@ -632,90 +632,90 @@ print(results_table)
 write.csv(
   lasso_all_p_values,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_p_values-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_all_coefs,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_coefs-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_all_standard_errors,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_standard_errors-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_all_tests,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_tests-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_X_all_p_values,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_p_values-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_X_all_coefs,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_coefs-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_X_all_standard_errors,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_standard_errors-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_X_all_tests,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_tests-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_X_all_tests,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_tests-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_union_all_p_values,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_p_values-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_union_all_coefs,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_coefs-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_union_all_standard_errors,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_standard_errors-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_union_all_tests,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_tests-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   lasso_union_all_tests,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_tests-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
   results_table,
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_results-", name, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
