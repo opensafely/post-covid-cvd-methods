@@ -184,6 +184,61 @@ clean_data <- function(cohort, describe = describe) {
 }
 
 
+# Create function to generate 10% subsample of study population -----------------
+generate_subsample_cohort <- function(cohort) {
+  splice(
+    comment(glue("generate_subsample_cohort_{cohort}")),
+    action(
+      name = glue("generate_subsample_cohort_{cohort}"),
+      run = glue(
+        "r:latest analysis/generate_subsample/generate_subsample.R"
+      ),
+      arguments = c(c(cohort)),
+      needs = list(
+        glue("generate_input_{cohort}_clean") # , glue("make_model_input-{name}")
+      ),
+      highly_sensitive = list(
+        cohort_clean_subsample = glue("output/generate_subsample/input_{cohort}_clean_subsample.rds")
+      )
+    )
+  )
+}
+
+
+make_model_input_subsample <- function(
+  name,
+  cohort,
+  analysis,
+  ipw,
+  strata,
+  covariate_sex,
+  covariate_age,
+  covariate_other,
+  cox_start,
+  cox_stop,
+  study_start,
+  study_stop,
+  cut_points,
+  controls_per_case,
+  total_event_threshold,
+  episode_event_threshold,
+  covariate_threshold,
+  age_spline
+) {
+  splice(
+    comment(glue("make_model_input_subsample-{name}")),
+    action(
+      name = glue("make_model_input_subsample-{name}"),
+      run = glue("r:latest analysis/model/make_model_input_subsample.R {name}"),
+      needs = as.list(glue("generate_subsample_cohort_{cohort}")),
+      highly_sensitive = list(
+        model_input = glue("output/model/model_input_subsample-{name}.rds")
+      )
+    )
+  )
+}
+
+
 # Create function for table1 --------------------------------------------
 
 table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
@@ -855,6 +910,50 @@ actions_list <- splice(
   splice(
     unlist(
       lapply(cohorts, function(x) clean_data(cohort = x, describe = describe)),
+      recursive = FALSE
+    )
+  ),
+
+  ## Generate 10% subsample study population ----------------------------------
+
+  splice(
+    unlist(
+      lapply(cohorts, function(x) generate_subsample_cohort(cohort = x)),
+      recursive = FALSE
+    )
+  ),
+
+  ## Generate cox model input data for 10% subsample study population --------
+  comment("Generate cox model input data for 10% subsample study population"),
+
+  splice(
+    unlist(
+      lapply(
+        1:nrow(active_analyses),
+        function(x)
+          make_model_input_subsample(
+            name = active_analyses$name[x],
+            cohort = active_analyses$cohort[x],
+            analysis = active_analyses$analysis[x],
+            ipw = active_analyses$ipw[x],
+            strata = active_analyses$strata[x],
+            covariate_sex = active_analyses$covariate_sex[x],
+            covariate_age = active_analyses$covariate_age[x],
+            covariate_other = active_analyses$covariate_other[x],
+            cox_start = active_analyses$cox_start[x],
+            cox_stop = active_analyses$cox_stop[x],
+            study_start = active_analyses$study_start[x],
+            study_stop = active_analyses$study_stop[x],
+            cut_points = active_analyses$cut_points[x],
+            controls_per_case = active_analyses$controls_per_case[x],
+            total_event_threshold = active_analyses$total_event_threshold[x],
+            episode_event_threshold = active_analyses$episode_event_threshold[
+              x
+            ],
+            covariate_threshold = active_analyses$covariate_threshold[x],
+            age_spline = active_analyses$age_spline[x]
+          )
+      ),
       recursive = FALSE
     )
   ),

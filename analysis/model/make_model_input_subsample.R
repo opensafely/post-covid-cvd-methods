@@ -1,18 +1,19 @@
 # ------------------------------------------------------------------------------
 #
-# make_model_input.R
+# make_model_input_subsample.R
 #
 # Generates survival data for use when fitting cox regression models
+# using a pre-determined subsample of the availoable study population
 # 
 # Arguments:
 #  - name - string, provides both the cohort and outcome
 #           (e.g. cohort_prevax-main-ami)
 #
 # Returns:
-#  - File of cox regression model input data
-#    (e.g. model_input-cohort_prevax-main-ami.rds)
+#  - File of cox regression model input subsample data
+#    (e.g. model_input_subsample-cohort_prevax-main-ami.rds)
 #
-# Authors: Venexia Walker, UoB ehrQL Team
+# Authors: Venexia Walker, UoB ehrQL Team, Emma Tarmey
 #
 # ------------------------------------------------------------------------------
 
@@ -62,6 +63,7 @@ fs::dir_create(here::here(model_dir))
 # Load and prepare data by selecting project-required columns
 print("Load and prepare data for analysis")
 
+stop("TODO: load subsample data here!")
 pmi <- prepare_model_input(name)
 
 # Restrict to required population -------------------------------------------

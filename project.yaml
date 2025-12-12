@@ -56,6 +56,81 @@ actions:
         venn: output/dataset_clean/venn-cohort_prevax.rds
         cohort_clean: output/dataset_clean/input_prevax_clean.rds
 
+  ## generate_subsample_cohort_prevax 
+
+  generate_subsample_cohort_prevax:
+    run: r:latest analysis/generate_subsample/generate_subsample.R prevax
+    needs:
+    - generate_input_prevax_clean
+    outputs:
+      highly_sensitive:
+        cohort_clean_subsample: output/generate_subsample/input_prevax_clean_subsample.rds
+
+  ## Generate cox model input data for 10% subsample study population 
+  ## make_model_input_subsample-cohort_prevax-main-ami 
+
+  make_model_input_subsample-cohort_prevax-main-ami:
+    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-main-ami
+    needs:
+    - generate_subsample_cohort_prevax
+    outputs:
+      highly_sensitive:
+        model_input: output/model/model_input_subsample-cohort_prevax-main-ami.rds
+
+  ## make_model_input_subsample-cohort_prevax-main-stroke_sahhs 
+
+  make_model_input_subsample-cohort_prevax-main-stroke_sahhs:
+    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-main-stroke_sahhs
+    needs:
+    - generate_subsample_cohort_prevax
+    outputs:
+      highly_sensitive:
+        model_input: output/model/model_input_subsample-cohort_prevax-main-stroke_sahhs.rds
+
+  ## make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-ami 
+
+  make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-ami:
+    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_FALSE-ami
+    needs:
+    - generate_subsample_cohort_prevax
+    outputs:
+      highly_sensitive:
+        model_input: output/model/model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-ami.rds
+
+  ## make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+
+    
+
+  make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
+    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    needs:
+    - generate_subsample_cohort_prevax
+    outputs:
+      highly_sensitive:
+        model_input: output/model/model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.rds
+
+  ## make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-ami 
+
+  make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-ami:
+    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_TRUE-ami
+    needs:
+    - generate_subsample_cohort_prevax
+    outputs:
+      highly_sensitive:
+        model_input: output/model/model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-ami.rds
+
+  ## make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+
+    
+
+  make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
+    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    needs:
+    - generate_subsample_cohort_prevax
+    outputs:
+      highly_sensitive:
+        model_input: output/model/model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.rds
+
   ## Generate table1_cohort_prevax 
 
   table1-cohort_prevax:
