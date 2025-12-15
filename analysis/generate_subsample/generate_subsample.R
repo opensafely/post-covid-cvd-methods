@@ -80,8 +80,27 @@ df <- readr::read_rds(paste0(
 print("Generate 10% subsample")
 
 set.seed(2025) # this file only runs once so should be fine (i.e. no overlapping RNG sequences)
+
 sample_size  <- nrow(df)
-selection    <- rbinom(n = sample_size, size = 1, prob = 0.1)
+
+ami_positive_cases                <- which(!is.na(df$out_date_ami))
+sahhs_positive_cases              <- which(!is.na(df$out_date_stroke_sahhs))
+
+both_positive_cases               <- intersect( ami_positive_cases,     sahhs_positive_cases )
+both_negative_cases               <- intersect( which(is.na(df$out_date_ami)), which(is.na(df$out_date_stroke_sahhs)) )
+ami_positive_sahhs_negative_cases <- setdiff(ami_positive_cases,   both_positive_cases)
+sahhs_positive_ami_negative_cases <- setdiff(sahhs_positive_cases, both_positive_cases)
+
+both_positive_selection               <- sample(both_positive_cases,               size = ceiling(length(both_positive_cases)/10),              )
+both_negative_selection               <- sample(both_negative_cases,               size = ceiling(length(both_negative_cases)/10),              )
+ami_positive_sahhs_negative_selection <- sample(ami_positive_sahhs_negative_cases, size = ceiling(length(ami_positive_sahhs_negative_cases)/10) )
+sahhs_positive_ami_negative_selection <- sample(sahhs_positive_ami_negative_cases, size = ceiling(length(sahhs_positive_ami_negative_cases)/10) )
+
+selection    <- c(both_positive_selection,
+                  both_negative_selection,
+                  ami_positive_sahhs_negative_selection,
+                  sahhs_positive_ami_negative_selection)
+
 subsample_df <- df[selection, ]
 
 

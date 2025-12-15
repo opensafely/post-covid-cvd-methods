@@ -152,14 +152,25 @@ actions:
       moderately_sensitive:
         table1_output_midpoint6: output/make_output/table1_output_midpoint6.csv
 
+  ## Generate table1_cohort_prevax_subsample 
+
+  table1-cohort_prevax_subsample:
+    run: 'r:v2 analysis/table1/table1_subsample.R prevax 18;30;40;50;50;70;80;90 '
+    needs:
+    - generate_subsample_cohort_prevax
+    outputs:
+      moderately_sensitive:
+        table1_subsample: output/table1/table1-cohort_prevax_subsample.csv
+        table1_midpoint6_subsample: output/table1/table1-cohort_prevax-midpoint6_subsample.csv
+
   ## Generate lasso_var_selection-cohort_prevax-main-ami 
 
   lasso_var_selection-cohort_prevax-main-ami:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-main-ami
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
-    - make_model_input-cohort_prevax-main-ami
+    - generate_subsample_cohort_prevax
+    - make_model_input_subsample-cohort_prevax-main-ami
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-main-ami.csv
@@ -170,8 +181,8 @@ actions:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-main-stroke_sahhs
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
-    - make_model_input-cohort_prevax-main-stroke_sahhs
+    - generate_subsample_cohort_prevax
+    - make_model_input_subsample-cohort_prevax-main-stroke_sahhs
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-main-stroke_sahhs.csv
@@ -182,8 +193,8 @@ actions:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_FALSE-ami
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
-    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-ami
+    - generate_subsample_cohort_prevax
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-ami
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami.csv
@@ -196,8 +207,8 @@ actions:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
-    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - generate_subsample_cohort_prevax
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
@@ -208,8 +219,8 @@ actions:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_TRUE-ami
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
-    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-ami
+    - generate_subsample_cohort_prevax
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-ami
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami.csv
@@ -222,8 +233,8 @@ actions:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
-    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    - generate_subsample_cohort_prevax
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     outputs:
       moderately_sensitive:
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
@@ -234,7 +245,7 @@ actions:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-main-ami
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
+    - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-main-ami
     outputs:
       moderately_sensitive:
@@ -246,7 +257,7 @@ actions:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-main-stroke_sahhs
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
+    - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-main-stroke_sahhs
     outputs:
       moderately_sensitive:
@@ -260,7 +271,7 @@ actions:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_FALSE-ami
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
+    - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
     outputs:
       moderately_sensitive:
@@ -274,7 +285,7 @@ actions:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
+    - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     outputs:
       moderately_sensitive:
@@ -288,7 +299,7 @@ actions:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_TRUE-ami
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
+    - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
     outputs:
       moderately_sensitive:
@@ -302,7 +313,7 @@ actions:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
       prevax 18;30;40;50;50;70;80;90 '
     needs:
-    - generate_input_prevax_clean
+    - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     outputs:
       moderately_sensitive:

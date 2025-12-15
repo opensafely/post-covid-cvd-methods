@@ -26,6 +26,7 @@ library(data.table)
 library(stringr)
 library(lubridate)
 
+
 # Source functions -------------------------------------------------------------
 print("Source functions")
 
@@ -33,6 +34,7 @@ lapply(
   list.files("analysis/model", full.names = TRUE, pattern = "fn-"),
   source
 )
+
 
 # Specify arguments ------------------------------------------------------------
 print("Specify arguments")
@@ -51,6 +53,7 @@ analysis <- gsub(
   name
 )
 
+
 # Define model output folder ---------------------------------------
 print("Creating output/model output folder")
 
@@ -63,8 +66,8 @@ fs::dir_create(here::here(model_dir))
 # Load and prepare data by selecting project-required columns
 print("Load and prepare data for analysis")
 
-stop("TODO: load subsample data here!")
-pmi <- prepare_model_input(name)
+pmi <- prepare_model_input_subsample(name)
+
 
 # Restrict to required population -------------------------------------------
 print('Restrict to required population')
@@ -206,14 +209,14 @@ readr::write_rds(
   df,
   file.path(
     model_dir,
-    paste0("model_input-", name, ".rds")
+    paste0("model_input_subsample-", name, ".rds")
   ),
   compress = "gz"
 )
 print(paste0(
   "Saved: ",
   model_dir,
-  "model_input-",
+  "model_input_subsample-",
   name,
   ".rds"
 ))

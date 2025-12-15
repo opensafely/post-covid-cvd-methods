@@ -74,11 +74,12 @@ age_bounds   <- as.numeric(stringr::str_split(as.vector(age_str), ";")[[1]])
 preex_string <- ""
 
 
-# Load data --------------------------------------------------------------------
-print("Load data")
+# Load subsample data ----------------------------------------------------------
+print("Load subsample data")
 
+# subsample
 model_input_df <- readr::read_rds(paste0(
-  "output/model/model_input-",
+  "output/model/model_input_subsample-",
   name,
   ".rds"
 ))
@@ -141,13 +142,15 @@ lasso_coefs        <- as.vector(lasso_model$beta)
 names(lasso_coefs) <- rownames(lasso_model$beta)
 
 vars_selected <- names(lasso_coefs[lasso_coefs != 0.0])
-vars_selected <- vars_selected[vars_selected != "(Intercept)"]
+vars_selected <- vars_selected[vars_selected != "(Intercept)"] # remove intercept
 
 # always include exposure
 if (!("binary_covid19_exposure" %in% vars_selected)) {
   vars_selected <- c(vars_selected, "binary_covid19_exposure")
 }
-print(vars_selected)
+
+# remove all dates
+vars_selected <- vars_selected[!vars_selected %in% c("index_date", "end_date_exposure", "end_date_outcome", "exp_date", "out_date")]
 
 
 # Save covariate selection ----------------------------------------------------

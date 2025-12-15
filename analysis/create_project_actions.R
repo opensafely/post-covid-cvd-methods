@@ -267,6 +267,34 @@ table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
 }
 
 
+# Create function for table1_subsample -----------------------------------------
+
+table1_subsample <- function(cohort, ages = "18;40;60;80", preex = "All") {
+  if (preex == "All" | preex == "") {
+    preex_str <- ""
+  } else {
+    preex_str <- paste0("-preex_", preex)
+  }
+  splice(
+    comment(glue("Generate table1_cohort_{cohort}{preex_str}_subsample")),
+    action(
+      name = glue("table1-cohort_{cohort}{preex_str}_subsample"),
+      run = "r:v2 analysis/table1/table1_subsample.R",
+      arguments = c(c(cohort), c(ages), c(preex)),
+      needs = list(glue("generate_subsample_cohort_{cohort}")),
+      moderately_sensitive = list(
+        table1_subsample = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}_subsample.csv"
+        ),
+        table1_midpoint6_subsample = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}-midpoint6_subsample.csv"
+        )
+      )
+    )
+  )
+}
+
+
 # Create function for LASSO variable selection ---------------------------------
 
 lasso_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All") {
@@ -281,7 +309,8 @@ lasso_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All
       name = glue("lasso_var_selection-{name}{preex_str}"),
       run = "r:v2 analysis/lasso_var_selection/lasso_var_selection.R",
       arguments = c(c(name), c(cohort), c(ages), c(preex)),
-      needs = list(glue("generate_input_{cohort}_clean"), glue("make_model_input-{name}")),
+      needs = list(glue("generate_subsample_cohort_{cohort}"),
+                   glue("make_model_input_subsample-{name}")),
       moderately_sensitive = list(
         lasso_var_selection = glue(
           "output/lasso_var_selection/lasso_var_selection-{name}{preex_str}.csv"
@@ -306,7 +335,8 @@ lasso_X_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "A
       name = glue("lasso_X_var_selection-{name}{preex_str}"),
       run = "r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R",
       arguments = c(c(name), c(cohort), c(ages), c(preex)),
-      needs = list(glue("generate_input_{cohort}_clean"), glue("lasso_var_selection-{name}{preex_str}")),
+      needs = list(glue("generate_subsample_cohort_{cohort}"),
+                   glue("lasso_var_selection-{name}{preex_str}")),
       moderately_sensitive = list(
         lasso_X_var_selection = glue(
           "output/lasso_X_var_selection/lasso_X_var_selection-{name}{preex_str}.csv"
@@ -975,6 +1005,19 @@ actions_list <- splice(
       action_name = "table1",
       cohort = paste0(cohorts, collapse = ";"),
       subgroup = ""
+    )
+  ),
+
+
+  ## Table 1 Subsample -----------------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        unique(active_analyses$cohort),
+        function(x) table1_subsample(cohort = x, ages = age_str, preex = "")
+      ),
+      recursive = FALSE
     )
   ),
 
