@@ -184,6 +184,61 @@ clean_data <- function(cohort, describe = describe) {
 }
 
 
+# Create function to generate 10% subsample of study population -----------------
+generate_subsample_cohort <- function(cohort) {
+  splice(
+    comment(glue("generate_subsample_cohort_{cohort}")),
+    action(
+      name = glue("generate_subsample_cohort_{cohort}"),
+      run = glue(
+        "r:latest analysis/generate_subsample/generate_subsample.R"
+      ),
+      arguments = c(c(cohort)),
+      needs = list(
+        glue("generate_input_{cohort}_clean") # , glue("make_model_input-{name}")
+      ),
+      highly_sensitive = list(
+        cohort_clean_subsample = glue("output/generate_subsample/input_{cohort}_clean_subsample.rds")
+      )
+    )
+  )
+}
+
+
+make_model_input_subsample <- function(
+  name,
+  cohort,
+  analysis,
+  ipw,
+  strata,
+  covariate_sex,
+  covariate_age,
+  covariate_other,
+  cox_start,
+  cox_stop,
+  study_start,
+  study_stop,
+  cut_points,
+  controls_per_case,
+  total_event_threshold,
+  episode_event_threshold,
+  covariate_threshold,
+  age_spline
+) {
+  splice(
+    comment(glue("make_model_input_subsample-{name}")),
+    action(
+      name = glue("make_model_input_subsample-{name}"),
+      run = glue("r:latest analysis/model/make_model_input_subsample.R {name}"),
+      needs = as.list(glue("generate_subsample_cohort_{cohort}")),
+      highly_sensitive = list(
+        model_input = glue("output/model/model_input_subsample-{name}.rds")
+      )
+    )
+  )
+}
+
+
 # Create function for table1 --------------------------------------------
 
 table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
@@ -212,6 +267,34 @@ table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
 }
 
 
+# Create function for table1_subsample -----------------------------------------
+
+table1_subsample <- function(cohort, ages = "18;40;60;80", preex = "All") {
+  if (preex == "All" | preex == "") {
+    preex_str <- ""
+  } else {
+    preex_str <- paste0("-preex_", preex)
+  }
+  splice(
+    comment(glue("Generate table1_cohort_{cohort}{preex_str}_subsample")),
+    action(
+      name = glue("table1-cohort_{cohort}{preex_str}_subsample"),
+      run = "r:v2 analysis/table1/table1_subsample.R",
+      arguments = c(c(cohort), c(ages), c(preex)),
+      needs = list(glue("generate_subsample_cohort_{cohort}")),
+      moderately_sensitive = list(
+        table1_subsample = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}_subsample.csv"
+        ),
+        table1_midpoint6_subsample = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}-midpoint6_subsample.csv"
+        )
+      )
+    )
+  )
+}
+
+
 # Create function for LASSO variable selection ---------------------------------
 
 lasso_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All") {
@@ -226,7 +309,8 @@ lasso_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All
       name = glue("lasso_var_selection-{name}{preex_str}"),
       run = "r:v2 analysis/lasso_var_selection/lasso_var_selection.R",
       arguments = c(c(name), c(cohort), c(ages), c(preex)),
-      needs = list(glue("generate_input_{cohort}_clean"), glue("make_model_input-{name}")),
+      needs = list(glue("generate_subsample_cohort_{cohort}"),
+                   glue("make_model_input_subsample-{name}")),
       moderately_sensitive = list(
         lasso_var_selection = glue(
           "output/lasso_var_selection/lasso_var_selection-{name}{preex_str}.csv"
@@ -251,7 +335,8 @@ lasso_X_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "A
       name = glue("lasso_X_var_selection-{name}{preex_str}"),
       run = "r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R",
       arguments = c(c(name), c(cohort), c(ages), c(preex)),
-      needs = list(glue("generate_input_{cohort}_clean"), glue("lasso_var_selection-{name}{preex_str}")),
+      needs = list(glue("generate_subsample_cohort_{cohort}"),
+                   glue("lasso_var_selection-{name}{preex_str}")),
       moderately_sensitive = list(
         lasso_X_var_selection = glue(
           "output/lasso_X_var_selection/lasso_X_var_selection-{name}{preex_str}.csv"
@@ -859,6 +944,50 @@ actions_list <- splice(
     )
   ),
 
+  ## Generate 10% subsample study population ----------------------------------
+
+  splice(
+    unlist(
+      lapply(cohorts, function(x) generate_subsample_cohort(cohort = x)),
+      recursive = FALSE
+    )
+  ),
+
+  ## Generate cox model input data for 10% subsample study population --------
+  comment("Generate cox model input data for 10% subsample study population"),
+
+  splice(
+    unlist(
+      lapply(
+        1:nrow(active_analyses),
+        function(x)
+          make_model_input_subsample(
+            name = active_analyses$name[x],
+            cohort = active_analyses$cohort[x],
+            analysis = active_analyses$analysis[x],
+            ipw = active_analyses$ipw[x],
+            strata = active_analyses$strata[x],
+            covariate_sex = active_analyses$covariate_sex[x],
+            covariate_age = active_analyses$covariate_age[x],
+            covariate_other = active_analyses$covariate_other[x],
+            cox_start = active_analyses$cox_start[x],
+            cox_stop = active_analyses$cox_stop[x],
+            study_start = active_analyses$study_start[x],
+            study_stop = active_analyses$study_stop[x],
+            cut_points = active_analyses$cut_points[x],
+            controls_per_case = active_analyses$controls_per_case[x],
+            total_event_threshold = active_analyses$total_event_threshold[x],
+            episode_event_threshold = active_analyses$episode_event_threshold[
+              x
+            ],
+            covariate_threshold = active_analyses$covariate_threshold[x],
+            age_spline = active_analyses$age_spline[x]
+          )
+      ),
+      recursive = FALSE
+    )
+  ),
+
   ## Table 1 -------------------------------------------------------------------
 
   splice(
@@ -876,6 +1005,19 @@ actions_list <- splice(
       action_name = "table1",
       cohort = paste0(cohorts, collapse = ";"),
       subgroup = ""
+    )
+  ),
+
+
+  ## Table 1 Subsample -----------------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        unique(active_analyses$cohort),
+        function(x) table1_subsample(cohort = x, ages = age_str, preex = "")
+      ),
+      recursive = FALSE
     )
   ),
 

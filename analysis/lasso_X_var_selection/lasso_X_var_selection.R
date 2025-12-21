@@ -74,13 +74,13 @@ if (length(args) == 0) {
 
 age_bounds <- as.numeric(stringr::str_split(as.vector(age_str), ";")[[1]])
 
-# Load data --------------------------------------------------------------------
-print("Load data")
+# Load subsample data ----------------------------------------------------------
+print("Load subsample data")
 
 df <- readr::read_rds(paste0(
-  "output/dataset_clean/input_",
+  "output/generate_subsample/input_",
   cohort,
-  "_clean.rds"
+  "_clean_subsample.rds"
 ))
 
 # Processing Start -------------------------------------------------------------
@@ -246,9 +246,10 @@ lasso_X_coefs        <- as.vector(lasso_X_model$beta)
 names(lasso_X_coefs) <- rownames(lasso_X_model$beta)
 
 vars_selected <- names(lasso_X_coefs[lasso_X_coefs != 0.0])
-vars_selected <- vars_selected[vars_selected != "(Intercept)"]
+vars_selected <- vars_selected[vars_selected != "(Intercept)"] # remove intercept
 
-print(vars_selected)
+# remove all dates
+vars_selected <- vars_selected[!vars_selected %in% c("index_date", "end_date_exposure", "end_date_outcome", "exp_date", "out_date")]
 
 
 # Save covariate selection ----------------------------------------------------------
