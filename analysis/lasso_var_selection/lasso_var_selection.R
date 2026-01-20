@@ -150,7 +150,7 @@ if (!("binary_covid19_exposure" %in% vars_selected)) {
 }
 
 # remove all dates
-vars_selected <- vars_selected[!vars_selected %in% c("index_date", "end_date_exposure", "end_date_outcome", "exp_date", "out_date")]
+vars_selected <- vars_selected[!vars_selected %in% c("index_date", "end_date_exposure", "end_date_outcome", "exp_date", "out_date", "cov_bin_sahhs")]
 
 
 # Save covariate selection ----------------------------------------------------

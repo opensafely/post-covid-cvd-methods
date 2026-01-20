@@ -79,11 +79,19 @@ df <- readr::read_rds(paste0(
 # Generate 10% subsample ------------------------------------------------------
 print("Generate 10% subsample")
 
-set.seed(2025) # this file only runs once so should be fine (i.e. no overlapping RNG sequences)
-
 sample_size  <- nrow(df)
-selection    <- rbinom(n = sample_size, size = 1, prob = 0.1)
+selection    <- sample(x = c(1:sample_size), size = ceiling(sample_size/10), replace = FALSE)
 subsample_df <- df[selection, ]
+
+message("\n\nTotal study population:")
+print(nrow(df))
+print(sum(!is.na(df$out_date_stroke_sahhs)))
+print(sum(!is.na(df$out_date_ami)))
+
+message("\n\nSubsample:")
+print(nrow(subsample_df))
+print(sum(!is.na(subsample_df$out_date_stroke_sahhs)))
+print(sum(!is.na(subsample_df$out_date_ami)))
 
 
 # Save subsample --------------------------------------------------------------

@@ -249,7 +249,7 @@ vars_selected <- names(lasso_X_coefs[lasso_X_coefs != 0.0])
 vars_selected <- vars_selected[vars_selected != "(Intercept)"] # remove intercept
 
 # remove all dates
-vars_selected <- vars_selected[!vars_selected %in% c("index_date", "end_date_exposure", "end_date_outcome", "exp_date", "out_date")]
+vars_selected <- vars_selected[!vars_selected %in% c("index_date", "end_date_exposure", "end_date_outcome", "exp_date", "out_date", "cov_bin_sahhs")]
 
 
 # Save covariate selection ----------------------------------------------------------
