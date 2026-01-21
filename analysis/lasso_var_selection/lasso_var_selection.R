@@ -93,9 +93,10 @@ model_input_df$binary_covid19_exposure <- !is.na(model_input_df$exp_date)
 
 # remove unnecessary columns, remove all Date columns where unnecessary
 # exposure (covid-19) is recast to binary
-df2 <- (model_input_df %>% select(!c(patient_id, index_date,                     # admin
-                                     binary_outcome, out_date, end_date_outcome, # outcome
-                                     exp_date)))                                 # remove unnecessary
+
+df2 <- (model_input_df %>% select(!c(patient_id, index_date,                                  # admin
+                                     binary_outcome, out_date, end_date_outcome, cov_bin_ami, # outcome
+                                     exp_date)))                                              # remove unnecessary
 df3 <- (model_input_df %>% select(c(binary_outcome, out_date, end_date_outcome)))
 
 df3$outcome_cox_dates <- rep(as.Date(NA), times = nrow(df3))
@@ -150,7 +151,8 @@ if (!("binary_covid19_exposure" %in% vars_selected)) {
 }
 
 # remove all dates
-vars_selected <- vars_selected[!vars_selected %in% c("index_date", "end_date_exposure", "end_date_outcome", "exp_date", "out_date", "cov_bin_sahhs")]
+# NB: semi-redundant
+vars_selected <- vars_selected[!vars_selected %in% c("index_date", "end_date_exposure", "end_date_outcome", "exp_date", "out_date")]
 
 
 # Save covariate selection ----------------------------------------------------
