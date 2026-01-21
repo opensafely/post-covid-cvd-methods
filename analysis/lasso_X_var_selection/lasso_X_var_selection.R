@@ -209,13 +209,8 @@ print(summary(df))
 print("LASSO_X data matrix setup")
 
 # find outcome from name string (assumes either ami or sahhs)
-if (grepl("ami", name)) {
-  df2 <- (df %>% select(!c(patient_id, cov_bin_ami, exposed)))
-  df3 <- (df %>% select(exposed))
-} else {
-  df2 <- (df %>% select(!c(patient_id, cov_bin_sahhs, exposed)))
-  df3 <- (df %>% select(exposed))
-}
+df2 <- (df %>% select(!c(patient_id, cov_bin_ami, cov_bin_sahhs, exposed)))
+df3 <- (df %>% select(exposed))
 
 lasso_X_conf_matrix <- data.matrix(df2)
 lasso_X_exposure_matrix <- data.matrix(df3)
@@ -249,6 +244,7 @@ vars_selected <- names(lasso_X_coefs[lasso_X_coefs != 0.0])
 vars_selected <- vars_selected[vars_selected != "(Intercept)"] # remove intercept
 
 # remove all dates
+# NB: semi-redundant
 vars_selected <- vars_selected[!vars_selected %in% c("index_date", "end_date_exposure", "end_date_outcome", "exp_date", "out_date")]
 
 
