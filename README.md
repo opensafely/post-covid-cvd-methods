@@ -26,6 +26,21 @@
         -   [`fn-prepare_model_input.R`](analysis/model/fn-prepare_model_input.R) is a companion function to `make_model_input.R` which handles the interaction with `active_analyses.rds`.
         -   [`cox-ipw`](https://github.com/opensafely-actions/cox-ipw/) is a reusable action which uses the output of `make_model_input.R` to fit a Cox model to the data.
         -   [`make_model_output.R`](analysis/model/make_model_output.R) combines all the Cox results in one formatted .csv file.
+     
+    -   The script for generating a random 10% sample of the study population is in the [`generate_subsample`](./analysis/generate_subsample) directory:
+        -   [`generate_subsample.R`](analysis/generate_subsample/generate_subsample.R) does ...
+        
+    -   The script for conducting variable selection using a LASSO (Least absolute shrinkage and selection) model is in the [`lasso_var_selection`](./analysis/lasso_var_selection) directory:
+        -   [`lasso_var_selection.R`](analysis/lasso_var_selection/lasso_var_selection.R) does ...
+        
+    -   The script for conducting variable selection using a LASSO X (Least absolute shrinkage and selection for exposure) model which takes the exposure (COVID-19) as the response variable is in the [`lasso_X_var_selection`](./analysis/lasso_X_var_selection) directory:
+        -   [`lasso_X_var_selection.R`](analysis/lasso_X_var_selection/lasso_X_var_selection.R) does ...
+        
+    -   The script for conducting variable selection using a Union LASSO (Least absolute shrinkage and selection) model is in the [`lasso_union_var_selection`](./analysis/lasso_union_var_selection) directory:
+        -   [`lasso_union_var_selection.R`](analysis/lasso_union_var_selection/lasso_union_var_selection.R) does ...
+        
+    -   The script which implements the [Hartwig et al., 2024](https://arxiv.org/abs/2402.10156) empirical unconfoundedness test is in the [`unconfoundedness_test`](./analysis/unconfoundedness_test) directory:
+        -   [`unconfoundedness_test.R`](analysis/unconfoundedness_test/unconfoundedness_test.R) does ...
 
 -   The [`active_analyses`](lib/active_analyses.rds) contains a list of active analyses.
 
