@@ -43,12 +43,13 @@
         
     -   The script which implements the [Hartwig et al., 2024](https://arxiv.org/abs/2402.10156) empirical unconfoundedness test is in the [`unconfoundedness_test`](./analysis/unconfoundedness_test) directory:
         -   [`unconfoundedness_test.R`](analysis/unconfoundedness_test/unconfoundedness_test.R) performs the empirical unconfoundedness test in the following manner:
-            -   A cox-regression model is fit using ...
-            -   A logistic regression mode is fit using ...
-            -   For every candidate confounder Z, condition (i) is checked (is Z associated with (i.e., not independent of) X given all other covariates?)
-            -   For every candidate confounder Z, condition (ii) is checked (are Z and Y are conditionally independent given X and all other covariates?)
-            -   If any covariate Z satisfies both (i) and (ii), then the covariate set is sufficient for confounding adjustment.  If not, then the test is inconclusive.
-        -   Test conditions, coefifcient values, p-values and standard errors are saved for each confounder Z.
+            -   A cox-regression model taking the oucomes (Y) as the response is fit in the same manner as in [`lasso_var_selection.R`](analysis/lasso_var_selection/lasso_var_selection.R).
+            -   A logistic regression model taking the exposure (X) as the response is fit in the same manner as in [`lasso_X_var_selection.R`](analysis/lasso_X_var_selection/lasso_X_var_selection.R).
+            -   These two regression models are used to evaluate associations of each confounder (Z) with the exposure (X) and outcome (Y) in the following manner:
+                -   For every candidate confounder Z, condition (i) is checked (is Z associated with (i.e., not independent of) X given all other covariates?)
+                -   For every candidate confounder Z, condition (ii) is checked (are Z and Y are conditionally independent given X and all other covariates?)
+                -   If any covariate Z satisfies both (i) and (ii), then the covariate set is sufficient for confounding adjustment.  If not, then the test is inconclusive.
+            -   Test conditions, coefifcient values, p-values and standard errors are saved for each confounder Z.
 
 -   The [`active_analyses`](lib/active_analyses.rds) contains a list of active analyses.
 
