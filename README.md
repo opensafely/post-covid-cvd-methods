@@ -1,3 +1,11 @@
+This repo is intended to replicate the study [`Impact of vaccination on the association of COVID-19 with cardiovascular diseases: An OpenSAFELY cohort study`](https://doi.org/10.1038/s41467-024-46497-0) (Cezard et al., 2024).  Specifically doing so in order to investigate the variable selection methodology and handling of confounders within the original study.  This is done by means of replicating the section of the study on the ``pre-vaccination'' cohort and then implementing the following:
+
+-   Repeating the methodology of the original paper up to and including the fitting of Cox regression models, the hazard ratios from which form the results of the study
+-   Running a number of different variable selection methods (lasso, lasso_X and lasso_union, see below) to produce alternative variable sets
+-   Repeating the fitting of the cox regression models under each of these new sets
+-   Implementing and running the empirical unconfoundedness test provided by [Hartwig et al., 2024](https://arxiv.org/abs/2402.10156) to verify the unconfoundedness of these variable sets
+
+Technical details:
 
 -   Detailed protocols are in the [`protocol`](./protocol/) folder.
 
