@@ -611,7 +611,38 @@ lasso_union_results <- c("lasso_union",
 
 
 
-# Put together results table --------------------------------------------------
+# Put together results tables -------------------------------------------------
+
+labels <- c(
+  "p_values", "p_values", "coefs", "coefs", "standard_errors", "standard_errors", "tests", "tests", "tests"
+)
+
+lasso_explanatory <- rbind(
+  lasso_all_p_values,
+  lasso_all_coefs,
+  lasso_all_standard_errors,
+  lasso_all_tests
+)
+lasso_explanatory$labels <- labels
+lasso_explanatory <- lasso_explanatory %>% select(labels, everything())
+
+lasso_X_explanatory <- rbind(
+  lasso_X_all_p_values,
+  lasso_X_all_coefs,
+  lasso_X_all_standard_errors,
+  lasso_X_all_tests
+)
+lasso_X_explanatory$labels <- labels
+lasso_X_explanatory <- lasso_X_explanatory %>% select(labels, everything())
+
+lasso_union_explanatory <- rbind(
+  lasso_union_all_p_values,
+  lasso_union_all_coefs,
+  lasso_union_all_standard_errors,
+  lasso_union_all_tests
+)
+lasso_union_explanatory$labels <- labels
+lasso_union_explanatory <- lasso_union_explanatory %>% select(labels, everything())
 
 results <- array(
     data = NaN,
@@ -631,86 +662,20 @@ print(results_table)
 # Save results ----------------------------------------------------------------
 
 write.csv(
-  lasso_all_p_values,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_p_values-", name, ".csv"),
+  lasso_explanatory,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_explanatory-", name, ".csv"),
   row.names = TRUE
 )
 
 write.csv(
-  lasso_all_coefs,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_coefs-", name, ".csv"),
+  lasso_X_explanatory,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_explanatory-", name, ".csv"),
   row.names = TRUE
 )
 
 write.csv(
-  lasso_all_standard_errors,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_standard_errors-", name, ".csv"),
-  row.names = TRUE
-)
-
-write.csv(
-  lasso_all_tests,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_tests-", name, ".csv"),
-  row.names = TRUE
-)
-
-write.csv(
-  lasso_X_all_p_values,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_p_values-", name, ".csv"),
-  row.names = TRUE
-)
-
-write.csv(
-  lasso_X_all_coefs,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_coefs-", name, ".csv"),
-  row.names = TRUE
-)
-
-write.csv(
-  lasso_X_all_standard_errors,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_standard_errors-", name, ".csv"),
-  row.names = TRUE
-)
-
-write.csv(
-  lasso_X_all_tests,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_tests-", name, ".csv"),
-  row.names = TRUE
-)
-
-write.csv(
-  lasso_X_all_tests,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_X_tests-", name, ".csv"),
-  row.names = TRUE
-)
-
-write.csv(
-  lasso_union_all_p_values,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_p_values-", name, ".csv"),
-  row.names = TRUE
-)
-
-write.csv(
-  lasso_union_all_coefs,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_coefs-", name, ".csv"),
-  row.names = TRUE
-)
-
-write.csv(
-  lasso_union_all_standard_errors,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_standard_errors-", name, ".csv"),
-  row.names = TRUE
-)
-
-write.csv(
-  lasso_union_all_tests,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_tests-", name, ".csv"),
-  row.names = TRUE
-)
-
-write.csv(
-  lasso_union_all_tests,
-  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_tests-", name, ".csv"),
+  lasso_union_explanatory,
+  paste0(unconfoundedness_test_dir, "unconfoundedness_test_lasso_union_explanatory-", name, ".csv"),
   row.names = TRUE
 )
 
