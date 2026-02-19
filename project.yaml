@@ -1294,7 +1294,7 @@ actions:
     - lasso_var_selection-cohort_prevax-main-ami
     - lasso_X_var_selection-cohort_prevax-main-ami
     - lasso_union_var_selection-cohort_prevax-main-ami
-    - make_model_input-cohort_prevax-main-ami
+    - make_model_input_subsample-cohort_prevax-main-ami
     outputs:
       moderately_sensitive:
         unconfoundedness_test_lasso_p_values: output/unconfoundedness_test/unconfoundedness_test_lasso_p_values-cohort_prevax-main-ami.csv
@@ -1320,7 +1320,7 @@ actions:
     - lasso_var_selection-cohort_prevax-main-stroke_sahhs
     - lasso_X_var_selection-cohort_prevax-main-stroke_sahhs
     - lasso_union_var_selection-cohort_prevax-main-stroke_sahhs
-    - make_model_input-cohort_prevax-main-stroke_sahhs
+    - make_model_input_subsample-cohort_prevax-main-stroke_sahhs
     outputs:
       moderately_sensitive:
         unconfoundedness_test_lasso_p_values: output/unconfoundedness_test/unconfoundedness_test_lasso_p_values-cohort_prevax-main-stroke_sahhs.csv
@@ -1348,7 +1348,7 @@ actions:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
     - lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
-    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-ami
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-ami
     outputs:
       moderately_sensitive:
         unconfoundedness_test_lasso_p_values: output/unconfoundedness_test/unconfoundedness_test_lasso_p_values-cohort_prevax-sub_covidhospital_FALSE-ami.csv
@@ -1376,7 +1376,7 @@ actions:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     - lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
-    - make_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     outputs:
       moderately_sensitive:
         unconfoundedness_test_lasso_p_values: output/unconfoundedness_test/unconfoundedness_test_lasso_p_values-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
@@ -1404,7 +1404,7 @@ actions:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
     - lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
-    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-ami
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-ami
     outputs:
       moderately_sensitive:
         unconfoundedness_test_lasso_p_values: output/unconfoundedness_test/unconfoundedness_test_lasso_p_values-cohort_prevax-sub_covidhospital_TRUE-ami.csv
@@ -1432,7 +1432,7 @@ actions:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     - lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
-    - make_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     outputs:
       moderately_sensitive:
         unconfoundedness_test_lasso_p_values: output/unconfoundedness_test/unconfoundedness_test_lasso_p_values-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv

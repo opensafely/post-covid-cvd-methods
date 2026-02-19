@@ -94,8 +94,9 @@ preex_string <- ""
 # Load data --------------------------------------------------------------------
 print("Load data")
 
+# subsample
 model_input_df <- readr::read_rds(paste0(
-  "output/model/model_input-",
+  "output/model/model_input_subsample-",
   name,
   ".rds"
 ))

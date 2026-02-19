@@ -696,7 +696,7 @@ unconfoundedness_test <- function(name, cohort, ages = "18;40;60;80", preex = "A
       needs = list(glue("lasso_var_selection-{name}{preex_str}"),
                    glue("lasso_X_var_selection-{name}{preex_str}"),
                    glue("lasso_union_var_selection-{name}{preex_str}"),
-                   glue("make_model_input-{name}")),
+                   glue("make_model_input_subsample-{name}")),
       moderately_sensitive = list(
         unconfoundedness_test_lasso_p_values              = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_p_values-{name}{preex_str}.csv"),
         unconfoundedness_test_lasso_coefs                 = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_coefs-{name}{preex_str}.csv"),
