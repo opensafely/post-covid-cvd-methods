@@ -4,6 +4,9 @@ from ehrql.query_language import table_from_file, PatientFrame, Series
 
 from datetime import date
 
+from ehrql import claim_permissions 
+claim_permissions("sgss_covid_all_tests", "occupation_on_covid_vaccine_record")
+
 # extract index dates for prevax cohort from index_dates.csv
 
 @table_from_file("output/dataset_definition/index_dates.csv.gz")

@@ -34,6 +34,11 @@ library(data.table)
 library(stringr)
 library(tidyr)
 
+# Source common functions ------------------------------------------------------
+print('Source common functions')
+
+source("analysis/utility.R")
+
 # Define make_output folder ------------------------------------------
 print("Creating output/make_output output folder")
 
@@ -140,6 +145,17 @@ if (output == "table1") {
   }
   df[6] <- percent_exposed_midpoint6_prevax
 }
+
+# table2-specific processing ---------------------------------------------------
+if (output == "table2") {
+  print("table2 processing")
+
+  df$unexposed_person_days_midpoint6 <- roundmid_any(df$unexposed_person_days)
+  df$exposed_person_days_midpoint6   <- roundmid_any(df$exposed_person_days)
+  df$total_person_days_midpoint6     <- roundmid_any(df$total_person_days)
+  df[, c("unexposed_person_days", "exposed_person_days", "total_person_days")] <- NULL
+}
+
 
 # Save output ------------------------------------------------------------------
 print('Save output')

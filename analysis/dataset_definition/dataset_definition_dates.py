@@ -1,4 +1,5 @@
 from ehrql import (
+    claim_permissions,
     create_dataset,
     days,
     minimum_of,
@@ -13,6 +14,8 @@ from ehrql.tables.tpp import (
 )
 
 from datetime import date
+
+claim_permissions("sgss_covid_all_tests", "occupation_on_covid_vaccine_record")
 
 # create dataset to create dates for different cohorts
 

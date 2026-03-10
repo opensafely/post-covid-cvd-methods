@@ -836,6 +836,96 @@ make_model_output <- function(subgroup) {
   )
 }
 
+# Create funtion for making lasso model outputs --------------------------------
+
+make_lasso_model_output <- function(subgroup) {
+  splice(
+    comment(glue("Generate lasso_model_output-{subgroup}")),
+    action(
+      name = glue(
+        "make_lasso_model_output-{subgroup}"
+      ),
+      run = "r:v2 analysis/make_output/make_lasso_model_output.R",
+      arguments = c(subgroup),
+      needs = as.list(c(
+        paste0(
+          "lasso_cox_ipw-",
+          active_analyses$name[
+            !(active_analyses$name %in% excluded_models) &
+              str_detect(active_analyses$analysis, subgroup)
+          ]
+        )
+      )),
+      moderately_sensitive = list(
+        lasso_model_output = glue("output/make_output/lasso_model_output-{subgroup}.csv"),
+        lasso_model_output_midpoint6 = glue(
+          "output/make_output/lasso_model_output-{subgroup}-midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
+# Create funtion for making lasso_X model outputs -----------------------------
+
+make_lasso_X_model_output <- function(subgroup) {
+  splice(
+    comment(glue("Generate lasso_X_model_output-{subgroup}")),
+    action(
+      name = glue(
+        "make_lasso_X_model_output-{subgroup}"
+      ),
+      run = "r:v2 analysis/make_output/make_lasso_X_model_output.R",
+      arguments = c(subgroup),
+      needs = as.list(c(
+        paste0(
+          "lasso_X_cox_ipw-",
+          active_analyses$name[
+            !(active_analyses$name %in% excluded_models) &
+              str_detect(active_analyses$analysis, subgroup)
+          ]
+        )
+      )),
+      moderately_sensitive = list(
+        lasso_X_model_output = glue("output/make_output/lasso_X_model_output-{subgroup}.csv"),
+        lasso_X_model_output_midpoint6 = glue(
+          "output/make_output/lasso_X_model_output-{subgroup}-midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
+# Create funtion for making lasso_union model outputs ------------------------
+
+make_lasso_union_model_output <- function(subgroup) {
+  splice(
+    comment(glue("Generate lasso_union_model_output-{subgroup}")),
+    action(
+      name = glue(
+        "make_lasso_union_model_output-{subgroup}"
+      ),
+      run = "r:v2 analysis/make_output/make_lasso_union_model_output.R",
+      arguments = c(subgroup),
+      needs = as.list(c(
+        paste0(
+          "lasso_union_cox_ipw-",
+          active_analyses$name[
+            !(active_analyses$name %in% excluded_models) &
+              str_detect(active_analyses$analysis, subgroup)
+          ]
+        )
+      )),
+      moderately_sensitive = list(
+        lasso_union_model_output = glue("output/make_output/lasso_union_model_output-{subgroup}.csv"),
+        lasso_union_model_output_midpoint6 = glue(
+          "output/make_output/lasso_union_model_output-{subgroup}-midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
 
 # Create funtion for making combined table/venn outputs ------------------------
 
@@ -871,7 +961,7 @@ make_other_output <- function(action_name, cohort, subgroup = "") {
         sub_str
       ))),
       moderately_sensitive = list(
-        table1_output_midpoint6 = glue(
+        other_output_midpoint6 = glue(
           "output/make_output/{action_name}{sub_str}_output_midpoint6.csv"
         )
       )
@@ -1280,6 +1370,33 @@ actions_list <- splice(
   splice(
     unlist(
       lapply(subgroups, function(x) make_model_output(subgroup = x)),
+      recursive = FALSE
+    )
+  ),
+
+  ## Lasso Model output --------------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(subgroups, function(x) make_lasso_model_output(subgroup = x)),
+      recursive = FALSE
+    )
+  ),
+
+  ## Lasso_X Model output -----------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(subgroups, function(x) make_lasso_X_model_output(subgroup = x)),
+      recursive = FALSE
+    )
+  ),
+
+  ## Lasso_union Model output -------------------------------------------------
+
+  splice(
+    unlist(
+      lapply(subgroups, function(x) make_lasso_union_model_output(subgroup = x)),
       recursive = FALSE
     )
   )

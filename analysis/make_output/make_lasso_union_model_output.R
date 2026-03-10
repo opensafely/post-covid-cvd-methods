@@ -1,10 +1,11 @@
 # ------------------------------------------------------------------------------
 #
-# make_model_output.R
+# make_lasso_union_model_output.R
 #
 # This file handles any other required post-processing of tables 3-5
 # (cox regression hazard ratio tables)
-# for the replicated Covid-19 x Cardiovascular paper
+# for the replicated Covid-19 x Cardiovascular paper.
+# Specifically, those cox models generated using lasso_union covariate sets
 # Original text: https://doi.org/10.1038/s41467-024-46497-0
 #
 # Arguments:
@@ -12,10 +13,10 @@
 #               can be divided (e.g. main, covid hospitalisation)
 #
 # Returns:
-#  - The post-processed model_output-<subgroup> data tables
-#    (output/make_output/model_output-<subgroup>.csv)
-#  - The post-processed & rounded model_output-<subgroup>-midpoint6 data tables
-#    (output/make_output/model_output-<subgroup>-midpoint6.csv)
+#  - The post-processed lasso_union_model_output-<subgroup> data tables
+#    (output/make_output/lasso_union_model_output-<subgroup>.csv)
+#  - The post-processed & rounded lasso_union_model_output-<subgroup>-midpoint6 data tables
+#    (output/make_output/lasso_union_model_output-<subgroup>-midpoint6.csv)
 #
 # Authors: Emma Tarmey, Venexia Walker, UoB ehrQL Team
 #
@@ -61,7 +62,7 @@ active_analyses <- readr::read_rds("lib/active_analyses.rds")
 # List available model outputs -------------------------------------------------
 print('List available model outputs')
 
-files_R <- list.files(model_dir, pattern = "model_output-")
+files_R <- list.files(model_dir, pattern = "lasso_union_cox_model_output-")
 
 # Combine R model output -------------------------------------------------------
 print('Combine R model output')
@@ -100,7 +101,7 @@ for (i in files_R) {
   }
 
   ## Add source file name
-  tmp$name <- gsub("model_output-", "", gsub(".csv", "", i))
+  tmp$name <- gsub("lasso_union_cox_model_output-", "", gsub(".csv", "", i))
 
   ## Append to master dataframe
   df <- plyr::rbind.fill(df, tmp)
@@ -148,15 +149,15 @@ df <- df[, c(
   "source"
 )]
 
-readr::write_csv(df, paste0(makeout_dir, "model_output-", subgroup, ".csv"))
+readr::write_csv(df, paste0(makeout_dir, "lasso_union_model_output-", subgroup, ".csv"))
 
 # Perform redaction ------------------------------------------------------------
 print('Perform redaction')
 
-df$N_total_midpoint6          <- roundmid_any(df$N_total)
-df$N_exposed_midpoint6        <- roundmid_any(df$N_exposed)
-df$N_events_midpoint6         <- roundmid_any(df$N_events)
-df$person_time_tota_midpoint6 <- roundmid_any(df$person_time_total)
+df$N_total_midpoint6           <- roundmid_any(df$N_total)
+df$N_exposed_midpoint6         <- roundmid_any(df$N_exposed)
+df$N_events_midpoint6          <- roundmid_any(df$N_events)
+df$person_time_total_midpoint6 <- roundmid_any(df$person_time_total)
 df[, c("N_total", "N_exposed", "N_events", "person_time_total")] <- NULL
 
 # Save model output ------------------------------------------------------------
@@ -164,5 +165,5 @@ print('Save model output')
 
 readr::write_csv(
   df,
-  paste0(makeout_dir, "model_output-", subgroup, "-midpoint6.csv")
+  paste0(makeout_dir, "lasso_union_model_output-", subgroup, "-midpoint6.csv")
 )

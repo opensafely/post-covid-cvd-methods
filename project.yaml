@@ -150,7 +150,7 @@ actions:
     - table1-cohort_prevax
     outputs:
       moderately_sensitive:
-        table1_output_midpoint6: output/make_output/table1_output_midpoint6.csv
+        other_output_midpoint6: output/make_output/table1_output_midpoint6.csv
 
   ## Generate table1_cohort_prevax_subsample 
 
@@ -1419,7 +1419,7 @@ actions:
     - table2-cohort_prevax-sub_covidhospital
     outputs:
       moderately_sensitive:
-        table1_output_midpoint6: output/make_output/table2-sub_covidhospital_output_midpoint6.csv
+        other_output_midpoint6: output/make_output/table2-sub_covidhospital_output_midpoint6.csv
 
   ## Generate venn-cohort_prevax 
 
@@ -1442,7 +1442,7 @@ actions:
     - venn-cohort_prevax
     outputs:
       moderately_sensitive:
-        table1_output_midpoint6: output/make_output/venn_output_midpoint6.csv
+        other_output_midpoint6: output/make_output/venn_output_midpoint6.csv
 
   ## Generate model_output-main 
 
@@ -1469,4 +1469,82 @@ actions:
       moderately_sensitive:
         model_output: output/make_output/model_output-sub_covidhospital.csv
         model_output_midpoint6: output/make_output/model_output-sub_covidhospital-midpoint6.csv
+
+  ## Generate lasso_model_output-main 
+
+  make_lasso_model_output-main:
+    run: r:v2 analysis/make_output/make_lasso_model_output.R main
+    needs:
+    - lasso_cox_ipw-cohort_prevax-main-ami
+    - lasso_cox_ipw-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_model_output: output/make_output/lasso_model_output-main.csv
+        lasso_model_output_midpoint6: output/make_output/lasso_model_output-main-midpoint6.csv
+
+  ## Generate lasso_model_output-sub_covidhospital 
+
+  make_lasso_model_output-sub_covidhospital:
+    run: r:v2 analysis/make_output/make_lasso_model_output.R sub_covidhospital
+    needs:
+    - lasso_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-ami
+    - lasso_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - lasso_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-ami
+    - lasso_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_model_output: output/make_output/lasso_model_output-sub_covidhospital.csv
+        lasso_model_output_midpoint6: output/make_output/lasso_model_output-sub_covidhospital-midpoint6.csv
+
+  ## Generate lasso_X_model_output-main 
+
+  make_lasso_X_model_output-main:
+    run: r:v2 analysis/make_output/make_lasso_X_model_output.R main
+    needs:
+    - lasso_X_cox_ipw-cohort_prevax-main-ami
+    - lasso_X_cox_ipw-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_X_model_output: output/make_output/lasso_X_model_output-main.csv
+        lasso_X_model_output_midpoint6: output/make_output/lasso_X_model_output-main-midpoint6.csv
+
+  ## Generate lasso_X_model_output-sub_covidhospital 
+
+  make_lasso_X_model_output-sub_covidhospital:
+    run: r:v2 analysis/make_output/make_lasso_X_model_output.R sub_covidhospital
+    needs:
+    - lasso_X_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-ami
+    - lasso_X_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - lasso_X_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-ami
+    - lasso_X_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_X_model_output: output/make_output/lasso_X_model_output-sub_covidhospital.csv
+        lasso_X_model_output_midpoint6: output/make_output/lasso_X_model_output-sub_covidhospital-midpoint6.csv
+
+  ## Generate lasso_union_model_output-main 
+
+  make_lasso_union_model_output-main:
+    run: r:v2 analysis/make_output/make_lasso_union_model_output.R main
+    needs:
+    - lasso_union_cox_ipw-cohort_prevax-main-ami
+    - lasso_union_cox_ipw-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_union_model_output: output/make_output/lasso_union_model_output-main.csv
+        lasso_union_model_output_midpoint6: output/make_output/lasso_union_model_output-main-midpoint6.csv
+
+  ## Generate lasso_union_model_output-sub_covidhospital 
+
+  make_lasso_union_model_output-sub_covidhospital:
+    run: r:v2 analysis/make_output/make_lasso_union_model_output.R sub_covidhospital
+    needs:
+    - lasso_union_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-ami
+    - lasso_union_cox_ipw-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - lasso_union_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-ami
+    - lasso_union_cox_ipw-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        lasso_union_model_output: output/make_output/lasso_union_model_output-sub_covidhospital.csv
+        lasso_union_model_output_midpoint6: output/make_output/lasso_union_model_output-sub_covidhospital-midpoint6.csv
 

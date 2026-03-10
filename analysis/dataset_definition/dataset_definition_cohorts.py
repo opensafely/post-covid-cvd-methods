@@ -12,6 +12,7 @@ from ehrql.query_language import table_from_file, PatientFrame, Series
 from datetime import date
 
 claim_permissions("appointments")
+claim_permissions("sgss_covid_all_tests", "occupation_on_covid_vaccine_record")
 
 # Create dataset
 
