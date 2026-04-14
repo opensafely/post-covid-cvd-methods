@@ -129,7 +129,7 @@ for (i in c(1:nrow(model_input_df))) {
 # Test lasso selection --------------------------------------------------------
 print("Performing empirical unfoncoundedness plausibility test on lasso results")
 
-vars_selected <- read.csv(paste0("output/lasso_var_selection/lasso_var_selection-", name, ".csv"))[, 'x']
+vars_selected <- union( read.csv(paste0("output/lasso_var_selection/lasso_var_selection-", name, ".csv"))[, 'x'], c("cov_cat_sex", "cov_num_age"))
 vars_selected_without_exposure <- vars_selected[vars_selected != "binary_covid19_exposure"]
 vars_selected_without_exposure <- vars_selected_without_exposure[vars_selected_without_exposure != "exp_date"]
 
@@ -291,7 +291,7 @@ lasso_results <- c("lasso",
 # Test lasso_X selection --------------------------------------------------------
 print("Performing empirical unfoncoundedness plausibility test on lasso_X results")
 
-vars_selected <- read.csv(paste0("output/lasso_X_var_selection/lasso_X_var_selection-", name, ".csv"))[, 'x']
+vars_selected <- union( read.csv(paste0("output/lasso_X_var_selection/lasso_X_var_selection-", name, ".csv"))[, 'x'], c("cov_cat_sex", "cov_num_age"))
 vars_selected_without_exposure <- vars_selected[vars_selected != "binary_covid19_exposure"]
 vars_selected_without_exposure <- vars_selected_without_exposure[vars_selected_without_exposure != "exp_date"]
 
@@ -452,7 +452,7 @@ lasso_X_results <- c("lasso_X",
 # Test lasso_union selection --------------------------------------------------------
 print("Performing empirical unfoncoundedness plausibility test on lasso_union results")
 
-vars_selected <- read.csv(paste0("output/lasso_union_var_selection/lasso_union_var_selection-", name, ".csv"))[, 'x']
+vars_selected <- union( read.csv(paste0("output/lasso_union_var_selection/lasso_union_var_selection-", name, ".csv"))[, 'x'], c("cov_cat_sex", "cov_num_age"))
 vars_selected_without_exposure <- vars_selected[vars_selected != "binary_covid19_exposure"]
 vars_selected_without_exposure <- vars_selected_without_exposure[vars_selected_without_exposure != "exp_date"]
 

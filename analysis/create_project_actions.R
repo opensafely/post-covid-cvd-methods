@@ -372,6 +372,34 @@ lasso_union_var_selection <- function(name, cohort, ages = "18;40;60;80", preex 
 }
 
 
+# Create function to make variable selection output ----------------------------
+
+variable_selection_output <- function(name, cohort, preex = "All") {
+  if (preex == "All" | preex == "") {
+    preex_str <- ""
+  } else {
+    preex_str <- paste0("-preex_", preex)
+  }
+  splice(
+    comment(glue("Make variable_selection_output_{name}{preex_str}")),
+    action(
+      name = glue("variable_selection_output-{name}{preex_str}"),
+      run = "r:v2 analysis/make_output/make_variable_selection_output.R",
+      arguments = c(c(name), c(cohort), c(preex)),
+      needs = list(glue("make_model_input_subsample-{name}"),
+                   glue("lasso_var_selection-{name}{preex_str}"),
+                   glue("lasso_X_var_selection-{name}{preex_str}"),
+                   glue("lasso_union_var_selection-{name}{preex_str}")),
+      moderately_sensitive = list(
+        variable_selection_output = glue(
+          "output/make_output/variable_selection-{name}{preex_str}.csv"
+        )
+      )
+    )
+  )
+}
+
+
 # Create function to make Table 2 ----------------------------------------------
 
 table2 <- function(cohort, subgroup) {
@@ -1147,6 +1175,22 @@ actions_list <- splice(
             name   = active_analyses$name[x],
             cohort = active_analyses$cohort[x],
             ages   = age_str,
+            preex  = "")
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  ## Make Variable Selection Output --------------------------------------------
+
+  splice(
+    unlist(
+      lapply(
+        1:nrow(active_analyses),
+        function(x)
+          variable_selection_output(
+            name   = active_analyses$name[x],
+            cohort = active_analyses$cohort[x],
             preex  = "")
       ),
       recursive = FALSE
