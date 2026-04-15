@@ -13,6 +13,7 @@ from ehrql.tables.tpp import (
     appointments, 
     occupation_on_covid_vaccine_record,
     sgss_covid_all_tests,
+    ethnicity_from_sus,
     apcs, 
     clinical_events, 
     ons_deaths,
@@ -34,6 +35,7 @@ from variable_helper_functions import (
     last_matching_event_apc_before,
     matching_death_before,
     filter_codes_by_category,
+    get_latest_ethnicity,
 )
 
 # Define generate variables function
@@ -193,17 +195,9 @@ def generate_variables(index_date, end_date_exp, end_date_out):
     cov_cat_sex = patients.sex
 
     ### Ethnicity
-    tmp_cov_cat_ethnicity = (
-        clinical_events.where(clinical_events.snomedct_code.is_in(ethnicity_snomed))
-        .where(clinical_events.date.is_on_or_before(index_date))
-        .sort_by(clinical_events.date)
-        .last_for_patient()
-        .snomedct_code
-    )
-
-    cov_cat_ethnicity = tmp_cov_cat_ethnicity.to_category(
-        ethnicity_snomed
-    )
+    ### Grouping refers to the number of pre-defined categories (6 or 16) (White, Mixed, etc...)
+    ### See https://www.opencodelists.org/codelist/opensafely/ethnicity-snomed-0removed/22911876/
+    cov_cat_ethnicity = get_latest_ethnicity(index_date, ethnicity_snomed, grouping=6)
 
     ### Deprivation
     cov_cat_imd = case(

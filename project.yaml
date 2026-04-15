@@ -399,6 +399,98 @@ actions:
       moderately_sensitive:
         lasso_union_var_selection: output/lasso_union_var_selection/lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
 
+  ## Make variable_selection_output_cohort_prevax-main-ami 
+
+  variable_selection_output-cohort_prevax-main-ami:
+    run: 'r:v2 analysis/make_output/make_variable_selection_output.R cohort_prevax-main-ami
+      prevax '
+    needs:
+    - make_model_input_subsample-cohort_prevax-main-ami
+    - lasso_var_selection-cohort_prevax-main-ami
+    - lasso_X_var_selection-cohort_prevax-main-ami
+    - lasso_union_var_selection-cohort_prevax-main-ami
+    outputs:
+      moderately_sensitive:
+        variable_selection_output: output/make_output/variable_selection-cohort_prevax-main-ami.csv
+
+  ## Make variable_selection_output_cohort_prevax-main-stroke_sahhs 
+
+  variable_selection_output-cohort_prevax-main-stroke_sahhs:
+    run: 'r:v2 analysis/make_output/make_variable_selection_output.R cohort_prevax-main-stroke_sahhs
+      prevax '
+    needs:
+    - make_model_input_subsample-cohort_prevax-main-stroke_sahhs
+    - lasso_var_selection-cohort_prevax-main-stroke_sahhs
+    - lasso_X_var_selection-cohort_prevax-main-stroke_sahhs
+    - lasso_union_var_selection-cohort_prevax-main-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        variable_selection_output: output/make_output/variable_selection-cohort_prevax-main-stroke_sahhs.csv
+
+  ## Make variable_selection_output_cohort_prevax-sub_covidhospital_FALSE-ami
+
+    
+
+  variable_selection_output-cohort_prevax-sub_covidhospital_FALSE-ami:
+    run: 'r:v2 analysis/make_output/make_variable_selection_output.R cohort_prevax-sub_covidhospital_FALSE-ami
+      prevax '
+    needs:
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-ami
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
+    - lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
+    outputs:
+      moderately_sensitive:
+        variable_selection_output: output/make_output/variable_selection-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+
+  ## Make variable_selection_output_cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+
+    
+
+  variable_selection_output-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
+    run: 'r:v2 analysis/make_output/make_variable_selection_output.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+      prevax '
+    needs:
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        variable_selection_output: output/make_output/variable_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+
+  ## Make variable_selection_output_cohort_prevax-sub_covidhospital_TRUE-ami
+
+    
+
+  variable_selection_output-cohort_prevax-sub_covidhospital_TRUE-ami:
+    run: 'r:v2 analysis/make_output/make_variable_selection_output.R cohort_prevax-sub_covidhospital_TRUE-ami
+      prevax '
+    needs:
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-ami
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
+    - lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
+    outputs:
+      moderately_sensitive:
+        variable_selection_output: output/make_output/variable_selection-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+
+  ## Make variable_selection_output_cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+
+    
+
+  variable_selection_output-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
+    run: 'r:v2 analysis/make_output/make_variable_selection_output.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+      prevax '
+    needs:
+    - make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    - lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        variable_selection_output: output/make_output/variable_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+
   ## Run models 
 
   make_model_input-cohort_prevax-main-ami:
@@ -424,7 +516,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -462,7 +554,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -500,7 +592,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -538,7 +630,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -576,7 +668,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -614,7 +706,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -738,7 +830,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -769,7 +861,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -800,7 +892,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -831,7 +923,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -862,7 +954,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -893,7 +985,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -926,7 +1018,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -957,7 +1049,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -988,7 +1080,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1019,7 +1111,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1050,7 +1142,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1081,7 +1173,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1114,7 +1206,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1145,7 +1237,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1176,7 +1268,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1207,7 +1299,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1238,7 +1330,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1269,7 +1361,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
+      --cut_points=1;28;196;364;714;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
