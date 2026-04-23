@@ -183,6 +183,26 @@ clean_data <- function(cohort, describe = describe) {
   )
 }
 
+# Create function to apply multiple imputation to study data -----------------
+apply_across_MI <- function(cohort) {
+  splice(
+    comment(glue("apply_across_MI_cohort_{cohort}")),
+    action(
+      name = glue("apply_across_MI_cohort_{cohort}"),
+      run = glue(
+        "r:latest analysis/apply_across_MI/apply_across_MI.R"
+      ),
+      arguments = c(c(cohort)),
+      needs = list(
+        glue("generate_input_{cohort}_clean")
+      ),
+      highly_sensitive = list(
+        cohort_clean_across_MI = glue("output/apply_across_MI/input_{cohort}_clean_across_MI.rds")
+      )
+    )
+  )
+}
+
 
 # Create function to generate 10% subsample of study population -----------------
 generate_subsample_cohort <- function(cohort) {
@@ -195,10 +215,10 @@ generate_subsample_cohort <- function(cohort) {
       ),
       arguments = c(c(cohort)),
       needs = list(
-        glue("generate_input_{cohort}_clean") # , glue("make_model_input-{name}")
+        glue("apply_across_MI_cohort_{cohort}")
       ),
       highly_sensitive = list(
-        cohort_clean_subsample = glue("output/generate_subsample/input_{cohort}_clean_subsample.rds")
+        cohort_clean_subsample_across_MI = glue("output/generate_subsample/input_{cohort}_clean_across_MI_subsample.rds")
       )
     )
   )
@@ -253,7 +273,7 @@ table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
       name = glue("table1-cohort_{cohort}{preex_str}"),
       run = "r:v2 analysis/table1/table1.R",
       arguments = c(c(cohort), c(ages), c(preex)),
-      needs = list(glue("generate_input_{cohort}_clean")),
+      needs = list(glue("apply_across_MI_cohort_{cohort}")),
       moderately_sensitive = list(
         table1 = glue(
           "output/table1/table1-cohort_{cohort}{preex_str}.csv"
@@ -468,7 +488,7 @@ apply_model_function <- function(
     action(
       name = glue("make_model_input-{name}"),
       run = glue("r:latest analysis/model/make_model_input.R {name}"),
-      needs = as.list(glue("generate_input_{cohort}_clean")),
+      needs = as.list(glue("apply_across_MI_cohort_{cohort}")),
       highly_sensitive = list(
         model_input = glue("output/model/model_input-{name}.rds")
       )
@@ -1049,6 +1069,15 @@ actions_list <- splice(
   splice(
     unlist(
       lapply(cohorts, function(x) clean_data(cohort = x, describe = describe)),
+      recursive = FALSE
+    )
+  ),
+
+  # ## Apply across multiple imputation --------------------------------------
+
+  splice(
+    unlist(
+      lapply(cohorts, function(x) apply_across_MI(cohort = x)),
       recursive = FALSE
     )
   ),

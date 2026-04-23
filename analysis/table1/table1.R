@@ -76,10 +76,11 @@ age_bounds <- as.numeric(stringr::str_split(as.vector(age_str), ";")[[1]])
 print("Load data")
 
 df <- readr::read_rds(paste0(
-  "output/dataset_clean/input_",
+  "output/apply_across_MI/input_",
   cohort,
-  "_clean.rds"
+  "_clean_across_MI.rds"
 ))
+
 
 # Table 1 Processing Start -----------------------------------------------------
 print("Table 1 processing")

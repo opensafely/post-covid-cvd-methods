@@ -17,9 +17,9 @@ prepare_model_input <- function(name) {
   print(paste0("Load data for ", active_analyses$name))
 
   input <- readr::read_rds(paste0(
-    "output/dataset_clean/input_",
+    "output/apply_across_MI/input_",
     active_analyses$cohort,
-    "_clean.rds"
+    "_clean_across_MI.rds"
   ))
 
   # Restrict to required variables for dataset preparation ---------------------

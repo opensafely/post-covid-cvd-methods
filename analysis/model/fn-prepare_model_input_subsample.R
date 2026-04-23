@@ -20,7 +20,7 @@ prepare_model_input_subsample <- function(name) {
   input <- readr::read_rds(paste0(
     "output/generate_subsample/input_",
     active_analyses$cohort,
-    "_clean_subsample.rds"
+    "_clean_across_MI_subsample.rds"
   ))
 
   # Restrict to required variables for dataset preparation ---------------------
