@@ -80,7 +80,7 @@ print("Load subsample data")
 df <- readr::read_rds(paste0(
   "output/generate_subsample/input_",
   cohort,
-  "_clean_subsample.rds"
+  "_clean_across_MI_subsample.rds"
 ))
 
 # Processing Start -------------------------------------------------------------

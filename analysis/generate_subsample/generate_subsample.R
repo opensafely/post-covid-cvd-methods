@@ -70,9 +70,9 @@ if (length(args) == 0) {
 print("Load data")
 
 df <- readr::read_rds(paste0(
-  "output/dataset_clean/input_",
+  "output/apply_across_MI/input_",
   cohort,
-  "_clean.rds"
+  "_clean_across_MI.rds"
 ))
 
 
@@ -101,7 +101,7 @@ print("Save subsample")
 
 saveRDS(
   subsample_df,
-  file = paste0(generate_subsample_dir, "input_", cohort, "_clean_subsample.rds"),
+  file = paste0(generate_subsample_dir, "input_", cohort, "_clean_across_MI_subsample.rds"),
   compress = TRUE
 )
 
