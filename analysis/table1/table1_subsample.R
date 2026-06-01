@@ -56,7 +56,7 @@ print(length(args))
 if (length(args) == 0) {
   # default argument values
   cohort  <- "prevax"
-  age_str <- "18;30;40;50;50;70;80;90"
+  age_str <- "18;30;40;50;60;70;80;90"
   preex   <- "All"
 } else {
   # YAML arguments

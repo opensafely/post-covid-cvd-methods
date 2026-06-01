@@ -71,7 +71,7 @@ if (length(args) == 0) {
   # default argument values
   name    <- "cohort_prevax-main-ami"
   cohort  <- "prevax"
-  age_str <- "18;30;40;50;50;70;80;90"
+  age_str <- "18;30;40;50;60;70;80;90"
   preex   <- FALSE
 } else {
   # YAML arguments
@@ -117,11 +117,15 @@ model_input_df$binary_covid19_exposure <- !is.na(model_input_df$exp_date)
 model_input_df <- (model_input_df %>% select(!c(patient_id, index_date, exp_date)))
 
 model_input_df$outcome_cox_dates <- rep(as.Date(NA), times = nrow(model_input_df))
+model_input_df$cens_status       <- rep(NA, times = nrow(model_input_df))
+
 for (i in c(1:nrow(model_input_df))) {
-  if (model_input_df$binary_outcome[i]) {
-    model_input_df$outcome_cox_dates[i] <- model_input_df$out_date[i]
-  } else {
+  if (is.na(model_input_df$out_date[i])) {
+    model_input_df$cens_status[i]       <- 1
     model_input_df$outcome_cox_dates[i] <- model_input_df$end_date_outcome[i]
+  } else {
+    model_input_df$cens_status[i]       <- 0
+    model_input_df$outcome_cox_dates[i] <- model_input_df$out_date[i]
   }
 }
 
@@ -167,15 +171,15 @@ exposure_standard_errors <- exposure_standard_errors[names(exposure_standard_err
 ## outcome cox regression
 
 if (length(vars_selected_without_exposure) > 1) {
-  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
+  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), cens_status) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
   for (i in c(2:length(vars_selected_without_exposure))) {
     var <- vars_selected_without_exposure[i]
     outcome_regression_formula <- paste0(outcome_regression_formula, " + ", var)
   }
 } else if (length(vars_selected_without_exposure) == 1) {
-  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
+  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), cens_status) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
 } else {
-  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure")
+  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), cens_status) ~ binary_covid19_exposure")
 }
 
 outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formula)),
@@ -329,15 +333,15 @@ exposure_standard_errors <- exposure_standard_errors[names(exposure_standard_err
 ## outcome cox regression
 
 if (length(vars_selected_without_exposure) > 1) {
-  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
+  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), cens_status) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
   for (i in c(2:length(vars_selected_without_exposure))) {
     var <- vars_selected_without_exposure[i]
     outcome_regression_formula <- paste0(outcome_regression_formula, " + ", var)
   }
 } else if (length(vars_selected_without_exposure) == 1) {
-  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
+  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), cens_status) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
 } else {
-  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure")
+  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), cens_status) ~ binary_covid19_exposure")
 }
 
 outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formula)),
@@ -490,15 +494,15 @@ exposure_standard_errors <- exposure_standard_errors[names(exposure_standard_err
 ## outcome cox regression
 
 if (length(vars_selected_without_exposure) > 1) {
-  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
+  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), cens_status) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
   for (i in c(2:length(vars_selected_without_exposure))) {
     var <- vars_selected_without_exposure[i]
     outcome_regression_formula <- paste0(outcome_regression_formula, " + ", var)
   }
 } else if (length(vars_selected_without_exposure) == 1) {
-  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
+  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), cens_status) ~ binary_covid19_exposure + ", vars_selected_without_exposure[1])
 } else {
-  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), binary_outcome) ~ binary_covid19_exposure")
+  outcome_regression_formula    <- paste0("Surv(as.numeric(outcome_cox_dates), cens_status) ~ binary_covid19_exposure")
 }
 
 outcome_regression <- coxph(formula = eval(parse(text = outcome_regression_formula)),
@@ -684,4 +688,3 @@ write.csv(
   paste0(unconfoundedness_test_dir, "unconfoundedness_test_results-", name, ".csv"),
   row.names = TRUE
 )
-

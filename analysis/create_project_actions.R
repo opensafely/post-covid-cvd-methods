@@ -46,7 +46,7 @@ subgroups <- unique(str_extract(active_analyses$analysis, "^main|sub_[^_]+"))
 
 active_age <- active_analyses[grepl("_age_", active_analyses$name), ]$name
 
-age_str <- "18;30;40;50;50;70;80;90"
+age_str <- "18;30;40;50;60;70;80;90"
 
 # NB: For performance, this should be FALSE when running on the server
 describe <- FALSE # Prints descriptive files for each dataset in the pipeline

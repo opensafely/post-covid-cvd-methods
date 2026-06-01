@@ -134,7 +134,7 @@ actions:
   ## Generate table1_cohort_prevax 
 
   table1-cohort_prevax:
-    run: 'r:v2 analysis/table1/table1.R prevax 18;30;40;50;50;70;80;90 '
+    run: 'r:v2 analysis/table1/table1.R prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_input_prevax_clean
     outputs:
@@ -155,7 +155,7 @@ actions:
   ## Generate table1_cohort_prevax_subsample 
 
   table1-cohort_prevax_subsample:
-    run: 'r:v2 analysis/table1/table1_subsample.R prevax 18;30;40;50;50;70;80;90 '
+    run: 'r:v2 analysis/table1/table1_subsample.R prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     outputs:
@@ -167,7 +167,7 @@ actions:
 
   lasso_var_selection-cohort_prevax-main-ami:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-main-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - make_model_input_subsample-cohort_prevax-main-ami
@@ -179,7 +179,7 @@ actions:
 
   lasso_var_selection-cohort_prevax-main-stroke_sahhs:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-main-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - make_model_input_subsample-cohort_prevax-main-stroke_sahhs
@@ -191,7 +191,7 @@ actions:
 
   lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_FALSE-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-ami
@@ -205,7 +205,7 @@ actions:
 
   lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
@@ -217,7 +217,7 @@ actions:
 
   lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_TRUE-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-ami
@@ -231,7 +231,7 @@ actions:
 
   lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
     run: 'r:v2 analysis/lasso_var_selection/lasso_var_selection.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
@@ -243,7 +243,7 @@ actions:
 
   lasso_X_var_selection-cohort_prevax-main-ami:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-main-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-main-ami
@@ -255,7 +255,7 @@ actions:
 
   lasso_X_var_selection-cohort_prevax-main-stroke_sahhs:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-main-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-main-stroke_sahhs
@@ -269,7 +269,7 @@ actions:
 
   lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_FALSE-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
@@ -283,7 +283,7 @@ actions:
 
   lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
@@ -297,7 +297,7 @@ actions:
 
   lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_TRUE-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
@@ -311,7 +311,7 @@ actions:
 
   lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
     run: 'r:v2 analysis/lasso_X_var_selection/lasso_X_var_selection.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - generate_subsample_cohort_prevax
     - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
@@ -323,7 +323,7 @@ actions:
 
   lasso_union_var_selection-cohort_prevax-main-ami:
     run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-main-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-main-ami
     - lasso_X_var_selection-cohort_prevax-main-ami
@@ -335,7 +335,7 @@ actions:
 
   lasso_union_var_selection-cohort_prevax-main-stroke_sahhs:
     run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-main-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-main-stroke_sahhs
     - lasso_X_var_selection-cohort_prevax-main-stroke_sahhs
@@ -349,7 +349,7 @@ actions:
 
   lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami:
     run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-sub_covidhospital_FALSE-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
@@ -363,7 +363,7 @@ actions:
 
   lasso_union_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
     run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
@@ -377,7 +377,7 @@ actions:
 
   lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami:
     run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-sub_covidhospital_TRUE-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
@@ -391,7 +391,7 @@ actions:
 
   lasso_union_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
     run: 'r:v2 analysis/lasso_union_var_selection/lasso_union_var_selection.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
@@ -516,7 +516,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -554,7 +554,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -592,7 +592,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -630,7 +630,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -668,7 +668,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -706,7 +706,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -830,7 +830,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -861,7 +861,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -892,7 +892,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -923,7 +923,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -954,7 +954,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -985,7 +985,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1018,7 +1018,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1049,7 +1049,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1080,7 +1080,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1111,7 +1111,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1142,7 +1142,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1173,7 +1173,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1206,7 +1206,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1237,7 +1237,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1268,7 +1268,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1299,7 +1299,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1330,7 +1330,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1361,7 +1361,7 @@ actions:
       --cox_stop=end_date_outcome
       --study_start=2020-01-01
       --study_stop=2024-04-30
-      --cut_points=1;28;196;364;714;1582
+      --cut_points=1;7;14;28;56;84;183;365;730;1065;1582
       --controls_per_case=20
       --total_event_threshold=50
       --episode_event_threshold=5
@@ -1381,7 +1381,7 @@ actions:
 
   unconfoundedness_test-cohort_prevax-main-ami:
     run: 'r:v2 analysis/unconfoundedness_test/unconfoundedness_test.R cohort_prevax-main-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-main-ami
     - lasso_X_var_selection-cohort_prevax-main-ami
@@ -1398,7 +1398,7 @@ actions:
 
   unconfoundedness_test-cohort_prevax-main-stroke_sahhs:
     run: 'r:v2 analysis/unconfoundedness_test/unconfoundedness_test.R cohort_prevax-main-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-main-stroke_sahhs
     - lasso_X_var_selection-cohort_prevax-main-stroke_sahhs
@@ -1417,7 +1417,7 @@ actions:
 
   unconfoundedness_test-cohort_prevax-sub_covidhospital_FALSE-ami:
     run: 'r:v2 analysis/unconfoundedness_test/unconfoundedness_test.R cohort_prevax-sub_covidhospital_FALSE-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
@@ -1436,7 +1436,7 @@ actions:
 
   unconfoundedness_test-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
     run: 'r:v2 analysis/unconfoundedness_test/unconfoundedness_test.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
@@ -1455,7 +1455,7 @@ actions:
 
   unconfoundedness_test-cohort_prevax-sub_covidhospital_TRUE-ami:
     run: 'r:v2 analysis/unconfoundedness_test/unconfoundedness_test.R cohort_prevax-sub_covidhospital_TRUE-ami
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
@@ -1474,7 +1474,7 @@ actions:
 
   unconfoundedness_test-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
     run: 'r:v2 analysis/unconfoundedness_test/unconfoundedness_test.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
-      prevax 18;30;40;50;50;70;80;90 '
+      prevax 18;30;40;50;60;70;80;90 '
     needs:
     - lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     - lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs

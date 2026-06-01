@@ -54,7 +54,7 @@ if (length(args) == 0) {
   # default argument values
   name    <- "cohort_prevax-main-ami"
   cohort  <- "prevax"
-  age_str <- "18;30;40;50;50;70;80;90"
+  age_str <- "18;30;40;50;60;70;80;90"
   preex   <- FALSE
 } else {
   # YAML arguments
@@ -93,29 +93,27 @@ model_input_df$binary_covid19_exposure <- !is.na(model_input_df$exp_date)
 
 # remove unnecessary columns, remove all Date columns where unnecessary
 # exposure (covid-19) is recast to binary
-
 df2 <- (model_input_df %>% select(!c(patient_id, index_date,                                  # admin
                                      binary_outcome, out_date, end_date_outcome, cov_bin_ami, # outcome
                                      exp_date)))                                              # remove unnecessary
 df3 <- (model_input_df %>% select(c(binary_outcome, out_date, end_date_outcome)))
 
 df3$outcome_cox_dates <- rep(as.Date(NA), times = nrow(df3))
+df3$cens_status       <- rep(NA, times = nrow(df3))
+
 for (i in c(1:nrow(df3))) {
-  if (df3$binary_outcome[i]) {
-    df3$outcome_cox_dates[i] <- df3$out_date[i]
-  } else {
+  if (is.na(model_input_df$out_date[i])) {
+    df3$cens_status[i]       <- 1
     df3$outcome_cox_dates[i] <- df3$end_date_outcome[i]
+  } else {
+    df3$cens_status[i]       <- 0
+    df3$outcome_cox_dates[i] <- df3$out_date[i]
   }
 }
 
 lasso_exposure_and_conf_matrix <- data.matrix(df2)
 lasso_outcome_survival         <- Surv(time  = as.numeric(df3$outcome_cox_dates),
-                                       event = df3$binary_outcome)
-
-message("\n\nOutcome Data:")
-print(head(df3))
-message("\n\nSurvival Curve:")
-print(head(lasso_outcome_survival))
+                                       event = df3$cens_status)
 
 
 # Fitting the LASSO model ------------------------------------------------------
