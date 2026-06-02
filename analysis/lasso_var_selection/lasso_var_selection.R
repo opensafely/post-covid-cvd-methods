@@ -158,7 +158,7 @@ print("Save Covariate Selection and Coefficients")
 write.csv(
   lasso_coefs,
   paste0(lasso_var_selection_dir, "lasso_var_selection-coefs-", name, preex_string, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 
