@@ -149,12 +149,18 @@ if (!("binary_covid19_exposure" %in% vars_selected)) {
 }
 
 # remove all dates
-# NB: semi-redundant
 vars_selected <- vars_selected[!vars_selected %in% c("index_date", "end_date_exposure", "end_date_outcome", "exp_date", "out_date")]
 
 
-# Save covariate selection ----------------------------------------------------
-print("Save Covariate Selection")
+# Save covariate selection and coefficients ------------------------------------
+print("Save Covariate Selection and Coefficients")
+
+write.csv(
+  lasso_coefs,
+  paste0(lasso_var_selection_dir, "lasso_var_selection-coefs-", name, preex_string, ".csv"),
+  row.names = FALSE
+)
+
 
 write.csv(
   vars_selected,

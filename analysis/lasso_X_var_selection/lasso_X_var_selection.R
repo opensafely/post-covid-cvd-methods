@@ -202,7 +202,6 @@ df$cov_bin_cocp <- as.logical(df$cov_bin_cocp)
 df$cov_bin_hrt <- as.logical(df$cov_bin_hrt)
 df$cov_bin_sahhs <- as.logical(df$cov_bin_sahhs)
 
-print(summary(df))
 
 
 # LASSO_X data matrix setup ----------------------------------------------------
@@ -244,12 +243,17 @@ vars_selected <- names(lasso_X_coefs[lasso_X_coefs != 0.0])
 vars_selected <- vars_selected[vars_selected != "(Intercept)"] # remove intercept
 
 # remove all dates
-# NB: semi-redundant
 vars_selected <- vars_selected[!vars_selected %in% c("index_date", "end_date_exposure", "end_date_outcome", "exp_date", "out_date")]
 
 
-# Save covariate selection ----------------------------------------------------------
-print("Save Covariate Selection")
+# Save covariate selection and coefficients ------------------------------------
+print("Save Covariate Selection and Coefficients")
+
+write.csv(
+  lasso_X_coefs,
+  paste0(lasso_X_var_selection_dir, "lasso_X_var_selection-coefs-", name, preex_string, ".csv"),
+  row.names = FALSE
+)
 
 write.csv(
   vars_selected,

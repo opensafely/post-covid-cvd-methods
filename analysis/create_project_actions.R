@@ -314,6 +314,9 @@ lasso_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All
       moderately_sensitive = list(
         lasso_var_selection = glue(
           "output/lasso_var_selection/lasso_var_selection-{name}{preex_str}.csv"
+        ),
+        lasso_coefs = glue(
+          "output/lasso_var_selection/lasso_var_selection-coefs-{name}{preex_str}.csv"
         )
       )
     )
@@ -340,6 +343,9 @@ lasso_X_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "A
       moderately_sensitive = list(
         lasso_X_var_selection = glue(
           "output/lasso_X_var_selection/lasso_X_var_selection-{name}{preex_str}.csv"
+        ),
+        lasso_X_coefs = glue(
+          "output/lasso_X_var_selection/lasso_X_var_selection-coefs-{name}{preex_str}.csv"
         )
       )
     )
