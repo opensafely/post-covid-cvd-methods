@@ -93,7 +93,7 @@ df <- df[df$sub_bin_covidhistory == FALSE, ]
 # Create exposure indicator ----------------------------------------------------
 print("Create exposure indicator")
 
-df$exposed <- !is.na(df$exp_date_covid)
+df$exposed <- cov_bin_covid
 
 # Select for pre-existing conditions
 print("Select for pre-existing conditions")

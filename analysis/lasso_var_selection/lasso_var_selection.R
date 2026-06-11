@@ -23,6 +23,7 @@
 #
 # ------------------------------------------------------------------------------
 
+
 # Load libraries ---------------------------------------------------------------
 print("Load libraries")
 
@@ -32,16 +33,19 @@ library(dplyr)
 library(glmnet)
 library(survival)
 
+
 # Define lasso_var_selection output folder -------------------------------------
 print("Creating output/lasso_var_selection output folder")
 
 lasso_var_selection_dir <- "output/lasso_var_selection/"
 fs::dir_create(here::here(lasso_var_selection_dir))
 
+
 # Source common functions ------------------------------------------------------
 print("Source common functions")
 
 source("analysis/utility.R")
+
 
 # Specify arguments ------------------------------------------------------------
 print("Specify arguments")
@@ -85,53 +89,142 @@ model_input_df <- readr::read_rds(paste0(
 ))
 
 
-# LASSO data matrix setup ------------------------------------------------------
-print("LASSO data matrix setup")
+# Check all covariates for cox model -------------------------------------
+message("Check all covariates for cox model")
 
-model_input_df$binary_outcome          <- !is.na(model_input_df$out_date)
-model_input_df$binary_covid19_exposure <- !is.na(model_input_df$exp_date)
+model_input_df$index_date        <- as.Date(model_input_df$index_date)
+model_input_df$end_date_exposure <- as.Date(model_input_df$end_date_exposure)
+model_input_df$end_date_outcome  <- as.Date(model_input_df$end_date_outcome)
 
-# remove unnecessary columns, remove all Date columns where unnecessary
-# exposure (covid-19) is recast to binary
-df2 <- (model_input_df %>% select(!c(patient_id, index_date,                                  # admin
-                                     binary_outcome, out_date, end_date_outcome, cov_bin_ami, # outcome
-                                     exp_date)))                                              # remove unnecessary
-df3 <- (model_input_df %>% select(c(binary_outcome, out_date, end_date_outcome)))
+model_input_df$exp_date <- as.Date(model_input_df$exp_date)
+model_input_df$out_date <- as.Date(model_input_df$out_date)
 
-df3$outcome_cox_dates <- rep(as.Date(NA), times = nrow(df3))
-df3$cens_status       <- rep(NA, times = nrow(df3))
+model_input_df$cov_num_age       <- as.numeric(model_input_df$cov_num_age)
+model_input_df$cov_cat_sex       <- as.factor(model_input_df$cov_cat_sex)
+model_input_df$cov_cat_ethnicity <- as.factor(model_input_df$cov_cat_ethnicity)
+model_input_df$cov_cat_imd       <- as.factor(model_input_df$cov_cat_imd)
+model_input_df$cov_cat_smoking   <- as.factor(model_input_df$cov_cat_smoking)
 
-for (i in c(1:nrow(df3))) {
+model_input_df$cov_bin_carehome      <- as.logical(model_input_df$cov_bin_carehome)
+model_input_df$cov_bin_hcworker      <- as.factor(model_input_df$cov_bin_hcworker)
+model_input_df$cov_bin_dementia      <- as.logical(model_input_df$cov_bin_dementia)
+model_input_df$cov_bin_liver_disease <- as.logical(model_input_df$cov_bin_liver_disease)
+model_input_df$cov_bin_ckd           <- as.logical(model_input_df$cov_bin_ckd)
+
+model_input_df$cov_bin_cancer       <- as.logical(model_input_df$cov_bin_cancer)
+model_input_df$cov_bin_hypertension <- as.logical(model_input_df$cov_bin_hypertension)
+model_input_df$cov_bin_diabetes     <- as.logical(model_input_df$cov_bin_diabetes)
+model_input_df$cov_bin_obesity      <- as.logical(model_input_df$cov_bin_obesity)
+model_input_df$cov_bin_copd         <- as.logical(model_input_df$cov_bin_copd)
+
+model_input_df$cov_bin_depression <- as.logical(model_input_df$cov_bin_depression)
+model_input_df$cov_bin_stroke_all <- as.logical(model_input_df$cov_bin_stroke_all)
+model_input_df$cov_bin_other_ae   <- as.logical(model_input_df$cov_bin_other_ae)
+model_input_df$cov_bin_vte        <- as.logical(model_input_df$cov_bin_vte)
+model_input_df$cov_bin_hf         <- as.logical(model_input_df$cov_bin_hf)
+
+model_input_df$cov_bin_angina        <- as.logical(model_input_df$cov_bin_angina)
+model_input_df$cov_bin_lipidmed      <- as.logical(model_input_df$cov_bin_lipidmed)
+model_input_df$cov_bin_antiplatelet  <- as.logical(model_input_df$cov_bin_antiplatelet)
+model_input_df$cov_bin_anticoagulant <- as.logical(model_input_df$cov_bin_anticoagulant)
+model_input_df$cov_bin_cocp          <- as.logical(model_input_df$cov_bin_cocp)
+
+model_input_df$cov_bin_hrt      <- as.logical(model_input_df$cov_bin_hrt)
+model_input_df$strat_cat_region <- as.factor(model_input_df$strat_cat_region)
+
+
+# Data preparation for lasso cox model ----------------------------------
+message("Data preparation for lasso cox model")
+
+lasso_cox_conf_matrix <- (model_input_df %>% select(c(
+  cov_bin_covid,
+
+  cov_num_age,
+  cov_cat_sex,
+  cov_cat_ethnicity,
+  cov_cat_imd,
+  cov_cat_smoking,
+
+  cov_bin_carehome,
+  cov_bin_hcworker,
+  cov_bin_dementia,
+  cov_bin_liver_disease,
+  cov_bin_ckd,
+
+  cov_bin_cancer,
+  cov_bin_hypertension,
+  cov_bin_diabetes,
+  cov_bin_obesity,
+  cov_bin_copd,
+
+  cov_bin_depression,
+  cov_bin_stroke_all,
+  cov_bin_other_ae,
+  cov_bin_vte,
+  cov_bin_hf,
+
+  cov_bin_angina,
+  cov_bin_lipidmed,
+  cov_bin_antiplatelet,
+  cov_bin_anticoagulant,
+  cov_bin_cocp,
+
+  cov_bin_hrt,
+  strat_cat_region
+)))
+
+lasso_cox_conf_matrix_preserving_factors <- model.matrix(
+   ~ ., # formula meaning take all terms
+  data = lasso_cox_conf_matrix
+)
+
+outcome_cox_dates <- rep(as.Date(NA), times = nrow(model_input_df))
+cens_status       <- rep(NA, times = nrow(model_input_df))
+
+# 0 = censoring time = date of end of study
+# 1 = failure time = time of outcome event
+# See: https://www.rdocumentation.org/packages/survival/versions/3.8-3/topics/Surv
+# and: https://glmnet.stanford.edu/articles/Coxnet.html#basic-usage-for-right-censored-data
+for (i in c(1:nrow(model_input_df))) {
   if (is.na(model_input_df$out_date[i])) {
-    df3$cens_status[i]       <- 1
-    df3$outcome_cox_dates[i] <- df3$end_date_outcome[i]
+    # right-hand censorship takes place
+    cens_status[i]       <- 0
+    outcome_cox_dates[i] <- model_input_df$end_date_outcome[i]
   } else {
-    df3$cens_status[i]       <- 0
-    df3$outcome_cox_dates[i] <- df3$out_date[i]
+    # event takes place (failure)
+    cens_status[i]       <- 1
+    outcome_cox_dates[i] <- model_input_df$out_date[i]
   }
 }
 
-lasso_exposure_and_conf_matrix <- data.matrix(df2)
-lasso_outcome_survival         <- Surv(time  = as.numeric(df3$outcome_cox_dates),
-                                       event = df3$cens_status)
+lasso_cox_outcome_survival <- Surv(time  = as.numeric(outcome_cox_dates),
+                                   event = cens_status,
+                                   type  = "right")
 
 
-# Fitting the LASSO model ------------------------------------------------------
-print("Fitting the LASSO model")
+# Fitting the lasso cox model ----------------------------------------------------
+message("Fitting the lasso cox model")
 
-cv_lasso_model <- cv.glmnet(x = lasso_exposure_and_conf_matrix,
-                            y = lasso_outcome_survival,
-                            family="cox", # cox (survival curve) regression
-                            alpha=1)      # LASSO penalty
+lasso_cox_outcome_survival <- Surv(time  = as.numeric(outcome_cox_dates),
+                                   event = cens_status,
+                                   type  = "right")
+
+cv_lasso_cox_model <- cv.glmnet(x      = lasso_cox_conf_matrix_preserving_factors,
+                                y      = lasso_cox_outcome_survival,
+                                family = "cox",      # logistic regression
+                                alpha  = 1)          # LASSO penalty
 
 # tune regularisation parameter lambda to minimise cross-validated error (cvm)
-lambda         <- cv_lasso_model$lambda.min
+lambda         <- cv_lasso_cox_model$lambda.min
 
-lasso_model    <- glmnet(x = lasso_exposure_and_conf_matrix,
-                         y = lasso_outcome_survival,
-                         family="cox",  # cox (survival curve) regression
-                         alpha=1,       # LASSO penalty
-                         lambda=lambda) # optimal lambda
+lasso_cox_model    <- glmnet(x = lasso_cox_conf_matrix_preserving_factors,
+                             y = lasso_cox_outcome_survival,
+                             family = "cox",      # logistic regression
+                             alpha=1,             # LASSO penalty
+                             lambda=lambda)       # optimal lambda
+
+print(lasso_cox_model$beta)
+stop("check")
 
 
 # Extract covariate selection results ------------------------------------------

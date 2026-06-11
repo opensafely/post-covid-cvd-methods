@@ -3,7 +3,6 @@
 # make_model_input_subsample.R
 #
 # Generates survival data for use when fitting cox regression models
-# using a pre-determined subsample of the availoable study population
 # 
 # Arguments:
 #  - name - string, provides both the cohort and outcome

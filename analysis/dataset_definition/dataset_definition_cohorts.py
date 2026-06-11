@@ -25,7 +25,7 @@ def generate_dataset(index_date, end_date_exp, end_date_out):
 
 # Configure dummy data
 
-    dataset.configure_dummy_data(population_size=5000)
+    dataset.configure_dummy_data(population_size=10000)
 
 # Import variables function
 

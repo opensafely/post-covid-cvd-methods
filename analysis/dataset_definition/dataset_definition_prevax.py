@@ -27,3 +27,4 @@ dataset = generate_dataset(index_date, end_date_exposure, end_date_outcome)
 dataset.index_date = index_date
 dataset.end_date_exposure = end_date_exposure
 dataset.end_date_outcome = end_date_outcome
+
