@@ -30,7 +30,7 @@ library(dplyr)
 
 defaults_list <- list(
   version = "3.0",
-  expectations = list(population_size = 10000L)
+  expectations = list(population_size=10000L)
 )
 
 active_analyses <- read_rds("lib/active_analyses.rds")
@@ -333,6 +333,9 @@ lasso_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All
       needs = list(glue("generate_subsample_cohort_{cohort}"),
                    glue("make_model_input_subsample-{name}")),
       moderately_sensitive = list(
+        fully_adjusted_logistic_coefs = glue(
+          "output/lasso_var_selection/fully_adjusted_logistic_coefs-{name}{preex_str}.csv"
+        ),
         lasso_var_selection = glue(
           "output/lasso_var_selection/lasso_var_selection-{name}{preex_str}.csv"
         ),
@@ -362,6 +365,9 @@ lasso_X_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "A
       needs = list(glue("generate_subsample_cohort_{cohort}"),
                    glue("lasso_var_selection-{name}{preex_str}")),
       moderately_sensitive = list(
+        fully_adjusted_logistic_coefs = glue(
+          "output/lasso_X_var_selection/fully_adjusted_logistic_coefs-{name}{preex_str}.csv"
+        ),
         lasso_X_var_selection = glue(
           "output/lasso_X_var_selection/lasso_X_var_selection-{name}{preex_str}.csv"
         ),

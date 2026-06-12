@@ -37,6 +37,8 @@ prepare_model_input <- function(name) {
     "cov_cat_sex",
     "cov_cat_ethnicity",
     "cov_cat_smoking",
+    "cov_bin_covid",
+    "cov_bin_sahhs",
     unlist(strsplit(active_analyses$covariate_other, split = ";")),
     c(grep("sub_", colnames(input), value = TRUE)), #sub_cat_covidhospital, sub_cat_covidhistory, and other subgroups
     "sup_bin_preex"
@@ -111,6 +113,8 @@ prepare_model_input <- function(name) {
       end_date_outcome = min(end_date_outcome, out_date, na.rm = TRUE)
     ) %>%
     dplyr::ungroup()
+
+  keep <- c(keep, "cov_bin_covid", "cov_bin_sahhs")
 
   return(list(input = input, keep = keep))
 }

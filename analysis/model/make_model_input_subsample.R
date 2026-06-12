@@ -67,7 +67,6 @@ print("Load and prepare data for analysis")
 
 pmi <- prepare_model_input_subsample(name)
 
-
 # Restrict to required population -------------------------------------------
 print('Restrict to required population')
 
@@ -204,6 +203,7 @@ df <- df %>%
   dplyr::select(tidyselect::all_of(pmi$keep))
 
 check_vitals(df)
+
 readr::write_rds(
   df,
   file.path(
