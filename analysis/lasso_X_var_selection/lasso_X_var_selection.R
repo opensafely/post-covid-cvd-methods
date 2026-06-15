@@ -219,8 +219,8 @@ print("Extract covariate selection results")
 lasso_X_coefs        <- as.vector(lasso_X_model$beta)
 names(lasso_X_coefs) <- rownames(lasso_X_model$beta)
 
-candidate_vars <- colnames(lasso_cox_conf_matrix)
-non_zero_vars  <- names(lasso_cox_coefs[lasso_cox_coefs != 0.0])
+candidate_vars <- colnames(lasso_X_conf_matrix)
+non_zero_vars  <- names(lasso_X_coefs[lasso_X_coefs != 0.0])
 vars_selected  <- convert_terms_to_vars(non_zero_vars)
 
 # always include exposure
