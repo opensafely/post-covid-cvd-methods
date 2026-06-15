@@ -25,6 +25,11 @@
 #
 # ------------------------------------------------------------------------------
 
+# Refresh local R session ------------------------------------------------------
+print("Refresh local R session")
+
+rm(list=ls())
+
 
 # Load libraries ---------------------------------------------------------------
 print("Load libraries")
@@ -214,23 +219,9 @@ print("Extract covariate selection results")
 lasso_X_coefs        <- as.vector(lasso_X_model$beta)
 names(lasso_X_coefs) <- rownames(lasso_X_model$beta)
 
-candidate_vars <- colnames(lasso_X_conf_matrix)
-non_zero_vars  <- names(lasso_X_coefs[lasso_X_coefs != 0.0])
-vars_selected  <- c()
-
-for (candidate in candidate_vars) {
-  add_candidate <- FALSE
-
-  for (var in non_zero_vars) {
-    if (grepl(candidate, var)) {
-      add_candidate <- TRUE
-    }
-  }
-
-  if (add_candidate) {
-    vars_selected <- c(vars_selected, candidate)
-  }
-}
+candidate_vars <- colnames(lasso_cox_conf_matrix)
+non_zero_vars  <- names(lasso_cox_coefs[lasso_cox_coefs != 0.0])
+vars_selected  <- convert_terms_to_vars(non_zero_vars)
 
 # always include exposure
 if (!("cov_bin_covid" %in% vars_selected)) {

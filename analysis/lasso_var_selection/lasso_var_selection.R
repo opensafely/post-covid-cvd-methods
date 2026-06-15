@@ -23,9 +23,10 @@
 #
 # ------------------------------------------------------------------------------
 
+# Refresh local R session ------------------------------------------------------
+print("Refresh local R session")
 
-# Control RNG
-set.seed(2006)
+rm(list=ls())
 
 
 # Load libraries ---------------------------------------------------------------
@@ -255,21 +256,7 @@ names(lasso_cox_coefs) <- rownames(lasso_cox_model$beta)
 
 candidate_vars <- colnames(lasso_cox_conf_matrix)
 non_zero_vars  <- names(lasso_cox_coefs[lasso_cox_coefs != 0.0])
-vars_selected  <- c()
-
-for (candidate in candidate_vars) {
-  add_candidate <- FALSE
-
-  for (var in non_zero_vars) {
-    if (grepl(candidate, var)) {
-      add_candidate <- TRUE
-    }
-  }
-
-  if (add_candidate) {
-    vars_selected <- c(vars_selected, candidate)
-  }
-}
+vars_selected  <- convert_terms_to_vars(non_zero_vars)
 
 # always include exposure
 if (!("cov_bin_covid" %in% vars_selected)) {

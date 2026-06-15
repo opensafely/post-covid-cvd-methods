@@ -79,3 +79,78 @@ numerical_to_categorical <- function(
   }
   return(y)
 }
+
+
+fill_in_blanks <- function(p_values = NULL, labels = NULL) {
+  for (label in labels) {
+    # if a given variable doesn't exist, create as NaN
+    if (!(label %in% names(p_values))) {
+      p_values[label] <- NaN
+    }
+  }
+  # assert variable ordering
+  p_values <- p_values[order(factor(names(p_values), levels = labels))]
+  
+  return (p_values)
+}
+
+
+make_exposure_formula <- function(vars_selected = NULL) {
+  vars_no_exposure <- vars_selected[!vars_selected %in% c("cov_bin_covid")]
+
+  if (length(vars_no_exposure) == 0) {
+    formula_string   <- "cov_bin_covid ~ 1"
+
+  } else if (length(vars_no_exposure) == 1) {
+    formula_string   <- paste0("cov_bin_covid ~ ", vars_no_exposure[1])
+
+  } else {
+    formula_string   <- "cov_bin_covid ~ "
+    for (var in vars_no_exposure) {
+      formula_string <- paste0(formula_string, var, " + ")
+    }
+    formula_string <- stringr::str_sub(formula_string, end = -3)
+  }
+
+  return (formula_string)
+}
+
+
+make_outcome_formula <- function(vars_selected = NULL, outcome = NULL) {
+  vars_no_outcome <- vars_selected[!vars_selected %in% c(outcome, "outcome_cox_dates", "cens_status")]
+
+  if (length(vars_no_outcome) == 0) {
+    formula_string   <- paste0("Surv(time  = as.numeric(outcome_cox_dates), event = cens_status, type  = 'right')", " ~ 1")
+
+  } else if (length(vars_no_outcome) == 1) {
+    formula_string   <- paste0("Surv(time  = as.numeric(outcome_cox_dates), event = cens_status, type  = 'right')", " ~ ", vars_no_outcome[1])
+
+  } else {
+    formula_string   <- paste0("Surv(time  = as.numeric(outcome_cox_dates), event = cens_status, type  = 'right')", " ~ ")
+    for (var in vars_no_outcome) {
+      formula_string <- paste0(formula_string, var, " + ")
+    }
+    # remove final ' + '
+    formula_string <- stringr::str_sub(formula_string, end = -4)
+  }
+
+  return (formula_string)
+}
+
+
+convert_terms_to_vars <- function(terms = NULL, all_var_names = NULL) {
+  vars <- c()
+
+  for (term in terms) {
+    # split by capital letter, extract first term
+    # covariate names always all lower case
+    # Factor Level Names always begin with upper case
+    new_term <- sapply(strsplit(x = term, split = '([[:upper:]])'), `[`, 1)
+    vars     <- c(vars, new_term)
+  }
+
+  # remove duplicates (i.e. two levels are significant)
+  vars <- unique(vars)
+
+  return (vars)
+}
