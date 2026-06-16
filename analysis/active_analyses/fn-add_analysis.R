@@ -22,14 +22,10 @@ add_analysis <- function(
   # Define cut points ----
 
   cut_points <- list(
-    prevax    = "1;28;196;364;714;1582",
-    vax_unvax = "1;7;14;28;56;84;183;365;730;1065"
+    prevax    = "1;28;196;364;714;1582", # used
+    vax_unvax = "1;28;196;364;714;1582"  # never used
   )
-  cut_points_used <- ifelse(
-    cohort == "prevax",
-    cut_points$prevax,
-    cut_points$vax_unvax
-  )
+  cut_points_used <- cut_points$prevax
 
   new_analysis <- c(
     cohort = cohort,
