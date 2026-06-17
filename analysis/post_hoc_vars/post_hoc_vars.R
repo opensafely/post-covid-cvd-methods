@@ -1,0 +1,94 @@
+# ------------------------------------------------------------------------------
+#
+# post_hoc_vars.R
+#
+# This file generates any commonly used variables defined after the dataset
+# defintion runs, such as indicator variables.
+#
+# Authors: Emma Tarmey, Venexia Walker, UoB ehrQL Team
+#
+# ------------------------------------------------------------------------------
+
+# Refresh local R session ------------------------------------------------------
+print("Refresh local R session")
+
+rm(list=ls())
+
+
+# Specify arguments ------------------------------------------------------------
+print("Specify arguments")
+
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) == 0) {
+  cohort  <- "prevax"
+} else {
+  cohort  <- args[[1]]
+}
+
+
+# Load data --------------------------------------------------------------------
+print("Load data")
+
+df <- readr::read_rds(paste0(
+  "output/dataset_clean/input_",
+  cohort,
+  "_clean_prehoc.rds"
+))
+
+
+# Define variables -------------------------------------------------------------
+print("Define variables")
+
+df$cov_bin_covid <- !is.na(df$exp_date_covid)
+df$cov_bin_sahhs <- !is.na(df$out_date_stroke_sahhs)
+
+
+# Check all covariates types ---------------------------------------------------
+print("Check all covariate types")
+
+df$cov_bin_ami   <- as.factor(df$cov_bin_ami)   # outcome
+df$cov_bin_sahhs <- as.factor(df$cov_bin_sahhs) # outcome
+df$cov_bin_covid <- as.factor(df$cov_bin_covid) # exposure
+
+df$cov_num_age       <- as.numeric(df$cov_num_age)
+df$cov_cat_sex       <- as.factor(df$cov_cat_sex)
+df$cov_cat_ethnicity <- as.factor(df$cov_cat_ethnicity)
+df$cov_cat_imd       <- as.factor(df$cov_cat_imd)
+df$cov_cat_smoking   <- as.factor(df$cov_cat_smoking)
+
+df$cov_bin_carehome      <- as.factor(df$cov_bin_carehome)
+df$cov_bin_hcworker      <- as.factor(df$cov_bin_hcworker)
+df$cov_bin_dementia      <- as.factor(df$cov_bin_dementia)
+df$cov_bin_liver_disease <- as.factor(df$cov_bin_liver_disease)
+df$cov_bin_ckd           <- as.factor(df$cov_bin_ckd)
+
+df$cov_bin_cancer       <- as.factor(df$cov_bin_cancer)
+df$cov_bin_hypertension <- as.factor(df$cov_bin_hypertension)
+df$cov_bin_diabetes     <- as.factor(df$cov_bin_diabetes)
+df$cov_bin_obesity      <- as.factor(df$cov_bin_obesity)
+df$cov_bin_copd         <- as.factor(df$cov_bin_copd)
+
+df$cov_bin_depression <- as.factor(df$cov_bin_depression)
+df$cov_bin_stroke_all <- as.factor(df$cov_bin_stroke_all)
+df$cov_bin_other_ae   <- as.factor(df$cov_bin_other_ae)
+df$cov_bin_vte        <- as.factor(df$cov_bin_vte)
+df$cov_bin_hf         <- as.factor(df$cov_bin_hf)
+
+df$cov_bin_angina        <- as.factor(df$cov_bin_angina)
+df$cov_bin_lipidmed      <- as.factor(df$cov_bin_lipidmed)
+df$cov_bin_antiplatelet  <- as.factor(df$cov_bin_antiplatelet)
+df$cov_bin_anticoagulant <- as.factor(df$cov_bin_anticoagulant)
+df$cov_bin_cocp          <- as.factor(df$cov_bin_cocp)
+
+df$cov_bin_hrt      <- as.factor(df$cov_bin_hrt)
+df$strat_cat_region <- as.factor(df$strat_cat_region)
+
+
+# Save results -----------------------------------------------------------------
+print("Save results")
+
+saveRDS(
+  df,
+  file = paste0("output/dataset_clean/input_", cohort, "_clean.rds"),
+  compress = TRUE
+)

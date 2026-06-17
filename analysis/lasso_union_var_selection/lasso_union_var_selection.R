@@ -25,6 +25,11 @@
 #
 # ------------------------------------------------------------------------------
 
+# Refresh local R session ------------------------------------------------------
+print("Refresh local R session")
+
+rm(list=ls())
+
 
 # Load libraries ---------------------------------------------------------------
 print("Load libraries")
@@ -55,7 +60,7 @@ if (length(args) == 0) {
   # default argument values
   name    <- "cohort_prevax-main-ami"
   cohort  <- "prevax"
-  age_str <- "18;30;40;50;50;70;80;90"
+  age_str <- "18;30;40;50;60;70;80;90"
   preex   <- FALSE
 } else {
   # YAML arguments

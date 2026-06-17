@@ -30,7 +30,7 @@ library(dplyr)
 
 defaults_list <- list(
   version = "3.0",
-  expectations = list(population_size = 5000L)
+  expectations = list(population_size=10000L)
 )
 
 active_analyses <- read_rds("lib/active_analyses.rds")
@@ -46,7 +46,7 @@ subgroups <- unique(str_extract(active_analyses$analysis, "^main|sub_[^_]+"))
 
 active_age <- active_analyses[grepl("_age_", active_analyses$name), ]$name
 
-age_str <- "18;30;40;50;50;70;80;90"
+age_str <- "18;30;40;50;60;70;80;90"
 
 # NB: For performance, this should be FALSE when running on the server
 describe <- FALSE # Prints descriptive files for each dataset in the pipeline
@@ -155,7 +155,7 @@ clean_data <- function(cohort, describe = describe) {
         ),
         highly_sensitive = list(
           venn = glue("output/dataset_clean/venn-cohort_{cohort}.rds"),
-          cohort_clean = glue("output/dataset_clean/input_{cohort}_clean.rds")
+          cohort_clean = glue("output/dataset_clean/input_{cohort}_clean_prehoc.rds")
         )
       )
     } else {
@@ -176,10 +176,31 @@ clean_data <- function(cohort, describe = describe) {
         ),
         highly_sensitive = list(
           venn = glue("output/dataset_clean/venn-cohort_{cohort}.rds"),
-          cohort_clean = glue("output/dataset_clean/input_{cohort}_clean.rds")
+          cohort_clean = glue("output/dataset_clean/input_{cohort}_clean_prehoc.rds")
         )
       )
     }
+  )
+}
+
+
+# Create function to define post-hoc variables for clean data -------------------
+post_hoc_vars <- function(cohort) {
+  splice(
+    comment(glue("post_hoc_vars_cohort_{cohort}")),
+    action(
+      name = glue("post_hoc_vars_cohort_{cohort}"),
+      run = glue(
+        "r:latest analysis/post_hoc_vars/post_hoc_vars.R"
+      ),
+      arguments = c(c(cohort)),
+      needs = list(
+        glue("generate_input_{cohort}_clean")
+      ),
+      highly_sensitive = list(
+        cohort_clean = glue("output/dataset_clean/input_{cohort}_clean.rds")
+      )
+    )
   )
 }
 
@@ -195,7 +216,7 @@ generate_subsample_cohort <- function(cohort) {
       ),
       arguments = c(c(cohort)),
       needs = list(
-        glue("generate_input_{cohort}_clean") # , glue("make_model_input-{name}")
+        glue("post_hoc_vars_cohort_{cohort}") # , glue("make_model_input-{name}")
       ),
       highly_sensitive = list(
         cohort_clean_subsample = glue("output/generate_subsample/input_{cohort}_clean_subsample.rds")
@@ -253,7 +274,7 @@ table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
       name = glue("table1-cohort_{cohort}{preex_str}"),
       run = "r:v2 analysis/table1/table1.R",
       arguments = c(c(cohort), c(ages), c(preex)),
-      needs = list(glue("generate_input_{cohort}_clean")),
+      needs = list(glue("post_hoc_vars_cohort_{cohort}")),
       moderately_sensitive = list(
         table1 = glue(
           "output/table1/table1-cohort_{cohort}{preex_str}.csv"
@@ -312,8 +333,14 @@ lasso_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All
       needs = list(glue("generate_subsample_cohort_{cohort}"),
                    glue("make_model_input_subsample-{name}")),
       moderately_sensitive = list(
+        fully_adjusted_cox_coefs = glue(
+          "output/lasso_var_selection/fully_adjusted_cox_coefs-{name}{preex_str}.csv"
+        ),
         lasso_var_selection = glue(
           "output/lasso_var_selection/lasso_var_selection-{name}{preex_str}.csv"
+        ),
+        lasso_coefs = glue(
+          "output/lasso_var_selection/lasso_var_selection-coefs-{name}{preex_str}.csv"
         )
       )
     )
@@ -338,8 +365,14 @@ lasso_X_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "A
       needs = list(glue("generate_subsample_cohort_{cohort}"),
                    glue("lasso_var_selection-{name}{preex_str}")),
       moderately_sensitive = list(
+        fully_adjusted_logistic_coefs = glue(
+          "output/lasso_X_var_selection/fully_adjusted_logistic_coefs-{name}{preex_str}.csv"
+        ),
         lasso_X_var_selection = glue(
           "output/lasso_X_var_selection/lasso_X_var_selection-{name}{preex_str}.csv"
+        ),
+        lasso_X_coefs = glue(
+          "output/lasso_X_var_selection/lasso_X_var_selection-coefs-{name}{preex_str}.csv"
         )
       )
     )
@@ -468,7 +501,7 @@ apply_model_function <- function(
     action(
       name = glue("make_model_input-{name}"),
       run = glue("r:latest analysis/model/make_model_input.R {name}"),
-      needs = as.list(glue("generate_input_{cohort}_clean")),
+      needs = as.list(glue("post_hoc_vars_cohort_{cohort}")),
       highly_sensitive = list(
         model_input = glue("output/model/model_input-{name}.rds")
       )
@@ -724,12 +757,22 @@ unconfoundedness_test <- function(name, cohort, ages = "18;40;60;80", preex = "A
       needs = list(glue("lasso_var_selection-{name}{preex_str}"),
                    glue("lasso_X_var_selection-{name}{preex_str}"),
                    glue("lasso_union_var_selection-{name}{preex_str}"),
+                   glue("generate_subsample_cohort_{cohort}"),
                    glue("make_model_input_subsample-{name}")),
       moderately_sensitive = list(
-        unconfoundedness_test_lasso_explanatory       = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_explanatory-{name}{preex_str}.csv"),
-        unconfoundedness_test_lasso_X_explanatory     = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_X_explanatory-{name}{preex_str}.csv"),
-        unconfoundedness_test_lasso_union_explanatory = glue("output/unconfoundedness_test/unconfoundedness_test_lasso_union_explanatory-{name}{preex_str}.csv"),
-        unconfoundedness_test_results                 = glue("output/unconfoundedness_test/unconfoundedness_test_results-{name}{preex_str}.csv")
+        all_var_sets_conclusion_table              = glue("output/unconfoundedness_test/all_var_sets_conclusion_table-{name}{preex_str}.csv"),
+        fully_adjusted_exposure_regression_results = glue("output/unconfoundedness_test/fully_adjusted_exposure_regression_results-{name}{preex_str}.csv"),
+        fully_adjusted_outcome_regression_results  = glue("output/unconfoundedness_test/fully_adjusted_outcome_regression_results-{name}{preex_str}.csv"),
+        fully_adjusted_test_table                  = glue("output/unconfoundedness_test/fully_adjusted_test_table-{name}{preex_str}.csv"),
+        lasso_exposure_regression_results          = glue("output/unconfoundedness_test/lasso_exposure_regression_results-{name}{preex_str}.csv"),
+        lasso_outcome_regression_results           = glue("output/unconfoundedness_test/lasso_outcome_regression_results-{name}{preex_str}.csv"),
+        lasso_test_table                           = glue("output/unconfoundedness_test/lasso_test_table-{name}{preex_str}.csv"),
+        lasso_X_exposure_regression_results        = glue("output/unconfoundedness_test/lasso_X_exposure_regression_results-{name}{preex_str}.csv"),
+        lasso_X_outcome_regression_results         = glue("output/unconfoundedness_test/lasso_X_outcome_regression_results-{name}{preex_str}.csv"),
+        lasso_X_test_table                         = glue("output/unconfoundedness_test/lasso_X_test_table-{name}{preex_str}.csv"),
+        lasso_union_exposure_regression_results    = glue("output/unconfoundedness_test/lasso_union_exposure_regression_results-{name}{preex_str}.csv"),
+        lasso_union_outcome_regression_results     = glue("output/unconfoundedness_test/lasso_union_outcome_regression_results-{name}{preex_str}.csv"),
+        lasso_union_test_table                     = glue("output/unconfoundedness_test/lasso_union_test_table-{name}{preex_str}.csv")
       )
     )
   )
@@ -768,7 +811,7 @@ venn <- function(cohort, analyses = "") {
         x[x != ""]
       }),
       needs = c(
-        as.list(glue("generate_input_{cohort}_clean")),
+        as.list(glue("post_hoc_vars_cohort_{cohort}")),
         as.list(paste0(
           glue("make_model_input-cohort_"),
           venn_outcomes
@@ -817,7 +860,7 @@ venn <- function(cohort, analyses = "") {
         x[x != ""]
       }),
       needs = c(
-        as.list(glue("generate_input_{cohort}_clean")),
+        as.list(glue("post_hoc_vars_cohort_{cohort}")),
         as.list(paste0(
           glue("make_model_input-cohort_"),
           venn_outcomes
@@ -1049,6 +1092,15 @@ actions_list <- splice(
   splice(
     unlist(
       lapply(cohorts, function(x) clean_data(cohort = x, describe = describe)),
+      recursive = FALSE
+    )
+  ),
+
+  ## Define post hoc variables ----------------------------------
+
+  splice(
+    unlist(
+      lapply(cohorts, function(x) post_hoc_vars(cohort = x)),
       recursive = FALSE
     )
   ),

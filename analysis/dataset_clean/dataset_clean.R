@@ -175,6 +175,6 @@ input <- input %>%
 
 saveRDS(
   input,
-  file = paste0(dataclean_dir, "input_", cohort, "_clean.rds"),
+  file = paste0(dataclean_dir, "input_", cohort, "_clean_prehoc.rds"),
   compress = TRUE
 )

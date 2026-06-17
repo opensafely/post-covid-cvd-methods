@@ -3,7 +3,6 @@
 # make_model_input_subsample.R
 #
 # Generates survival data for use when fitting cox regression models
-# using a pre-determined subsample of the availoable study population
 # 
 # Arguments:
 #  - name - string, provides both the cohort and outcome
@@ -67,7 +66,6 @@ fs::dir_create(here::here(model_dir))
 print("Load and prepare data for analysis")
 
 pmi <- prepare_model_input_subsample(name)
-
 
 # Restrict to required population -------------------------------------------
 print('Restrict to required population')
@@ -205,6 +203,7 @@ df <- df %>%
   dplyr::select(tidyselect::all_of(pmi$keep))
 
 check_vitals(df)
+
 readr::write_rds(
   df,
   file.path(

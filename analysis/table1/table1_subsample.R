@@ -26,6 +26,11 @@
 #
 # ------------------------------------------------------------------------------
 
+# Refresh local R session ------------------------------------------------------
+print("Refresh local R session")
+
+rm(list=ls())
+
 
 # Load libraries ---------------------------------------------------------------
 print("Load libraries")
@@ -56,7 +61,7 @@ print(length(args))
 if (length(args) == 0) {
   # default argument values
   cohort  <- "prevax"
-  age_str <- "18;30;40;50;50;70;80;90"
+  age_str <- "18;30;40;50;60;70;80;90"
   preex   <- "All"
 } else {
   # YAML arguments
@@ -82,6 +87,48 @@ df <- readr::read_rds(paste0(
   "_clean_subsample.rds"
 ))
 
+
+# Check all covariates  --------------------------------------------------------
+message("Check all covariates")
+
+df$cov_bin_ami   <- as.logical(df$cov_bin_ami)   # outcome
+df$cov_bin_sahhs <- as.logical(df$cov_bin_sahhs) # outcome
+df$cov_bin_covid <- as.logical(df$cov_bin_covid) # exposure
+
+df$cov_num_age       <- as.numeric(df$cov_num_age)
+df$cov_cat_sex       <- as.factor(df$cov_cat_sex)
+df$cov_cat_ethnicity <- as.factor(df$cov_cat_ethnicity)
+df$cov_cat_imd       <- as.factor(df$cov_cat_imd)
+df$cov_cat_smoking   <- as.factor(df$cov_cat_smoking)
+
+df$cov_bin_carehome      <- as.factor(df$cov_bin_carehome)
+df$cov_bin_hcworker      <- as.factor(df$cov_bin_hcworker)
+df$cov_bin_dementia      <- as.factor(df$cov_bin_dementia)
+df$cov_bin_liver_disease <- as.factor(df$cov_bin_liver_disease)
+df$cov_bin_ckd           <- as.factor(df$cov_bin_ckd)
+
+df$cov_bin_cancer       <- as.factor(df$cov_bin_cancer)
+df$cov_bin_hypertension <- as.factor(df$cov_bin_hypertension)
+df$cov_bin_diabetes     <- as.factor(df$cov_bin_diabetes)
+df$cov_bin_obesity      <- as.factor(df$cov_bin_obesity)
+df$cov_bin_copd         <- as.factor(df$cov_bin_copd)
+
+df$cov_bin_depression <- as.factor(df$cov_bin_depression)
+df$cov_bin_stroke_all <- as.factor(df$cov_bin_stroke_all)
+df$cov_bin_other_ae   <- as.factor(df$cov_bin_other_ae)
+df$cov_bin_vte        <- as.factor(df$cov_bin_vte)
+df$cov_bin_hf         <- as.factor(df$cov_bin_hf)
+
+df$cov_bin_angina        <- as.factor(df$cov_bin_angina)
+df$cov_bin_lipidmed      <- as.factor(df$cov_bin_lipidmed)
+df$cov_bin_antiplatelet  <- as.factor(df$cov_bin_antiplatelet)
+df$cov_bin_anticoagulant <- as.factor(df$cov_bin_anticoagulant)
+df$cov_bin_cocp          <- as.factor(df$cov_bin_cocp)
+
+df$cov_bin_hrt      <- as.factor(df$cov_bin_hrt)
+df$strat_cat_region <- as.factor(df$strat_cat_region)
+
+
 # Table 1 Processing Start -----------------------------------------------------
 print("Table 1 processing")
 
@@ -93,7 +140,7 @@ df <- df[df$sub_bin_covidhistory == FALSE, ]
 # Create exposure indicator ----------------------------------------------------
 print("Create exposure indicator")
 
-df$exposed <- !is.na(df$exp_date_covid)
+df$exposed <- df$cov_bin_covid
 
 # Select for pre-existing conditions
 print("Select for pre-existing conditions")
