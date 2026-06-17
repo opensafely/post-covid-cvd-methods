@@ -101,10 +101,13 @@ model_input_df <- readr::read_rds(paste0(
 ))
 
 
-# Data preparation for fully adjusted logistic model ---------------------
-message("Data preparation for fully adjusted logistic model")
+# Data preparation for fully adjusted cox model ---------------------
+message("Data preparation for fully adjusted cox model")
 
-df2 <- (df %>% select(c(
+df2 <- (model_input_df %>% select(c(
+  out_date,
+  end_date_outcome,
+
   cov_bin_ami,
   cov_bin_sahhs,
   cov_bin_covid,
@@ -232,19 +235,30 @@ lasso_cox_model    <- glmnet(x = lasso_cox_conf_matrix_preserving_factors,
                              lambda = lambda)     # optimal lambda
 
 
-# Fitting the Fully adjusted logistic model ------------------------------------
-print("Fitting the fully-adjusted logistic model")
+# Fitting the Fully adjusted cox model ------------------------------------
+print("Fitting the fully-adjusted cox model")
 
 if (grepl("ami", name)) {
-  fully_adjusted_formula <- "cov_bin_ami ~ ."
+  outcome <- "cov_bin_ami"
 } else {
-  fully_adjusted_formula <- "cov_bin_sahhs ~ ."
+  outcome <- "cov_bin_sahhs"
 }
 
-fully_adjusted_logistic <- glm(
-  fully_adjusted_formula,
-  family = "binomial",
-  data = df2
+df2$outcome_cox_dates        <- outcome_cox_dates
+df2$cens_status              <- cens_status
+
+fully_adjusted_vars_selected <- colnames(df2)[!colnames(df2) %in% c(
+  "out_date", "end_date_outcome", "outcome_cox_dates", "cens_status"
+)]
+
+fully_adjusted_outcome_regression_formula <- make_outcome_formula(
+  vars_selected = fully_adjusted_vars_selected,
+  outcome = outcome
+)
+
+fully_adjusted_cox  <- coxph(
+  formula = as.formula(fully_adjusted_outcome_regression_formula),
+  data    = df2
 )
 
 
@@ -268,8 +282,8 @@ if (!("cov_bin_covid" %in% vars_selected)) {
 print("Save Covariate Selection and Coefficients")
 
 write.csv(
-  summary(fully_adjusted_logistic)$coefficients,
-  paste0(lasso_var_selection_dir, "fully_adjusted_logistic_coefs-", name, preex_string, ".csv"),
+  summary(fully_adjusted_cox)$coefficients,
+  paste0(lasso_var_selection_dir, "fully_adjusted_cox_coefs-", name, preex_string, ".csv"),
   row.names = TRUE
 )
 
