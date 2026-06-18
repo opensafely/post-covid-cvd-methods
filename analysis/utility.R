@@ -152,5 +152,8 @@ convert_terms_to_vars <- function(terms = NULL, all_var_names = NULL) {
   # remove duplicates (i.e. two levels are significant)
   vars <- unique(vars)
 
+  # remove any trailing . (leftover from levels)
+  vars <- gsub('.', '', vars)
+
   return (vars)
 }

@@ -811,56 +811,7 @@ venn <- function(cohort, analyses = "") {
         x[x != ""]
       }),
       needs = c(
-        as.list(glue("post_hoc_vars_cohort_{cohort}")),
-        as.list(paste0(
-          glue("make_model_input-cohort_"),
-          venn_outcomes
-        ))
-      ),
-      moderately_sensitive = list(
-        venn = glue("output/venn/venn-cohort_{cohort}{analyses_str}.csv"),
-        venn_midpoint6 = glue(
-          "output/venn/venn-cohort_{cohort}{analyses_str}-midpoint6.csv"
-        )
-      )
-    )
-  )
-}
-
-
-# Create function to make Venn data --------------------------------------------
-
-venn <- function(cohort, analyses = "") {
-  if (analyses == "") {
-    analyses_str <- ""
-    analyses <- "main"
-    analyses_input <- ""
-  } else {
-    analyses_str <- paste0("-", analyses)
-    analyses_input <- analyses
-  }
-
-  venn_outcomes <- gsub(
-    "cohort_",
-    "",
-    unique(
-      active_analyses[
-        active_analyses$cohort == cohort &
-          grepl(analyses, active_analyses$analysis),
-      ]$name
-    )
-  )
-
-  splice(
-    comment(glue("Generate venn-cohort_{cohort}{analyses_str}")),
-    action(
-      name = glue("venn-cohort_{cohort}{analyses_str}"),
-      run = "r:v2 analysis/venn/venn.R",
-      arguments = lapply(list(c(cohort, analyses_input)), function(x) {
-        x[x != ""]
-      }),
-      needs = c(
-        as.list(glue("post_hoc_vars_cohort_{cohort}")),
+        as.list(glue("generate_input_{cohort}_clean")),
         as.list(paste0(
           glue("make_model_input-cohort_"),
           venn_outcomes

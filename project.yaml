@@ -1612,7 +1612,7 @@ actions:
   venn-cohort_prevax:
     run: r:v2 analysis/venn/venn.R prevax
     needs:
-    - post_hoc_vars_cohort_prevax
+    - generate_input_prevax_clean
     - make_model_input-cohort_prevax-main-ami
     - make_model_input-cohort_prevax-main-stroke_sahhs
     outputs:
