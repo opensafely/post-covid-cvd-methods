@@ -90,12 +90,6 @@
       "downloaded_at": "2025-02-11 16:18:41.789035Z",
       "sha": "2022725be26bfeb9ec1410f8abaad61828fd4e58"
     },
-    "primis-covid19-vacc-uptake-bmi_stage.csv": {
-      "id": "primis-covid19-vacc-uptake/bmi_stage/v1.2",
-      "url": "https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/bmi_stage/v1.2/",
-      "downloaded_at": "2025-02-11 16:18:39.046095Z",
-      "sha": "7fd744bb94c1789632247a3fc1780910f421b172"
-    },
     "primis-covid19-vacc-uptake-sev_obesity.csv": {
       "id": "primis-covid19-vacc-uptake/sev_obesity/v1.2",
       "url": "https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/sev_obesity/v1.2/",
@@ -318,24 +312,6 @@
       "downloaded_at": "2025-02-11 16:18:50.019434Z",
       "sha": "4a72156011e3df469bead409773f7447b3bbd6a3"
     },
-    "user-elsie_horne-bmi_obesity_snomed.csv": {
-      "id": "user/elsie_horne/bmi_obesity_snomed/0764e9b4",
-      "url": "https://www.opencodelists.org/codelist/user/elsie_horne/bmi_obesity_snomed/0764e9b4/",
-      "downloaded_at": "2025-02-11 16:18:42.661697Z",
-      "sha": "18926afcb4bc165e7709a17c89735b2c03b81005"
-    },
-    "user-elsie_horne-bmi_obesity_icd10.csv": {
-      "id": "user/elsie_horne/bmi_obesity_icd10/6e55767e",
-      "url": "https://www.opencodelists.org/codelist/user/elsie_horne/bmi_obesity_icd10/6e55767e/",
-      "downloaded_at": "2025-02-11 16:18:42.570837Z",
-      "sha": "9235bab1c2f3b5581dd34431839db55f3d3bdb59"
-    },
-    "primis-covid19-vacc-uptake-bmi.csv": {
-      "id": "primis-covid19-vacc-uptake/bmi/v1",
-      "url": "https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/bmi/v1/",
-      "downloaded_at": "2025-02-11 16:18:39.141475Z",
-      "sha": "6e96c04ee1a647905be2b410fa2c33d770576bf0"
-    },
     "opensafely-current-copd.csv": {
       "id": "opensafely/current-copd/2020-05-06",
       "url": "https://www.opencodelists.org/codelist/opensafely/current-copd/2020-05-06/",
@@ -533,6 +509,36 @@
       "url": "https://www.opencodelists.org/codelist/user/elsie_horne/anticoagulant_dmd/7aa47477/",
       "downloaded_at": "2025-02-11 17:24:00.941478Z",
       "sha": "c8c37eb6259031781e6884286f41d305b70816e6"
+    },
+    "user-elsie_horne-bmi_obesity_snomed.csv": {
+      "id": "user/elsie_horne/bmi_obesity_snomed/0764e9b4",
+      "url": "https://www.opencodelists.org/codelist/user/elsie_horne/bmi_obesity_snomed/0764e9b4/",
+      "downloaded_at": "2025-02-11 16:18:42.661697Z",
+      "sha": "18926afcb4bc165e7709a17c89735b2c03b81005"
+    },
+    "user-elsie_horne-bmi_obesity_icd10.csv": {
+      "id": "user/elsie_horne/bmi_obesity_icd10/6e55767e",
+      "url": "https://www.opencodelists.org/codelist/user/elsie_horne/bmi_obesity_icd10/6e55767e/",
+      "downloaded_at": "2025-02-11 16:18:42.570837Z",
+      "sha": "9235bab1c2f3b5581dd34431839db55f3d3bdb59"
+    },
+    "primis-covid19-vacc-uptake-bmi.csv": {
+      "id": "primis-covid19-vacc-uptake/bmi/v1",
+      "url": "https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/bmi/v1/",
+      "downloaded_at": "2025-02-11 16:18:39.141475Z",
+      "sha": "6e96c04ee1a647905be2b410fa2c33d770576bf0"
+    },
+    "primis-covid19-vacc-uptake-bmi_stage.csv": {
+      "id": "primis-covid19-vacc-uptake/bmi_stage/v2.5",
+      "url": "https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/bmi_stage/v2.5/",
+      "downloaded_at": "2025-02-11 16:18:39.046095Z",
+      "sha": "7fd744bb94c1789632247a3fc1780910f421b172"
+    },
+    "reducehf-body-mass-index-numeric-value.csv": {
+      "id": "reducehf/body-mass-index-numeric-value/0538a097",
+      "url": "https://www.opencodelists.org/codelist/reducehf/body-mass-index-numeric-value/0538a097/",
+      "downloaded_at": "2026-06-19 11:18:54.218180Z",
+      "sha": "2fc9695c0029388d5d4741e821688e0c4a1b19ee"
     }
   }
 }
