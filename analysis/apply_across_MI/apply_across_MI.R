@@ -1,0 +1,354 @@
+# ------------------------------------------------------------------------------
+#
+# apply_across_MI.R
+#
+# This file applies multiple imputation to the BMI and Smoking covariates
+# MI is conducted in "across" fashion, meaning that the result is a dataframe
+# 10x larger than the origina containing all datasets
+# 
+# Arguments:
+#  - cohort - string, defines which of three opensafely cohorts to describe
+#             (prevax, vax, unvax)
+#  - preex - boolean/string, defines preexisting conditions
+#            for the replication preex = FALSE always
+#            ("All", TRUE, or FALSE)
+#
+# Returns:
+#  - output/apply_across_MI/input_<cohort>_clean_across_MI_ami.rds
+#  - output/apply_across_MI/input_<cohort>_clean_across_MI_sahhs.rds
+#
+# Authors: Emma Tarmey
+#
+# ------------------------------------------------------------------------------
+
+
+# Load libraries ---------------------------------------------------------------
+print("Load libraries")
+
+library(magrittr)
+library(mice)
+library(here)
+library(dplyr)
+library(fs)
+library(survival)
+
+
+# Source common functions ------------------------------------------------------
+print("Source common functions")
+
+source("analysis/utility.R")
+
+
+# Specify arguments ------------------------------------------------------------
+print("Specify arguments")
+
+args <- commandArgs(trailingOnly = TRUE)
+print(length(args))
+
+if (length(args) == 0) {
+  # default argument values
+  cohort  <- "prevax"
+  preex   <- "All"
+
+} else {
+  # YAML arguments
+  cohort  <- args[[1]]
+
+  # optional argument
+  if (length(args) < 2) {
+    preex <- "All"
+  } else {
+    preex <- args[[2]]
+  } # allow an empty input for the preex variable
+}
+
+
+# Load data --------------------------------------------------------------------
+print("Load data")
+
+df <- readr::read_rds(paste0(
+  "output/dataset_clean/input_",
+  cohort,
+  "_clean_prehoc.rds"
+))
+
+df <- as.data.frame(df)
+
+
+# Define variables -------------------------------------------------------------
+print("Define variables")
+
+df$cov_bin_covid <- !is.na(df$exp_date_covid)
+df$cov_bin_sahhs <- !is.na(df$out_date_stroke_sahhs)
+
+print(colnames(df))
+stop("check, do surv curve correctly")
+
+
+# Check all covariates types ---------------------------------------------------
+print("Check all covariate types")
+
+df$cov_bin_ami   <- as.factor(df$cov_bin_ami)   # outcome
+df$cov_bin_sahhs <- as.factor(df$cov_bin_sahhs) # outcome
+df$cov_bin_covid <- as.factor(df$cov_bin_covid) # exposure
+
+df$cov_num_age       <- as.numeric(df$cov_num_age)
+df$cov_cat_sex       <- as.factor(df$cov_cat_sex)
+df$cov_num_bmi       <- as.numeric(df$cov_num_bmi)
+df$cov_cat_ethnicity <- as.factor(df$cov_cat_ethnicity)
+df$cov_cat_imd       <- as.factor(df$cov_cat_imd)
+df$cov_cat_smoking   <- as.factor(df$cov_cat_smoking)
+
+df$cov_bin_carehome      <- as.factor(df$cov_bin_carehome)
+df$cov_bin_hcworker      <- as.factor(df$cov_bin_hcworker)
+df$cov_bin_dementia      <- as.factor(df$cov_bin_dementia)
+df$cov_bin_liver_disease <- as.factor(df$cov_bin_liver_disease)
+df$cov_bin_ckd           <- as.factor(df$cov_bin_ckd)
+
+df$cov_bin_cancer       <- as.factor(df$cov_bin_cancer)
+df$cov_bin_hypertension <- as.factor(df$cov_bin_hypertension)
+df$cov_bin_diabetes     <- as.factor(df$cov_bin_diabetes)
+df$cov_bin_obesity      <- as.factor(df$cov_bin_obesity)
+df$cov_bin_copd         <- as.factor(df$cov_bin_copd)
+
+df$cov_bin_depression <- as.factor(df$cov_bin_depression)
+df$cov_bin_stroke_all <- as.factor(df$cov_bin_stroke_all)
+df$cov_bin_other_ae   <- as.factor(df$cov_bin_other_ae)
+df$cov_bin_vte        <- as.factor(df$cov_bin_vte)
+df$cov_bin_hf         <- as.factor(df$cov_bin_hf)
+
+df$cov_bin_angina        <- as.factor(df$cov_bin_angina)
+df$cov_bin_lipidmed      <- as.factor(df$cov_bin_lipidmed)
+df$cov_bin_antiplatelet  <- as.factor(df$cov_bin_antiplatelet)
+df$cov_bin_anticoagulant <- as.factor(df$cov_bin_anticoagulant)
+df$cov_bin_cocp          <- as.factor(df$cov_bin_cocp)
+
+df$cov_bin_hrt      <- as.factor(df$cov_bin_hrt)
+df$strat_cat_region <- as.factor(df$strat_cat_region)
+
+
+# Applying multiple imputation to BMI and smoking covariates -------------------
+print("Applying multiple imputation to BMI and smoking covariates")
+
+# set random seed
+set.seed(2026)
+
+# remove dates
+date_vars   <- grep("vax_date", colnames(df))
+df_dates    <- df[, date_vars]
+df_no_vax_dates <- df[, -date_vars]
+
+# re-cast missing smoking to NA
+smoking_missing <- df_no_vax_dates$cov_cat_smoking == "Missing"
+df_no_vax_dates$cov_cat_smoking[smoking_missing] <- NA
+
+# check missingness of smoking and bmi variables
+percent_smoking_missing <- signif(100 * (sum(is.na(df_no_vax_dates$cov_cat_smoking)) / length(df_no_vax_dates$cov_cat_smoking)), digits = 4)
+percent_bmi_missing     <- signif(100 * (sum(is.na(df_no_vax_dates$cov_num_bmi))     / length(df_no_vax_dates$cov_num_bmi)),     digits = 4)
+
+print(paste0("The variable smoking is ", percent_smoking_missing, "% missing"))
+print(paste0("The variable bmi is ",     percent_bmi_missing,     "% missing"))
+
+
+# Specify imputation methods for each outcome (ami and sahhs) ------------------
+print("Specify imputation methods for each outcome (ami and sahhs)")
+
+# The below ensures that bmi and smoking are handled with specific
+# imputation methods and that all other covariates are left alone
+# See: https://www.rdocumentation.org/packages/mice/versions/3.17.0/topics/mice
+imp_method                    <- rep("", length.out = length(colnames(df_no_vax_dates)))
+names(imp_method)             <- colnames(df_no_vax_dates)
+imp_method["cov_cat_smoking"] <- "polyreg" # smoking is categorical with 3 levels, Polytomous logistic regression
+imp_method["cov_num_bmi"]     <- "norm"    # bmi is numerical, Bayesian linear regression
+
+
+# Specify imputation formulas for each outcome (ami and sahhs) -----------------
+print("Specify imputation formulas for outcome")
+
+# Specify imputation formulas, exclude variable such as index date
+all_var_names <- c(
+  "cov_bin_ami",
+  "cov_bin_sahhs",
+  "cov_bin_covid",
+
+  "cov_num_age",
+  "cov_cat_sex",
+  # "cov_num_bmi", # excluded
+  "cov_cat_ethnicity",
+  "cov_cat_imd",
+  # "cov_cat_smoking", # excluded
+
+  "cov_bin_carehome",
+  "cov_bin_hcworker",
+  "cov_bin_dementia",
+  "cov_bin_liver_disease",
+  "cov_bin_ckd",
+
+  "cov_bin_cancer",
+  "cov_bin_hypertension",
+  "cov_bin_diabetes",
+  "cov_bin_obesity",
+  "cov_bin_copd",
+
+  "cov_bin_depression",
+  "cov_bin_stroke_all",
+  "cov_bin_other_ae",
+  "cov_bin_vte",
+  "cov_bin_hf",
+
+  "cov_bin_angina",
+  "cov_bin_lipidmed",
+  "cov_bin_antiplatelet",
+  "cov_bin_anticoagulant",
+  "cov_bin_cocp",
+
+  "cov_bin_hrt",
+  "strat_cat_region",
+  "vax_cat_jcvi_group",
+  "cens_status"
+)
+
+my_formulas <- list(
+  cov_cat_smoking = as.formula(paste0("cov_cat_smoking ~ ", paste(all_var_names, collapse = " + "), " + H0")),
+  cov_num_bmi     = as.formula(paste0("cov_num_bmi ~ ",     paste(all_var_names, collapse = " + "), " + H0"))
+)
+
+# Calculate Nelson-Aalen Estimator for outcome -----------
+print("Calculate Nelson-Aalen Estimator for outcome")
+
+df_no_vax_dates_ami   <- df_no_vax_dates
+df_no_vax_dates_sahhs <- df_no_vax_dates
+
+stop("todo below cens_status and outcome dates as per ch4")
+
+# TODO: GET THE BELOW
+# outcome_cox_dates_ami <- rep(as.Date(NA), times = nrow(model_input_df))
+# cens_status       <- rep(NA, times = nrow(model_input_df))
+
+# # 0 = censoring time = date of end of study
+# # 1 = failure time = time of outcome event
+# # See: https://www.rdocumentation.org/packages/survival/versions/3.8-3/topics/Surv
+# # and: https://glmnet.stanford.edu/articles/Coxnet.html#basic-usage-for-right-censored-data
+# for (i in c(1:nrow(model_input_df))) {
+#   if (is.na(model_input_df$out_date[i])) {
+#     # right-hand censorship takes place
+#     cens_status[i]       <- 0
+#     outcome_cox_dates[i] <- model_input_df$end_date_outcome[i]
+#   } else {
+#     # event takes place (failure)
+#     cens_status[i]       <- 1
+#     outcome_cox_dates[i] <- model_input_df$out_date[i]
+#   }
+# }
+
+# ami
+H0          <- (survfit(Surv(out_date_ami, cens_status) ~ 1, data = df_no_vax_dates_ami) %>% summary(times = unique(df_no_vax_dates_ami$out_date_ami)))
+H0          <- H0[c("time", "surv")]
+names(H0)   <- c("out_date_ami", "surv")
+H0          <- as.data.frame(H0)
+df_no_vax_dates_ami <- merge(df_no_vax_dates_ami, H0, all.x = TRUE, by = "out_date_ami")
+df_no_vax_dates_ami <- rename(df_no_vax_dates_ami, H0 = surv)
+
+# stroke_sahhs
+H0          <- (survfit(Surv(out_date_stroke_sahhs, cens_status) ~ 1, data = df_no_vax_dates_sahhs) %>% summary(times = unique(df_no_vax_dates_sahhs$out_date_stroke_sahhs)))
+H0          <- H0[c("time", "surv")]
+names(H0)   <- c("out_date_stroke_sahhs", "surv")
+H0          <- as.data.frame(H0)
+df_no_vax_dates_sahhs <- merge(df_no_vax_dates_sahhs, H0, all.x = TRUE, by = "out_date_stroke_sahhs")
+df_no_vax_dates_sahhs <- rename(df_no_vax_dates_sahhs, H0 = surv)
+
+
+# Applying multiple imputation to BMI and smoking covariates for outcome ---
+print("Applying multiple imputation to BMI and smoking covariates for outcome")
+
+# Apply multiple imputation
+num_datasets <- 10
+imp <- mice::mice(
+  data       = df_no_vax_dates,
+  m          = num_datasets,
+  maxit      = 20,
+  formulas   = my_formulas,
+  imp_method = unname(imp_method)
+)
+
+df_post_imputation <- mice::complete(
+  imp,
+  action  = "long",
+  include = FALSE
+)
+
+df_post_imputation <- subset(
+  df_post_imputation,
+  select = -c(.imp, .id)
+)
+
+print(summary(df_post_imputation))
+stop("!!!")
+
+df_dates_stacked <- rbind(
+  df_dates, df_dates, df_dates, df_dates, df_dates,
+  df_dates, df_dates, df_dates, df_dates, df_dates
+)
+
+df_post_imputation <- cbind(
+  df_post_imputation, df_dates_stacked
+)
+
+stop("duplicate above")
+
+# Remove now unused level 'missing' from smoking covariate ---
+print("Remove now unused level 'missing' from smoking covariate")
+
+df_post_imputation$cov_cat_smoking <- factor(
+  df_post_imputation$cov_cat_smoking,
+  levels = levels(droplevels(df_post_imputation$cov_cat_smoking))
+)
+
+
+# Re-assign unique identifiers to imputed dataset for outcome  ---
+print("Re-assign unique identifiers to imputed dataset for outcome ")
+
+patient_id_1 <- as.numeric(unique(df_post_imputation$patient_id))
+shift        <- max(patient_id_1) + 1
+
+patient_id_2  <- patient_id_1 + shift
+patient_id_3  <- patient_id_2 + shift
+patient_id_4  <- patient_id_3 + shift
+patient_id_5  <- patient_id_4 + shift
+patient_id_6  <- patient_id_5 + shift
+patient_id_7  <- patient_id_6 + shift
+patient_id_8  <- patient_id_7 + shift
+patient_id_9  <- patient_id_8 + shift
+patient_id_10 <- patient_id_9 + shift
+
+new_patient_id <- c(
+  patient_id_1, patient_id_2, patient_id_3, patient_id_4, patient_id_5,
+  patient_id_6, patient_id_7, patient_id_8, patient_id_9, patient_id_10
+)
+
+df_post_imputation$patient_id   <- new_patient_id
+
+# Re-convert date variables to date type
+all_date_vars   <- grep("date", colnames(df_post_imputation))
+for (var in all_date_vars) {
+  df_post_imputation[, var] <- as.Date(format(as.Date(df_post_imputation[, var], origin = lubridate::origin), "%Y-%m-%d"))
+}
+
+# check missingness of smoking and bmi variables
+percent_smoking_missing <- signif(100 * (sum(is.na(df_post_imputation$cov_cat_smoking)) / length(df_post_imputation$cov_cat_smoking)), digits = 4)
+percent_bmi_missing     <- signif(100 * (sum(is.na(df_post_imputation$cov_num_bmi))     / length(df_post_imputation$cov_num_bmi)),     digits = 4)
+
+print(paste0("The variable smoking is ", percent_smoking_missing, "% missing"))
+print(paste0("The variable bmi is ",     percent_bmi_missing,     "% missing"))
+
+stop("check")
+
+
+# Save data after 'across' multiple imputation  ---
+print("Save data after 'across' multiple imputation ")
+
+saveRDS(
+  df_post_imputation,
+  file = paste0("output/dataset_clean/input_", name, "_clean_prehoc_MI.rds"),
+  compress = TRUE
+)

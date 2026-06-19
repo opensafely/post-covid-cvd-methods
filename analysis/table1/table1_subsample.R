@@ -81,11 +81,20 @@ age_bounds <- as.numeric(stringr::str_split(as.vector(age_str), ";")[[1]])
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_rds(paste0(
-  "output/generate_subsample/input_",
-  cohort,
-  "_clean_subsample.rds"
+if (grepl("ami", name)) {
+  df <- readr::read_rds(paste0(
+    "output/generate_subsample/input_",
+    cohort,
+    "_clean_subsample_ami.rds"
+  ))
 ))
+} else {
+  df <- readr::read_rds(paste0(
+    "output/generate_subsample/input_",
+    cohort,
+    "_clean_subsample_sahhs.rds"
+  ))
+}
 
 
 # Check all covariates  --------------------------------------------------------

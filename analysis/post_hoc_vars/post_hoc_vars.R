@@ -52,6 +52,7 @@ df$cov_bin_covid <- as.factor(df$cov_bin_covid) # exposure
 
 df$cov_num_age       <- as.numeric(df$cov_num_age)
 df$cov_cat_sex       <- as.factor(df$cov_cat_sex)
+df$cov_num_bmi       <- as.numeric(df$cov_num_bmi)
 df$cov_cat_ethnicity <- as.factor(df$cov_cat_ethnicity)
 df$cov_cat_imd       <- as.factor(df$cov_cat_imd)
 df$cov_cat_smoking   <- as.factor(df$cov_cat_smoking)

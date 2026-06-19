@@ -114,6 +114,12 @@ bmi_stage_primis = codelist_from_csv(
     column="code"
 )
 
+## BMI Numerical
+bmi_numeric_nhsd = codelist_from_csv(
+    "codelists/reducehf-body-mass-index-numeric-value.csv",
+    column="code"
+)
+
 ## Severe obesity code recorded
 sev_obesity_primis = codelist_from_csv(
     "codelists/primis-covid19-vacc-uptake-sev_obesity.csv",

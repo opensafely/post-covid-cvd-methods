@@ -87,11 +87,20 @@ preex_string <- ""
 print("Load subsample data")
 
 # subsample
-df <- readr::read_rds(paste0(
-  "output/generate_subsample/input_",
-  cohort,
-  "_clean_subsample.rds"
+if (grepl("ami", name)) {
+  df <- readr::read_rds(paste0(
+    "output/generate_subsample/input_",
+    cohort,
+    "_clean_subsample_ami.rds"
+  ))
 ))
+} else {
+  df <- readr::read_rds(paste0(
+    "output/generate_subsample/input_",
+    cohort,
+    "_clean_subsample_sahhs.rds"
+  ))
+}
 
 # subsample
 model_input_df <- readr::read_rds(paste0(

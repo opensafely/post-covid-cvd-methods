@@ -78,11 +78,20 @@ preex_string <- ""
 # Load subsample data ----------------------------------------------------------
 print("Load subsample data")
 
-df <- readr::read_rds(paste0(
-  "output/generate_subsample/input_",
-  cohort,
-  "_clean_subsample.rds"
+if (grepl("ami", name)) {
+  df <- readr::read_rds(paste0(
+    "output/generate_subsample/input_",
+    cohort,
+    "_clean_subsample_ami.rds"
+  ))
 ))
+} else {
+  df <- readr::read_rds(paste0(
+    "output/generate_subsample/input_",
+    cohort,
+    "_clean_subsample_sahhs.rds"
+  ))
+}
 
 
 # Data preparation for fully adjusted logistic model ---------------------

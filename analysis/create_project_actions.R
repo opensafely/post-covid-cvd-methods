@@ -184,6 +184,28 @@ clean_data <- function(cohort, describe = describe) {
 }
 
 
+# Create function to apply across multiple imputation ---------------------------
+apply_across_MI <- function(cohort) {
+  splice(
+    comment(glue("apply_across_MI_cohort_{cohort}")),
+    action(
+      name = glue("apply_across_MI_cohort_{cohort}"),
+      run = glue(
+        "r:latest analysis/apply_across_MI/apply_across_MI.R"
+      ),
+      arguments = c(c(cohort)),
+      needs = list(
+        glue("generate_input_{cohort}_clean")
+      ),
+      highly_sensitive = list(
+        cohort_clean_ami   = glue("output/dataset_clean/input_{cohort}_clean_prehoc_MI_ami.rds"),
+        cohort_clean_sahhs = glue("output/dataset_clean/input_{cohort}_clean_prehoc_MI_sahhs.rds")
+      )
+    )
+  )
+}
+
+
 # Create function to define post-hoc variables for clean data -------------------
 post_hoc_vars <- function(cohort) {
   splice(
@@ -195,7 +217,7 @@ post_hoc_vars <- function(cohort) {
       ),
       arguments = c(c(cohort)),
       needs = list(
-        glue("generate_input_{cohort}_clean")
+        glue("apply_across_MI_cohort_{cohort}")
       ),
       highly_sensitive = list(
         cohort_clean = glue("output/dataset_clean/input_{cohort}_clean.rds")
@@ -1047,8 +1069,17 @@ actions_list <- splice(
     )
   ),
 
-  ## Define post hoc variables ----------------------------------
-
+  ## Apply across multiple imputation ------------------------------------------
+  
+  splice(
+    unlist(
+      lapply(cohorts, function(x) apply_across_MI(cohort = x)),
+      recursive = FALSE
+    )
+  ),
+  
+  ## Define post hoc variables -------------------------------------------------
+  
   splice(
     unlist(
       lapply(cohorts, function(x) post_hoc_vars(cohort = x)),

@@ -74,11 +74,20 @@ if (length(args) == 0) {
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_rds(paste0(
-  "output/dataset_clean/input_",
-  cohort,
-  "_clean.rds"
+if (grepl("ami", name)) {
+  # subsample
+  df <- readr::read_rds(paste0(
+    "output/dataset_clean/input_",
+    cohort,
+    "_clean_ami.rds"
 ))
+} else {
+  # subsample
+  df <- readr::read_rds(paste0(
+    "output/dataset_clean/input_",
+    cohort,
+    "_clean_sahhs.rds"
+}
 
 
 # Sanity check all covariate data types ----------------------------------------
