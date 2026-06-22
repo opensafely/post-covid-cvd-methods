@@ -198,29 +198,10 @@ apply_across_MI <- function(cohort) {
         glue("generate_input_{cohort}_clean")
       ),
       highly_sensitive = list(
-        cohort_clean_ami   = glue("output/dataset_clean/input_{cohort}_clean_prehoc_MI_ami.rds"),
-        cohort_clean_sahhs = glue("output/dataset_clean/input_{cohort}_clean_prehoc_MI_sahhs.rds")
-      )
-    )
-  )
-}
-
-
-# Create function to define post-hoc variables for clean data -------------------
-post_hoc_vars <- function(cohort) {
-  splice(
-    comment(glue("post_hoc_vars_cohort_{cohort}")),
-    action(
-      name = glue("post_hoc_vars_cohort_{cohort}"),
-      run = glue(
-        "r:latest analysis/post_hoc_vars/post_hoc_vars.R"
-      ),
-      arguments = c(c(cohort)),
-      needs = list(
-        glue("apply_across_MI_cohort_{cohort}")
-      ),
-      highly_sensitive = list(
-        cohort_clean = glue("output/dataset_clean/input_{cohort}_clean.rds")
+        cohort_clean_ami              = glue("output/dataset_clean/input_{cohort}_clean_ami.rds"),
+        cohort_clean_ami_diagnostic   = glue("output/dataset_clean/input_{cohort}_clean_ami_diagnostic.rds"),
+        cohort_clean_sahhs            = glue("output/dataset_clean/input_{cohort}_clean_sahhs.rds"),
+        cohort_clean_sahhs_diagnostic = glue("output/dataset_clean/input_{cohort}_clean_sahhs_diagnostic.rds")
       )
     )
   )
@@ -238,10 +219,11 @@ generate_subsample_cohort <- function(cohort) {
       ),
       arguments = c(c(cohort)),
       needs = list(
-        glue("post_hoc_vars_cohort_{cohort}") # , glue("make_model_input-{name}")
+        glue("apply_across_MI_cohort_{cohort}") # , glue("make_model_input-{name}")
       ),
       highly_sensitive = list(
-        cohort_clean_subsample = glue("output/generate_subsample/input_{cohort}_clean_subsample.rds")
+        cohort_clean_subsample_ami   = glue("output/generate_subsample/input_{cohort}_clean_subsample_ami.rds"),
+        cohort_clean_subsample_sahhs = glue("output/generate_subsample/input_{cohort}_clean_subsample_sahhs.rds")
       )
     )
   )
@@ -296,7 +278,7 @@ table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
       name = glue("table1-cohort_{cohort}{preex_str}"),
       run = "r:v2 analysis/table1/table1.R",
       arguments = c(c(cohort), c(ages), c(preex)),
-      needs = list(glue("post_hoc_vars_cohort_{cohort}")),
+      needs = list(glue("apply_across_MI_cohort_{cohort}")),
       moderately_sensitive = list(
         table1 = glue(
           "output/table1/table1-cohort_{cohort}{preex_str}.csv"
@@ -523,7 +505,7 @@ apply_model_function <- function(
     action(
       name = glue("make_model_input-{name}"),
       run = glue("r:latest analysis/model/make_model_input.R {name}"),
-      needs = as.list(glue("post_hoc_vars_cohort_{cohort}")),
+      needs = as.list(glue("apply_across_MI_cohort_{cohort}")),
       highly_sensitive = list(
         model_input = glue("output/model/model_input-{name}.rds")
       )
@@ -1074,15 +1056,6 @@ actions_list <- splice(
   splice(
     unlist(
       lapply(cohorts, function(x) apply_across_MI(cohort = x)),
-      recursive = FALSE
-    )
-  ),
-  
-  ## Define post hoc variables -------------------------------------------------
-  
-  splice(
-    unlist(
-      lapply(cohorts, function(x) post_hoc_vars(cohort = x)),
       recursive = FALSE
     )
   ),

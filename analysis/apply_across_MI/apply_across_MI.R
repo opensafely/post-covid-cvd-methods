@@ -81,9 +81,6 @@ print("Define variables")
 df$cov_bin_covid <- !is.na(df$exp_date_covid)
 df$cov_bin_sahhs <- !is.na(df$out_date_stroke_sahhs)
 
-print(colnames(df))
-stop("check, do surv curve correctly")
-
 
 # Check all covariates types ---------------------------------------------------
 print("Check all covariate types")
@@ -204,8 +201,8 @@ all_var_names <- c(
 
   "cov_bin_hrt",
   "strat_cat_region",
-  "vax_cat_jcvi_group",
-  "cens_status"
+  "vax_cat_jcvi_group"
+  # "cens_status" # excluded
 )
 
 my_formulas <- list(
@@ -219,96 +216,147 @@ print("Calculate Nelson-Aalen Estimator for outcome")
 df_no_vax_dates_ami   <- df_no_vax_dates
 df_no_vax_dates_sahhs <- df_no_vax_dates
 
-stop("todo below cens_status and outcome dates as per ch4")
+outcome_cox_dates_ami <- rep(as.Date(NA), times = nrow(df_no_vax_dates_ami))
+cens_status_ami       <- rep(NA, times = nrow(df_no_vax_dates_ami))
 
-# TODO: GET THE BELOW
-# outcome_cox_dates_ami <- rep(as.Date(NA), times = nrow(model_input_df))
-# cens_status       <- rep(NA, times = nrow(model_input_df))
+# 0 = censoring time = date of end of study
+# 1 = failure time = time of outcome event
+# See: https://www.rdocumentation.org/packages/survival/versions/3.8-3/topics/Surv
+# and: https://glmnet.stanford.edu/articles/Coxnet.html#basic-usage-for-right-censored-data
+for (i in c(1:nrow(df_no_vax_dates_ami))) {
+  if (is.na(df_no_vax_dates_ami$out_date_ami[i])) {
+    # right-hand censorship takes place
+    cens_status_ami[i]       <- 0
+    outcome_cox_dates_ami[i] <- df_no_vax_dates_ami$end_date_outcome[i]
+  } else {
+    # event takes place (failure)
+    cens_status_ami[i]       <- 1
+    outcome_cox_dates_ami[i] <- df_no_vax_dates_ami$out_date_ami[i]
+  }
+}
 
-# # 0 = censoring time = date of end of study
-# # 1 = failure time = time of outcome event
-# # See: https://www.rdocumentation.org/packages/survival/versions/3.8-3/topics/Surv
-# # and: https://glmnet.stanford.edu/articles/Coxnet.html#basic-usage-for-right-censored-data
-# for (i in c(1:nrow(model_input_df))) {
-#   if (is.na(model_input_df$out_date[i])) {
-#     # right-hand censorship takes place
-#     cens_status[i]       <- 0
-#     outcome_cox_dates[i] <- model_input_df$end_date_outcome[i]
-#   } else {
-#     # event takes place (failure)
-#     cens_status[i]       <- 1
-#     outcome_cox_dates[i] <- model_input_df$out_date[i]
-#   }
-# }
+outcome_cox_dates_sahhs <- rep(as.Date(NA), times = nrow(df_no_vax_dates_sahhs))
+cens_status_sahhs       <- rep(NA, times = nrow(df_no_vax_dates_sahhs))
+
+# 0 = censoring time = date of end of study
+# 1 = failure time = time of outcome event
+# See: https://www.rdocumentation.org/packages/survival/versions/3.8-3/topics/Surv
+# and: https://glmnet.stanford.edu/articles/Coxnet.html#basic-usage-for-right-censored-data
+for (i in c(1:nrow(df_no_vax_dates_sahhs))) {
+  if (is.na(df_no_vax_dates_sahhs$out_date_stroke_sahhs[i])) {
+    # right-hand censorship takes place
+    cens_status_sahhs[i]       <- 0
+    outcome_cox_dates_sahhs[i] <- df_no_vax_dates_sahhs$end_date_outcome[i]
+  } else {
+    # event takes place (failure)
+    cens_status_sahhs[i]       <- 1
+    outcome_cox_dates_sahhs[i] <- df_no_vax_dates_sahhs$out_date_stroke_sahhs[i]
+  }
+}
+
+# add data to dataframes
+df_no_vax_dates_ami$outcome_cox_dates_ami <- as.numeric(outcome_cox_dates_ami)
+df_no_vax_dates_ami$cens_status_ami       <- cens_status_ami
+
+df_no_vax_dates_sahhs$outcome_cox_dates_sahhs <- as.numeric(outcome_cox_dates_sahhs)
+df_no_vax_dates_sahhs$cens_status_sahhs       <- cens_status_sahhs
 
 # ami
-H0          <- (survfit(Surv(out_date_ami, cens_status) ~ 1, data = df_no_vax_dates_ami) %>% summary(times = unique(df_no_vax_dates_ami$out_date_ami)))
+H0          <- (survfit(Surv(outcome_cox_dates_ami, cens_status_ami) ~ 1, data = df_no_vax_dates_ami) %>% summary(times = unique(df_no_vax_dates_ami$outcome_cox_dates_ami)))
 H0          <- H0[c("time", "surv")]
-names(H0)   <- c("out_date_ami", "surv")
+names(H0)   <- c("outcome_cox_dates_ami", "surv")
 H0          <- as.data.frame(H0)
-df_no_vax_dates_ami <- merge(df_no_vax_dates_ami, H0, all.x = TRUE, by = "out_date_ami")
+df_no_vax_dates_ami <- merge(df_no_vax_dates_ami, H0, all.x = TRUE, by = "outcome_cox_dates_ami")
 df_no_vax_dates_ami <- rename(df_no_vax_dates_ami, H0 = surv)
 
-# stroke_sahhs
-H0          <- (survfit(Surv(out_date_stroke_sahhs, cens_status) ~ 1, data = df_no_vax_dates_sahhs) %>% summary(times = unique(df_no_vax_dates_sahhs$out_date_stroke_sahhs)))
+# sahhs
+H0          <- (survfit(Surv(outcome_cox_dates_sahhs, cens_status_sahhs) ~ 1, data = df_no_vax_dates_sahhs) %>% summary(times = unique(df_no_vax_dates_sahhs$outcome_cox_dates_sahhs)))
 H0          <- H0[c("time", "surv")]
-names(H0)   <- c("out_date_stroke_sahhs", "surv")
+names(H0)   <- c("outcome_cox_dates_sahhs", "surv")
 H0          <- as.data.frame(H0)
-df_no_vax_dates_sahhs <- merge(df_no_vax_dates_sahhs, H0, all.x = TRUE, by = "out_date_stroke_sahhs")
+df_no_vax_dates_sahhs <- merge(df_no_vax_dates_sahhs, H0, all.x = TRUE, by = "outcome_cox_dates_sahhs")
 df_no_vax_dates_sahhs <- rename(df_no_vax_dates_sahhs, H0 = surv)
 
 
 # Applying multiple imputation to BMI and smoking covariates for outcome ---
 print("Applying multiple imputation to BMI and smoking covariates for outcome")
 
-# Apply multiple imputation
-num_datasets <- 10
-imp <- mice::mice(
-  data       = df_no_vax_dates,
-  m          = num_datasets,
+# Apply multiple imputation for ami outcome
+imp_ami <- mice::mice(
+  data       = df_no_vax_dates_ami,
+  m          = 10, # hard-coded to match below
   maxit      = 20,
   formulas   = my_formulas,
   imp_method = unname(imp_method)
 )
 
-df_post_imputation <- mice::complete(
-  imp,
+df_post_imputation_ami <- mice::complete(
+  imp_ami,
   action  = "long",
   include = FALSE
 )
 
-df_post_imputation <- subset(
-  df_post_imputation,
+df_post_imputation_ami <- subset(
+  df_post_imputation_ami,
   select = -c(.imp, .id)
 )
 
-print(summary(df_post_imputation))
-stop("!!!")
-
-df_dates_stacked <- rbind(
+df_dates_stacked_ami <- rbind(
   df_dates, df_dates, df_dates, df_dates, df_dates,
   df_dates, df_dates, df_dates, df_dates, df_dates
 )
 
-df_post_imputation <- cbind(
-  df_post_imputation, df_dates_stacked
+df_post_imputation_ami <- cbind(
+  df_post_imputation_ami, df_dates_stacked_ami
 )
 
-stop("duplicate above")
+# Apply multiple imputation for sahhs outcome
+imp_sahhs <- mice::mice(
+  data       = df_no_vax_dates_sahhs,
+  m          = 10, # hard-coded to match below
+  maxit      = 20,
+  formulas   = my_formulas,
+  imp_method = unname(imp_method)
+)
+
+df_post_imputation_sahhs <- mice::complete(
+  imp_sahhs,
+  action  = "long",
+  include = FALSE
+)
+
+df_post_imputation_sahhs <- subset(
+  df_post_imputation_sahhs,
+  select = -c(.imp, .id)
+)
+
+df_dates_stacked_sahhs <- rbind(
+  df_dates, df_dates, df_dates, df_dates, df_dates,
+  df_dates, df_dates, df_dates, df_dates, df_dates
+)
+
+df_post_imputation_sahhs <- cbind(
+  df_post_imputation_sahhs, df_dates_stacked_sahhs
+)
 
 # Remove now unused level 'missing' from smoking covariate ---
 print("Remove now unused level 'missing' from smoking covariate")
 
-df_post_imputation$cov_cat_smoking <- factor(
-  df_post_imputation$cov_cat_smoking,
-  levels = levels(droplevels(df_post_imputation$cov_cat_smoking))
+df_post_imputation_ami$cov_cat_smoking <- factor(
+  df_post_imputation_ami$cov_cat_smoking,
+  levels = levels(droplevels(df_post_imputation_ami$cov_cat_smoking))
+)
+
+df_post_imputation_sahhs$cov_cat_smoking <- factor(
+  df_post_imputation_sahhs$cov_cat_smoking,
+  levels = levels(droplevels(df_post_imputation_sahhs$cov_cat_smoking))
 )
 
 
 # Re-assign unique identifiers to imputed dataset for outcome  ---
 print("Re-assign unique identifiers to imputed dataset for outcome ")
 
-patient_id_1 <- as.numeric(unique(df_post_imputation$patient_id))
+patient_id_1 <- as.numeric(unique(df_post_imputation_ami$patient_id))
 shift        <- max(patient_id_1) + 1
 
 patient_id_2  <- patient_id_1 + shift
@@ -326,29 +374,191 @@ new_patient_id <- c(
   patient_id_6, patient_id_7, patient_id_8, patient_id_9, patient_id_10
 )
 
-df_post_imputation$patient_id   <- new_patient_id
+df_post_imputation_ami$patient_id   <- new_patient_id
+df_post_imputation_sahhs$patient_id <- new_patient_id
 
 # Re-convert date variables to date type
-all_date_vars   <- grep("date", colnames(df_post_imputation))
+all_date_vars   <- grep("date", colnames(df_post_imputation_ami))
 for (var in all_date_vars) {
-  df_post_imputation[, var] <- as.Date(format(as.Date(df_post_imputation[, var], origin = lubridate::origin), "%Y-%m-%d"))
+  df_post_imputation_ami[, var]   <- as.Date(format(as.Date(df_post_imputation_ami[, var], origin = lubridate::origin), "%Y-%m-%d"))
+  df_post_imputation_sahhs[, var] <- as.Date(format(as.Date(df_post_imputation_sahhs[, var], origin = lubridate::origin), "%Y-%m-%d"))
 }
 
 # check missingness of smoking and bmi variables
-percent_smoking_missing <- signif(100 * (sum(is.na(df_post_imputation$cov_cat_smoking)) / length(df_post_imputation$cov_cat_smoking)), digits = 4)
-percent_bmi_missing     <- signif(100 * (sum(is.na(df_post_imputation$cov_num_bmi))     / length(df_post_imputation$cov_num_bmi)),     digits = 4)
+percent_smoking_missing_ami <- signif(100 * (sum(is.na(df_post_imputation_ami$cov_cat_smoking)) / length(df_post_imputation_ami$cov_cat_smoking)), digits = 4)
+percent_bmi_missing_ami     <- signif(100 * (sum(is.na(df_post_imputation_ami$cov_num_bmi))     / length(df_post_imputation_ami$cov_num_bmi)),     digits = 4)
 
-print(paste0("The variable smoking is ", percent_smoking_missing, "% missing"))
-print(paste0("The variable bmi is ",     percent_bmi_missing,     "% missing"))
+print(paste0("The variable smoking is ", percent_smoking_missing_ami, "% missing (for ami)"))
+print(paste0("The variable bmi is ",     percent_bmi_missing_ami,     "% missing (for ami)"))
 
-stop("check")
+percent_smoking_missing_sahhs <- signif(100 * (sum(is.na(df_post_imputation_sahhs$cov_cat_smoking)) / length(df_post_imputation_sahhs$cov_cat_smoking)), digits = 4)
+percent_bmi_missing_sahhs     <- signif(100 * (sum(is.na(df_post_imputation_sahhs$cov_num_bmi))     / length(df_post_imputation_sahhs$cov_num_bmi)),     digits = 4)
+
+print(paste0("The variable smoking is ", percent_smoking_missing_sahhs, "% missing (for sahhs)"))
+print(paste0("The variable bmi is ",     percent_bmi_missing_sahhs,     "% missing (for sahhs)"))
+
+
+# Remove unnecessary variables ---
+print("Remove unnecessary_variables ")
+
+print(colnames(df_post_imputation_ami))
+
+df_post_imputation_ami_clean <- (
+  df_post_imputation_ami %>%
+    select(
+      # outcome_cox_dates_ami, # excluded
+      patient_id,
+      index_date,
+      end_date_exposure,
+      end_date_outcome,
+      sub_bin_covidhistory,
+      sub_cat_covidhospital,
+      exp_date_covid,
+      out_date_ami,
+      out_date_stroke_sahhs,
+      cov_num_age,
+      cov_cat_sex,
+      cov_num_bmi,
+      cov_cat_ethnicity,
+      cov_cat_imd,
+      cov_cat_smoking,
+      cov_bin_carehome,
+      cov_bin_hcworker,
+      cov_bin_dementia,
+      cov_bin_liver_disease,
+      cov_bin_ckd,
+      cov_bin_cancer,
+      cov_bin_hypertension,
+      cov_bin_diabetes,
+      cov_bin_obesity,
+      cov_bin_copd,
+      cov_bin_ami,
+      cov_bin_depression,
+      cov_bin_stroke_all,
+      cov_bin_other_ae,
+      cov_bin_vte,
+      cov_bin_hf,
+      cov_bin_angina,
+      cov_bin_lipidmed,
+      cov_bin_antiplatelet,
+      cov_bin_anticoagulant,
+      cov_bin_cocp,
+      cov_bin_hrt,
+      cens_date_dereg,
+      cens_date_death,
+      strat_cat_region,
+      vax_cat_jcvi_group,
+      cov_bin_covid,
+      cov_bin_sahhs,
+      # cens_status_ami, # excluded
+      # H0,              # excluded
+      vax_date_eligible,
+      vax_date_covid_1,
+      vax_date_covid_2,
+      vax_date_covid_3,
+      vax_date_Pfizer_1,
+      vax_date_Pfizer_2,
+      vax_date_Pfizer_3,
+      vax_date_AstraZeneca_1,
+      vax_date_AstraZeneca_2,
+      vax_date_AstraZeneca_3,
+      vax_date_Moderna_1,
+      vax_date_Moderna_2,
+      vax_date_Moderna_3
+    )
+)
+
+df_post_imputation_sahhs_clean <- (
+  df_post_imputation_sahhs %>%
+    select(
+      # outcome_cox_dates_sahhs, # excluded
+      patient_id,
+      index_date,
+      end_date_exposure,
+      end_date_outcome,
+      sub_bin_covidhistory,
+      sub_cat_covidhospital,
+      exp_date_covid,
+      out_date_ami,
+      out_date_stroke_sahhs,
+      cov_num_age,
+      cov_cat_sex,
+      cov_num_bmi,
+      cov_cat_ethnicity,
+      cov_cat_imd,
+      cov_cat_smoking,
+      cov_bin_carehome,
+      cov_bin_hcworker,
+      cov_bin_dementia,
+      cov_bin_liver_disease,
+      cov_bin_ckd,
+      cov_bin_cancer,
+      cov_bin_hypertension,
+      cov_bin_diabetes,
+      cov_bin_obesity,
+      cov_bin_copd,
+      cov_bin_ami,
+      cov_bin_depression,
+      cov_bin_stroke_all,
+      cov_bin_other_ae,
+      cov_bin_vte,
+      cov_bin_hf,
+      cov_bin_angina,
+      cov_bin_lipidmed,
+      cov_bin_antiplatelet,
+      cov_bin_anticoagulant,
+      cov_bin_cocp,
+      cov_bin_hrt,
+      cens_date_dereg,
+      cens_date_death,
+      strat_cat_region,
+      vax_cat_jcvi_group,
+      cov_bin_covid,
+      cov_bin_sahhs,
+      # cens_status_ami, # excluded
+      # H0,              # excluded
+      vax_date_eligible,
+      vax_date_covid_1,
+      vax_date_covid_2,
+      vax_date_covid_3,
+      vax_date_Pfizer_1,
+      vax_date_Pfizer_2,
+      vax_date_Pfizer_3,
+      vax_date_AstraZeneca_1,
+      vax_date_AstraZeneca_2,
+      vax_date_AstraZeneca_3,
+      vax_date_Moderna_1,
+      vax_date_Moderna_2,
+      vax_date_Moderna_3
+    )
+)
+
 
 
 # Save data after 'across' multiple imputation  ---
 print("Save data after 'across' multiple imputation ")
 
 saveRDS(
-  df_post_imputation,
-  file = paste0("output/dataset_clean/input_", name, "_clean_prehoc_MI.rds"),
+  df_post_imputation_ami_clean,
+  file = paste0("output/dataset_clean/input_", cohort, "_clean_ami.rds"),
   compress = TRUE
 )
+
+saveRDS(
+  df_post_imputation_ami,
+  file = paste0("output/dataset_clean/input_", cohort, "_clean_ami_diagnostic.rds"),
+  compress = TRUE
+)
+
+saveRDS(
+  df_post_imputation_sahhs_clean,
+  file = paste0("output/dataset_clean/input_", cohort, "_clean_sahhs.rds"),
+  compress = TRUE
+)
+
+saveRDS(
+  df_post_imputation_sahhs,
+  file = paste0("output/dataset_clean/input_", cohort, "_clean_sahhs_diagnostic.rds"),
+  compress = TRUE
+)
+

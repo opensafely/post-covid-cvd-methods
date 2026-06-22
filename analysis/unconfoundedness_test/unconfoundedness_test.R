@@ -84,15 +84,15 @@ if (grepl("ami", name)) {
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-# subsample
 if (grepl("ami", name)) {
+  # subsample
   df <- readr::read_rds(paste0(
     "output/generate_subsample/input_",
     cohort,
     "_clean_subsample_ami.rds"
   ))
-))
 } else {
+  # subsample
   df <- readr::read_rds(paste0(
     "output/generate_subsample/input_",
     cohort,

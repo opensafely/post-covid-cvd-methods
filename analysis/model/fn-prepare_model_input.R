@@ -16,11 +16,19 @@ prepare_model_input <- function(name) {
   # Load data ------------------------------------------------------------------
   print(paste0("Load data for ", active_analyses$name))
 
-  input <- readr::read_rds(paste0(
-    "output/dataset_clean/input_",
-    active_analyses$cohort,
-    "_clean.rds"
-  ))
+  if (grepl("ami", name)) {
+    input <- readr::read_rds(paste0(
+      "output/dataset_clean/input_",
+      active_analyses$cohort,
+      "_clean_ami.rds"
+    ))
+  } else {
+    input <- readr::read_rds(paste0(
+      "output/dataset_clean/input_",
+      active_analyses$cohort,
+      "_clean_sahhs.rds"
+    ))
+  }
 
   # Restrict to required variables for dataset preparation ---------------------
   print("Restrict to required variables for dataset preparation")

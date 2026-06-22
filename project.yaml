@@ -64,28 +64,21 @@ actions:
     - generate_input_prevax_clean
     outputs:
       highly_sensitive:
-        cohort_clean_ami: output/dataset_clean/input_prevax_clean_prehoc_MI_ami.rds
-        cohort_clean_sahhs: output/dataset_clean/input_prevax_clean_prehoc_MI_sahhs.rds
-
-  ## post_hoc_vars_cohort_prevax 
-
-  post_hoc_vars_cohort_prevax:
-    run: r:latest analysis/post_hoc_vars/post_hoc_vars.R prevax
-    needs:
-    - apply_across_MI_cohort_prevax
-    outputs:
-      highly_sensitive:
-        cohort_clean: output/dataset_clean/input_prevax_clean.rds
+        cohort_clean_ami: output/dataset_clean/input_prevax_clean_ami.rds
+        cohort_clean_ami_diagnostic: output/dataset_clean/input_prevax_clean_ami_diagnostic.rds
+        cohort_clean_sahhs: output/dataset_clean/input_prevax_clean_sahhs.rds
+        cohort_clean_sahhs_diagnostic: output/dataset_clean/input_prevax_clean_sahhs_diagnostic.rds
 
   ## generate_subsample_cohort_prevax 
 
   generate_subsample_cohort_prevax:
     run: r:latest analysis/generate_subsample/generate_subsample.R prevax
     needs:
-    - post_hoc_vars_cohort_prevax
+    - apply_across_MI_cohort_prevax
     outputs:
       highly_sensitive:
-        cohort_clean_subsample: output/generate_subsample/input_prevax_clean_subsample.rds
+        cohort_clean_subsample_ami: output/generate_subsample/input_prevax_clean_subsample_ami.rds
+        cohort_clean_subsample_sahhs: output/generate_subsample/input_prevax_clean_subsample_sahhs.rds
 
   ## Generate cox model input data for 10% subsample study population 
   ## make_model_input_subsample-cohort_prevax-main-ami 
@@ -157,7 +150,7 @@ actions:
   table1-cohort_prevax:
     run: 'r:v2 analysis/table1/table1.R prevax 18;30;40;50;60;70;80;90 '
     needs:
-    - post_hoc_vars_cohort_prevax
+    - apply_across_MI_cohort_prevax
     outputs:
       moderately_sensitive:
         table1: output/table1/table1-cohort_prevax.csv
@@ -541,7 +534,7 @@ actions:
   make_model_input-cohort_prevax-main-ami:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-ami
     needs:
-    - post_hoc_vars_cohort_prevax
+    - apply_across_MI_cohort_prevax
     outputs:
       highly_sensitive:
         model_input: output/model/model_input-cohort_prevax-main-ami.rds
@@ -579,7 +572,7 @@ actions:
   make_model_input-cohort_prevax-main-stroke_sahhs:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-stroke_sahhs
     needs:
-    - post_hoc_vars_cohort_prevax
+    - apply_across_MI_cohort_prevax
     outputs:
       highly_sensitive:
         model_input: output/model/model_input-cohort_prevax-main-stroke_sahhs.rds
@@ -617,7 +610,7 @@ actions:
   make_model_input-cohort_prevax-sub_covidhospital_FALSE-ami:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_FALSE-ami
     needs:
-    - post_hoc_vars_cohort_prevax
+    - apply_across_MI_cohort_prevax
     outputs:
       highly_sensitive:
         model_input: output/model/model_input-cohort_prevax-sub_covidhospital_FALSE-ami.rds
@@ -655,7 +648,7 @@ actions:
   make_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     needs:
-    - post_hoc_vars_cohort_prevax
+    - apply_across_MI_cohort_prevax
     outputs:
       highly_sensitive:
         model_input: output/model/model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.rds
@@ -693,7 +686,7 @@ actions:
   make_model_input-cohort_prevax-sub_covidhospital_TRUE-ami:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_TRUE-ami
     needs:
-    - post_hoc_vars_cohort_prevax
+    - apply_across_MI_cohort_prevax
     outputs:
       highly_sensitive:
         model_input: output/model/model_input-cohort_prevax-sub_covidhospital_TRUE-ami.rds
@@ -731,7 +724,7 @@ actions:
   make_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     needs:
-    - post_hoc_vars_cohort_prevax
+    - apply_across_MI_cohort_prevax
     outputs:
       highly_sensitive:
         model_input: output/model/model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.rds
