@@ -163,3 +163,8 @@ generate_weights <- function(sample_size = NULL, num_imps = NULL) {
   weights <- rep((1 / num_imps), length.out = sample_size)
   return (weights)
 }
+
+
+get_number_of_imputed_datasets <- function() {
+  return (10)
+}

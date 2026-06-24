@@ -234,7 +234,7 @@ cv_lasso_cox_model <- cv.glmnet(x       = lasso_cox_conf_matrix_preserving_facto
                                 family  = "cox",      # cox regression
                                 weights = generate_weights(
                                   sample_size = nrow(model_input_df),
-                                  num_imps    = 10
+                                  num_imps    = get_number_of_imputed_datasets()
                                 ),
                                 alpha   = 1)          # LASSO penalty
 
@@ -246,7 +246,7 @@ lasso_cox_model    <- glmnet(x = lasso_cox_conf_matrix_preserving_factors,
                              family = "cox",      # cox regression
                              weights = generate_weights(
                                 sample_size = nrow(model_input_df),
-                                num_imps    = 10
+                                num_imps    = get_number_of_imputed_datasets()
                               ),
                              alpha  = 1,          # LASSO penalty
                              lambda = lambda)     # optimal lambda
@@ -278,7 +278,7 @@ fully_adjusted_cox  <- coxph(
   data    = df2,
   weights = generate_weights(
     sample_size = nrow(model_input_df),
-    num_imps    = 10
+    num_imps    = get_number_of_imputed_datasets()
   )
 )
 

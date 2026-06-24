@@ -279,7 +279,7 @@ print("Applying multiple imputation to BMI and smoking covariates for outcome")
 # Apply multiple imputation for ami outcome
 imp_ami <- mice::mice(
   data       = df_ami,
-  m          = 10, # hard-coded to match below
+  m          = get_number_of_imputed_datasets(),
   maxit      = 20,
   formulas   = my_formulas,
   imp_method = unname(imp_method)
@@ -299,7 +299,7 @@ df_post_imputation_ami <- subset(
 # Apply multiple imputation for sahhs outcome
 imp_sahhs <- mice::mice(
   data       = df_sahhs,
-  m          = 10, # hard-coded to match below
+  m          = get_number_of_imputed_datasets(),
   maxit      = 20,
   formulas   = my_formulas,
   imp_method = unname(imp_method)
@@ -333,6 +333,8 @@ df_post_imputation_sahhs$cov_cat_smoking <- factor(
 
 # Re-assign unique identifiers to imputed dataset for outcome  -----
 print("Re-assign unique identifiers to imputed dataset for outcome ")
+
+# NB: Below hard-coded to match get_number_of_imputed_datasets() = 10
 
 patient_id_1 <- as.numeric(unique(df_post_imputation_ami$patient_id))
 shift        <- max(patient_id_1) + 1

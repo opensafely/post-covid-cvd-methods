@@ -246,7 +246,7 @@ fully_adjusted_exposure_regression <- glm(
   data   = logistic_df,
   weights = generate_weights(
     sample_size = nrow(logistic_df),
-    num_imps    = 10
+    num_imps    = get_number_of_imputed_datasets()
   )
 )
 fully_adjusted_outcome_regression  <- coxph(
@@ -254,7 +254,7 @@ fully_adjusted_outcome_regression  <- coxph(
   data    = cox_df,
   weights = generate_weights(
     sample_size = nrow(cox_df),
-    num_imps    = 10
+    num_imps    = get_number_of_imputed_datasets()
   )
 )
 
@@ -345,7 +345,7 @@ lasso_exposure_regression <- glm(
   data   = logistic_df,
   weights = generate_weights(
     sample_size = nrow(logistic_df),
-    num_imps    = 10
+    num_imps    = get_number_of_imputed_datasets()
   )
 )
 lasso_outcome_regression  <- coxph(
@@ -353,7 +353,7 @@ lasso_outcome_regression  <- coxph(
   data    = cox_df,
   weights = generate_weights(
     sample_size = nrow(cox_df),
-    num_imps    = 10
+    num_imps    = get_number_of_imputed_datasets()
   )
 )
 
@@ -444,7 +444,7 @@ lasso_X_exposure_regression <- glm(
   data   = logistic_df,
   weights = generate_weights(
     sample_size = nrow(logistic_df),
-    num_imps    = 10
+    num_imps    = get_number_of_imputed_datasets()
   )
 )
 lasso_X_outcome_regression  <- coxph(
@@ -452,7 +452,7 @@ lasso_X_outcome_regression  <- coxph(
   data    = cox_df,
   weights = generate_weights(
     sample_size = nrow(cox_df),
-    num_imps    = 10
+    num_imps    = get_number_of_imputed_datasets()
   )
 )
 
@@ -543,7 +543,7 @@ lasso_union_exposure_regression <- glm(
   data   = logistic_df,
   weights = generate_weights(
     sample_size = nrow(logistic_df),
-    num_imps    = 10
+    num_imps    = get_number_of_imputed_datasets()
   )
 )
 lasso_union_outcome_regression  <- coxph(
@@ -551,7 +551,7 @@ lasso_union_outcome_regression  <- coxph(
   data    = cox_df,
   weights = generate_weights(
     sample_size = nrow(cox_df),
-    num_imps    = 10
+    num_imps    = get_number_of_imputed_datasets()
   )
 )
 
