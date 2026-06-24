@@ -245,7 +245,7 @@ fully_adjusted_exposure_regression <- glm(
   family = "binomial",
   data   = logistic_df,
   weights = generate_weights(
-    sample_size = nrow(model_input_df),
+    sample_size = nrow(logistic_df),
     num_imps    = 10
   )
 )
@@ -253,7 +253,7 @@ fully_adjusted_outcome_regression  <- coxph(
   formula = as.formula(fully_adjusted_outcome_regression_formula),
   data    = cox_df,
   weights = generate_weights(
-    sample_size = nrow(model_input_df),
+    sample_size = nrow(cox_df),
     num_imps    = 10
   )
 )
@@ -344,7 +344,7 @@ lasso_exposure_regression <- glm(
   family = "binomial",
   data   = logistic_df,
   weights = generate_weights(
-    sample_size = nrow(model_input_df),
+    sample_size = nrow(logistic_df),
     num_imps    = 10
   )
 )
@@ -352,7 +352,7 @@ lasso_outcome_regression  <- coxph(
   formula = as.formula(lasso_outcome_regression_formula),
   data    = cox_df,
   weights = generate_weights(
-    sample_size = nrow(model_input_df),
+    sample_size = nrow(cox_df),
     num_imps    = 10
   )
 )
@@ -443,7 +443,7 @@ lasso_X_exposure_regression <- glm(
   family = "binomial",
   data   = logistic_df,
   weights = generate_weights(
-    sample_size = nrow(model_input_df),
+    sample_size = nrow(logistic_df),
     num_imps    = 10
   )
 )
@@ -451,7 +451,7 @@ lasso_X_outcome_regression  <- coxph(
   formula = as.formula(lasso_X_outcome_regression_formula),
   data    = cox_df,
   weights = generate_weights(
-    sample_size = nrow(model_input_df),
+    sample_size = nrow(cox_df),
     num_imps    = 10
   )
 )
@@ -542,7 +542,7 @@ lasso_union_exposure_regression <- glm(
   family = "binomial",
   data   = logistic_df,
   weights = generate_weights(
-    sample_size = nrow(model_input_df),
+    sample_size = nrow(logistic_df),
     num_imps    = 10
   )
 )
@@ -550,7 +550,7 @@ lasso_union_outcome_regression  <- coxph(
   formula = as.formula(lasso_union_outcome_regression_formula),
   data    = cox_df,
   weights = generate_weights(
-    sample_size = nrow(model_input_df),
+    sample_size = nrow(cox_df),
     num_imps    = 10
   )
 )

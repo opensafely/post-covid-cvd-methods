@@ -199,7 +199,7 @@ cv_lasso_X_model <- cv.glmnet(x      = lasso_X_conf_matrix_preserving_factors,
                               nfolds = 20,         # number of cv datasets
                               family = "binomial", # logistic regression
                               weights = generate_weights(
-                                sample_size = nrow(model_input_df),
+                                sample_size = nrow(df),
                                 num_imps    = 10
                               ),
                               alpha  = 1)          # LASSO penalty
@@ -211,7 +211,7 @@ lasso_X_model    <- glmnet(x      = lasso_X_conf_matrix_preserving_factors,
                            y      = lasso_X_exposure_matrix_preserving_factors,
                            family = "binomial", # logistic regression
                            weights = generate_weights(
-                             sample_size = nrow(model_input_df),
+                             sample_size = nrow(df),
                              num_imps    = 10
                            ),
                            alpha  = 1,          # LASSO penalty
@@ -228,7 +228,7 @@ fully_adjusted_logistic <- glm(
   family = "binomial",
   data = df2,
   weights = generate_weights(
-    sample_size = nrow(model_input_df),
+    sample_size = nrow(df2),
     num_imps    = 10
   )
 )
