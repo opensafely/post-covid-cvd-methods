@@ -157,3 +157,9 @@ convert_terms_to_vars <- function(terms = NULL, all_var_names = NULL) {
 
   return (vars)
 }
+
+
+generate_weights <- function(sample_size = NULL, num_imps = NULL) {
+  weights <- rep((1 / num_imps), length.out = sample_size)
+  return (weights)
+}

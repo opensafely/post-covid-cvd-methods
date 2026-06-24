@@ -243,11 +243,19 @@ fully_adjusted_outcome_regression_formula  <- make_outcome_formula(
 fully_adjusted_exposure_regression <- glm(
   fully_adjusted_exposure_regression_formula,
   family = "binomial",
-  data   = logistic_df
+  data   = logistic_df,
+  weights = generate_weights(
+    sample_size = nrow(model_input_df),
+    num_imps    = 10
+  )
 )
 fully_adjusted_outcome_regression  <- coxph(
   formula = as.formula(fully_adjusted_outcome_regression_formula),
-  data    = cox_df
+  data    = cox_df,
+  weights = generate_weights(
+    sample_size = nrow(model_input_df),
+    num_imps    = 10
+  )
 )
 
 # extract regression results
@@ -334,11 +342,19 @@ lasso_outcome_regression_formula  <- make_outcome_formula(
 lasso_exposure_regression <- glm(
   lasso_exposure_regression_formula,
   family = "binomial",
-  data   = logistic_df
+  data   = logistic_df,
+  weights = generate_weights(
+    sample_size = nrow(model_input_df),
+    num_imps    = 10
+  )
 )
 lasso_outcome_regression  <- coxph(
   formula = as.formula(lasso_outcome_regression_formula),
-  data    = cox_df
+  data    = cox_df,
+  weights = generate_weights(
+    sample_size = nrow(model_input_df),
+    num_imps    = 10
+  )
 )
 
 # extract regression results
@@ -425,11 +441,19 @@ lasso_X_outcome_regression_formula  <- make_outcome_formula(
 lasso_X_exposure_regression <- glm(
   lasso_X_exposure_regression_formula,
   family = "binomial",
-  data   = logistic_df
+  data   = logistic_df,
+  weights = generate_weights(
+    sample_size = nrow(model_input_df),
+    num_imps    = 10
+  )
 )
 lasso_X_outcome_regression  <- coxph(
   formula = as.formula(lasso_X_outcome_regression_formula),
-  data    = cox_df
+  data    = cox_df,
+  weights = generate_weights(
+    sample_size = nrow(model_input_df),
+    num_imps    = 10
+  )
 )
 
 # extract regression results
@@ -516,11 +540,19 @@ lasso_union_outcome_regression_formula  <- make_outcome_formula(
 lasso_union_exposure_regression <- glm(
   lasso_union_exposure_regression_formula,
   family = "binomial",
-  data   = logistic_df
+  data   = logistic_df,
+  weights = generate_weights(
+    sample_size = nrow(model_input_df),
+    num_imps    = 10
+  )
 )
 lasso_union_outcome_regression  <- coxph(
   formula = as.formula(lasso_union_outcome_regression_formula),
-  data    = cox_df
+  data    = cox_df,
+  weights = generate_weights(
+    sample_size = nrow(model_input_df),
+    num_imps    = 10
+  )
 )
 
 # extract regression results
