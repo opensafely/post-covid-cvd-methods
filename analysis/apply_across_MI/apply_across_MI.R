@@ -38,6 +38,20 @@ print("Source common functions")
 
 source("analysis/utility.R")
 
+# only needed here, generates unique patient IDs for stacked data
+# unique IDs needed for cox_ipw action
+new_patient_ids <- function(ids = NULL, num_needed = NULL, shift = NULL) {
+  if (num_needed == 1) {
+    return (ids + shift)
+  } else {
+    new_ids <- c(
+      ids,
+      new_patient_ids(ids = (ids + shift), num_needed = (num_needed - 1), shift = shift)
+    )
+  }
+  return (new_ids)
+}
+
 
 # Specify arguments ------------------------------------------------------------
 print("Specify arguments")
@@ -334,24 +348,13 @@ df_post_imputation_sahhs$cov_cat_smoking <- factor(
 # Re-assign unique identifiers to imputed dataset for outcome  -----
 print("Re-assign unique identifiers to imputed dataset for outcome ")
 
-# NB: Below hard-coded to match get_number_of_imputed_datasets() = 10
-
 patient_id_1 <- as.numeric(unique(df_post_imputation_ami$patient_id))
 shift        <- max(patient_id_1) + 1
 
-patient_id_2  <- patient_id_1 + shift
-patient_id_3  <- patient_id_2 + shift
-patient_id_4  <- patient_id_3 + shift
-patient_id_5  <- patient_id_4 + shift
-patient_id_6  <- patient_id_5 + shift
-patient_id_7  <- patient_id_6 + shift
-patient_id_8  <- patient_id_7 + shift
-patient_id_9  <- patient_id_8 + shift
-patient_id_10 <- patient_id_9 + shift
-
-new_patient_id <- c(
-  patient_id_1, patient_id_2, patient_id_3, patient_id_4, patient_id_5,
-  patient_id_6, patient_id_7, patient_id_8, patient_id_9, patient_id_10
+new_patient_id <- new_patient_ids(
+  ids        = patient_id_1,
+  num_needed = get_number_of_imputed_datasets(),
+  shift      = shift
 )
 
 df_post_imputation_ami$patient_id   <- new_patient_id
