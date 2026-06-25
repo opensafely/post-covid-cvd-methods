@@ -244,18 +244,12 @@ fully_adjusted_exposure_regression <- glm(
   fully_adjusted_exposure_regression_formula,
   family = "binomial",
   data   = logistic_df,
-  weights = generate_weights(
-    sample_size = nrow(logistic_df),
-    num_imps    = get_number_of_imputed_datasets()
-  )
+  weights = generate_weights(sample_size = nrow(logistic_df))
 )
 fully_adjusted_outcome_regression  <- coxph(
   formula = as.formula(fully_adjusted_outcome_regression_formula),
   data    = cox_df,
-  weights = generate_weights(
-    sample_size = nrow(cox_df),
-    num_imps    = get_number_of_imputed_datasets()
-  )
+  weights = generate_weights(sample_size = nrow(cox_df))
 )
 
 # extract regression results
@@ -343,18 +337,12 @@ lasso_exposure_regression <- glm(
   lasso_exposure_regression_formula,
   family = "binomial",
   data   = logistic_df,
-  weights = generate_weights(
-    sample_size = nrow(logistic_df),
-    num_imps    = get_number_of_imputed_datasets()
-  )
+  weights = generate_weights(sample_size = nrow(logistic_df))
 )
 lasso_outcome_regression  <- coxph(
   formula = as.formula(lasso_outcome_regression_formula),
   data    = cox_df,
-  weights = generate_weights(
-    sample_size = nrow(cox_df),
-    num_imps    = get_number_of_imputed_datasets()
-  )
+  weights = generate_weights(sample_size = nrow(cox_df))
 )
 
 # extract regression results
@@ -442,18 +430,12 @@ lasso_X_exposure_regression <- glm(
   lasso_X_exposure_regression_formula,
   family = "binomial",
   data   = logistic_df,
-  weights = generate_weights(
-    sample_size = nrow(logistic_df),
-    num_imps    = get_number_of_imputed_datasets()
-  )
+  weights = generate_weights(sample_size = nrow(logistic_df))
 )
 lasso_X_outcome_regression  <- coxph(
   formula = as.formula(lasso_X_outcome_regression_formula),
   data    = cox_df,
-  weights = generate_weights(
-    sample_size = nrow(cox_df),
-    num_imps    = get_number_of_imputed_datasets()
-  )
+  weights = generate_weights(sample_size = nrow(cox_df))
 )
 
 # extract regression results
@@ -541,18 +523,12 @@ lasso_union_exposure_regression <- glm(
   lasso_union_exposure_regression_formula,
   family = "binomial",
   data   = logistic_df,
-  weights = generate_weights(
-    sample_size = nrow(logistic_df),
-    num_imps    = get_number_of_imputed_datasets()
-  )
+  weights = generate_weights(sample_size = nrow(logistic_df))
 )
 lasso_union_outcome_regression  <- coxph(
   formula = as.formula(lasso_union_outcome_regression_formula),
   data    = cox_df,
-  weights = generate_weights(
-    sample_size = nrow(cox_df),
-    num_imps    = get_number_of_imputed_datasets()
-  )
+  weights = generate_weights(sample_size = nrow(cox_df))
 )
 
 # extract regression results

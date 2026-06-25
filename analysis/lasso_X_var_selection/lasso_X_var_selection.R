@@ -198,10 +198,7 @@ cv_lasso_X_model <- cv.glmnet(x      = lasso_X_conf_matrix_preserving_factors,
                               y      = lasso_X_exposure_matrix_preserving_factors,
                               nfolds = 20,         # number of cv datasets
                               family = "binomial", # logistic regression
-                              weights = generate_weights(
-                                sample_size = nrow(df),
-                                num_imps    = get_number_of_imputed_datasets()
-                              ),
+                              weights = generate_weights(sample_size = nrow(df)),
                               alpha  = 1)          # LASSO penalty
 
 # tune regularisation parameter lambda to minimise cross-validated error (cvm)
@@ -210,10 +207,7 @@ lambda         <- cv_lasso_X_model$lambda.min
 lasso_X_model    <- glmnet(x      = lasso_X_conf_matrix_preserving_factors,
                            y      = lasso_X_exposure_matrix_preserving_factors,
                            family = "binomial", # logistic regression
-                           weights = generate_weights(
-                             sample_size = nrow(df),
-                             num_imps    = get_number_of_imputed_datasets()
-                           ),
+                           weights = generate_weights(sample_size = nrow(df)),
                            alpha  = 1,          # LASSO penalty
                            lambda = lambda)     # optimal lambda
 
@@ -227,10 +221,7 @@ fully_adjusted_logistic <- glm(
   fully_adjusted_formula,
   family = "binomial",
   data = df2,
-  weights = generate_weights(
-    sample_size = nrow(df2),
-    num_imps    = get_number_of_imputed_datasets()
-  )
+  weights = generate_weights(sample_size = nrow(df2))
 )
 
 

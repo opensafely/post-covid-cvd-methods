@@ -11,10 +11,7 @@ fit_model <- function(
 
   # Calculate stacked weights -----
   print("Calculate stacked weights")
-  df$cox_stacked_weight <- generate_weights(
-    initial_weights = df$cox_weight,
-    num_imps        = get_number_of_imputed_datasets()
-  )
+  df$cox_stacked_weight <- generate_weights(initial_weights = df$cox_weight)
 
   # Check weights in logs -----
   print("Initial weights:")

@@ -160,6 +160,10 @@ convert_terms_to_vars <- function(terms = NULL, all_var_names = NULL) {
 
 
 generate_weights <- function(initial_weights = NULL, sample_size = NULL, num_imps = NULL) {
+  if (is.null(num_imps)) {
+    num_imps <- get_number_of_imputed_datasets()
+  }
+
   if (is.null(initial_weights)) {
     weights <- rep((1 / num_imps), length.out = sample_size)
   } else {

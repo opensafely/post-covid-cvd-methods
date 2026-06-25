@@ -232,10 +232,7 @@ cv_lasso_cox_model <- cv.glmnet(x       = lasso_cox_conf_matrix_preserving_facto
                                 y       = lasso_cox_outcome_survival,
                                 nfolds  = 20,         # number of cv datasets
                                 family  = "cox",      # cox regression
-                                weights = generate_weights(
-                                  sample_size = nrow(model_input_df),
-                                  num_imps    = get_number_of_imputed_datasets()
-                                ),
+                                weights = generate_weights(sample_size = nrow(model_input_df)),
                                 alpha   = 1)          # LASSO penalty
 
 # tune regularisation parameter lambda to minimise cross-validated error (cvm)
@@ -244,10 +241,7 @@ lambda         <- cv_lasso_cox_model$lambda.min
 lasso_cox_model    <- glmnet(x = lasso_cox_conf_matrix_preserving_factors,
                              y = lasso_cox_outcome_survival,
                              family = "cox",      # cox regression
-                             weights = generate_weights(
-                                sample_size = nrow(model_input_df),
-                                num_imps    = get_number_of_imputed_datasets()
-                              ),
+                             weights = generate_weights(sample_size = nrow(model_input_df)),
                              alpha  = 1,          # LASSO penalty
                              lambda = lambda)     # optimal lambda
 
@@ -276,10 +270,7 @@ fully_adjusted_outcome_regression_formula <- make_outcome_formula(
 fully_adjusted_cox  <- coxph(
   formula = as.formula(fully_adjusted_outcome_regression_formula),
   data    = df2,
-  weights = generate_weights(
-    sample_size = nrow(model_input_df),
-    num_imps    = get_number_of_imputed_datasets()
-  )
+  weights = generate_weights(sample_size = nrow(model_input_df))
 )
 
 
