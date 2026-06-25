@@ -513,7 +513,7 @@ apply_model_function <- function(
     action(
       name = glue("cox_ipw-{name}"),
       run = glue(
-        "cox-ipw:v0.0.39
+        "r:v2 analysis/cox_ipw/cox-ipw.R
         --df_input=model/model_input-{name}.rds
         --ipw={ipw}
         --exposure=exp_date
@@ -593,7 +593,7 @@ apply_lasso_cox_model_function <- function(
     action(
       name = glue("lasso_cox_ipw-{name}"),
       run = glue(
-        "cox-ipw:v0.0.39
+        "r:v2 analysis/cox_ipw/cox-ipw.R
         --df_input=model/model_input-{name}.rds
         --ipw={ipw}
         --exposure=exp_date
@@ -652,7 +652,7 @@ apply_lasso_X_cox_model_function <- function(
     action(
       name = glue("lasso_X_cox_ipw-{name}"),
       run = glue(
-        "cox-ipw:v0.0.39
+        "r:v2 analysis/cox_ipw/cox-ipw.R
         --df_input=model/model_input-{name}.rds
         --ipw={ipw}
         --exposure=exp_date
@@ -711,7 +711,7 @@ apply_lasso_union_cox_model_function <- function(
     action(
       name = glue("lasso_union_cox_ipw-{name}"),
       run = glue(
-        "cox-ipw:v0.0.39
+        "r:v2 analysis/cox_ipw/cox-ipw.R
         --df_input=model/model_input-{name}.rds
         --ipw={ipw}
         --exposure=exp_date
