@@ -82,53 +82,97 @@ age_bounds <- as.numeric(stringr::str_split(as.vector(age_str), ";")[[1]])
 print("Load data")
 
 # subsample, ami
-df <- readr::read_rds(paste0(
+df_ami <- readr::read_rds(paste0(
   "output/generate_subsample/input_",
   cohort,
   "_clean_subsample_ami.rds"
 ))
 
+# subsample, sahhs
+df_sahhs <- readr::read_rds(paste0(
+  "output/generate_subsample/input_",
+  cohort,
+  "_clean_subsample_sahhs.rds"
+))
 
 
 # Check all covariates  --------------------------------------------------------
 message("Check all covariates")
 
-df$cov_bin_ami   <- as.logical(df$cov_bin_ami)   # outcome
-df$cov_bin_sahhs <- as.logical(df$cov_bin_sahhs) # outcome
-df$cov_bin_covid <- as.logical(df$cov_bin_covid) # exposure
+df_ami$cov_bin_ami   <- as.logical(df_ami$cov_bin_ami)   # outcome
+df_ami$cov_bin_sahhs <- as.logical(df_ami$cov_bin_sahhs) # outcome
+df_ami$cov_bin_covid <- as.logical(df_ami$cov_bin_covid) # exposure
 
-df$cov_num_age       <- as.numeric(df$cov_num_age)
-df$cov_cat_sex       <- as.factor(df$cov_cat_sex)
-df$cov_cat_ethnicity <- as.factor(df$cov_cat_ethnicity)
-df$cov_cat_imd       <- as.factor(df$cov_cat_imd)
-df$cov_cat_smoking   <- as.factor(df$cov_cat_smoking)
+df_ami$cov_num_age       <- as.numeric(df_ami$cov_num_age)
+df_ami$cov_cat_sex       <- as.factor(df_ami$cov_cat_sex)
+df_ami$cov_cat_ethnicity <- as.factor(df_ami$cov_cat_ethnicity)
+df_ami$cov_cat_imd       <- as.factor(df_ami$cov_cat_imd)
+df_ami$cov_cat_smoking   <- as.factor(df_ami$cov_cat_smoking)
 
-df$cov_bin_carehome      <- as.factor(df$cov_bin_carehome)
-df$cov_bin_hcworker      <- as.factor(df$cov_bin_hcworker)
-df$cov_bin_dementia      <- as.factor(df$cov_bin_dementia)
-df$cov_bin_liver_disease <- as.factor(df$cov_bin_liver_disease)
-df$cov_bin_ckd           <- as.factor(df$cov_bin_ckd)
+df_ami$cov_bin_carehome      <- as.factor(df_ami$cov_bin_carehome)
+df_ami$cov_bin_hcworker      <- as.factor(df_ami$cov_bin_hcworker)
+df_ami$cov_bin_dementia      <- as.factor(df_ami$cov_bin_dementia)
+df_ami$cov_bin_liver_disease <- as.factor(df_ami$cov_bin_liver_disease)
+df_ami$cov_bin_ckd           <- as.factor(df_ami$cov_bin_ckd)
 
-df$cov_bin_cancer       <- as.factor(df$cov_bin_cancer)
-df$cov_bin_hypertension <- as.factor(df$cov_bin_hypertension)
-df$cov_bin_diabetes     <- as.factor(df$cov_bin_diabetes)
-df$cov_bin_obesity      <- as.factor(df$cov_bin_obesity)
-df$cov_bin_copd         <- as.factor(df$cov_bin_copd)
+df_ami$cov_bin_cancer       <- as.factor(df_ami$cov_bin_cancer)
+df_ami$cov_bin_hypertension <- as.factor(df_ami$cov_bin_hypertension)
+df_ami$cov_bin_diabetes     <- as.factor(df_ami$cov_bin_diabetes)
+df_ami$cov_bin_obesity      <- as.factor(df_ami$cov_bin_obesity)
+df_ami$cov_bin_copd         <- as.factor(df_ami$cov_bin_copd)
 
-df$cov_bin_depression <- as.factor(df$cov_bin_depression)
-df$cov_bin_stroke_all <- as.factor(df$cov_bin_stroke_all)
-df$cov_bin_other_ae   <- as.factor(df$cov_bin_other_ae)
-df$cov_bin_vte        <- as.factor(df$cov_bin_vte)
-df$cov_bin_hf         <- as.factor(df$cov_bin_hf)
+df_ami$cov_bin_depression <- as.factor(df_ami$cov_bin_depression)
+df_ami$cov_bin_stroke_all <- as.factor(df_ami$cov_bin_stroke_all)
+df_ami$cov_bin_other_ae   <- as.factor(df_ami$cov_bin_other_ae)
+df_ami$cov_bin_vte        <- as.factor(df_ami$cov_bin_vte)
+df_ami$cov_bin_hf         <- as.factor(df_ami$cov_bin_hf)
 
-df$cov_bin_angina        <- as.factor(df$cov_bin_angina)
-df$cov_bin_lipidmed      <- as.factor(df$cov_bin_lipidmed)
-df$cov_bin_antiplatelet  <- as.factor(df$cov_bin_antiplatelet)
-df$cov_bin_anticoagulant <- as.factor(df$cov_bin_anticoagulant)
-df$cov_bin_cocp          <- as.factor(df$cov_bin_cocp)
+df_ami$cov_bin_angina        <- as.factor(df_ami$cov_bin_angina)
+df_ami$cov_bin_lipidmed      <- as.factor(df_ami$cov_bin_lipidmed)
+df_ami$cov_bin_antiplatelet  <- as.factor(df_ami$cov_bin_antiplatelet)
+df_ami$cov_bin_anticoagulant <- as.factor(df_ami$cov_bin_anticoagulant)
+df_ami$cov_bin_cocp          <- as.factor(df_ami$cov_bin_cocp)
 
-df$cov_bin_hrt      <- as.factor(df$cov_bin_hrt)
-df$strat_cat_region <- as.factor(df$strat_cat_region)
+df_ami$cov_bin_hrt      <- as.factor(df_ami$cov_bin_hrt)
+df_ami$strat_cat_region <- as.factor(df_ami$strat_cat_region)
+
+
+df_sahhs$cov_bin_sahhs   <- as.logical(df_sahhs$cov_bin_sahhs)   # outcome
+df_sahhs$cov_bin_sahhs <- as.logical(df_sahhs$cov_bin_sahhs) # outcome
+df_sahhs$cov_bin_covid <- as.logical(df_sahhs$cov_bin_covid) # exposure
+
+df_sahhs$cov_num_age       <- as.numeric(df_sahhs$cov_num_age)
+df_sahhs$cov_cat_sex       <- as.factor(df_sahhs$cov_cat_sex)
+df_sahhs$cov_cat_ethnicity <- as.factor(df_sahhs$cov_cat_ethnicity)
+df_sahhs$cov_cat_imd       <- as.factor(df_sahhs$cov_cat_imd)
+df_sahhs$cov_cat_smoking   <- as.factor(df_sahhs$cov_cat_smoking)
+
+df_sahhs$cov_bin_carehome      <- as.factor(df_sahhs$cov_bin_carehome)
+df_sahhs$cov_bin_hcworker      <- as.factor(df_sahhs$cov_bin_hcworker)
+df_sahhs$cov_bin_dementia      <- as.factor(df_sahhs$cov_bin_dementia)
+df_sahhs$cov_bin_liver_disease <- as.factor(df_sahhs$cov_bin_liver_disease)
+df_sahhs$cov_bin_ckd           <- as.factor(df_sahhs$cov_bin_ckd)
+
+df_sahhs$cov_bin_cancer       <- as.factor(df_sahhs$cov_bin_cancer)
+df_sahhs$cov_bin_hypertension <- as.factor(df_sahhs$cov_bin_hypertension)
+df_sahhs$cov_bin_diabetes     <- as.factor(df_sahhs$cov_bin_diabetes)
+df_sahhs$cov_bin_obesity      <- as.factor(df_sahhs$cov_bin_obesity)
+df_sahhs$cov_bin_copd         <- as.factor(df_sahhs$cov_bin_copd)
+
+df_sahhs$cov_bin_depression <- as.factor(df_sahhs$cov_bin_depression)
+df_sahhs$cov_bin_stroke_all <- as.factor(df_sahhs$cov_bin_stroke_all)
+df_sahhs$cov_bin_other_ae   <- as.factor(df_sahhs$cov_bin_other_ae)
+df_sahhs$cov_bin_vte        <- as.factor(df_sahhs$cov_bin_vte)
+df_sahhs$cov_bin_hf         <- as.factor(df_sahhs$cov_bin_hf)
+
+df_sahhs$cov_bin_angina        <- as.factor(df_sahhs$cov_bin_angina)
+df_sahhs$cov_bin_lipidmed      <- as.factor(df_sahhs$cov_bin_lipidmed)
+df_sahhs$cov_bin_antiplatelet  <- as.factor(df_sahhs$cov_bin_antiplatelet)
+df_sahhs$cov_bin_anticoagulant <- as.factor(df_sahhs$cov_bin_anticoagulant)
+df_sahhs$cov_bin_cocp          <- as.factor(df_sahhs$cov_bin_cocp)
+
+df_sahhs$cov_bin_hrt      <- as.factor(df_sahhs$cov_bin_hrt)
+df_sahhs$strat_cat_region <- as.factor(df_sahhs$strat_cat_region)
 
 
 # Table 1 Processing Start -----------------------------------------------------
@@ -137,12 +181,16 @@ print("Table 1 processing")
 # Remove people with history of COVID-19 ---------------------------------------
 print("Remove people with history of COVID-19")
 
-df <- df[df$sub_bin_covidhistory == FALSE, ]
+df_ami <- df_ami[df_ami$sub_bin_covidhistory == FALSE, ]
+
+df_sahhs <- df_sahhs[df_sahhs$sub_bin_covidhistory == FALSE, ]
 
 # Create exposure indicator ----------------------------------------------------
 print("Create exposure indicator")
 
-df$exposed <- df$cov_bin_covid
+df_ami$exposed <- df_ami$cov_bin_covid
+
+df_sahhs$exposed <- df_sahhs$cov_bin_covid
 
 # Select for pre-existing conditions
 print("Select for pre-existing conditions")
@@ -151,76 +199,139 @@ print("Select for pre-existing conditions")
 # because neither asthma nor copdoutcomes are present
 preex_string <- ""
 # if (preex != "All") {
-#   df <- df[df$sup_bin_preex == preex, ]
+#   df_ami <- df_ami[df_ami$sup_bin_preex == preex, ]
 #   preex_string <- paste0("-preex_", preex)
 # }
+
+# preex optional argument deliberately ignored, sup_bin_preex does not exist
+# because neither asthma nor copdoutcomes are present
+preex_string <- ""
+# if (preex != "All") {
+#   df_sahhs <- df_sahhs[df_sahhs$sup_bin_preex == preex, ]
+#   preex_string <- paste0("-preex_", preex)
+# }
+
 
 # Define age groups ------------------------------------------------------------
 print("Define age groups")
 
-df$cov_cat_age_group <- numerical_to_categorical(df$cov_num_age, age_bounds) # See utility.R
+df_ami$cov_cat_age_group <- numerical_to_categorical(df_ami$cov_num_age, age_bounds) # See utility.R
 
-# df$cov_cat_consrate2019 <- numerical_to_categorical(
-#   df$cov_num_consrate2019,
+# df_ami$cov_cat_consrate2019 <- numerical_to_categorical(
+#   df_ami$cov_num_consrate2019,
 #   c(1, 6),
 #   zero_flag = TRUE
 # )
 
-median_iqr_age <- create_median_iqr_string(df$cov_num_age) # See utility.R
+median_iqr_age <- create_median_iqr_string(df_ami$cov_num_age) # See utility.R
+
+
+df_sahhs$cov_cat_age_group <- numerical_to_categorical(df_sahhs$cov_num_age, age_bounds) # See utility.R
+
+# df_sahhs$cov_cat_consrate2019 <- numerical_to_categorical(
+#   df_sahhs$cov_num_consrate2019,
+#   c(1, 6),
+#   zero_flag = TRUE
+# )
+
+median_iqr_age <- create_median_iqr_string(df_sahhs$cov_num_age) # See utility.R
+
 
 # Filter data ------------------------------------------------------------------
 print("Filter data")
 
-df <- df[, c(
+df_ami <- df_ami[, c(
   "patient_id",
   "exposed",
-  colnames(df)[grepl("cov_cat_", colnames(df))],
-  colnames(df)[grepl("strat_cat_", colnames(df))],
-  colnames(df)[grepl("cov_bin_", colnames(df))]
+  colnames(df_ami)[grepl("cov_cat_", colnames(df_ami))],
+  colnames(df_ami)[grepl("strat_cat_", colnames(df_ami))],
+  colnames(df_ami)[grepl("cov_bin_", colnames(df_ami))]
 )]
 
-df$All <- "All"
+df_ami$All <- "All"
 
 # Filter binary data
 
-for (colname in colnames(df)[grepl("cov_bin_", colnames(df))]) {
-  df[[colname]] <- sapply(df[[colname]], as.character)
+for (colname in colnames(df_ami)[grepl("cov_bin_", colnames(df_ami))]) {
+  df_ami[[colname]] <- sapply(df_ami[[colname]], as.character)
 }
 
-df <- df %>%
+df_ami <- df_ami %>%
+  mutate(across(where(is.factor), as.character))
+
+df_sahhs <- df_sahhs[, c(
+  "patient_id",
+  "exposed",
+  colnames(df_sahhs)[grepl("cov_cat_", colnames(df_sahhs))],
+  colnames(df_sahhs)[grepl("strat_cat_", colnames(df_sahhs))],
+  colnames(df_sahhs)[grepl("cov_bin_", colnames(df_sahhs))]
+)]
+
+df_sahhs$All <- "All"
+
+# Filter binary data
+
+for (colname in colnames(df_sahhs)[grepl("cov_bin_", colnames(df_sahhs))]) {
+  df_sahhs[[colname]] <- sapply(df_sahhs[[colname]], as.character)
+}
+
+df_sahhs <- df_sahhs %>%
   mutate(across(where(is.factor), as.character))
 
 
 # Convert to characteristics and subcharacteristics ----------------------------
 print("Convert to characteristics and subcharacteristics")
 
-df <- tidyr::pivot_longer(
-  df,
-  cols = setdiff(colnames(df), c("patient_id", "exposed")),
+df_ami <- tidyr::pivot_longer(
+  df_ami,
+  cols = setdiff(colnames(df_ami), c("patient_id", "exposed")),
   names_to = "characteristic",
   values_to = "subcharacteristic"
 )
 
-df$total <- 1
+df_ami$total <- 1
+
+df_sahhs <- tidyr::pivot_longer(
+  df_sahhs,
+  cols = setdiff(colnames(df_sahhs), c("patient_id", "exposed")),
+  names_to = "characteristic",
+  values_to = "subcharacteristic"
+)
+
+df_sahhs$total <- 1
 
 # Tidy missing data labels -----------------------------------------------------
 print("Tidy missing data labels")
 
-df$subcharacteristic <- ifelse(
-  df$subcharacteristic == "" |
-    df$subcharacteristic == "unknown" |
-    is.na(df$subcharacteristic),
+df_ami$subcharacteristic <- ifelse(
+  df_ami$subcharacteristic == "" |
+    df_ami$subcharacteristic == "unknown" |
+    is.na(df_ami$subcharacteristic),
   "Missing",
-  df$subcharacteristic
+  df_ami$subcharacteristic
+)
+
+df_sahhs$subcharacteristic <- ifelse(
+  df_sahhs$subcharacteristic == "" |
+    df_sahhs$subcharacteristic == "unknown" |
+    is.na(df_sahhs$subcharacteristic),
+  "Missing",
+  df_sahhs$subcharacteristic
 )
 
 # Aggregate data ---------------------------------------------------------------
 
 print("Aggregate data")
 
-df <- aggregate(
+df_ami <- aggregate(
   cbind(total, exposed) ~ characteristic + subcharacteristic,
-  data = df,
+  data = df_ami,
+  sum
+)
+
+df_sahhs <- aggregate(
+  cbind(total, exposed) ~ characteristic + subcharacteristic,
+  data = df_sahhs,
   sum
 )
 
@@ -228,45 +339,64 @@ df <- aggregate(
 # Sort characteristics ---------------------------------------------------------
 print("Sort characteristics")
 
-df <- df[order(df$characteristic, df$subcharacteristic), ]
+df_ami <- df_ami[order(df_ami$characteristic, df_ami$subcharacteristic), ]
+
+df_sahhs <- df_sahhs[order(df_sahhs$characteristic, df_sahhs$subcharacteristic), ]
+
 
 # Add in Median IQR
 print('Add median (IQR) age')
 
 # Pastes: "Mean Age (LQ Age - UQ Age)" as a string for each cohort
-df[nrow(df) + 1, ] <- c("Age, years", "Median (IQR)", median_iqr_age, 0)
+df_sahhs[nrow(df_sahhs) + 1, ] <- c("Age, years", "Median (IQR)", median_iqr_age, 0)
+
 
 # Save Table 1 -----------------------------------------------------------------
 print("Save Table 1")
 
 write.csv(
-  df,
-  paste0(table1_dir, "table1-cohort_", cohort, preex_string, "_subsample.csv"),
+  df_ami,
+  paste0(table1_dir, "table1-cohort_", cohort, preex_string, "_ami_subsample.csv"),
   row.names = FALSE
 )
+
+write.csv(
+  df_sahhs,
+  paste0(table1_dir, "table1-cohort_", cohort, preex_string, "_sahhs_subsample.csv"),
+  row.names = FALSE
+)
+
 
 # Perform redaction ------------------------------------------------------------
 print("Perform redaction")
 
-df <- df[df$subcharacteristic != "Median (IQR)", ] # Remove Median IQR row
-df <- df[df$subcharacteristic != FALSE, ] # Remove False binary data
+df_ami <- df_ami[df_ami$subcharacteristic != "Median (IQR)", ] # Remove Median IQR row
+df_ami <- df_ami[df_ami$subcharacteristic != FALSE, ] # Remove False binary data
 
-df$total_midpoint6 <- roundmid_any(df$total)
-df$exposed_midpoint6 <- roundmid_any(df$exposed)
+df_ami$total_midpoint6 <- roundmid_any(df_ami$total)
+df_ami$exposed_midpoint6 <- roundmid_any(df_ami$exposed)
+
+df_sahhs <- df_sahhs[df_sahhs$subcharacteristic != "Median (IQR)", ] # Remove Median IQR row
+df_sahhs <- df_sahhs[df_sahhs$subcharacteristic != FALSE, ] # Remove False binary data
+
+df_sahhs$total_midpoint6 <- roundmid_any(df_sahhs$total)
+df_sahhs$exposed_midpoint6 <- roundmid_any(df_sahhs$exposed)
+
 
 # Calculate column percentages -------------------------------------------------
+print("Calculate column percentages")
 
-df$N_midpoint6_derived <- df$total_midpoint6
+df_ami$N_midpoint6_derived <- df_ami$total_midpoint6
 
-df$percent_midpoint6_derived <- paste0(
+df_ami$percent_midpoint6_derived <- paste0(
   ifelse(
-    df$characteristic == "All",
+    df_ami$characteristic == "All",
     "",
     paste0(
       round(
         100 *
-          (df$total_midpoint6 /
-            df[df$characteristic == "All", "total_midpoint6"]),
+          (df_ami$total_midpoint6 /
+            df_ami[df_ami$characteristic == "All", "total_midpoint6"]),
         1
       ),
       "%"
@@ -274,15 +404,15 @@ df$percent_midpoint6_derived <- paste0(
   )
 )
 
-df$percent_exposed_midpoint6 <- paste0(
+df_ami$percent_exposed_midpoint6 <- paste0(
   ifelse(
-    df$characteristic == "All",
+    df_ami$characteristic == "All",
     "",
     paste0(
       round(
         100 *
-          (df$exposed_midpoint6 /
-            df[df$characteristic == "All", "exposed_midpoint6"]),
+          (df_ami$exposed_midpoint6 /
+            df_ami[df_ami$characteristic == "All", "exposed_midpoint6"]),
         1
       ),
       "%"
@@ -290,7 +420,7 @@ df$percent_exposed_midpoint6 <- paste0(
   )
 )
 
-df <- df[, c(
+df_ami <- df_ami[, c(
   "characteristic",
   "subcharacteristic",
   "N_midpoint6_derived",
@@ -299,10 +429,10 @@ df <- df[, c(
   "percent_exposed_midpoint6"
 )]
 
-df[nrow(df) + 1, ] <- c("Age, years", "Median (IQR)", median_iqr_age, "", 0, "")
+df_ami[nrow(df_ami) + 1, ] <- c("Age, years", "Median (IQR)", median_iqr_age, "", 0, "")
 
-df <- dplyr::rename(
-  df,
+df_ami <- dplyr::rename(
+  df_ami,
   "Characteristic" = "characteristic",
   "Subcharacteristic" = "subcharacteristic",
   "N [midpoint6_derived]" = "N_midpoint6_derived",
@@ -310,11 +440,72 @@ df <- dplyr::rename(
   "COVID-19 diagnoses [midpoint6]" = "exposed_midpoint6"
 )
 
+df_sahhs$N_midpoint6_derived <- df_sahhs$total_midpoint6
+
+df_sahhs$percent_midpoint6_derived <- paste0(
+  ifelse(
+    df_sahhs$characteristic == "All",
+    "",
+    paste0(
+      round(
+        100 *
+          (df_sahhs$total_midpoint6 /
+            df_sahhs[df_sahhs$characteristic == "All", "total_midpoint6"]),
+        1
+      ),
+      "%"
+    )
+  )
+)
+
+df_sahhs$percent_exposed_midpoint6 <- paste0(
+  ifelse(
+    df_sahhs$characteristic == "All",
+    "",
+    paste0(
+      round(
+        100 *
+          (df_sahhs$exposed_midpoint6 /
+            df_sahhs[df_sahhs$characteristic == "All", "exposed_midpoint6"]),
+        1
+      ),
+      "%"
+    )
+  )
+)
+
+df_sahhs <- df_sahhs[, c(
+  "characteristic",
+  "subcharacteristic",
+  "N_midpoint6_derived",
+  "percent_midpoint6_derived",
+  "exposed_midpoint6",
+  "percent_exposed_midpoint6"
+)]
+
+df_sahhs[nrow(df_sahhs) + 1, ] <- c("Age, years", "Median (IQR)", median_iqr_age, "", 0, "")
+
+df_sahhs <- dplyr::rename(
+  df_sahhs,
+  "Characteristic" = "characteristic",
+  "Subcharacteristic" = "subcharacteristic",
+  "N [midpoint6_derived]" = "N_midpoint6_derived",
+  "(%) [midpoint6_derived]" = "percent_midpoint6_derived",
+  "COVID-19 diagnoses [midpoint6]" = "exposed_midpoint6"
+)
+
+
 # Save Table 1 -----------------------------------------------------------------
 print("Save rounded Table 1")
 
 write.csv(
-  df,
-  paste0(table1_dir, "table1-cohort_", cohort, preex_string, "-midpoint6_subsample.csv"),
+  df_ami,
+  paste0(table1_dir, "table1-cohort_", cohort, preex_string, "_ami-midpoint6_subsample.csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  df_sahhs,
+  paste0(table1_dir, "table1-cohort_", cohort, preex_string, "_sahhs-midpoint6_subsample.csv"),
   row.names = FALSE
 )

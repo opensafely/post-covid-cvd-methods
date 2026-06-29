@@ -153,18 +153,21 @@ actions:
     - apply_across_MI_cohort_prevax
     outputs:
       moderately_sensitive:
-        table1: output/table1/table1-cohort_prevax.csv
-        table1_midpoint6: output/table1/table1-cohort_prevax-midpoint6.csv
+        table1_ami: output/table1/table1-cohort_prevax_ami.csv
+        table1_ami_midpoint6: output/table1/table1-cohort_prevax_ami-midpoint6.csv
+        table1_sahhs: output/table1/table1-cohort_prevax_sahhs.csv
+        table1_sahhs_midpoint6: output/table1/table1-cohort_prevax_sahhs-midpoint6.csv
 
   ## Generate make-table1-output 
 
   make-table1-output:
-    run: r:v2 analysis/make_output/make_other_output.R table1 prevax
+    run: r:v2 analysis/make_output/make_table1_output.R table1 prevax
     needs:
     - table1-cohort_prevax
     outputs:
       moderately_sensitive:
-        other_output_midpoint6: output/make_output/table1_output_midpoint6.csv
+        other_output_ami_midpoint6: output/make_output/table1_output_ami_midpoint6.csv
+        other_output_sahhs_midpoint6: output/make_output/table1_output_sahhs_midpoint6.csv
 
   ## Generate table1_cohort_prevax_subsample 
 
@@ -174,8 +177,10 @@ actions:
     - generate_subsample_cohort_prevax
     outputs:
       moderately_sensitive:
-        table1_subsample: output/table1/table1-cohort_prevax_subsample.csv
-        table1_midpoint6_subsample: output/table1/table1-cohort_prevax-midpoint6_subsample.csv
+        table1_ami_subsample: output/table1/table1-cohort_prevax_ami_subsample.csv
+        table1_ami_midpoint6_subsample: output/table1/table1-cohort_prevax_ami-midpoint6_subsample.csv
+        table1_sahhs_subsample: output/table1/table1-cohort_prevax_sahhs_subsample.csv
+        table1_sahhs_midpoint6_subsample: output/table1/table1-cohort_prevax_sahhs-midpoint6_subsample.csv
 
   ## Generate lasso_var_selection-cohort_prevax-main-ami 
 

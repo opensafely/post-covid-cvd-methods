@@ -280,11 +280,17 @@ table1 <- function(cohort, ages = "18;40;60;80", preex = "All") {
       arguments = c(c(cohort), c(ages), c(preex)),
       needs = list(glue("apply_across_MI_cohort_{cohort}")),
       moderately_sensitive = list(
-        table1 = glue(
-          "output/table1/table1-cohort_{cohort}{preex_str}.csv"
+        table1_ami = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}_ami.csv"
         ),
-        table1_midpoint6 = glue(
-          "output/table1/table1-cohort_{cohort}{preex_str}-midpoint6.csv"
+        table1_ami_midpoint6 = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}_ami-midpoint6.csv"
+        ),
+        table1_sahhs = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}_sahhs.csv"
+        ),
+        table1_sahhs_midpoint6 = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}_sahhs-midpoint6.csv"
         )
       )
     )
@@ -308,11 +314,17 @@ table1_subsample <- function(cohort, ages = "18;40;60;80", preex = "All") {
       arguments = c(c(cohort), c(ages), c(preex)),
       needs = list(glue("generate_subsample_cohort_{cohort}")),
       moderately_sensitive = list(
-        table1_subsample = glue(
-          "output/table1/table1-cohort_{cohort}{preex_str}_subsample.csv"
+        table1_ami_subsample = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}_ami_subsample.csv"
         ),
-        table1_midpoint6_subsample = glue(
-          "output/table1/table1-cohort_{cohort}{preex_str}-midpoint6_subsample.csv"
+        table1_ami_midpoint6_subsample = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}_ami-midpoint6_subsample.csv"
+        ),
+        table1_sahhs_subsample = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}_sahhs_subsample.csv"
+        ),
+        table1_sahhs_midpoint6_subsample = glue(
+          "output/table1/table1-cohort_{cohort}{preex_str}_sahhs-midpoint6_subsample.csv"
         )
       )
     )
@@ -955,6 +967,51 @@ make_lasso_union_model_output <- function(subgroup) {
 
 # Create funtion for making combined table/venn outputs ------------------------
 
+make_table1_output <- function(action_name, cohort, subgroup = "") {
+  cohort_names <- stringr::str_split(as.vector(cohort), ";")[[1]]
+  if (subgroup == "All" | subgroup == "") {
+    sub_str <- ""
+  } else {
+    if (grepl("preex", subgroup)) {
+      sub_str <- paste0("-", subgroup)
+    } else {
+      sub_str <- paste0("-sub_", subgroup)
+    }
+  }
+
+  splice(
+    comment(glue("Generate make-{action_name}{sub_str}-output")),
+    action(
+      name = glue("make-{action_name}{sub_str}-output"),
+      run = "r:v2 analysis/make_output/make_table1_output.R",
+      arguments = unlist(lapply(
+        list(
+          c(action_name, cohort, subgroup)
+        ),
+        function(x) {
+          x[x != ""]
+        }
+      )),
+      needs = c(as.list(paste0(
+        action_name,
+        "-cohort_",
+        cohort_names,
+        sub_str
+      ))),
+      moderately_sensitive = list(
+        other_output_ami_midpoint6 = glue(
+          "output/make_output/{action_name}{sub_str}_output_ami_midpoint6.csv"
+        ),
+        other_output_sahhs_midpoint6 = glue(
+          "output/make_output/{action_name}{sub_str}_output_sahhs_midpoint6.csv"
+        )
+      )
+    )
+  )
+}
+
+# Create funtion for making combined table/venn outputs ------------------------
+
 make_other_output <- function(action_name, cohort, subgroup = "") {
   cohort_names <- stringr::str_split(as.vector(cohort), ";")[[1]]
   if (subgroup == "All" | subgroup == "") {
@@ -1117,7 +1174,7 @@ actions_list <- splice(
   ),
 
   splice(
-    make_other_output(
+    make_table1_output(
       action_name = "table1",
       cohort = paste0(cohorts, collapse = ";"),
       subgroup = ""
