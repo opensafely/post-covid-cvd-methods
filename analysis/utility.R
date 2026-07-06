@@ -146,14 +146,14 @@ convert_terms_to_vars <- function(terms = NULL, all_var_names = NULL) {
     # covariate names always all lower case
     # Factor Level Names always begin with upper case
     new_term <- sapply(strsplit(x = term, split = '([[:upper:]])'), `[`, 1)
-    vars     <- c(vars, new_term)
+    if (grepl('.', new_term, fixed = TRUE)) {
+      new_term <- gsub('.', '', new_term, fixed = TRUE)
+    }
+    vars <- append(vars, new_term)
   }
 
   # remove duplicates (i.e. two levels are significant)
   vars <- unique(vars)
-
-  # remove any trailing . (leftover from levels)
-  vars <- gsub('.', '', vars)
 
   return (vars)
 }

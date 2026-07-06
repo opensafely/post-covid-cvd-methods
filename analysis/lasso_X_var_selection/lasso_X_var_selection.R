@@ -241,7 +241,7 @@ write.csv(
 write.csv(
   lasso_X_coefs,
   paste0(lasso_X_var_selection_dir, "lasso_X_var_selection-coefs-", name, preex_string, ".csv"),
-  row.names = FALSE
+  row.names = TRUE
 )
 
 write.csv(
