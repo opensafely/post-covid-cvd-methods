@@ -140,7 +140,7 @@ make_outcome_formula <- function(vars_selected = NULL, outcome = NULL) {
 
 convert_terms_to_vars <- function(terms = NULL) {
   all_var_names <- c(
-    "cov_bin_covid",
+    "cov_bin_covid", "cov_bin_ami", "cov_bin_sahhs",
     "cov_num_age", "cov_cat_sex", "cov_num_bmi", "cov_cat_ethnicity", "cov_cat_imd",
     "cov_cat_smoking", "cov_bin_carehome", "cov_bin_hcworker", "cov_bin_dementia",
     "cov_bin_liver_disease", "cov_bin_ckd", "cov_bin_cancer", "cov_bin_hypertension",
@@ -149,18 +149,22 @@ convert_terms_to_vars <- function(terms = NULL) {
     "cov_bin_antiplatelet", "cov_bin_anticoagulant", "cov_bin_cocp", "cov_bin_hrt", "strat_cat_region"
   )
 
-  vars <- c()
+  vars <- vector()
 
-  for (term in terms) {
-    for (name in all_var_names) {
-      if (stringr::str_detect(term, name)) {
-        vars <- append(vars, name)
+  if ((is.null(terms)) | (length(terms) == 0)) {
+    # vars remains empty
+  } else {
+    for (term in terms) {
+      for (name in all_var_names) {
+        if (stringr::str_detect(term, name)) {
+          vars <- append(vars, name)
+        }
       }
     }
-  }
 
-  # remove duplicates (i.e. two levels are significant)
-  vars <- unique(vars)
+    # remove duplicates (i.e. two levels are significant)
+    vars <- unique(vars)
+  }
 
   return (vars)
 }
