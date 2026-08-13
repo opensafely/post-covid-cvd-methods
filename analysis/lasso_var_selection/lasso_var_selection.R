@@ -23,6 +23,9 @@
 #
 # ------------------------------------------------------------------------------
 
+# UPDATED CODE TO TEST CONVERGENCE ISSUE ------------------------------------
+print("UPDATED CODE TO TEST CONVERGENCE ISSUE")
+
 # Refresh local R session ------------------------------------------------------
 print("Refresh local R session")
 
@@ -216,20 +219,31 @@ lasso_cox_outcome_survival <- Surv(time  = as.numeric(outcome_cox_dates),
                                    type  = "right")
 
 
-# Fitting the lasso cox model ----------------------------------------------------
+# Cross validate lasso cox model to tune regularisation parameter ---------
 message("Fitting the lasso cox model")
 
 cv_lasso_cox_model <- cv.glmnet(x      = lasso_cox_conf_matrix_preserving_factors,
                                 y      = lasso_cox_outcome_survival,
-                                nfolds = 20,         # number of cv datasets
+                                nfolds = 10,         # number of cv datasets
+                                maxit  = 1000,       # force reduce maximum number of iterations
                                 family = "cox",      # cox regression
                                 alpha  = 1)          # LASSO penalty
 
+
+# Selecting optimal regularization parameter (lambda) ---------
+message("Selecting optimal regularization parameter (lambda)")
+
 # tune regularisation parameter lambda to minimise cross-validated error (cvm)
-lambda         <- cv_lasso_cox_model$lambda.min
+lambda <- cv_lasso_cox_model$lambda.min
+print(paste0("Optimal cross validated value of lambda:", lambda))
+
+
+# Fitting the lasso cox model ---------------------------------------------
+message("Fitting the lasso cox model")
 
 lasso_cox_model    <- glmnet(x = lasso_cox_conf_matrix_preserving_factors,
                              y = lasso_cox_outcome_survival,
+                             maxit  = 1000,       # force reduce maximum number of iterations
                              family = "cox",      # cox regression
                              alpha  = 1,          # LASSO penalty
                              lambda = lambda)     # optimal lambda
