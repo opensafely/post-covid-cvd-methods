@@ -222,31 +222,45 @@ lasso_cox_outcome_survival <- Surv(time  = as.numeric(outcome_cox_dates),
 # Cross validate lasso cox model to tune regularisation parameter ---------
 message("Fitting the lasso cox model")
 
-cv_lasso_cox_model <- cv.glmnet(x      = lasso_cox_conf_matrix_preserving_factors,
-                                y      = lasso_cox_outcome_survival,
-                                nfolds = 10,         # number of cv datasets
-                                maxit  = 1000,       # force reduce maximum number of iterations
-                                family = "cox",      # cox regression
-                                alpha  = 1)          # LASSO penalty
+cv_lasso_cox_model <- NULL
+lasso_cox_model    <- NULL
+
+set.seed(2025) # k fold cross validation uses randomised shuffling
+cv_lasso_cox_model <- cv.glmnet(
+  x       = lasso_cox_conf_matrix_preserving_factors,
+  y       = lasso_cox_outcome_survival,
+  nlambda = 200,   # length of lambda sequence
+  nfolds  = 3,     # number of cv datasets
+  family  = "cox", # cox regression
+  alpha   = 1      # LASSO penalty
+)
 
 
 # Selecting optimal regularization parameter (lambda) ---------
 message("Selecting optimal regularization parameter (lambda)")
 
 # tune regularisation parameter lambda to minimise cross-validated error (cvm)
-lambda <- cv_lasso_cox_model$lambda.min
-print(paste0("Optimal cross validated value of lambda:", lambda))
+lambda     <- cv_lasso_cox_model$lambda.min
+lambda_1se <- cv_lasso_cox_model$lambda.1se
+print(paste0("Optimal lambda:", lambda))
+
+lambda_sequence <- data.frame(
+  lambda     = cv_lasso_cox_model$lambda,
+  cvm        = cv_lasso_cox_model$cvm,
+  cvm_se     = cv_lasso_cox_model$cvsd,
+  cvm_upper  = cv_lasso_cox_model$cvup,
+  cvm_lower  = cv_lasso_cox_model$cvlo,
+  lambda_min = cv_lasso_cox_model$lambda.min, # constant column
+  lambda_1se = cv_lasso_cox_model$lambda.1se  # constant column
+)
 
 
-# Fitting the lasso cox model ---------------------------------------------
-message("Fitting the lasso cox model")
+# Extracting the lasso cox model coefficients ---------------------------
+message("Extracting the lasso cox model coefficients")
 
-lasso_cox_model    <- glmnet(x = lasso_cox_conf_matrix_preserving_factors,
-                             y = lasso_cox_outcome_survival,
-                             maxit  = 1000,       # force reduce maximum number of iterations
-                             family = "cox",      # cox regression
-                             alpha  = 1,          # LASSO penalty
-                             lambda = lambda)     # optimal lambda
+lasso_cox_coefs           <- coef(cv_lasso_cox_model, s = lambda)
+lasso_cox_coefs           <- as.data.frame(as.matrix(lasso_cox_coefs))
+colnames(lasso_cox_coefs) <- c("coefficient")
 
 
 # Fitting the Fully adjusted cox model ------------------------------------
@@ -279,18 +293,14 @@ fully_adjusted_cox  <- coxph(
 # Extract covariate selection results ------------------------------------------
 print("Extract covariate selection results")
 
-lasso_cox_coefs        <- as.vector(lasso_cox_model$beta)
-names(lasso_cox_coefs) <- rownames(lasso_cox_model$beta)
-
-candidate_vars <- colnames(lasso_cox_conf_matrix)
-non_zero_vars  <- names(lasso_cox_coefs[lasso_cox_coefs != 0.0])
+non_zero_coefs <- lasso_cox_coefs %>% dplyr::filter(coefficient != 0.0)
+non_zero_vars  <- rownames(non_zero_coefs)
 vars_selected  <- convert_terms_to_vars(non_zero_vars)
 
 # always include exposure
 if (!("cov_bin_covid" %in% vars_selected)) {
   vars_selected <- c(vars_selected, "cov_bin_covid")
 }
-
 
 # Save covariate selection and coefficients ------------------------------------
 print("Save Covariate Selection and Coefficients")
@@ -310,5 +320,11 @@ write.csv(
 write.csv(
   vars_selected,
   paste0(lasso_var_selection_dir, "lasso_var_selection-", name, preex_string, ".csv"),
+  row.names = FALSE
+)
+
+write.csv(
+  lambda_sequence,
+  paste0(lasso_var_selection_dir, "lambda_sequence-", name, preex_string, ".csv"),
   row.names = FALSE
 )
