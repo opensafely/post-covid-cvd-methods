@@ -341,6 +341,9 @@ lasso_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "All
         ),
         lasso_coefs = glue(
           "output/lasso_var_selection/lasso_var_selection-coefs-{name}{preex_str}.csv"
+        ),
+        lambda_sequence = glue(
+          "output/lasso_var_selection/lambda_sequence-{name}{preex_str}.csv"
         )
       )
     )
@@ -373,6 +376,9 @@ lasso_X_var_selection <- function(name, cohort, ages = "18;40;60;80", preex = "A
         ),
         lasso_X_coefs = glue(
           "output/lasso_X_var_selection/lasso_X_var_selection-coefs-{name}{preex_str}.csv"
+        ),
+        lambda_sequence = glue(
+          "output/lasso_X_var_selection/lambda_sequence-{name}{preex_str}.csv"
         )
       )
     )

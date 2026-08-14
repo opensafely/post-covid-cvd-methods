@@ -186,6 +186,7 @@ actions:
         fully_adjusted_cox_coefs: output/lasso_var_selection/fully_adjusted_cox_coefs-cohort_prevax-main-ami.csv
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-main-ami.csv
         lasso_coefs: output/lasso_var_selection/lasso_var_selection-coefs-cohort_prevax-main-ami.csv
+        lambda_sequence: output/lasso_var_selection/lambda_sequence-cohort_prevax-main-ami.csv
 
   ## Generate lasso_var_selection-cohort_prevax-main-stroke_sahhs 
 
@@ -200,6 +201,7 @@ actions:
         fully_adjusted_cox_coefs: output/lasso_var_selection/fully_adjusted_cox_coefs-cohort_prevax-main-stroke_sahhs.csv
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-main-stroke_sahhs.csv
         lasso_coefs: output/lasso_var_selection/lasso_var_selection-coefs-cohort_prevax-main-stroke_sahhs.csv
+        lambda_sequence: output/lasso_var_selection/lambda_sequence-cohort_prevax-main-stroke_sahhs.csv
 
   ## Generate lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami 
 
@@ -214,6 +216,7 @@ actions:
         fully_adjusted_cox_coefs: output/lasso_var_selection/fully_adjusted_cox_coefs-cohort_prevax-sub_covidhospital_FALSE-ami.csv
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami.csv
         lasso_coefs: output/lasso_var_selection/lasso_var_selection-coefs-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+        lambda_sequence: output/lasso_var_selection/lambda_sequence-cohort_prevax-sub_covidhospital_FALSE-ami.csv
 
   ## Generate lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
 
@@ -230,6 +233,7 @@ actions:
         fully_adjusted_cox_coefs: output/lasso_var_selection/fully_adjusted_cox_coefs-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
         lasso_coefs: output/lasso_var_selection/lasso_var_selection-coefs-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+        lambda_sequence: output/lasso_var_selection/lambda_sequence-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
 
   ## Generate lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami 
 
@@ -244,6 +248,7 @@ actions:
         fully_adjusted_cox_coefs: output/lasso_var_selection/fully_adjusted_cox_coefs-cohort_prevax-sub_covidhospital_TRUE-ami.csv
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami.csv
         lasso_coefs: output/lasso_var_selection/lasso_var_selection-coefs-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+        lambda_sequence: output/lasso_var_selection/lambda_sequence-cohort_prevax-sub_covidhospital_TRUE-ami.csv
 
   ## Generate lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
 
@@ -260,6 +265,7 @@ actions:
         fully_adjusted_cox_coefs: output/lasso_var_selection/fully_adjusted_cox_coefs-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
         lasso_var_selection: output/lasso_var_selection/lasso_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
         lasso_coefs: output/lasso_var_selection/lasso_var_selection-coefs-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+        lambda_sequence: output/lasso_var_selection/lambda_sequence-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
 
   ## Generate lasso_X_var_selection-cohort_prevax-main-ami 
 
@@ -274,6 +280,7 @@ actions:
         fully_adjusted_logistic_coefs: output/lasso_X_var_selection/fully_adjusted_logistic_coefs-cohort_prevax-main-ami.csv
         lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-main-ami.csv
         lasso_X_coefs: output/lasso_X_var_selection/lasso_X_var_selection-coefs-cohort_prevax-main-ami.csv
+        lambda_sequence: output/lasso_X_var_selection/lambda_sequence-cohort_prevax-main-ami.csv
 
   ## Generate lasso_X_var_selection-cohort_prevax-main-stroke_sahhs 
 
@@ -288,6 +295,7 @@ actions:
         fully_adjusted_logistic_coefs: output/lasso_X_var_selection/fully_adjusted_logistic_coefs-cohort_prevax-main-stroke_sahhs.csv
         lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-main-stroke_sahhs.csv
         lasso_X_coefs: output/lasso_X_var_selection/lasso_X_var_selection-coefs-cohort_prevax-main-stroke_sahhs.csv
+        lambda_sequence: output/lasso_X_var_selection/lambda_sequence-cohort_prevax-main-stroke_sahhs.csv
 
   ## Generate lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami
 
@@ -304,6 +312,7 @@ actions:
         fully_adjusted_logistic_coefs: output/lasso_X_var_selection/fully_adjusted_logistic_coefs-cohort_prevax-sub_covidhospital_FALSE-ami.csv
         lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-ami.csv
         lasso_X_coefs: output/lasso_X_var_selection/lasso_X_var_selection-coefs-cohort_prevax-sub_covidhospital_FALSE-ami.csv
+        lambda_sequence: output/lasso_X_var_selection/lambda_sequence-cohort_prevax-sub_covidhospital_FALSE-ami.csv
 
   ## Generate lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
 
@@ -320,6 +329,7 @@ actions:
         fully_adjusted_logistic_coefs: output/lasso_X_var_selection/fully_adjusted_logistic_coefs-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
         lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
         lasso_X_coefs: output/lasso_X_var_selection/lasso_X_var_selection-coefs-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
+        lambda_sequence: output/lasso_X_var_selection/lambda_sequence-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
 
   ## Generate lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami
 
@@ -336,6 +346,7 @@ actions:
         fully_adjusted_logistic_coefs: output/lasso_X_var_selection/fully_adjusted_logistic_coefs-cohort_prevax-sub_covidhospital_TRUE-ami.csv
         lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-ami.csv
         lasso_X_coefs: output/lasso_X_var_selection/lasso_X_var_selection-coefs-cohort_prevax-sub_covidhospital_TRUE-ami.csv
+        lambda_sequence: output/lasso_X_var_selection/lambda_sequence-cohort_prevax-sub_covidhospital_TRUE-ami.csv
 
   ## Generate lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
 
@@ -352,6 +363,7 @@ actions:
         fully_adjusted_logistic_coefs: output/lasso_X_var_selection/fully_adjusted_logistic_coefs-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
         lasso_X_var_selection: output/lasso_X_var_selection/lasso_X_var_selection-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
         lasso_X_coefs: output/lasso_X_var_selection/lasso_X_var_selection-coefs-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
+        lambda_sequence: output/lasso_X_var_selection/lambda_sequence-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs.csv
 
   ## Generate lasso_union_var_selection_cohort_prevax-main-ami 
 
