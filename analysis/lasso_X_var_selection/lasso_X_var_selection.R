@@ -195,7 +195,7 @@ cv_lasso_X_logistic_model <- cv.glmnet(
   x       = lasso_X_conf_matrix_preserving_factors,
   y       = lasso_X_exposure_matrix_preserving_factors,
   nlambda = 200,       # length of lambda sequence
-  nfolds  = 3,         # number of cv datasets
+  nfolds  = 10,         # number of cv datasets
   family  = "binomial", # logistic regression
   alpha   = 1           # LASSO penalty
 )
