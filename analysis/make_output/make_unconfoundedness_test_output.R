@@ -789,9 +789,8 @@ fully_adjusted_test_table_main_ami <- cbind(
   name   = "cohort_prevax-main-ami",
   fully_adjusted_test_table_main_ami
 )
-fully_adjusted_test_table_main_ami <- subset(
-  fully_adjusted_test_table_main_ami,
-  select = -c(X)
+colnames(fully_adjusted_test_table_main_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 fully_adjusted_test_table_sub_covidhospital_FALSE_ami <- cbind(
@@ -799,9 +798,8 @@ fully_adjusted_test_table_sub_covidhospital_FALSE_ami <- cbind(
   name   = "cohort_prevax-sub_covidhospital_FALSE-ami",
   fully_adjusted_test_table_sub_covidhospital_FALSE_ami
 )
-fully_adjusted_test_table_sub_covidhospital_FALSE_ami <- subset(
-  fully_adjusted_test_table_sub_covidhospital_FALSE_ami,
-  select = -c(X)
+colnames(fully_adjusted_test_table_sub_covidhospital_FALSE_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 fully_adjusted_test_table_sub_covidhospital_TRUE_ami <- cbind(
@@ -809,9 +807,8 @@ fully_adjusted_test_table_sub_covidhospital_TRUE_ami <- cbind(
   name   = "cohort_prevax-sub_covidhospital_TRUE-ami",
   fully_adjusted_test_table_sub_covidhospital_TRUE_ami
 )
-fully_adjusted_test_table_sub_covidhospital_TRUE_ami <- subset(
-  fully_adjusted_test_table_sub_covidhospital_TRUE_ami,
-  select = -c(X)
+colnames(fully_adjusted_test_table_sub_covidhospital_TRUE_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 fully_adjusted_test_table_main_stroke_sahhs <- cbind(
@@ -819,9 +816,8 @@ fully_adjusted_test_table_main_stroke_sahhs <- cbind(
   name   = "cohort_prevax-main-stroke_sahhs",
   fully_adjusted_test_table_main_stroke_sahhs
 )
-fully_adjusted_test_table_main_stroke_sahhs <- subset(
-  fully_adjusted_test_table_main_stroke_sahhs,
-  select = -c(X)
+colnames(fully_adjusted_test_table_main_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 fully_adjusted_test_table_sub_covidhospital_FALSE_stroke_sahhs <- cbind(
@@ -829,9 +825,8 @@ fully_adjusted_test_table_sub_covidhospital_FALSE_stroke_sahhs <- cbind(
   name   = "cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs",
   fully_adjusted_test_table_sub_covidhospital_FALSE_stroke_sahhs
 )
-fully_adjusted_test_table_sub_covidhospital_FALSE_stroke_sahhs <- subset(
-  fully_adjusted_test_table_sub_covidhospital_FALSE_stroke_sahhs,
-  select = -c(X)
+colnames(fully_adjusted_test_table_sub_covidhospital_FALSE_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 fully_adjusted_test_table_sub_covidhospital_TRUE_stroke_sahhs <- cbind(
@@ -839,9 +834,8 @@ fully_adjusted_test_table_sub_covidhospital_TRUE_stroke_sahhs <- cbind(
   name   = "cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs",
   fully_adjusted_test_table_sub_covidhospital_TRUE_stroke_sahhs
 )
-fully_adjusted_test_table_sub_covidhospital_TRUE_stroke_sahhs <- subset(
-  fully_adjusted_test_table_sub_covidhospital_TRUE_stroke_sahhs,
-  select = -c(X)
+colnames(fully_adjusted_test_table_sub_covidhospital_TRUE_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_test_table_main_ami <- cbind(
@@ -849,9 +843,8 @@ lasso_test_table_main_ami <- cbind(
   name   = "cohort_prevax-main-ami",
   lasso_test_table_main_ami
 )
-lasso_test_table_main_ami <- subset(
-  lasso_test_table_main_ami,
-  select = -c(X)
+colnames(lasso_test_table_main_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_test_table_sub_covidhospital_FALSE_ami <- cbind(
@@ -859,9 +852,8 @@ lasso_test_table_sub_covidhospital_FALSE_ami <- cbind(
   name   = "cohort_prevax-sub_covidhospital_FALSE-ami",
   lasso_test_table_sub_covidhospital_FALSE_ami
 )
-lasso_test_table_sub_covidhospital_FALSE_ami <- subset(
-  lasso_test_table_sub_covidhospital_FALSE_ami,
-  select = -c(X)
+colnames(lasso_test_table_sub_covidhospital_FALSE_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_test_table_sub_covidhospital_TRUE_ami <- cbind(
@@ -869,9 +861,8 @@ lasso_test_table_sub_covidhospital_TRUE_ami <- cbind(
   name   = "cohort_prevax-sub_covidhospital_TRUE-ami",
   lasso_test_table_sub_covidhospital_TRUE_ami
 )
-lasso_test_table_sub_covidhospital_TRUE_ami <- subset(
-  lasso_test_table_sub_covidhospital_TRUE_ami,
-  select = -c(X)
+colnames(lasso_test_table_sub_covidhospital_TRUE_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_test_table_main_stroke_sahhs <- cbind(
@@ -879,9 +870,8 @@ lasso_test_table_main_stroke_sahhs <- cbind(
   name   = "cohort_prevax-main-stroke_sahhs",
   lasso_test_table_main_stroke_sahhs
 )
-lasso_test_table_main_stroke_sahhs <- subset(
-  lasso_test_table_main_stroke_sahhs,
-  select = -c(X)
+colnames(lasso_test_table_main_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_test_table_sub_covidhospital_FALSE_stroke_sahhs <- cbind(
@@ -889,9 +879,8 @@ lasso_test_table_sub_covidhospital_FALSE_stroke_sahhs <- cbind(
   name   = "cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs",
   lasso_test_table_sub_covidhospital_FALSE_stroke_sahhs
 )
-lasso_test_table_sub_covidhospital_FALSE_stroke_sahhs <- subset(
-  lasso_test_table_sub_covidhospital_FALSE_stroke_sahhs,
-  select = -c(X)
+colnames(lasso_test_table_sub_covidhospital_FALSE_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_test_table_sub_covidhospital_TRUE_stroke_sahhs <- cbind(
@@ -899,9 +888,8 @@ lasso_test_table_sub_covidhospital_TRUE_stroke_sahhs <- cbind(
   name   = "cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs",
   lasso_test_table_sub_covidhospital_TRUE_stroke_sahhs
 )
-lasso_test_table_sub_covidhospital_TRUE_stroke_sahhs <- subset(
-  lasso_test_table_sub_covidhospital_TRUE_stroke_sahhs,
-  select = -c(X)
+colnames(lasso_test_table_sub_covidhospital_TRUE_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_X_test_table_main_ami <- cbind(
@@ -909,9 +897,8 @@ lasso_X_test_table_main_ami <- cbind(
   name   = "cohort_prevax-main-ami",
   lasso_X_test_table_main_ami
 )
-lasso_X_test_table_main_ami <- subset(
-  lasso_X_test_table_main_ami,
-  select = -c(X)
+colnames(lasso_X_test_table_main_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_X_test_table_sub_covidhospital_FALSE_ami <- cbind(
@@ -919,9 +906,8 @@ lasso_X_test_table_sub_covidhospital_FALSE_ami <- cbind(
   name   = "cohort_prevax-sub_covidhospital_FALSE-ami",
   lasso_X_test_table_sub_covidhospital_FALSE_ami
 )
-lasso_X_test_table_sub_covidhospital_FALSE_ami <- subset(
-  lasso_X_test_table_sub_covidhospital_FALSE_ami,
-  select = -c(X)
+colnames(lasso_X_test_table_sub_covidhospital_FALSE_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_X_test_table_sub_covidhospital_TRUE_ami <- cbind(
@@ -929,9 +915,8 @@ lasso_X_test_table_sub_covidhospital_TRUE_ami <- cbind(
   name   = "cohort_prevax-sub_covidhospital_TRUE-ami",
   lasso_X_test_table_sub_covidhospital_TRUE_ami
 )
-lasso_X_test_table_sub_covidhospital_TRUE_ami <- subset(
-  lasso_X_test_table_sub_covidhospital_TRUE_ami,
-  select = -c(X)
+colnames(lasso_X_test_table_sub_covidhospital_TRUE_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_X_test_table_main_stroke_sahhs <- cbind(
@@ -939,9 +924,8 @@ lasso_X_test_table_main_stroke_sahhs <- cbind(
   name   = "cohort_prevax-main-stroke_sahhs",
   lasso_X_test_table_main_stroke_sahhs
 )
-lasso_X_test_table_main_stroke_sahhs <- subset(
-  lasso_X_test_table_main_stroke_sahhs,
-  select = -c(X)
+colnames(lasso_X_test_table_main_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_X_test_table_sub_covidhospital_FALSE_stroke_sahhs <- cbind(
@@ -949,9 +933,8 @@ lasso_X_test_table_sub_covidhospital_FALSE_stroke_sahhs <- cbind(
   name   = "cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs",
   lasso_X_test_table_sub_covidhospital_FALSE_stroke_sahhs
 )
-lasso_X_test_table_sub_covidhospital_FALSE_stroke_sahhs <- subset(
-  lasso_X_test_table_sub_covidhospital_FALSE_stroke_sahhs,
-  select = -c(X)
+colnames(lasso_X_test_table_sub_covidhospital_FALSE_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_X_test_table_sub_covidhospital_TRUE_stroke_sahhs <- cbind(
@@ -959,9 +942,8 @@ lasso_X_test_table_sub_covidhospital_TRUE_stroke_sahhs <- cbind(
   name   = "cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs",
   lasso_X_test_table_sub_covidhospital_TRUE_stroke_sahhs
 )
-lasso_X_test_table_sub_covidhospital_TRUE_stroke_sahhs <- subset(
-  lasso_X_test_table_sub_covidhospital_TRUE_stroke_sahhs,
-  select = -c(X)
+colnames(lasso_X_test_table_sub_covidhospital_TRUE_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_union_test_table_main_ami <- cbind(
@@ -969,9 +951,8 @@ lasso_union_test_table_main_ami <- cbind(
   name   = "cohort_prevax-main-ami",
   lasso_union_test_table_main_ami
 )
-lasso_union_test_table_main_ami <- subset(
-  lasso_union_test_table_main_ami,
-  select = -c(X)
+colnames(lasso_union_test_table_main_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_union_test_table_sub_covidhospital_FALSE_ami <- cbind(
@@ -979,9 +960,8 @@ lasso_union_test_table_sub_covidhospital_FALSE_ami <- cbind(
   name   = "cohort_prevax-sub_covidhospital_FALSE-ami",
   lasso_union_test_table_sub_covidhospital_FALSE_ami
 )
-lasso_union_test_table_sub_covidhospital_FALSE_ami <- subset(
-  lasso_union_test_table_sub_covidhospital_FALSE_ami,
-  select = -c(X)
+colnames(lasso_union_test_table_sub_covidhospital_FALSE_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_union_test_table_sub_covidhospital_TRUE_ami <- cbind(
@@ -989,9 +969,8 @@ lasso_union_test_table_sub_covidhospital_TRUE_ami <- cbind(
   name   = "cohort_prevax-sub_covidhospital_TRUE-ami",
   lasso_union_test_table_sub_covidhospital_TRUE_ami
 )
-lasso_union_test_table_sub_covidhospital_TRUE_ami <- subset(
-  lasso_union_test_table_sub_covidhospital_TRUE_ami,
-  select = -c(X)
+colnames(lasso_union_test_table_sub_covidhospital_TRUE_ami) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_union_test_table_main_stroke_sahhs <- cbind(
@@ -999,9 +978,8 @@ lasso_union_test_table_main_stroke_sahhs <- cbind(
   name   = "cohort_prevax-main-stroke_sahhs",
   lasso_union_test_table_main_stroke_sahhs
 )
-lasso_union_test_table_main_stroke_sahhs <- subset(
-  lasso_union_test_table_main_stroke_sahhs,
-  select = -c(X)
+colnames(lasso_union_test_table_main_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_union_test_table_sub_covidhospital_FALSE_stroke_sahhs <- cbind(
@@ -1009,9 +987,8 @@ lasso_union_test_table_sub_covidhospital_FALSE_stroke_sahhs <- cbind(
   name   = "cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs",
   lasso_union_test_table_sub_covidhospital_FALSE_stroke_sahhs
 )
-lasso_union_test_table_sub_covidhospital_FALSE_stroke_sahhs <- subset(
-  lasso_union_test_table_sub_covidhospital_FALSE_stroke_sahhs,
-  select = -c(X)
+colnames(lasso_union_test_table_sub_covidhospital_FALSE_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 lasso_union_test_table_sub_covidhospital_TRUE_stroke_sahhs <- cbind(
@@ -1019,9 +996,8 @@ lasso_union_test_table_sub_covidhospital_TRUE_stroke_sahhs <- cbind(
   name   = "cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs",
   lasso_union_test_table_sub_covidhospital_TRUE_stroke_sahhs
 )
-lasso_union_test_table_sub_covidhospital_TRUE_stroke_sahhs <- subset(
-  lasso_union_test_table_sub_covidhospital_TRUE_stroke_sahhs,
-  select = -c(X)
+colnames(lasso_union_test_table_sub_covidhospital_TRUE_stroke_sahhs) <- c(
+  "method", "name", "covariate", "condition_i", "condition_ii", "condition_i_and_ii"
 )
 
 
@@ -1054,6 +1030,7 @@ all_test_tables <- rbind(
   lasso_union_test_table_sub_covidhospital_FALSE_stroke_sahhs,
   lasso_union_test_table_sub_covidhospital_TRUE_stroke_sahhs
 )
+
 
 # Add name column to each conclusion table ----------------------
 print("Add name column to each conclusion table")
