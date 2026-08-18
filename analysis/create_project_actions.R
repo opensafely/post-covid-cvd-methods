@@ -785,6 +785,30 @@ unconfoundedness_test <- function(name, cohort, ages = "18;40;60;80", preex = "A
 }
 
 
+make_unconfoundnessness_test_output <- function() {
+  splice(
+    comment(glue("Make unconfoundness test output")),
+    action(
+      name = glue("make_unconfoundedness_test_output"),
+      run = "r:v2 analysis/make_output/make_unconfoundedness_test_output.R",
+      arguments = c(),
+      needs = list(glue("unconfoundedness_test-cohort_prevax-main-ami"),
+                   glue("unconfoundedness_test-cohort_prevax-main-stroke_sahhs"),
+                   glue("unconfoundedness_test-cohort_prevax-sub_covidhospital_FALSE-ami"),
+                   glue("unconfoundedness_test-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs"),
+                   glue("unconfoundedness_test-cohort_prevax-sub_covidhospital_TRUE-ami"),
+                   glue("unconfoundedness_test-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs")
+      ),
+      moderately_sensitive = list(
+        all_regression_results = glue("output/make_output/unconfoundedness_test_all_regression_results.csv"),
+        all_test_tables        = glue("output/make_output/unconfoundedness_test_all_test_tables.csv"),
+        all_conclusion_tables  = glue("output/make_output/unconfoundedness_test_all_conclusion_tables.csv")
+      )
+    )
+  )
+}
+
+
 # Create function to make Venn data --------------------------------------------
 
 venn <- function(cohort, analyses = "") {
@@ -1452,6 +1476,13 @@ actions_list <- splice(
       lapply(subgroups, function(x) make_lasso_union_model_output(subgroup = x)),
       recursive = FALSE
     )
+  ),
+
+
+  ## Unconfoundness test output -----------------------------------------------
+
+  splice(
+    make_unconfoundnessness_test_output()
   )
 )
 
