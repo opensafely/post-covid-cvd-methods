@@ -1116,7 +1116,7 @@ sub_covidhospital_TRUE_stroke_sahhs_conclusion_table <- subset(
 # Stack all conclusion tables -----
 print("Stack all conclusion tables")
 
-all_conclusion_tables <- cbind(
+all_conclusion_tables <- rbind(
   main_ami_conclusion_table,
   sub_covidhospital_FALSE_ami_conclusion_table,
   sub_covidhospital_TRUE_ami_conclusion_table,
@@ -1129,20 +1129,24 @@ all_conclusion_tables <- cbind(
 # Save all final results tables -----
 print("Save all final results tables")
 
+colnames(all_conclusion_tables) <- c(
+  "name", "method", "test_result", "interpretation"
+)
+
 write.csv(
   all_regression,
   paste0(makeout_dir, "unconfoundedness_test_all_regression_results.csv"),
-  row.names = TRUE
+  row.names = FALSE
 )
 
 write.csv(
   all_test_tables,
   paste0(makeout_dir, "unconfoundedness_test_all_test_tables.csv"),
-  row.names = TRUE
+  row.names = FALSE
 )
 
 write.csv(
   all_conclusion_tables,
   paste0(makeout_dir, "unconfoundedness_test_all_conclusion_tables.csv"),
-  row.names = TRUE
+  row.names = FALSE
 )
