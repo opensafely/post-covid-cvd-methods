@@ -1746,3 +1746,20 @@ actions:
         lasso_union_model_output: output/make_output/lasso_union_model_output-sub_covidhospital.csv
         lasso_union_model_output_midpoint6: output/make_output/lasso_union_model_output-sub_covidhospital-midpoint6.csv
 
+  ## Make unconfoundness test output 
+
+  make_unconfoundedness_test_output:
+    run: r:v2 analysis/make_output/make_unconfoundedness_test_output.R
+    needs:
+    - unconfoundedness_test-cohort_prevax-main-ami
+    - unconfoundedness_test-cohort_prevax-main-stroke_sahhs
+    - unconfoundedness_test-cohort_prevax-sub_covidhospital_FALSE-ami
+    - unconfoundedness_test-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    - unconfoundedness_test-cohort_prevax-sub_covidhospital_TRUE-ami
+    - unconfoundedness_test-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    outputs:
+      moderately_sensitive:
+        all_regression_results: output/make_output/unconfoundedness_test_all_regression_results.csv
+        all_test_tables: output/make_output/unconfoundedness_test_all_test_tables.csv
+        all_conclusion_tables: output/make_output/unconfoundedness_test_all_conclusion_tables.csv
+

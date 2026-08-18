@@ -230,7 +230,7 @@ cv_lasso_cox_model <- cv.glmnet(
   x       = lasso_cox_conf_matrix_preserving_factors,
   y       = lasso_cox_outcome_survival,
   nlambda = 200,   # length of lambda sequence
-  nfolds  = 10,    # number of cv datasets
+  nfolds  = 10,     # number of cv datasets
   family  = "cox", # cox regression
   alpha   = 1      # LASSO penalty
 )
