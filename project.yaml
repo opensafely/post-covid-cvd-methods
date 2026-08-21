@@ -14,7 +14,7 @@ actions:
   ## Define study dates 
 
   study_dates:
-    run: r:latest analysis/study_dates.R
+    run: r:v2 analysis/study_dates.R
     outputs:
       highly_sensitive:
         study_dates_json: output/study_dates.json
@@ -44,7 +44,7 @@ actions:
   ## Generate input_prevax_clean, with describe = FALSE 
 
   generate_input_prevax_clean:
-    run: r:latest analysis/dataset_clean/dataset_clean.R prevax FALSE
+    run: r:v2 analysis/dataset_clean/dataset_clean.R prevax FALSE
     needs:
     - study_dates
     - generate_input_prevax
@@ -59,7 +59,7 @@ actions:
   ## post_hoc_vars_cohort_prevax 
 
   post_hoc_vars_cohort_prevax:
-    run: r:latest analysis/post_hoc_vars/post_hoc_vars.R prevax
+    run: r:v2 analysis/post_hoc_vars/post_hoc_vars.R prevax
     needs:
     - generate_input_prevax_clean
     outputs:
@@ -69,7 +69,7 @@ actions:
   ## generate_subsample_cohort_prevax 
 
   generate_subsample_cohort_prevax:
-    run: r:latest analysis/generate_subsample/generate_subsample.R prevax
+    run: r:v2 analysis/generate_subsample/generate_subsample.R prevax
     needs:
     - post_hoc_vars_cohort_prevax
     outputs:
@@ -80,7 +80,7 @@ actions:
   ## make_model_input_subsample-cohort_prevax-main-ami 
 
   make_model_input_subsample-cohort_prevax-main-ami:
-    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-main-ami
+    run: r:v2 analysis/model/make_model_input_subsample.R cohort_prevax-main-ami
     needs:
     - generate_subsample_cohort_prevax
     outputs:
@@ -90,7 +90,7 @@ actions:
   ## make_model_input_subsample-cohort_prevax-main-stroke_sahhs 
 
   make_model_input_subsample-cohort_prevax-main-stroke_sahhs:
-    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-main-stroke_sahhs
+    run: r:v2 analysis/model/make_model_input_subsample.R cohort_prevax-main-stroke_sahhs
     needs:
     - generate_subsample_cohort_prevax
     outputs:
@@ -100,7 +100,7 @@ actions:
   ## make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-ami 
 
   make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-ami:
-    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_FALSE-ami
+    run: r:v2 analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_FALSE-ami
     needs:
     - generate_subsample_cohort_prevax
     outputs:
@@ -112,7 +112,7 @@ actions:
     
 
   make_model_input_subsample-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
-    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    run: r:v2 analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     needs:
     - generate_subsample_cohort_prevax
     outputs:
@@ -122,7 +122,7 @@ actions:
   ## make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-ami 
 
   make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-ami:
-    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_TRUE-ami
+    run: r:v2 analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_TRUE-ami
     needs:
     - generate_subsample_cohort_prevax
     outputs:
@@ -134,7 +134,7 @@ actions:
     
 
   make_model_input_subsample-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
-    run: r:latest analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    run: r:v2 analysis/model/make_model_input_subsample.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     needs:
     - generate_subsample_cohort_prevax
     outputs:
@@ -540,7 +540,7 @@ actions:
   ## Run models 
 
   make_model_input-cohort_prevax-main-ami:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-main-ami
+    run: r:v2 analysis/model/make_model_input.R cohort_prevax-main-ami
     needs:
     - post_hoc_vars_cohort_prevax
     outputs:
@@ -578,7 +578,7 @@ actions:
         model_output: output/model/model_output-cohort_prevax-main-ami.csv
 
   make_model_input-cohort_prevax-main-stroke_sahhs:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-main-stroke_sahhs
+    run: r:v2 analysis/model/make_model_input.R cohort_prevax-main-stroke_sahhs
     needs:
     - post_hoc_vars_cohort_prevax
     outputs:
@@ -616,7 +616,7 @@ actions:
         model_output: output/model/model_output-cohort_prevax-main-stroke_sahhs.csv
 
   make_model_input-cohort_prevax-sub_covidhospital_FALSE-ami:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_FALSE-ami
+    run: r:v2 analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_FALSE-ami
     needs:
     - post_hoc_vars_cohort_prevax
     outputs:
@@ -654,7 +654,7 @@ actions:
         model_output: output/model/model_output-cohort_prevax-sub_covidhospital_FALSE-ami.csv
 
   make_model_input-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
+    run: r:v2 analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs
     needs:
     - post_hoc_vars_cohort_prevax
     outputs:
@@ -692,7 +692,7 @@ actions:
         model_output: output/model/model_output-cohort_prevax-sub_covidhospital_FALSE-stroke_sahhs.csv
 
   make_model_input-cohort_prevax-sub_covidhospital_TRUE-ami:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_TRUE-ami
+    run: r:v2 analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_TRUE-ami
     needs:
     - post_hoc_vars_cohort_prevax
     outputs:
@@ -730,7 +730,7 @@ actions:
         model_output: output/model/model_output-cohort_prevax-sub_covidhospital_TRUE-ami.csv
 
   make_model_input-cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
+    run: r:v2 analysis/model/make_model_input.R cohort_prevax-sub_covidhospital_TRUE-stroke_sahhs
     needs:
     - post_hoc_vars_cohort_prevax
     outputs:
